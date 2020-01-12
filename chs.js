@@ -712,8 +712,6 @@ var cnPostfix = {
     'attack & defense against barbarians': '对土著的攻防加成',
     'chance to break walls & castle with siege units': '攻城器械破坏城墙和城堡的概率',
     'Barb. vil.': '土著村庄',
-    'k': 'k',
-    'm': 'm',
     'Aztecs': '阿兹特克',
     'Delay': '延迟',
     'ranged unit': '远程单位',
