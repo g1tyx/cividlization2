@@ -862,6 +862,7 @@ var cnPrefix = {
     'limit to' : '限制于',
     'Victory in': '战斗胜利在',
     'Your troops have arrived in': '你的部队抵达了',
+    'Trade Routes': '贸易路线',
     'Trade routes to': '贸易路线通往',
     'Village': '村',
     'Well': '水井',
