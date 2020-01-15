@@ -1136,6 +1136,7 @@ var cnPostfix = {
     'Steel': '钢铁',
     'Education': '教育',
     'Training Center': '训练中心',
+    'Milling': '研磨',
     'Mill': '磨坊',
     '': '',
     '': '',
