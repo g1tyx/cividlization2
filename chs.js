@@ -837,7 +837,7 @@ var cnPrefix = {
     "+": "+",
     " ": " ",
     ": ": "： ",
-    'A new discovery': '新的发现',
+    'A new discovery': '研究完成',
     'trade routes': '贸易路线',
     'Trade routes': '贸易路线',
     'Trade Route': '贸易路线',
