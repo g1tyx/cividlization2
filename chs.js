@@ -737,7 +737,7 @@ var cnItems = {
     'Number': '数量',
     'Remaining': '剩余',
     'This simulates a battle against barbarians.Result migkht be different against a real civilization.': '此模拟器模拟的是你与土著的战斗，和其它文明之间的战斗结果也许会不同',
-    '': '',
+    'spy': '间谍',
     '': '',
     '': '',
     '': '',
