@@ -954,7 +954,7 @@ var cnPrefix = {
     'Global cities': '总城市数',
     'Global population': '总人口',
     'Global troops': '总部队数',
-    'Milling': '磨坊',
+    'Milling': '研磨',
     'Mill': '磨坊',
     '': '',
     '': '',
