@@ -90,7 +90,7 @@ var cnItems = {
     'Horseriding': '骑术',
     'However, if you wish to support it, you can still offer a gift !': '当然，如果你赞助本游戏，就可以获得一份礼物！',
     'Icons made by': '图片来源',
-    'Idle': '放置',
+    'Idle': '无业',
     'Imperialism': '帝国主义',
     'in every city': '在所有城市',
     'in the Capital': '仅在首都',
