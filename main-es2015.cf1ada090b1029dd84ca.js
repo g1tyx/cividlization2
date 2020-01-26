@@ -11564,7 +11564,7 @@
                 this.kongService = l
             }
             ngOnInit() {
-                Du.production && !document.domain.endsWith("netlify.com") && (this.baddomain = !0);
+                //Du.production && !document.domain.endsWith("netlify.com") && (this.baddomain = !0);
                 try {
                     localStorage.openpages = Date.now(),
                     window.addEventListener("storage", (function(l) {
