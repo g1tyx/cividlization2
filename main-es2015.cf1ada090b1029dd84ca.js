@@ -35796,15 +35796,15 @@
                 },
                 this.engine = nm(0, this.conf.dt),
                 this.img_src = {
-                    vil1: "/assets/img/vil1.png",
-                    vil2: "/assets/img/vil2.png",
-                    vil3: "/assets/img/vil3.png",
-                    vil4: "/assets/img/vil4.png",
-                    troop: "/assets/img/troop.png",
-                    troop1: "/assets/img/troop1.png",
-                    cart: "/assets/img/cart.png",
-                    scout: "/assets/img/scout.png",
-                    spy: "/assets/img/spy.png"
+                    vil1: "assets/img/vil1.png",
+                    vil2: "assets/img/vil2.png",
+                    vil3: "assets/img/vil3.png",
+                    vil4: "assets/img/vil4.png",
+                    troop: "assets/img/troop.png",
+                    troop1: "assets/img/troop1.png",
+                    cart: "assets/img/cart.png",
+                    scout: "assets/img/scout.png",
+                    spy: "assets/img/spy.png"
                 },
                 this.img = {},
                 this.menu = {
