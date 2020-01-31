@@ -1417,6 +1417,12 @@ var cnRegReplace = new Map([
     [/^Troops have been dismissed due to lack of gold: (.+) Warrior, (.+) Archer, (.+) Lancier$/, '部队因缺乏黄金而被解雇：$1战士，$2弓兵，$3枪兵'],
     [/^(.+)declared war on you$/, '$1向您宣战'],
     [/^(.+) Village has finished the construction of $/, '$1的村已经完成了'],
-    [/^workers: (\d+)\/$/, '工人：$1\/'],
+    [/^(.+) Archer$/, '$1 弓兵'],
+    [/^(.+) Scout$/, '$1 侦查兵'],
+    [/^(.+) Warrior$/, '$1 勇士'],
+    [/^(.+) Lancier$/, '$1 枪兵'],
+    [/^(.+) Horseman$/, '$1 骑兵'],
+    [/^(.+) Archer$/, '$1 弓兵'],
+    [/^(.+) Archer$/, '$1 弓兵'],
 
 ]);
