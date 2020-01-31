@@ -897,7 +897,7 @@ var cnItems = {
     'Caravans are used to create ': '商队用于创建',
     'Buy for': '购买',
     'Buy 1 for': '购买1个需要',
-    'Amphitheatre': '露天剧场',
+    'Amphitheatre': '圆形剧场',
     'Alliances': '联盟',
     'View': '显示',
     'Almost there...': '差不多了…',
@@ -918,14 +918,14 @@ var cnItems = {
     'Gracious': '亲密',
     'Pergamon': '佩加蒙',
     'production increased by': '产量增加了',
-    '': '',
-    '': '',
-    '': '',
-    '': '',
-    '': '',
-    '': '',
-    '': '',
-    '': '',
+    'Horseman (': '骑兵 (',
+    'Scout (': '侦察兵 (',
+    'Send': '发送',
+    'Plague Doctor': '瘟疫医生',
+    'Archer (': '弓兵 (',
+    'Caravan (': '商队 (',
+    'Gold (': '黄金 (',
+    'Lancier (': '枪兵 (',
     '': '',
     '': '',
     '': '',
@@ -1423,5 +1423,7 @@ var cnRegReplace = new Map([
     [/^(.+) Lancier$/, '$1 枪兵'],
     [/^(.+) Horseman$/, '$1 骑兵'],
     [/^(.+) Governor$/, '$1 总督']
+    [/^Sending gold to (.+)$/, '运送黄金到 $1']
+    [/^Amphitheatre : (.+)$/, '圆形剧场：$1']
 
 ]);
