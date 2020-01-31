@@ -1422,8 +1422,8 @@ var cnRegReplace = new Map([
     [/^(.+) Warrior$/, '$1 勇士'],
     [/^(.+) Lancier$/, '$1 枪兵'],
     [/^(.+) Horseman$/, '$1 骑兵'],
-    [/^(.+) Governor$/, '$1 总督']
-    [/^Sending gold to (.+)$/, '运送黄金到 $1']
+    [/^(.+) Governor$/, '$1 总督'],
+    [/^Sending gold to (.+)$/, '运送黄金到 $1'],
     [/^Amphitheatre : (.+)$/, '圆形剧场：$1']
 
 ]);
