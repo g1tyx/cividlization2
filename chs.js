@@ -1421,6 +1421,7 @@ var cnRegReplace = new Map([
     [/^(.+) Archer$/, '$1 弓兵'],
     [/^(.+) Scout$/, '$1 侦查兵'],
     [/^(.+) Warrior$/, '$1 勇士'],
+    [/^(.+) Plague Doctor$/, '$1 瘟疫医生'],
     [/^(.+) Lancier$/, '$1 枪兵'],
     [/^(.+) Horseman$/, '$1 骑兵'],
     [/^(.+) Governor$/, '$1 总督'],
