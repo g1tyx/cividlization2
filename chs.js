@@ -1429,6 +1429,7 @@ var cnRegReplace = new Map([
     [/^Transfer to (.+)$/, '运送到 $1'],
     [/^Relocate (.+) as capital$/, '搬迁 $1 为首都'],
     [/^Sending gold to (.+)$/, '运送黄金到 $1'],
-    [/^Amphitheatre : (.+)$/, '圆形剧场：$1']
+    [/^Amphitheatre : (.+)$/, '圆形剧场：$1'],
+    [/^(.+) and (.+) have formed an alliance.$/, '$1和$2已结盟。']
 
 ]);
