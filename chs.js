@@ -933,6 +933,7 @@ var cnItems = {
     'Caravel cost -50% & recruit time -': '帆船的成本-50% & 招募时间-',
     ' : Infinity': ' ：无限',
     'Returning': '返回中',
+    'Return': '返回',
     'Spy (': '间谍 (',
     'Swordsman (': '剑士 (',
     'Transfer': '运输',
@@ -975,11 +976,11 @@ var cnItems = {
     'Pantheon': '万神殿',
     'Explorer': '探险者',
     'for 5min (based on Feathered Serpent level': '持续5分钟(基于羽蛇等级)',
-    '': '',
-    '': '',
-    '': '',
-    '': '',
-    '': '',
+    'Click on a troop number to select all.': '',
+    'Reset Policies': '复位政策',
+    'This deity is': '这个神是',
+    'on your first run.': '在你第一次游戏时使用。',
+    'NOT RECOMMENDED': '不推荐',
     '': '',
     '': '',
     '': '',
@@ -1465,6 +1466,8 @@ var cnRegReplace = new Map([
     [/^Troops have been dismissed due to lack of gold: (.+) Warrior, (.+) Archer$/, '部队因缺乏黄金而被解雇：$1战士，$2弓兵'],
     [/^Troops have been dismissed due to lack of gold: (.+) Warrior, (.+) Archer, (.+) Lancier$/, '部队因缺乏黄金而被解雇：$1战士，$2弓兵，$3枪兵'],
     [/^(.+)declared war on you$/, '$1向您宣战'],
+    [/^(.+)declared war on (.+)$/, '$1向$2宣战'],
+    [/^(.+)declared war on $/, '$1宣战了'],
     [/^(.+) Village has finished the construction of $/, '$1的村已经完成了'],
     [/^(.+) Archer$/, '$1 弓兵'],
     [/^(.+) Scout$/, '$1 侦查兵'],
@@ -1498,5 +1501,6 @@ var cnRegReplace = new Map([
     [/^Incoming attack in (.+)$/, '有人正在前往攻击 $1'],
     [/^(.+) created a trade route between (.+) and (.+)$/, '$1创造了$2和$3之间的贸易路线'],
     [/^(.+) and (.+) have formed an alliance.$/, '$1和$2已结盟。']
+    [/^(.+) and (.+) are now in peace.$/, '$1和$2已归于和平。']
 
 ]);
