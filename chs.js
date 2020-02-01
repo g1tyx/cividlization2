@@ -938,7 +938,7 @@ var cnItems = {
     'Spy (': '间谍 (',
     'Swordsman (': '剑士 (',
     'Transfer': '运输',
-    'Barb. vil. has been captured !': '倒钩 维尔。 已被抓获！',
+    'Barb. vil. has been captured !': '土著村庄已被征服！',
     'Offer Defensive Pact': '提供防御条约',
     'Teotihuacan': '特奥蒂瓦坎',
     'Truce': '休战',
@@ -987,8 +987,8 @@ var cnItems = {
     'Increase Plague Doctors efficiency': '提高瘟疫医生的效率',
     '+50% (in all empire': '+ 50％（所有帝国',
     ' 50% (in all empire': '50％（所有帝国',
-    '': '',
-    '': '',
+    'Malinalco': '马里纳尔科',
+    'Defeat in Barb. vil. !': '在土著村庄被击败。',
     '': '',
     '': '',
     '': '',
@@ -1480,6 +1480,7 @@ var cnRegReplace = new Map([
     [/^(.+) Governor$/, '$1 总督'],
     [/^(.+) Swordsman$/, '$1 剑士'],
     [/^(.+) Longbowman$/, '$1 长弓手'],
+    [/^(.+) Catapult$/, '$1 投石车'],
     [/^ charge (.+) to unlock$/, ' 充电 $1 解锁'],
     [/^Assur (.+)\n$/, '亚述 $1'],
     [/^Delhi (.+)\n$/, '德里 $1'],
@@ -1506,6 +1507,7 @@ var cnRegReplace = new Map([
     [/^(.+) and (.+) are now in peace.$/, '$1和$2已归于和平。'],
     [/^Victory (.+) gold pillaged$/, '胜利 $1 黄金已掠夺'],
     [/^Great Wall : (.+)$/, '长城：$1'],
-    [/^Pantheon : (.+)$/, '万神殿：$1']
+    [/^Pantheon : (.+)$/, '万神殿：$1'],
+    [/^Troops have been dismissed due to lack of gold: (.+)$/, '部队因缺金而被解雇：$1']
 
 ]);
