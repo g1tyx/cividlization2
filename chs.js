@@ -1502,7 +1502,9 @@ var cnRegReplace = new Map([
     [/^Incoming attack in (.+)$/, '有人正在前往攻击 $1'],
     [/^(.+) created a trade route between (.+) and (.+)$/, '$1创造了$2和$3之间的贸易路线'],
     [/^(.+) and (.+) have formed an alliance.$/, '$1和$2已结盟。'],
-    [/^(.+) and (.+) are now in peace.$/, '$1和$2已归于和平。']
-    [/^Victory (.+) gold pillaged$/, '胜利 $1 黄金已掠夺']
+    [/^(.+) and (.+) are now in peace.$/, '$1和$2已归于和平。'],
+    [/^Victory (.+) gold pillaged$/, '胜利 $1 黄金已掠夺'],
+    [/^Great Wall : (.+)$/, '长城：$1'],
+    [/^Pantheon : (.+)$/, '万神殿：$1']
 
 ]);
