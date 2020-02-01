@@ -813,6 +813,7 @@ var cnItems = {
     'Incoming ': '敌人的',
     'Burn down on conquest ! (the governor will not be consumed': '占领时焚毁！（总督不会被消耗',
     'Click on a unit name to select all of them.': '点击单位名称全选该单位',
+    'Click on a gold value to send all.': '单击黄金值以发送全部。',
     'Distance': '距离',
     'Do not return troops if city is conquered (be careful about maintenance!': '占领城市后不撤回军队（请注意军队维护费用！',
     'Governor (': '总督（',
