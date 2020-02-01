@@ -982,9 +982,10 @@ var cnItems = {
     'on your first run.': '在你第一次游戏时使用。',
     'NOT RECOMMENDED': '不推荐',
     'Burn down on conquest ! (requires a governor, will not be consumed': '烧毁征服！ （需要总督，不会被消费',
-    '': '',
-    '': '',
-    '': '',
+    'Gold mine': '金矿',
+    'Increase Plague Doctors efficiency': '提高瘟疫医生的效率',
+    '+50% (in all empire': '+ 50％（所有帝国',
+    ' 50% (in all empire': '50％（所有帝国',
     '': '',
     '': '',
     '': '',
@@ -1502,5 +1503,6 @@ var cnRegReplace = new Map([
     [/^(.+) created a trade route between (.+) and (.+)$/, '$1创造了$2和$3之间的贸易路线'],
     [/^(.+) and (.+) have formed an alliance.$/, '$1和$2已结盟。'],
     [/^(.+) and (.+) are now in peace.$/, '$1和$2已归于和平。']
+    [/^Victory (.+) gold pillaged$/, '胜利 $1 黄金已掠夺']
 
 ]);
