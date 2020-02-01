@@ -976,7 +976,7 @@ var cnItems = {
     'Pantheon': '万神殿',
     'Explorer': '探险者',
     'for 5min (based on Feathered Serpent level': '持续5分钟(基于羽蛇等级)',
-    'Click on a troop number to select all.': '',
+    'Click on a troop number to select all.': '单击部队编号以全选。',
     'Reset Policies': '复位政策',
     'This deity is': '这个神是',
     'on your first run.': '在你第一次游戏时使用。',
@@ -1500,7 +1500,7 @@ var cnRegReplace = new Map([
     [/^Draw \((.+) gold pillaged$/, '平局（$1 黄金被掠夺'],
     [/^Incoming attack in (.+)$/, '有人正在前往攻击 $1'],
     [/^(.+) created a trade route between (.+) and (.+)$/, '$1创造了$2和$3之间的贸易路线'],
-    [/^(.+) and (.+) have formed an alliance.$/, '$1和$2已结盟。']
+    [/^(.+) and (.+) have formed an alliance.$/, '$1和$2已结盟。'],
     [/^(.+) and (.+) are now in peace.$/, '$1和$2已归于和平。']
 
 ]);
