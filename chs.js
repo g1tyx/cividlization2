@@ -981,7 +981,7 @@ var cnItems = {
     'This deity is': '这个神是',
     'on your first run.': '在你第一次游戏时使用。',
     'NOT RECOMMENDED': '不推荐',
-    '': '',
+    'Burn down on conquest ! (requires a governor, will not be consumed': '烧毁征服！ （需要总督，不会被消费',
     '': '',
     '': '',
     '': '',
