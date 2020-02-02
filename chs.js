@@ -989,9 +989,9 @@ var cnItems = {
     ' 50% (in all empire': '50％（所有帝国',
     'Malinalco': '马里纳尔科',
     'Defeat in Barb. vil. !': '在土著村庄被击败。',
-    '': '',
-    '': '',
-    '': '',
+    'Next favor point at': '下一个支持点在',
+    '( based on your current faith': '(基于您当前的信仰',
+    '(including daily bonuses': '（包括每日奖金',
     '': '',
     '': '',
     '': '',
@@ -1479,6 +1479,8 @@ var cnRegReplace = new Map([
     [/^(.+) Horseman$/, '$1 骑兵'],
     [/^(.+) Governor$/, '$1 总督'],
     [/^(.+) Swordsman$/, '$1 剑士'],
+    [/^(.+) Pikeman$/, '$1 长矛兵'],
+    [/^(.+) Knight$/, '$1 骑士'],
     [/^(.+) Longbowman$/, '$1 长弓手'],
     [/^(.+) Catapult$/, '$1 投石车'],
     [/^ charge (.+) to unlock$/, ' 充电 $1 解锁'],
@@ -1508,6 +1510,7 @@ var cnRegReplace = new Map([
     [/^Victory (.+) gold pillaged$/, '胜利 $1 黄金已掠夺'],
     [/^Great Wall : (.+)$/, '长城：$1'],
     [/^Pantheon : (.+)$/, '万神殿：$1'],
-    [/^Troops have been dismissed due to lack of gold: (.+)$/, '部队因缺金而被解雇：$1']
+    [/^Troops have been dismissed due to lack of gold: (.+)$/, '部队因缺金而被解雇：$1'],
+    [/^ Academy : (.+)$/, ' 学院：$1']
 
 ]);
