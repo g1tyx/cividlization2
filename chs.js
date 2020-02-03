@@ -1038,7 +1038,7 @@ var cnItems = {
     'Fertilizer': '肥料',
     'in cities with trade routes.': '在有贸易路线的城市。',
     'Mass Production': '批量生产',
-    '': '',
+    'Amphitheatre ': '圆形剧场 ',
     '': '',
     '': '',
     '': '',
@@ -1551,6 +1551,7 @@ var cnRegReplace = new Map([
     [/^Pantheon : (.+)$/, '万神殿：$1'],
     [/^军事 Academy : (.+)$/, '军事学院：$1'],
     [/^Troops have been dismissed due to lack of gold: (.+)$/, '部队因缺金而被解雇：$1'],
-    [/^ Academy : (.+)$/, ' 学院：$1']
+    [/^ Academy : (.+)$/, ' 学院：$1'],
+    [/^(.+)已完成建设Amphitheatre$/, '$1已完成建设圆形剧场']
 
 ]);
