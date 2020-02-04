@@ -1081,7 +1081,7 @@ var cnItems = {
     ' of Versailles': '凡尔赛宫',
     '/ colony': ' / 殖民地',
     ' Tactics (': '战术 (',
-    '': '',
+    'Explorer are like scouts, but faster and more resistant': '探险家就像侦察兵，但速度更快，抵抗力更强',
     '': '',
     '': '',
     '': '',
@@ -1605,6 +1605,8 @@ var cnRegReplace = new Map([
     [/^军事 Academy : (.+)$/, '军事学院：$1'],
     [/^Troops have been dismissed due to lack of gold: (.+)$/, '部队因缺金而被解雇：$1'],
     [/^ Academy : (.+)$/, ' 学院：$1'],
+    [/^University : (.+)$/, '大学：$1'],
+    [/^Astronomy (.+)$/, '天文学 $1'],
     [/^(.+)已完成建设Amphitheatre$/, '$1已完成建设圆形剧场']
 
 ]);
