@@ -1086,9 +1086,9 @@ var cnItems = {
     'to all civilizations': '对所有文明',
     'Free Opera in each of your cities': '免费歌剧院在每个城市',
     'Caravel cost -50% & recruit time -50% in every city': '每座城市的商队招募成本-50％，招募时间-50％',
-    '': '',
-    '': '',
-    '': '',
+    '+2% / colony': '+2% / 殖民地',
+    'cost -': '成本 -',
+    '10% to all cities': '10% 所有的城市',
     '': '',
     '': '',
     '': '',
@@ -1573,6 +1573,8 @@ var cnRegReplace = new Map([
     [/^(.+) Longbowman$/, '$1 长弓手'],
     [/^(.+) Catapult$/, '$1 弹射器'],
     [/^(.+) Trebuchet$/, '$1 投石车'],
+    [/^(.+) Musketman$/, '$1 火枪手'],
+    [/^(.+) Explorer$/, '$1 探险者'],
     [/^(.+) Caravan$/, '$1 商队'],
     [/^ charge (.+) to unlock$/, ' 充电 $1 解锁'],
     [/^Assur (.+)\n$/, '亚述 $1'],
@@ -1607,6 +1609,11 @@ var cnRegReplace = new Map([
     [/^ Academy : (.+)$/, ' 学院：$1'],
     [/^University : (.+)$/, '大学：$1'],
     [/^Astronomy (.+)$/, '天文学 $1'],
+    [/^Sistine Chapel : (.+)$/, '西斯廷教堂：$1'],
+    [/^Forbidden City : (.+)$/, '紫禁城：$1'],
+    [/^Casa Da India : (.+)$/, '印度之家：$1'],
+    [/^Versailles : (.+)$/, '凡尔赛宫：$1'],
+    [/^Metallurgy (.+)$/, '冶金 $1'],
     [/^(.+)已完成建设Amphitheatre$/, '$1已完成建设圆形剧场']
 
 ]);
