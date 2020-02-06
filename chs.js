@@ -1068,6 +1068,7 @@ var cnItems = {
     'Colonization': '殖民化',
     'Cavalry': '装甲兵',
     'Casa da India': '印度之家',
+    'Casa Da India': '印度之家',
     'Caravel': '轻快帆船',
     'Cannon': '大炮',
     'Big Ben': '大本钟',
@@ -1089,9 +1090,9 @@ var cnItems = {
     '+2% / colony': '+2% / 殖民地',
     'cost -': '成本 -',
     '10% to all cities': '10% 所有的城市',
-    '': '',
-    '': '',
-    '': '',
+    'Charge': '充能',
+    'Leaning Tower of Pisa': '比萨斜塔',
+    '+10 / all ': '+10 / 全部 ',
     '': '',
     '': '',
     '': '',
@@ -1576,6 +1577,7 @@ var cnRegReplace = new Map([
     [/^(.+) Musketman$/, '$1 火枪手'],
     [/^(.+) Explorer$/, '$1 探险者'],
     [/^(.+) Caravan$/, '$1 商队'],
+    [/^(.+) Cannon$/, '$1 大炮'],
     [/^ charge (.+) to unlock$/, ' 充电 $1 解锁'],
     [/^Assur (.+)\n$/, '亚述 $1'],
     [/^Delhi (.+)\n$/, '德里 $1'],
@@ -1614,6 +1616,7 @@ var cnRegReplace = new Map([
     [/^Casa Da India : (.+)$/, '印度之家：$1'],
     [/^Versailles : (.+)$/, '凡尔赛宫：$1'],
     [/^Metallurgy (.+)$/, '冶金 $1'],
+    [/^Mass Production (.+)$/, '批量生产 $1'],
     [/^(.+)已完成建设Amphitheatre$/, '$1已完成建设圆形剧场']
 
 ]);
