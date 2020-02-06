@@ -9716,7 +9716,7 @@ function _createClass(n, l, e) {
                 return _createClass(n, [{
                     key: "ngOnInit",
                     value: function () {
-                        wa.production && !document.domain.endsWith("netlify.com") && (this.baddomain = !0);
+//                        wa.production && !document.domain.endsWith("netlify.com") && (this.baddomain = !0);
                         var n = !1;
                         try {
                             localStorage && localStorage.fsa && (localStorage.removeItem("fsa"), n = !0)
@@ -34494,17 +34494,17 @@ function _createClass(n, l, e) {
                         recruitment: "\uf505",
                         plague: "\uf714"
                     }, this.engine = Mv(0, this.conf.dt), this.img_src = {
-                        vil1: "/assets/img/vil1.png",
-                        vil2: "/assets/img/vil2.png",
-                        vil3: "/assets/img/vil3.png",
-                        vil4: "/assets/img/vil4.png",
-                        troop: "/assets/img/troop.png",
-                        troop1: "/assets/img/troop1.png",
-                        cart: "/assets/img/cart.png",
-                        scout: "/assets/img/scout.png",
-                        spy: "/assets/img/spy.png",
-                        grass: "/assets/img/grass.png",
-                        water: "/assets/img/water.png"
+                        vil1: "assets/img/vil1.png",
+                        vil2: "assets/img/vil2.png",
+                        vil3: "assets/img/vil3.png",
+                        vil4: "assets/img/vil4.png",
+                        troop: "assets/img/troop.png",
+                        troop1: "assets/img/troop1.png",
+                        cart: "assets/img/cart.png",
+                        scout: "assets/img/scout.png",
+                        spy: "assets/img/spy.png",
+                        grass: "assets/img/grass.png",
+                        water: "assets/img/water.png"
                     }, this.img = {}, this.menu = {
                         show: !1,
                         desc: "",
