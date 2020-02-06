@@ -1615,6 +1615,11 @@ var cnRegReplace = new Map([
     [/^Forbidden City : (.+)$/, '紫禁城：$1'],
     [/^Casa Da India : (.+)$/, '印度之家：$1'],
     [/^Versailles : (.+)$/, '凡尔赛宫：$1'],
+    [/^Taj Mahal : (.+)$/, '泰姬陵：$1'],
+    [/^Stock Exchange : (.+)$/, '证券交易所：$1'],
+    [/^Courthouse : (.+)$/, '法院：$1'],
+    [/^Leaning Tower of Pisa : (.+)$/, '比萨斜塔：$1'],
+    [/^Big Ben : (.+)$/, '大本钟：$1'],
     [/^Metallurgy (.+)$/, '冶金 $1'],
     [/^Mass Production (.+)$/, '批量生产 $1'],
     [/^(.+)已完成建设Amphitheatre$/, '$1已完成建设圆形剧场']
