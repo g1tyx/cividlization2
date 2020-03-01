@@ -8682,7 +8682,7 @@
                         this.kongService = l
                     }
                     ngOnInit() {
-                        Pr.production && !document.domain.endsWith("netlify.com") && (this.baddomain = !0);
+//                        Pr.production && !document.domain.endsWith("netlify.com") && (this.baddomain = !0);
                         let l = !1;
                         try {
                             localStorage && localStorage.fsa && (localStorage.removeItem("fsa"), l = !0)

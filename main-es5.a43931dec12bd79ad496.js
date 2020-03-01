@@ -9716,7 +9716,7 @@ function _createClass(n, l, e) {
                 return _createClass(n, [{
                     key: "ngOnInit",
                     value: function () {
-                        wa.production && !document.domain.endsWith("netlify.com") && (this.baddomain = !0);
+//                        wa.production && !document.domain.endsWith("netlify.com") && (this.baddomain = !0);
                         var n = !1;
                         try {
                             localStorage && localStorage.fsa && (localStorage.removeItem("fsa"), n = !0)
