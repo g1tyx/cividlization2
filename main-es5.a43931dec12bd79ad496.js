@@ -37836,7 +37836,7 @@ function _createClass(n, l, e) {
                             var t = 0,
                                 i = n.img_src.length;
                             n.img_src.forEach((function (l) {
-                                n.img[l] = new Image, n.img[l].src = "/assets/img/" + l + ".png", n.img[l].onload = function () {
+                                n.img[l] = new Image, n.img[l].src = "assets/img/" + l + ".png", n.img[l].onload = function () {
                                     ++t == i && n.initCanvas()
                                 }
                             }))
@@ -38513,7 +38513,7 @@ function _createClass(n, l, e) {
                     t = n(l, 3, 0, !0, e.worker.type == l.parent.context.$implicit.key, !e.dataService.isImprovementAvailable(l.parent.context.$implicit.value, e.worker.level, e.menu.city));
                 n(l, 2, 0, t), n(l, 4, 0, Jt(l.parent.parent.parent, 60), Jt(l.parent.parent.parent, 59), "right", "manuel", "body"), n(l, 5, 0, "bg-light")
             }), (function (n, l) {
-                n(l, 6, 0, At(1, "/assets/img/imp", l.parent.context.$implicit.key, ".png"), At(1, "", l.parent.context.$implicit.value.name, ""))
+                n(l, 6, 0, At(1, "assets/img/imp", l.parent.context.$implicit.key, ".png"), At(1, "", l.parent.context.$implicit.value.name, ""))
             }))
         }
 
@@ -38541,7 +38541,7 @@ function _createClass(n, l, e) {
                     t = n(l, 3, 0, !0, e.worker.type == l.parent.context.$implicit.key, !e.dataService.isImprovementAvailable(l.parent.context.$implicit.value, e.worker.level, e.menu.city));
                 n(l, 2, 0, t), n(l, 4, 0, Jt(l.parent.parent.parent, 60), Jt(l.parent.parent.parent, 59), "right", "manuel", "body"), n(l, 5, 0, "bg-light")
             }), (function (n, l) {
-                n(l, 6, 0, At(1, "/assets/img/imp", l.parent.context.$implicit.key, "2.png"), At(1, "", l.parent.context.$implicit.value.name, ""))
+                n(l, 6, 0, At(1, "assets/img/imp", l.parent.context.$implicit.key, "2.png"), At(1, "", l.parent.context.$implicit.value.name, ""))
             }))
         }
 
@@ -40640,7 +40640,7 @@ function _createClass(n, l, e) {
                     name: "Improvements",
                     html: function () {
                         return '<p>Improvements greatly improve your citizens production</p><p>To build an improvement, you need to recruit a worker or an engineer and allocate them to the task by clicking on your city in the world menu.</p><p>Improvements (other than roads & railroads) only affect the cities right next to them.</p><p>All tasks, appart from building a road or a railroad, will consume the worker or the engineer.</p><p>When a city is connected to the capital, an icon will be displayed : <i class="' + $f.connected + ' text-connected1"></i> when connected by road and <i class="' + $f.connected + ' text-connected2"></i> when connected by railroad</p>Here is a list of all improvements available in this game:<table class="table table-sm"><tbody><tr><th></th><th>Improvement</th><th>Description</th><th>Cost</th><th>Terrains</th><th>Worker required</th></tr>' + Object.values(og).reduce((function (n, l) {
-                            return n + '<tr><td><img src="/assets/img/imp' + l.id + '.png" width="48"/></td><td>' + l.name + "</td><td>" + l.description + '</td><td><span class="text-gold"><i class="' + $f.gold + '"></i> ' + Xf.format(l.cost) + '</span><br/><span class="text-time"><i class="' + $f.time + '"></i> ' + Xf.formatTime(l.time) + "</span></td><td>" + Object.values(l.terrains).reduce((function (n, e, t) {
+                            return n + '<tr><td><img src="assets/img/imp' + l.id + '.png" width="48"/></td><td>' + l.name + "</td><td>" + l.description + '</td><td><span class="text-gold"><i class="' + $f.gold + '"></i> ' + Xf.format(l.cost) + '</span><br/><span class="text-time"><i class="' + $f.time + '"></i> ' + Xf.formatTime(l.time) + "</span></td><td>" + Object.values(l.terrains).reduce((function (n, e, t) {
                                 return n + ag[e].name + (t != l.terrains.length - 1 ? ", " : "")
                             }), "") + "</td><td>" + (1 == l.level ? "Worker" : "Engineer") + "</td></tr>"
                         }), "") + "</tbody></table>"

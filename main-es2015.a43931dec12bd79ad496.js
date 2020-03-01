@@ -30993,7 +30993,7 @@
                 let n = 0,
                     e = this.img_src.length;
                 this.img_src.forEach(l => {
-                    this.img[l] = new Image, this.img[l].src = "/assets/img/" + l + ".png", this.img[l].onload = () => {
+                    this.img[l] = new Image, this.img[l].src = "assets/img/" + l + ".png", this.img[l].onload = () => {
                         ++n == e && this.initCanvas()
                     }
                 })
@@ -31530,7 +31530,7 @@
                 t = l(n, 3, 0, !0, e.worker.type == n.parent.context.$implicit.key, !e.dataService.isImprovementAvailable(n.parent.context.$implicit.value, e.worker.level, e.menu.city));
             l(n, 2, 0, t), l(n, 4, 0, ei(n.parent.parent.parent, 60), ei(n.parent.parent.parent, 59), "right", "manuel", "body"), l(n, 5, 0, "bg-light")
         }), (function (l, n) {
-            l(n, 6, 0, Mt(1, "/assets/img/imp", n.parent.context.$implicit.key, ".png"), Mt(1, "", n.parent.context.$implicit.value.name, ""))
+            l(n, 6, 0, Mt(1, "assets/img/imp", n.parent.context.$implicit.key, ".png"), Mt(1, "", n.parent.context.$implicit.value.name, ""))
         }))
     }
 
@@ -31558,7 +31558,7 @@
                 t = l(n, 3, 0, !0, e.worker.type == n.parent.context.$implicit.key, !e.dataService.isImprovementAvailable(n.parent.context.$implicit.value, e.worker.level, e.menu.city));
             l(n, 2, 0, t), l(n, 4, 0, ei(n.parent.parent.parent, 60), ei(n.parent.parent.parent, 59), "right", "manuel", "body"), l(n, 5, 0, "bg-light")
         }), (function (l, n) {
-            l(n, 6, 0, Mt(1, "/assets/img/imp", n.parent.context.$implicit.key, "2.png"), Mt(1, "", n.parent.context.$implicit.value.name, ""))
+            l(n, 6, 0, Mt(1, "assets/img/imp", n.parent.context.$implicit.key, "2.png"), Mt(1, "", n.parent.context.$implicit.value.name, ""))
         }))
     }
 
@@ -33545,7 +33545,7 @@
         improvements: {
             id: "improvements",
             name: "Improvements",
-            html: () => '<p>Improvements greatly improve your citizens production</p><p>To build an improvement, you need to recruit a worker or an engineer and allocate them to the task by clicking on your city in the world menu.</p><p>Improvements (other than roads & railroads) only affect the cities right next to them.</p><p>All tasks, appart from building a road or a railroad, will consume the worker or the engineer.</p><p>When a city is connected to the capital, an icon will be displayed : <i class="' + ug.connected + ' text-connected1"></i> when connected by road and <i class="' + ug.connected + ' text-connected2"></i> when connected by railroad</p>Here is a list of all improvements available in this game:<table class="table table-sm"><tbody><tr><th></th><th>Improvement</th><th>Description</th><th>Cost</th><th>Terrains</th><th>Worker required</th></tr>' + Object.values(Ig).reduce((l, n) => l + '<tr><td><img src="/assets/img/imp' + n.id + '.png" width="48"/></td><td>' + n.name + "</td><td>" + n.description + '</td><td><span class="text-gold"><i class="' + ug.gold + '"></i> ' + mg.format(n.cost) + '</span><br/><span class="text-time"><i class="' + ug.time + '"></i> ' + mg.formatTime(n.time) + "</span></td><td>" + Object.values(n.terrains).reduce((l, e, t) => l + Cg[e].name + (t != n.terrains.length - 1 ? ", " : ""), "") + "</td><td>" + (1 == n.level ? "Worker" : "Engineer") + "</td></tr>", "") + "</tbody></table>",
+            html: () => '<p>Improvements greatly improve your citizens production</p><p>To build an improvement, you need to recruit a worker or an engineer and allocate them to the task by clicking on your city in the world menu.</p><p>Improvements (other than roads & railroads) only affect the cities right next to them.</p><p>All tasks, appart from building a road or a railroad, will consume the worker or the engineer.</p><p>When a city is connected to the capital, an icon will be displayed : <i class="' + ug.connected + ' text-connected1"></i> when connected by road and <i class="' + ug.connected + ' text-connected2"></i> when connected by railroad</p>Here is a list of all improvements available in this game:<table class="table table-sm"><tbody><tr><th></th><th>Improvement</th><th>Description</th><th>Cost</th><th>Terrains</th><th>Worker required</th></tr>' + Object.values(Ig).reduce((l, n) => l + '<tr><td><img src="assets/img/imp' + n.id + '.png" width="48"/></td><td>' + n.name + "</td><td>" + n.description + '</td><td><span class="text-gold"><i class="' + ug.gold + '"></i> ' + mg.format(n.cost) + '</span><br/><span class="text-time"><i class="' + ug.time + '"></i> ' + mg.formatTime(n.time) + "</span></td><td>" + Object.values(n.terrains).reduce((l, e, t) => l + Cg[e].name + (t != n.terrains.length - 1 ? ", " : ""), "") + "</td><td>" + (1 == n.level ? "Worker" : "Engineer") + "</td></tr>", "") + "</tbody></table>",
             parent: "citizens"
         },
         food: {
