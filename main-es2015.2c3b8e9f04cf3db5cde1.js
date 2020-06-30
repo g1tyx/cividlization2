@@ -8682,7 +8682,7 @@
                         this.kongService = l
                     }
                     ngOnInit() {
-//                        Pr.production && !document.domain.endsWith("netlify.com") && (this.baddomain = !0);
+//                        !Pr.production || document.domain.endsWith("netlify.com") || document.domain.endsWith("netlify.app") || (this.baddomain = !0);
                         let l = !1;
                         try {
                             localStorage && localStorage.fsa && (localStorage.removeItem("fsa"), l = !0)
@@ -15599,7 +15599,7 @@
             desc: () => '<span class="text-culture"><i class="' + ug.culture + '"></i> +10</span> | <span class="text-relics"><i class="' + ug.relics + '"></i> +50%</span>',
             category: "culture",
             require: {
-                science: "acoustics",
+                science: "archeology",
                 buildings: ["amphitheatre", "town_hall"]
             },
             industrial: !0
@@ -17984,7 +17984,7 @@
             id: "slaver",
             name: () => "Slaver",
             description: "Slaver can capture slave workers when they are part of a succesful attack.",
-            gold: () => 1500,
+            gold: () => 500,
             time: () => 100,
             attack: () => 0,
             ranged: () => !1,
@@ -18211,6 +18211,12 @@
             name: "Building queues",
             link: "/game/help#buildings",
             check: l => l.player().cities.length > 1,
+            persistent: !0
+        },
+        auto_building: {
+            name: "Automatic building",
+            link: "/game/help#buildings",
+            check: (l, n) => n.rebirths > 1,
             persistent: !0
         },
         queue_troops: {
@@ -18963,7 +18969,7 @@
                 } else
                     for (; a;) {
                         let l = a;
-                        "farmers" != s || i || (e.citizens[c]++, a--), "builders" == s && a && n.hasScience("tanning", t) && e.building_queue.length && (e.citizens.builders++, a--), "scientists" == s && a && n.hasScience("writing", t) && t.science_queue.length && (e.citizens.scientists++, a--), "merchants" == s && a && n.hasScience("trade", t) && e.gold < n.maxGold(e) && (e.citizens.merchants++, a--), "artists" == s && a && n.hasScience("art", t) && (e.citizens[d]++, a--), "priests" == s && a && n.hasScience("religion", t) && (e.citizens.priests++, a--), a && n.hasScience("tanning", t) && e.building_queue.length && (e.citizens.builders++, a--), a && n.hasScience("writing", t) && t.science_queue.length && (e.citizens.scientists++, a--), a && n.hasScience("trade", t) && e.gold < n.maxGold(e) && (e.citizens.merchants++, a--), a && n.hasScience("art", t) && (e.citizens[d]++, a--), 0 == e.ownerid && a && n.hasScience("religion", t) && (e.citizens.priests++, a--), a && !i && (e.citizens[c]++, a--), l == a && (e.citizens.idle += a, a = 0)
+                        "farmers" != s || i || (e.citizens[c]++, a--), "builders" == s && a && n.hasScience("tanning", t) && e.building_queue.length && (e.citizens.builders++, a--), "scientists" == s && a && n.hasScience("writing", t) && t.science_queue.length && (e.citizens.scientists++, a--), "merchants" == s && a && n.hasScience("trade", t) && e.gold < n.maxGold(e) && (e.citizens.merchants++, a--), "artists" == s && a && n.hasScience("art", t) && (e.citizens[d]++, a--), "priests" == s && a && n.hasScience("religion", t) && t.orientation <= 0 && (e.citizens.priests++, a--), a && n.hasScience("tanning", t) && e.building_queue.length && (e.citizens.builders++, a--), a && n.hasScience("writing", t) && t.science_queue.length && (e.citizens.scientists++, a--), a && n.hasScience("trade", t) && e.gold < n.maxGold(e) && (e.citizens.merchants++, a--), a && n.hasScience("art", t) && (e.citizens[d]++, a--), 0 == e.ownerid && a && n.hasScience("religion", t) && t.orientation <= 0 && (e.citizens.priests++, a--), a && !i && (e.citizens[c]++, a--), l == a && (e.citizens.idle += a, a = 0)
                     }
                 for (let h in e.citizens) l.citizens[h] = e.citizens[h]
             }
@@ -19807,7 +19813,7 @@
         }
     }; class Tg {
         constructor() {
-            this.version = 39, this.aes_key = "wA7Xb*6JZ7$R2p9bP_Nq", this.ut = 100, this.mut = 6e4, this.ait = 5e3, this.max_dt = 43200, this.max_influence_dt = 900, this.max_plague_dt = 300, this.max_influence = 2, this.autosave_delay = 9500, this.toast_delay = 15e3, this.citizens = ag, this.buildings = og, this.sciences = dg, this.barbarian_happiness = .7, this.barbarian_burn_chances = .2, this.terrains = Cg, this.biomes = Sg, this.improvements = Ig, this.upgrades = kg, this.eras = cg, this.policies = hg, this.troops = pg, this.locks = fg, this.difficulties = gg, this.deities = vg, this.powers = _g, this.spells = bg, this.autoassign = wg, this.civilizations = xg, this.trade_route_ratio = .5, this.trade_diplomacy_ratio = .5, this.truce_length = 1800, this.war_min_length = 1800, this.alliance_min_length = 1800, this.promotion_cooldown = 900, this.capital_cooldown = 3600, this.closest_relation_decrease = 1, this.deity_relation_change = 1, this.alliance_w_enemy_relation_change = -1, this.war_w_friend_relation_change = -1, this.alliance_w_friend_relation_change = 1, this.war_w_enemy_relation_change = 1, this.troop_speed_ratio = .05, this.gold_transfer_speed = 1, this.init = {
+            this.version = 43, this.aes_key = "wA7Xb*6JZ7$R2p9bP_Nq", this.ut = 100, this.mut = 6e4, this.ait = 5e3, this.max_dt = 43200, this.max_influence_dt = 900, this.max_plague_dt = 300, this.max_influence = 2, this.autosave_delay = 9500, this.toast_delay = 15e3, this.citizens = ag, this.buildings = og, this.sciences = dg, this.barbarian_happiness = .7, this.barbarian_burn_chances = .2, this.terrains = Cg, this.biomes = Sg, this.improvements = Ig, this.upgrades = kg, this.eras = cg, this.policies = hg, this.troops = pg, this.locks = fg, this.difficulties = gg, this.deities = vg, this.powers = _g, this.spells = bg, this.autoassign = wg, this.civilizations = xg, this.trade_route_ratio = .5, this.trade_diplomacy_ratio = .5, this.truce_length = 1800, this.war_min_length = 1800, this.alliance_min_length = 1800, this.promotion_cooldown = 900, this.capital_cooldown = 3600, this.closest_relation_decrease = 1, this.deity_relation_change = 1, this.alliance_w_enemy_relation_change = -1, this.war_w_friend_relation_change = -1, this.alliance_w_friend_relation_change = 1, this.war_w_enemy_relation_change = 1, this.troop_speed_ratio = .05, this.gold_transfer_speed = 1, this.init = {
                 map_size: 30,
                 barbarians: {
                     nb: 120
@@ -19856,7 +19862,7 @@
                 city_lost: !1,
                 city_joined: !1,
                 plague: !1
-            }, this.notif_pop = !0, this.notif_building = !0, this.max_rpt = 50, this.max_notif = 100, this.nostats = !1, this.darktheme = !1, this.pause = !1, this.version = this.conf.version, this.tuto_done = !1, this.death_modal = 0, this.persistent_locks = [], this.rebirths = 0, this.prestige = 0, this.favors = {}, this.upgrades = [], this.culture_reset = 0, this.lastdaily = 0, this.saveddaily = 0, this.savetime = Date.now(), this.lt = Date.now()), this.respawn = [], this.deities = {}, this.emp_autoassign = !1, this.emp_priority = "", this.emp_strong = !1, this.colonies = [], this.cooldowns = {}, this.charging = {}, this.spelltime = {}, this.autocast = void 0, this.plagueNb = 0, this.plagueMaxCities = 0, this.burnNb = 0, this.world_pos = {
+            }, this.notif_pop = !0, this.notif_building = !0, this.max_rpt = 50, this.max_notif = 100, this.nostats = !1, this.darktheme = !1, this.pause = !1, this.version = this.conf.version, this.tuto_done = !1, this.death_modal = 0, this.persistent_locks = [], this.rebirths = 0, this.prestige = 0, this.favors = {}, this.upgrades = [], this.culture_reset = 0, this.lastdaily = 0, this.saveddaily = 0, this.savetime = Date.now(), this.lt = Date.now()), this.connections = {}, this.respawn = [], this.deities = {}, this.emp_autoassign = !1, this.emp_priority = "", this.emp_strong = !1, this.colonies = [], this.cooldowns = {}, this.charging = {}, this.spelltime = {}, this.autocast = void 0, this.plagueNb = 0, this.plagueMaxCities = 0, this.burnNb = 0, this.world_pos = {
                 x: 0,
                 y: 0
             }, this.dailys = [], this.lastids = {
@@ -19871,7 +19877,7 @@
         }
         load(l) {
             for (var n in l) this[n] = l[n];
-            this.spelltime = {}
+            this.spelltime = {}, this.connections = {}
         }
     }
     var Dg = e("NFKh"), Mg = e("16wW"); class Og {
@@ -20203,7 +20209,7 @@
                 }), n
             }
             hasWonder(l, n) {
-                return this.player(l).cities.some(l => this.hasBuilding(l, n))
+                return !!this.player(l) && this.player(l).cities.some(l => this.hasBuilding(l, n))
             }
             isBuildingWonder(l, n) {
                 return this.player(l).cities.some(l => l.building_queue.includes(n))
@@ -20276,8 +20282,35 @@
                     for (let s = -e; s <= e; s++) t.push([l + i, n + s]);
                 return t
             }
+            cityCache() {
+                this.data.citiespos = {}, this.data.citiesids = {}, this.data.players.forEach((l, n) => {
+                    l.cities.forEach((l, e) => {
+                        this.data.citiespos[l.x + "_" + l.y] = [n, e], this.data.citiesids[l.id] = [n, e]
+                    })
+                })
+            }
             city(l, n) {
-                return void 0 === n ? this.allCities().find(n => n.id == l) : this.allCities().find(e => e.x == l && e.y == n)
+                if (void 0 === n) {
+                    if (!this.data.citiesids) return this.allCities().find(n => n.id == l); {
+                        let n = this.data.citiesids[l];
+                        if (n) {
+                            let l = this.data.players[n[0]];
+                            if (l) return l.cities[n[1]]
+                        }
+                    }
+                    return null
+                }
+                if (this.data.citiespos) {
+                    let e = this.data.citiespos[l + "_" + n];
+                    if (e) {
+                        let l = this.data.players[e[0]];
+                        if (l) return l.cities[e[1]]
+                    }
+                } else
+                    for (let e of this.data.players)
+                        for (let t of e.cities)
+                            if (t.x == l && t.y == n) return t;
+                return null
             }
             capital(l = 0) {
                 return this.player(l).cities.find(l => l.capital)
@@ -20333,9 +20366,12 @@
                 return Math.sqrt(i * i + s * s)
             }
             cityDistance(l, n) {
-                let e = this.city(l),
-                    t = n ? this.city(n) : this.player(e.ownerid).cities.find(l => l.capital);
-                return t ? this.distance(e.x, e.y, t.x, t.y) : 0
+                let e = this.city(l);
+                if (e) {
+                    let l = n ? this.city(n) : this.player(e.ownerid).cities.find(l => l.capital);
+                    return l ? this.distance(e.x, e.y, l.x, l.y) : 0
+                }
+                return 10
             }
             movPos(l) {
                 return l.progress <= l.dist ? {
@@ -20349,8 +20385,13 @@
                     y: l.to.y
                 }
             }
-            speed(l, n, e, t) {
+            speedNoCity(l, n, e, t) {
                 let i = this.connected(n, e.x, e.y, t.x, t.y),
+                    s = 1;
+                return 2 == i ? s = this.conf.rail_speed_mult : 1 == i && (s = this.conf.road_speed_mult), ("gold" == l ? this.conf.gold_transfer_speed : this.conf.troops[l].speed(this.player(n))) * s * (1 + this.hasteBonus(n)) * this.upgradeSpeedMult(n)
+            }
+            speed(l, n, e, t) {
+                let i = this.cityConnected(e, t),
                     s = 1;
                 return 2 == i ? s = this.conf.rail_speed_mult : 1 == i && (s = this.conf.road_speed_mult), ("gold" == l ? this.conf.gold_transfer_speed : this.conf.troops[l].speed(this.player(n))) * s * (1 + this.hasteBonus(n)) * this.upgradeSpeedMult(n)
             }
@@ -20556,13 +20597,17 @@
             hasRuin(l, n) {
                 return this.data.ruins.some(e => e.x == l && e.y == n)
             }
-            cityConnectedToCapital(l, n = !1) {
-                if (l && (l.connected || 0 === l.connected) && !n) return l.connected;
-                let e = this.capital(l.ownerid);
-                return e ? this.cityConnected(l, e) : 0
+            cityConnectedToCapital(l) {
+                let n = this.capital(l.ownerid);
+                return n ? this.cityConnected(l, n) : 0
             }
             cityConnected(l, n) {
-                return this.connected(l.ownerid, l.x, l.y, n.x, n.y)
+                if (!l || !n) return 0;
+                let e = l.id > n.id ? n.id + "-" + l.id : l.id + "-" + n.id;
+                if (this.data.connections[e] || 0 === this.data.connections[e]) return this.data.connections[e]; {
+                    let t = this.connected(l.ownerid, l.x, l.y, n.x, n.y);
+                    return this.data.connections[e] = t, t
+                }
             }
             connected(l, n, e, t, i, s = []) {
                 return this.railConnected(n, e, t, i) ? this.hasScience("railroad", this.player(l)) ? 2 : 1 : this.roadConnected(n, e, t, i) ? 1 : 0
@@ -20580,8 +20625,10 @@
                 let s = this.getRoad(l, n + 1) || this.city(l, n + 1),
                     u = this.getRoad(l, n - 1) || this.city(l, n - 1),
                     r = this.getRoad(l - 1, n) || this.city(l - 1, n),
-                    a = this.getRoad(l + 1, n) || this.city(l + 1, n);
-                return !!(s && this.roadConnected(l, n + 1, e, t, i) || u && this.roadConnected(l, n - 1, e, t, i) || r && this.roadConnected(l - 1, n, e, t, i) || a && this.roadConnected(l + 1, n, e, t, i))
+                    a = this.getRoad(l + 1, n) || this.city(l + 1, n),
+                    o = t < n,
+                    c = e < l;
+                return !(!(o && u && this.roadConnected(l, n - 1, e, t, i)) && (!s || !this.roadConnected(l, n + 1, e, t, i)) && (o || !u || !this.roadConnected(l, n - 1, e, t, i)) && !(c && r && this.roadConnected(l - 1, n, e, t, i)) && (!a || !this.roadConnected(l + 1, n, e, t, i)) && (c || !r || !this.roadConnected(l - 1, n, e, t, i)))
             }
             railConnected(l, n, e, t, i = []) {
                 if (l == e && n == t) return !0;
@@ -20645,7 +20692,7 @@
                     },
                     dist: this.distance(l.x, l.y, e, t),
                     progress: 0,
-                    speed: this.speed(s ? "explorer" : "scout", l.ownerid, l, {
+                    speed: this.speedNoCity(s ? "explorer" : "scout", l.ownerid, l, {
                         x: e,
                         y: t
                     }),
@@ -20775,6 +20822,13 @@
                 return this.tradeRouteValue(this.city(l.from.x, l.from.y), this.city(l.to.x, l.to.y))
             }
             tradeRouteValue(l, n) {
+                if (!l || !n) return {
+                    gold: 0,
+                    culture: 0,
+                    diplomacy: 0,
+                    science: 0,
+                    faith: 0
+                };
                 let e = this.cityConnected(l, n),
                     t = 1;
                 2 == e ? t = this.conf.rail_trade_mult : 1 == e && (t = this.conf.road_trade_mult);
@@ -20835,6 +20889,7 @@
                         t = 0 != n || e ? "/game/world?x=" + i.x + "&y=" + i.y : "/game/city/" + i.id;
                     0 == n ? this.toastService.success(i.name + " has been " + l + " !", ug.success, t) : 0 == s.id && this.toastService.success(i.name + " has been " + l + " !", ug.defeat, t)
                 }
+                this.cityCache()
             }
             peaceCost(l, n) {
                 let e = this.playerAttack(l),
@@ -21032,6 +21087,20 @@
                         if (!this.hasBuilding(l, n.require.buildings[e]) && !l.building_queue.includes(n.require.buildings[e])) return !1;
                 return !(!l.buildings[n.id] && l.gold < this.buildingGoldCost(n, l.ownerid) || n.wonder && this.isBuildingWonder(l.ownerid, n.id))
             }
+            visibleBuildings(l) {
+                return Object.values(this.conf.buildings).filter(n => this.isBuildingVisible(l, n)).sort((l, n) => {
+                    let e = this.conf.sciences[l.require.science].rank,
+                        t = this.conf.sciences[n.require.science].rank;
+                    return e > t ? 1 : e < t ? -1 : 0
+                })
+            }
+            selectableBuildings(l) {
+                return Object.values(this.conf.buildings).filter(n => this.isBuildingSelectable(l, n)).sort((l, n) => {
+                    let e = this.buildingGoldCost(l),
+                        t = this.buildingGoldCost(n);
+                    return e > t ? 1 : e < t ? -1 : 0
+                })
+            }
             isTroopVisible(l, n) {
                 return !(n.require.tech && l.orientation < n.require.tech || n.obsolete && this.hasScience(n.obsolete) || ("caravel" != n.id || "portuguese" != l.civ_id || !this.hasScience("education", l)) && n.require.science && !this.hasScience(n.require.science, l))
             }
@@ -21081,7 +21150,7 @@
                     },
                     dist: this.distance(l.x, l.y, r, a),
                     progress: 0,
-                    speed: this.speed(o, l.ownerid, l, {
+                    speed: this.speedNoCity(o, l.ownerid, l, {
                         x: r,
                         y: a
                     }),
@@ -21461,7 +21530,9 @@
                         let t = Object.values(this.conf.buildings).find(l => l.oid == n);
                         t && (l.building_queue[e] = t.id)
                     })
-                }), this.data.version = this.conf.version
+                }), l < 40 && (this.data.connections = {}, this.allCities().forEach(l => {
+                    delete l.connected
+                })), this.data.version = this.conf.version
             }
             getStrVersion() {
                 switch (this.conf.version) {
@@ -21543,6 +21614,14 @@
                         return "1.3.2";
                     case 39:
                         return "1.3.3";
+                    case 40:
+                        return "1.3.4";
+                    case 41:
+                        return "1.3.5";
+                    case 42:
+                        return "1.3.6";
+                    case 43:
+                        return "1.3.7";
                     default:
                         return "?"
                 }
@@ -21562,7 +21641,7 @@
             }
             encryptData(l = !0) {
                 let n = JSON.parse(JSON.stringify(this.data));
-                delete n.conf, delete n.observableSciences, delete n.spelltime, [].concat(...n.players.map(l => l.cities)).forEach(l => {
+                delete n.conf, delete n.observableSciences, delete n.spelltime, delete n.connections, delete n.citiespos, delete n.citiesids, [].concat(...n.players.map(l => l.cities)).forEach(l => {
                     delete l.happiness, delete l.tradeGains, delete l.cultureDiff
                 }), this.data.autopause.save && (n.pause = !0);
                 let e = JSON.stringify(n);
@@ -21592,7 +21671,7 @@
                 return JSON.parse(localStorage.getItem(this.conf.save.prefix + l))
             }
             load(l) {
-                this.data.load(this.decryptData(l)), delete this.data.noautosave, this.dataService.updateVersion(), this.dataService.checkLocks(), this.dataService.updateStats()
+                this.data.load(this.decryptData(l)), delete this.data.noautosave, this.dataService.updateVersion(), this.dataService.cityCache(), this.dataService.checkLocks(), this.dataService.updateStats()
             }
         }
         return l.ngInjectableDef = gl({
@@ -23794,10 +23873,12 @@
             this.conf = l, this.data = n, this.dataService = e, this.coreEngine = t, this.sanitizer = i, this.route = s, this.icons = ug
         }
         handleKeydownEvent(l) {
-            let n = -1;
-            if (l.keyCode >= 49 && l.keyCode <= 51 && (n = l.keyCode - 49), l.keyCode >= 97 && l.keyCode <= 99 && (n = l.keyCode - 97), -1 != n) {
-                let l = Object.values(this.conf.spells).filter(l => l.deity == this.dataService.player().deity)[n];
-                25 * -l.level >= this.dataService.player().orientation && this.dataService.useSpell(l, this.coreEngine)
+            if ("INPUT" != l.target.tagName.toUpperCase()) {
+                let n = -1;
+                if (l.keyCode >= 49 && l.keyCode <= 51 && (n = l.keyCode - 49), l.keyCode >= 97 && l.keyCode <= 99 && (n = l.keyCode - 97), -1 != n) {
+                    let l = Object.values(this.conf.spells).filter(l => l.deity == this.dataService.player().deity)[n];
+                    25 * -l.level >= this.dataService.player().orientation && this.dataService.useSpell(l, this.coreEngine)
+                }
             }
         }
         isAvailable(l) {
@@ -23894,6 +23975,7 @@
                         let l = new Ag(this.data.lastids.city++, "Barb. vil.", n, e, 1, !0);
                         l.bonus = yg.randomVilBonus(), this.dataService.player(1).cities.push(l)
                     }
+                    this.dataService.cityCache()
                 }
                 this.data.players.forEach(l => {
                     if (this.dataService.hasPolicy("conscription", l.id) && (l.id > 0 || !this.data.emp_noconscription) && yg.roll(.05)) {
@@ -23908,10 +23990,6 @@
                                 e.troops[t.id] || (e.troops[t.id] = 0), e.troops[t.id] += s, 0 == l.id && this.toastService.success("Conscription: " + s + " " + t.name(l) + " arrived in " + e.name, ug.attack, "/game/city/" + e.id)
                             }
                         }
-                    }
-                    if (l.orientation >= 100) {
-                        let n = this.dataService.relicsGain(l.id);
-                        l.progress += n, this.dataService.changeOrientationFortech(l, n)
                     }
                 })
             }
@@ -23937,124 +24015,133 @@
         }
         run(l, n = 0, e = !1) {
             let t = Date.now();
-            if (n || (n = (t - this.data.lt) / 1e3), n > this.conf.max_dt && (n = this.conf.max_dt), t - this.data.savetime >= this.conf.autosave_delay && this.saveService.save(!1), l % 10 == 0 && this.dataService.allCities().forEach(l => {
+            if (n || (n = (t - this.data.lt) / 1e3), n > this.conf.max_dt && (n = this.conf.max_dt), t - this.data.savetime >= this.conf.autosave_delay && this.saveService.save(!1), l % 40 == 0 && (this.data.connections = {}), l % 20 == 0 && this.dataService.allCities().forEach(l => {
+                    l.tradeGains = this.dataService.tradeRouteGains(l, !0)
+                }), l % 10 == 0 && (this.dataService.cityCache(), this.dataService.allCities().forEach(l => {
                     (l.autoassign || this.data.emp_autoassign) && this.conf.autoassign.balanced.sort(l, this.dataService)
-                }), l % 5 == 0 && this.dataService.allCities().forEach(l => {
-                    l.happiness = this.dataService.happiness(l, !0), l.cultureDiff = this.dataService.cultureDiff(l, null, !0), l.tradeGains = this.dataService.tradeRouteGains(l, !0), l.connected = this.dataService.cityConnectedToCapital(l, !0)
+                }), this.data.pause && !e || this.dataService.allCities().filter(l => l.autobuild && 0 == l.building_queue.length).forEach(l => {
+                    let n = this.dataService.selectableBuildings(l).filter(l => !l.wonder);
+                    n.length > 0 && (l.gold -= this.dataService.buildingGoldCost(n[0]), l.building_queue.push(n[0].id))
+                })), l % 5 == 0 && this.dataService.allCities().forEach(l => {
+                    l.happiness = this.dataService.happiness(l, !0), l.cultureDiff = this.dataService.cultureDiff(l, null, !0)
                 }), !this.data.pause || e) {
                 if (this.data.players.forEach(l => {
-                        l.cities.length ? (l.cities.forEach(e => {
-                            e.food += this.dataService.foodDiff(e) * n;
-                            let t = !1;
-                            if (e.autoassign_options && e.autoassign_options.nogrowth && (t = !0), e.food >= this.dataService.foodRequired(e) ? t ? e.food = this.dataService.foodRequired(e) : (e.food = this.dataService.hasBuilding(e, "town_hall") ? .25 * this.dataService.foodRequired(e) : this.dataService.hasBuilding(e, "lo") ? .15 * this.dataService.foodRequired(e) : 0, e.citizens.idle++, 0 == e.ownerid && (this.data.notif_pop && this.toastService.success("A new citizen is available in " + e.name, ug.pop, "/game/city/" + e.id), this.data.autopause.citizen && (this.data.pause = !0))) : e.food < 0 && this.dataService.pop(e) > 1 ? (this.dataService.killCitizen(e), e.food = this.dataService.foodRequired(e) / 10, 0 == e.ownerid && this.toastService.danger("A citizen died of starvation in " + e.name, ug.defeat, "/game/city/" + e.id)) : e.food < 0 && 1 == this.dataService.pop(e) && (e.food = 0), e.gold = e.gold + this.dataService.goldDiff(e) * n, isNaN(e.gold) && (e.gold = 0), e.gold > this.dataService.maxGold(e) && (e.gold = this.dataService.maxGold(e)), e.gold < 0) {
-                                let n = {};
-                                for (; this.dataService.goldDiff(e) < 0 && this.dataService.troopNb(e, !1);) {
-                                    let l = this.dataService.killTroop(e);
-                                    n[l] ? n[l]++ : n[l] = 1
+                        if (l.cities.length) {
+                            l.cities.forEach(e => {
+                                e.food += this.dataService.foodDiff(e) * n;
+                                let t = !1;
+                                if (e.autoassign_options && e.autoassign_options.nogrowth && (t = !0), e.food >= this.dataService.foodRequired(e) ? t ? e.food = this.dataService.foodRequired(e) : (e.food = this.dataService.hasBuilding(e, "town_hall") ? .25 * this.dataService.foodRequired(e) : this.dataService.hasBuilding(e, "lo") ? .15 * this.dataService.foodRequired(e) : 0, e.citizens.idle++, 0 == e.ownerid && (this.data.notif_pop && this.toastService.success("A new citizen is available in " + e.name, ug.pop, "/game/city/" + e.id), this.data.autopause.citizen && (this.data.pause = !0))) : e.food < 0 && this.dataService.pop(e) > 1 ? (this.dataService.killCitizen(e), e.food = this.dataService.foodRequired(e) / 10, 0 == e.ownerid && this.toastService.danger("A citizen died of starvation in " + e.name, ug.defeat, "/game/city/" + e.id)) : e.food < 0 && 1 == this.dataService.pop(e) && (e.food = 0), e.gold = e.gold + this.dataService.goldDiff(e) * n, isNaN(e.gold) && (e.gold = 0), e.gold > this.dataService.maxGold(e) && (e.gold = this.dataService.maxGold(e)), e.gold < 0) {
+                                    let n = {};
+                                    for (; this.dataService.goldDiff(e) < 0 && this.dataService.troopNb(e, !1);) {
+                                        let l = this.dataService.killTroop(e);
+                                        n[l] ? n[l]++ : n[l] = 1
+                                    }
+                                    if (Object.keys(n).length && 0 == e.ownerid) {
+                                        let t = "";
+                                        Object.keys(n).forEach(e => t += n[e] + " " + this.conf.troops[e].name(l) + ", "), t = t.slice(0, -2), this.toastService.danger("Troops have been dismissed due to lack of gold: " + t, ug.defeat, "/game/city/" + e.id)
+                                    }
+                                    e.gold = 0
                                 }
-                                if (Object.keys(n).length && 0 == e.ownerid) {
-                                    let t = "";
-                                    Object.keys(n).forEach(e => t += n[e] + " " + this.conf.troops[e].name(l) + ", "), t = t.slice(0, -2), this.toastService.danger("Troops have been dismissed due to lack of gold: " + t, ug.defeat, "/game/city/" + e.id)
-                                }
-                                e.gold = 0
-                            }
-                            if (e.building_queue.length && (e.buildings[e.building_queue[0]] || (e.buildings[e.building_queue[0]] = {
-                                    progress: 0,
-                                    done: !1
-                                }), e.buildings[e.building_queue[0]].progress += this.dataService.prodDiff(e) * n, e.buildings[e.building_queue[0]].progress >= this.dataService.buildingProdCost(this.conf.buildings[e.building_queue[0]], e))) {
-                                let n = e.buildings[e.building_queue[0]].progress - this.dataService.buildingProdCost(this.conf.buildings[e.building_queue[0]], e);
-                                for (; n > 0 && e.building_queue.length;) {
-                                    let t = this.conf.buildings[e.building_queue[0]];
-                                    if ("progress" == t.id) e.buildings[e.building_queue[0]].progress = 0, l.progress++, this.dataService.changeOrientationFortech(l, 1), e.building_queue.length > 1 && e.building_queue.shift();
-                                    else {
-                                        if (0 == l.id)(this.data.notif_building || t.wonder) && this.toastService.success(e.name + " has finished the construction of " + this.conf.buildings[e.building_queue[0]].label(l), t.wonder ? ug.wonder : ug.prod, "/game/city/" + e.id), this.data.autopause.building && (this.data.pause = !0);
-                                        else if (t.wonder) {
-                                            let n = this.dataService.haveRelation(0, e.ownerid) ? this.dataService.player(e.ownerid).name : "An unknown civilization";
-                                            this.toastService.danger(n + " has finished the construction of " + this.conf.buildings[e.building_queue[0]].label(l), ug.wonder, "/game/world?x=" + e.x + "&y=" + e.y)
-                                        }
-                                        t.add_city && (e.buildings[t.add_city] = {
-                                            done: !0,
-                                            progress: 0
-                                        }), t.add_all && l.cities.forEach(l => {
-                                            l.buildings[t.add_all] = {
+                                if (e.building_queue.length && (e.buildings[e.building_queue[0]] || (e.buildings[e.building_queue[0]] = {
+                                        progress: 0,
+                                        done: !1
+                                    }), e.buildings[e.building_queue[0]].progress += this.dataService.prodDiff(e) * n, e.buildings[e.building_queue[0]].progress >= this.dataService.buildingProdCost(this.conf.buildings[e.building_queue[0]], e))) {
+                                    let n = e.buildings[e.building_queue[0]].progress - this.dataService.buildingProdCost(this.conf.buildings[e.building_queue[0]], e);
+                                    for (; n > 0 && e.building_queue.length;) {
+                                        let t = this.conf.buildings[e.building_queue[0]];
+                                        if ("progress" == t.id) e.buildings[e.building_queue[0]].progress = 0, l.progress++, this.dataService.changeOrientationFortech(l, 1), e.building_queue.length > 1 && e.building_queue.shift();
+                                        else {
+                                            if (0 == l.id)(this.data.notif_building || t.wonder) && this.toastService.success(e.name + " has finished the construction of " + this.conf.buildings[e.building_queue[0]].label(l), t.wonder ? ug.wonder : ug.prod, "/game/city/" + e.id), this.data.autopause.building && (this.data.pause = !0);
+                                            else if (t.wonder) {
+                                                let n = this.dataService.haveRelation(0, e.ownerid) ? this.dataService.player(e.ownerid).name : "An unknown civilization";
+                                                this.toastService.danger(n + " has finished the construction of " + this.conf.buildings[e.building_queue[0]].label(l), ug.wonder, "/game/world?x=" + e.x + "&y=" + e.y)
+                                            }
+                                            t.add_city && (e.buildings[t.add_city] = {
                                                 done: !0,
                                                 progress: 0
+                                            }), t.add_all && l.cities.forEach(l => {
+                                                l.buildings[t.add_all] = {
+                                                    done: !0,
+                                                    progress: 0
+                                                }
+                                            }), e.buildings[e.building_queue[0]].done = !0, e.building_queue.shift(), t.wonder && this.dataService.allCities().filter(l => l.building_queue.includes(t.id)).forEach(l => {
+                                                l.building_queue.splice(l.building_queue.indexOf(t.id), 1), delete l.buildings[t.id], l.gold += this.dataService.buildingGoldCost(t, l.ownerid)
+                                            })
+                                        }
+                                        e.building_queue.length && (e.buildings[e.building_queue[0]].progress = n, n -= this.dataService.buildingProdCost(this.conf.buildings[e.building_queue[0]], e))
+                                    }
+                                }
+                                for (let l in e.troops) e.troops[l] < 0 && (e.troops[l] = 0);
+                                if (e.troop_queue.length) {
+                                    if (e.troops_progress[e.troop_queue[0].id] += n * this.dataService.recruitmentSpeed(e), e.troops_progress[e.troop_queue[0].id] >= this.conf.troops[e.troop_queue[0].id].time(this.dataService, l.id)) {
+                                        let n = e.troops_progress[e.troop_queue[0].id] - this.conf.troops[e.troop_queue[0].id].time(this.dataService, l.id);
+                                        for (; n > 0 && e.troop_queue.length;) {
+                                            let t = this.conf.troops[e.troop_queue[0].id].citizen,
+                                                i = this.dataService.pop(e);
+                                            if (t && i > 1 && this.dataService.killCitizen(e), (!t || i > 1) && (e.troops[e.troop_queue[0].id] ? e.troops[e.troop_queue[0].id]++ : e.troops[e.troop_queue[0].id] = 1), e.troops_progress[e.troop_queue[0].id] = n, e.troop_queue[0].nb--, e.troop_queue[0].nb <= 0 && (e.troops_progress[e.troop_queue[0].id] = 0, e.troop_queue.shift()), !e.troop_queue.length && e.autorecruit) {
+                                                let l = this.conf.troops[e.autorecruit];
+                                                e.gold >= l.gold(this.dataService, e.ownerid) && (e.gold -= l.gold(this.dataService, e.ownerid), e.troops_progress[l.id] || (e.troops_progress[l.id] = 0), e.troop_queue.push({
+                                                    id: l.id,
+                                                    nb: 1
+                                                }))
                                             }
-                                        }), e.buildings[e.building_queue[0]].done = !0, e.building_queue.shift(), t.wonder && this.dataService.allCities().filter(l => l.building_queue.includes(t.id)).forEach(l => {
-                                            l.building_queue.splice(l.building_queue.indexOf(t.id), 1), delete l.buildings[t.id], l.gold += this.dataService.buildingGoldCost(t, l.ownerid)
-                                        })
-                                    }
-                                    e.building_queue.length && (e.buildings[e.building_queue[0]].progress = n, n -= this.dataService.buildingProdCost(this.conf.buildings[e.building_queue[0]], e))
-                                }
-                            }
-                            for (let l in e.troops) e.troops[l] < 0 && (e.troops[l] = 0);
-                            if (e.troop_queue.length) {
-                                if (e.troops_progress[e.troop_queue[0].id] += n * this.dataService.recruitmentSpeed(e), e.troops_progress[e.troop_queue[0].id] >= this.conf.troops[e.troop_queue[0].id].time(this.dataService, l.id)) {
-                                    let n = e.troops_progress[e.troop_queue[0].id] - this.conf.troops[e.troop_queue[0].id].time(this.dataService, l.id);
-                                    for (; n > 0 && e.troop_queue.length;) {
-                                        let t = this.conf.troops[e.troop_queue[0].id].citizen,
-                                            i = this.dataService.pop(e);
-                                        if (t && i > 1 && this.dataService.killCitizen(e), (!t || i > 1) && (e.troops[e.troop_queue[0].id] ? e.troops[e.troop_queue[0].id]++ : e.troops[e.troop_queue[0].id] = 1), e.troops_progress[e.troop_queue[0].id] = n, e.troop_queue[0].nb--, e.troop_queue[0].nb <= 0 && (e.troops_progress[e.troop_queue[0].id] = 0, e.troop_queue.shift()), !e.troop_queue.length && e.autorecruit) {
-                                            let l = this.conf.troops[e.autorecruit];
-                                            e.gold >= l.gold(this.dataService, e.ownerid) && (e.gold -= l.gold(this.dataService, e.ownerid), e.troops_progress[l.id] || (e.troops_progress[l.id] = 0), e.troop_queue.push({
-                                                id: l.id,
-                                                nb: 1
-                                            }))
-                                        }
-                                        e.troop_queue.length && (n -= this.conf.troops[e.troop_queue[0].id].time(this.dataService, l.id))
-                                    }
-                                }
-                            } else if (e.autorecruit) {
-                                let l = this.conf.troops[e.autorecruit];
-                                e.gold >= l.gold(this.dataService, e.ownerid) && (e.gold -= l.gold(this.dataService, e.ownerid), e.troops_progress[l.id] || (e.troops_progress[l.id] = 0), e.troop_queue.push({
-                                    id: l.id,
-                                    nb: 1
-                                }))
-                            }
-                            if (this.dataService.pop(e) > 1 && yg.roll(this.dataService.healthKillChance(e)) && (this.dataService.killCitizen(e), 0 == e.ownerid && this.toastService.danger("Citizen died from disease in " + e.name, ug.health, "/game/city/" + e.id)), 1 != e.ownerid && !e.capital && this.dataService.happiness(e) < .2) {
-                                let l = this.dataService.revoltRisks(e);
-                                l && (0 != e.ownerid && 0 != l.id || this.toastService.danger("Uprising in " + e.name + ". The city joined " + l.name, ug.happiness, "/game/world?x=" + e.x + "&y=" + e.y), e.troops = {}, this.dataService.transferCity(e.id, l.id, !1, !1), this.data.autopause.city_joined && 0 == l.id && (this.data.pause = !0))
-                            }
-                            if (e.owner_change_timer && (e.owner_change_timer -= n, e.owner_change_timer <= 0 && (delete e.owner_change_timer, e.rightful_ownerid = e.ownerid)), 0 != this.data.difficulty && !this.dataService.plague() && yg.roll(this.dataService.plagueInitRisk(e)) && this.dataService.initPlague(e), e.plague) {
-                                let l = e.plague,
-                                    t = e.troops.plague_doctor ? e.troops.plague_doctor : 0,
-                                    i = .1;
-                                if (this.dataService.hasBuilding(e, "aqueduct") && (i = .2), this.dataService.hasBuilding(e, "hospital") && (i = .3), e.plague -= e.plague > 0 ? n * (10 * this.dataService.health(e) / this.dataService.pop(e) + Math.pow(t, .8) * i) : n, e.plague <= -600 && delete e.plague, e.plague && (0 == e.ownerid && l > 0 && e.plague <= 0 && this.toastService.success("Plague is over in " + e.name + " !", ug.plague, "/game/world?x=" + e.x + "&y=" + e.y), e.plague > 0)) {
-                                    let l = this.dataService.citiesInRange(e, 5),
-                                        n = this.dataService.tradeRoutes(e);
-                                    if ([...n.in.map(l => this.dataService.city(l.from.x, l.from.y)), ...n.out.map(l => this.dataService.city(l.to.x, l.to.y))].forEach(n => {
-                                            l.some(l => l.id == n.id) || l.push(n)
-                                        }), (l = l.filter(l => !l.plague)).forEach(l => {
-                                            yg.roll(this.dataService.plagueRisk(l)) && (l.plague = yg.get(60, 600), this.data.plagueMaxCities = this.dataService.plagueNb(), 0 == l.ownerid && (this.toastService.black("Plague has propagated to " + l.name + " !", ug.plague, "/game/world?x=" + l.x + "&y=" + l.y), this.data.autopause.plague && (this.data.pause = !0)))
-                                        }), yg.roll(this.dataService.plagueTroopKillChances(e))) {
-                                        let l = Object.keys(e.troops).filter(l => "governor" != l);
-                                        if (l.length) {
-                                            let n = yg.fromArray(l);
-                                            "plague_doctor" != n && (e.troops[n]--, e.troops[n] <= 0 && delete e.troops[n])
+                                            e.troop_queue.length && (n -= this.conf.troops[e.troop_queue[0].id].time(this.dataService, l.id))
                                         }
                                     }
-                                    if (yg.roll(this.dataService.plagueTradeLostChances(e))) {
-                                        let l = this.dataService.tradeRoutes(e).out;
-                                        if (l.length) {
-                                            let n = yg.fromArray(l),
-                                                t = this.dataService.city(n.to.x, n.to.y);
-                                            this.data.trades.splice(this.data.trades.indexOf(n), 1), 0 != e.ownerid && 0 != t.ownerid || this.toastService.danger("Trade route between " + e.name + " and " + t.name + " has been lost due to the plague", ug.trade, "/game/diplomacy#tab_trade")
+                                } else if (e.autorecruit) {
+                                    let l = this.conf.troops[e.autorecruit];
+                                    e.gold >= l.gold(this.dataService, e.ownerid) && (e.gold -= l.gold(this.dataService, e.ownerid), e.troops_progress[l.id] || (e.troops_progress[l.id] = 0), e.troop_queue.push({
+                                        id: l.id,
+                                        nb: 1
+                                    }))
+                                }
+                                if (this.dataService.pop(e) > 1 && yg.roll(this.dataService.healthKillChance(e)) && (this.dataService.killCitizen(e), 0 == e.ownerid && this.toastService.danger("Citizen died from disease in " + e.name, ug.health, "/game/city/" + e.id)), 1 != e.ownerid && !e.capital && this.dataService.happiness(e) < .2) {
+                                    let l = this.dataService.revoltRisks(e);
+                                    l && (0 != e.ownerid && 0 != l.id || this.toastService.danger("Uprising in " + e.name + ". The city joined " + l.name, ug.happiness, "/game/world?x=" + e.x + "&y=" + e.y), e.troops = {}, this.dataService.transferCity(e.id, l.id, !1, !1), this.data.autopause.city_joined && 0 == l.id && (this.data.pause = !0))
+                                }
+                                if (e.owner_change_timer && (e.owner_change_timer -= n, e.owner_change_timer <= 0 && (delete e.owner_change_timer, e.rightful_ownerid = e.ownerid)), 0 != this.data.difficulty && !this.dataService.plague() && yg.roll(this.dataService.plagueInitRisk(e)) && this.dataService.initPlague(e), e.plague) {
+                                    let l = e.plague,
+                                        t = e.troops.plague_doctor ? e.troops.plague_doctor : 0,
+                                        i = .1;
+                                    if (this.dataService.hasBuilding(e, "aqueduct") && (i = .2), this.dataService.hasBuilding(e, "hospital") && (i = .3), e.plague -= e.plague > 0 ? n * (10 * this.dataService.health(e) / this.dataService.pop(e) + Math.pow(t, .8) * i) : n, e.plague <= -600 && delete e.plague, e.plague && (0 == e.ownerid && l > 0 && e.plague <= 0 && this.toastService.success("Plague is over in " + e.name + " !", ug.plague, "/game/world?x=" + e.x + "&y=" + e.y), e.plague > 0)) {
+                                        let l = this.dataService.citiesInRange(e, 5),
+                                            n = this.dataService.tradeRoutes(e);
+                                        if ([...n.in.map(l => this.dataService.city(l.from.x, l.from.y)), ...n.out.map(l => this.dataService.city(l.to.x, l.to.y))].forEach(n => {
+                                                l.some(l => l.id == n.id) || l.push(n)
+                                            }), (l = l.filter(l => !l.plague)).forEach(l => {
+                                                yg.roll(this.dataService.plagueRisk(l)) && (l.plague = yg.get(60, 600), this.data.plagueMaxCities = this.dataService.plagueNb(), 0 == l.ownerid && (this.toastService.black("Plague has propagated to " + l.name + " !", ug.plague, "/game/world?x=" + l.x + "&y=" + l.y), this.data.autopause.plague && (this.data.pause = !0)))
+                                            }), yg.roll(this.dataService.plagueTroopKillChances(e))) {
+                                            let l = Object.keys(e.troops).filter(l => "governor" != l);
+                                            if (l.length) {
+                                                let n = yg.fromArray(l);
+                                                "plague_doctor" != n && (e.troops[n]--, e.troops[n] <= 0 && delete e.troops[n])
+                                            }
+                                        }
+                                        if (yg.roll(this.dataService.plagueTradeLostChances(e))) {
+                                            let l = this.dataService.tradeRoutes(e).out;
+                                            if (l.length) {
+                                                let n = yg.fromArray(l),
+                                                    t = this.dataService.city(n.to.x, n.to.y);
+                                                this.data.trades.splice(this.data.trades.indexOf(n), 1), 0 != e.ownerid && 0 != t.ownerid || this.toastService.danger("Trade route between " + e.name + " and " + t.name + " has been lost due to the plague", ug.trade, "/game/diplomacy#tab_trade")
+                                            }
                                         }
                                     }
                                 }
-                            }
-                        }), l.science_queue.length && (l.sciences[l.science_queue[0]] || (l.sciences[l.science_queue[0]] = {
-                            progress: 0,
-                            done: !1
-                        }), l.sciences[l.science_queue[0]].progress += this.dataService.scienceDiff(null, l) * n, l.sciences[l.science_queue[0]].progress >= this.dataService.scienceCost(this.conf.sciences[l.science_queue[0]], l.id) && (this.dataService.discoverScience(l.id), 0 == l.id && this.data.autopause.science && (this.data.pause = !0))), 1 != l.id && (l.culture += this.dataService.cultureDiff(null, l) * n, this.dataService.cultureCost(l), l.faith += this.dataService.faithDiff(null, l) * n, l.influence[l.id] || (l.influence[l.id] = 0), l.influence[l.id] += this.dataService.cultureDiff(null, l) * Math.min(n, this.conf.max_influence_dt)), l.promotion_cooldown && Object.keys(l.promotion_cooldown).forEach(e => {
-                            l.promotion_cooldown[e] -= n, l.promotion_cooldown[e] <= 0 && delete l.promotion_cooldown[e]
-                        })) : (0 == l.id ? (this.dataService.reincarnation(), this.toastService.danger("You lost your last city...", ug.defeat)) : 1 != l.id && this.toastService.danger("Player " + l.name + " has lost his last city", ug.success, "/game/diplomacy"), 1 != l.id && (this.data.players.splice(this.data.players.indexOf(l), 1), this.data.relations = this.data.relations.filter(n => n.playersid[0] != l.id && n.playersid[1] != l.id)), this.data.attacks = this.data.attacks.filter(n => n.ownerid != l.id), this.data.spies = this.data.spies.filter(n => n.ownerid != l.id), this.data.scouts = this.data.scouts.filter(n => n.ownerid != l.id), this.data.goldtransfers = this.data.goldtransfers.filter(n => n.ownerid != l.id))
+                            }), l.science_queue.length && (l.sciences[l.science_queue[0]] || (l.sciences[l.science_queue[0]] = {
+                                progress: 0,
+                                done: !1
+                            }), l.sciences[l.science_queue[0]].progress += this.dataService.scienceDiff(null, l) * n, l.sciences[l.science_queue[0]].progress >= this.dataService.scienceCost(this.conf.sciences[l.science_queue[0]], l.id) && (this.dataService.discoverScience(l.id), 0 == l.id && this.data.autopause.science && (this.data.pause = !0))), 1 != l.id && (l.culture += this.dataService.cultureDiff(null, l) * n, this.dataService.cultureCost(l), l.faith += this.dataService.faithDiff(null, l) * n, l.influence[l.id] || (l.influence[l.id] = 0), l.influence[l.id] += this.dataService.cultureDiff(null, l) * Math.min(n, this.conf.max_influence_dt)), l.promotion_cooldown && Object.keys(l.promotion_cooldown).forEach(e => {
+                                l.promotion_cooldown[e] -= n, l.promotion_cooldown[e] <= 0 && delete l.promotion_cooldown[e]
+                            });
+                            let e = this.dataService.relicsGain(l.id) * n / 60;
+                            l.progress += e, this.dataService.changeOrientationFortech(l, e)
+                        } else 0 == l.id ? (this.dataService.reincarnation(), this.toastService.danger("You lost your last city...", ug.defeat)) : 1 != l.id && this.toastService.danger("Player " + l.name + " has lost his last city", ug.success, "/game/diplomacy"), 1 != l.id && (this.data.players.splice(this.data.players.indexOf(l), 1), this.data.relations = this.data.relations.filter(n => n.playersid[0] != l.id && n.playersid[1] != l.id)), this.data.attacks = this.data.attacks.filter(n => n.ownerid != l.id), this.data.spies = this.data.spies.filter(n => n.ownerid != l.id), this.data.scouts = this.data.scouts.filter(n => n.ownerid != l.id), this.data.goldtransfers = this.data.goldtransfers.filter(n => n.ownerid != l.id)
                     }), this.data.relations.forEach(l => {
                         l.cooldown && (l.cooldown -= n, l.cooldown <= 0 && delete l.cooldown), l.war_length && (l.war_length += n), 2 != l.status || l.cooldown || (l.status = 0);
                         let e = this.dataService.player(l.playersid[0]),
                             t = this.dataService.player(l.playersid[1]);
                         e.influence[t.id] || (e.influence[t.id] = 0), e.influence[t.id] += this.dataService.influenceDiff(t.id, e.id) * Math.min(n, this.conf.max_influence_dt), t.influence[e.id] || (t.influence[e.id] = 0), t.influence[e.id] += this.dataService.influenceDiff(e.id, t.id) * Math.min(n, this.conf.max_influence_dt)
-                    }), this.data.workers = this.data.workers.filter(l => 1 != l.ownerid), this.data.workers.slice(0).forEach(l => {
+                    }), this.data.workers = this.data.workers.filter(l => 1 != l.ownerid && this.dataService.player(l.ownerid)), this.data.workers.slice(0).forEach(l => {
                         if (l.construction_progress ? (l.construction_progress += l.speed * n * (this.dataService.hasWonder(l.ownerid, "apadana") ? 1.25 : 1), this.conf.improvements[l.type].road ? this.dataService.getRoad(l.to.x, l.to.y) >= l.type && (l.construction_progress = 99999) : this.dataService.getImprovement(l.to.x, l.to.y) == l.type && (l.construction_progress = 0, l.returning = !0)) : l.progress += l.speed * n * this.conf.troop_speed_ratio, l.returning && l.progress >= 2 * l.dist) {
                             let n = this.dataService.city(l.origin_id);
                             if (n) {
@@ -24111,26 +24198,26 @@
                         } else l.returning = !0;
                         else this.dataService.discover(l, !0)
                     }), this.data.spies.slice(0).forEach(e => {
-                        if (l % 10 == 0 && (e.speed = this.dataService.speed("spy", e.ownerid, e.from, e.to)), e.progress += e.speed * n * this.conf.troop_speed_ratio, e.returning && e.progress >= 2 * e.dist) {
+                        let t = this.dataService.city(e.from.x, e.from.y),
+                            i = this.dataService.city(e.to.x, e.to.y);
+                        if (l % 10 == 0 && t && i && (e.speed = this.dataService.speed("spy", e.ownerid, t, i)), e.progress += e.speed * n * this.conf.troop_speed_ratio, e.returning && e.progress >= 2 * e.dist) {
                             this.data.spies.splice(this.data.spies.indexOf(e), 1);
                             let l = this.dataService.city(e.from.x, e.from.y);
                             l && (l.troops.spy ? l.troops.spy += e.spies : l.troops.spy = e.spies)
                         } else if (!e.returning && e.progress >= e.dist) {
-                            let l = this.dataService.spy(e),
-                                n = this.dataService.city(e.from.x, e.from.y),
-                                t = this.dataService.city(e.to.x, e.to.y);
-                            if (n && t) {
-                                let i = this.dataService.player(t.ownerid);
-                                0 == e.ownerid && !l.survived && t.ownerid > 1 && (i.appreciation[e.ownerid] -= 5);
+                            let l = this.dataService.spy(e);
+                            if (t && i) {
+                                let n = this.dataService.player(i.ownerid);
+                                0 == e.ownerid && !l.survived && i.ownerid > 1 && (n.appreciation[e.ownerid] -= 5);
                                 let s = {
                                     id: this.data.lastids.report++,
-                                    from_id: n.id,
-                                    to_id: t.id,
+                                    from_id: t.id,
+                                    to_id: i.id,
                                     spy: !0,
-                                    spyBuildings: l.buildings ? Object.assign({}, t.buildings) : {},
-                                    spyPop: l.buildings ? this.dataService.pop(t) : 0,
+                                    spyBuildings: l.buildings ? Object.assign({}, i.buildings) : {},
+                                    spyPop: l.buildings ? this.dataService.pop(i) : 0,
                                     spyData: l,
-                                    spyTroops: l.troops ? Object.assign({}, t.troops) : {},
+                                    spyTroops: l.troops ? Object.assign({}, i.troops) : {},
                                     spyScience: l.science || 0,
                                     troops: {
                                         initial: {
@@ -24146,15 +24233,15 @@
                                             defender: {}
                                         }
                                     },
-                                    gold: l.gold ? Math.floor(t.gold) : 0,
+                                    gold: l.gold ? Math.floor(i.gold) : 0,
                                     cityTaken: !1,
                                     cityBurned: !1,
                                     date: new Date,
                                     victory: l.buildings,
                                     isAttacker: !0,
-                                    defense: l.cityDef ? this.dataService.defense(t) : 0
+                                    defense: l.cityDef ? this.dataService.defense(i) : 0
                                 };
-                                if (this.data.reports.push(s), s.victory ? this.toastService.success("Spying succeded in " + t.name + " !", ug.success, "/game/reports/" + s.id) : this.toastService.success(l.survived ? "Spying failed in " + t.name + " !" : "Spying failed in " + t.name + ". Relations with " + i.name + " decreased.", ug.defeat, "/game/reports/" + s.id), l.science && this.dataService.player().science_queue.length) {
+                                if (this.data.reports.push(s), s.victory ? this.toastService.success("Spying succeded in " + i.name + " !", ug.success, "/game/reports/" + s.id) : this.toastService.success(l.survived ? "Spying failed in " + i.name + " !" : "Spying failed in " + i.name + ". Relations with " + n.name + " decreased.", ug.defeat, "/game/reports/" + s.id), l.science && this.dataService.player().science_queue.length) {
                                     let n = this.dataService.player().science_queue[0];
                                     this.dataService.player().sciences[n].progress += l.science, this.dataService.player().sciences[n].progress > this.dataService.scienceCost(this.conf.sciences[n], e.ownerid) && (this.dataService.player().sciences[n].progress = this.dataService.scienceCost(this.conf.sciences[n], e.ownerid))
                                 }
@@ -24162,28 +24249,26 @@
                             } else e.returning = !0
                         } else this.dataService.discover(e)
                     }), this.data.goldtransfers.slice(0).forEach(e => {
-                        if (l % 10 == 0 && (e.speed = this.dataService.speed("gold", e.ownerid, e.from, e.to)), e.progress += e.speed * n * this.conf.troop_speed_ratio, e.progress >= e.dist && !e.returning || e.progress >= 2 * e.dist && e.returning) {
-                            let l = this.dataService.city(e.from.x, e.from.y),
-                                n = this.dataService.city(e.to.x, e.to.y);
-                            if (n && n.ownerid == e.destid) {
-                                n.gold += e.gold;
-                                let t = this.dataService.player(n.ownerid);
-                                if (t.appreciation[e.ownerid]) {
-                                    let l = this.dataService.giftValue(e.gold);
-                                    t.appreciation[e.ownerid] = Ng.constraint(t.appreciation[e.ownerid] + l, 100, 0)
+                        let t = this.dataService.city(e.from.x, e.from.y),
+                            i = this.dataService.city(e.to.x, e.to.y);
+                        if (l % 10 == 0 && t && i && (e.speed = this.dataService.speed("gold", e.ownerid, t, i)), e.progress += e.speed * n * this.conf.troop_speed_ratio, e.progress >= e.dist && !e.returning || e.progress >= 2 * e.dist && e.returning)
+                            if (i && i.ownerid == e.destid) {
+                                i.gold += e.gold;
+                                let l = this.dataService.player(i.ownerid);
+                                if (l.appreciation[e.ownerid]) {
+                                    let n = this.dataService.giftValue(e.gold);
+                                    l.appreciation[e.ownerid] = Ng.constraint(l.appreciation[e.ownerid] + n, 100, 0)
                                 }
-                                0 == e.ownerid && 0 == n.ownerid ? this.toastService.success("Gold transfer arrived in " + n.name + " !", ug.gold, "/game/city/" + n.id) : 0 == e.ownerid ? this.toastService.success("Your gift arrived in " + n.name + " !", ug.diplomacy, "/game/diplomacy/") : 0 == n.ownerid && this.toastService.success("Gift from " + this.dataService.player(e.ownerid).name + " arrived in " + n.name + " !", ug.diplomacy, "/game/city/" + n.id), !e.returning && l && n.ownerid == e.ownerid && n.gold > this.dataService.maxGold(n) ? (e.from.x = n.x, e.from.y = n.y, e.to.x = l.x, e.to.y = l.y, e.gold = n.gold - this.dataService.maxGold(n), e.returning = !0, n.gold = this.dataService.maxGold(n)) : this.data.goldtransfers.splice(this.data.goldtransfers.indexOf(e), 1)
-                            } else this.data.goldtransfers.splice(this.data.goldtransfers.indexOf(e), 1)
-                        } else this.dataService.discover(e)
+                                0 == e.ownerid && 0 == i.ownerid ? this.toastService.success("Gold transfer arrived in " + i.name + " !", ug.gold, "/game/city/" + i.id) : 0 == e.ownerid ? this.toastService.success("Your gift arrived in " + i.name + " !", ug.diplomacy, "/game/diplomacy/") : 0 == i.ownerid && this.toastService.success("Gift from " + this.dataService.player(e.ownerid).name + " arrived in " + i.name + " !", ug.diplomacy, "/game/city/" + i.id), !e.returning && t && i.ownerid == e.ownerid && i.gold > this.dataService.maxGold(i) ? (e.from.x = i.x, e.from.y = i.y, e.to.x = t.x, e.to.y = t.y, e.gold = i.gold - this.dataService.maxGold(i), e.returning = !0, i.gold = this.dataService.maxGold(i)) : this.data.goldtransfers.splice(this.data.goldtransfers.indexOf(e), 1)
+                            } else this.data.goldtransfers.splice(this.data.goldtransfers.indexOf(e), 1);
+                        else this.dataService.discover(e)
                     }), this.data.attacks.slice(0).forEach(e => {
-                        l % 10 == 0 && (e.speed = this.dataService.attackSpeed(e.troops, e.ownerid, e.from, e.to));
-                        let t = this.dataService.city(e.to.x, e.to.y);
-                        if (t && (0 == this.data.difficulty && 0 == t.ownerid && 0 != e.ownerid || 1 == this.data.difficulty && 0 == t.ownerid && 1 == e.ownerid) && (e.returning = !0, e.progress = 2 * e.dist - e.progress), e.progress += e.speed * n * this.conf.troop_speed_ratio * (this.data.spelltime.berserker ? 1 + this.dataService.berserkerSpeedBonus(e.ownerid) : 1), e.returning && e.progress >= 2 * e.dist) {
-                            let l = this.dataService.city(e.from.x, e.from.y);
-                            l ? l.ownerid != e.ownerid ? (this.dataService.fight(e.troops, l.troops, l, e.ownerid), this.data.attacks.splice(this.data.attacks.indexOf(e), 1)) : (Object.keys(e.troops).forEach(n => {
-                                l.troops[n] ? l.troops[n] += e.troops[n] : l.troops[n] = e.troops[n]
-                            }), e.gold && (l.gold += e.gold), this.data.attacks.splice(this.data.attacks.indexOf(e), 1)) : this.data.attacks.splice(this.data.attacks.indexOf(e), 1)
-                        } else if (!e.returning && e.progress >= e.dist) {
+                        let t = this.dataService.city(e.from.x, e.from.y),
+                            i = this.dataService.city(e.to.x, e.to.y);
+                        if (l % 10 == 0 && t && i && (e.speed = this.dataService.attackSpeed(e.troops, e.ownerid, t, i)), i && (0 == this.data.difficulty && 0 == i.ownerid && 0 != e.ownerid || 1 == this.data.difficulty && 0 == i.ownerid && 1 == e.ownerid) && (e.returning = !0, e.progress = 2 * e.dist - e.progress), e.progress += e.speed * n * this.conf.troop_speed_ratio * (this.data.spelltime.berserker ? 1 + this.dataService.berserkerSpeedBonus(e.ownerid) : 1), e.returning && e.progress >= 2 * e.dist) t ? t.ownerid != e.ownerid ? (this.dataService.fight(e.troops, t.troops, t, e.ownerid), this.data.attacks.splice(this.data.attacks.indexOf(e), 1)) : (Object.keys(e.troops).forEach(l => {
+                            t.troops[l] ? t.troops[l] += e.troops[l] : t.troops[l] = e.troops[l]
+                        }), e.gold && (t.gold += e.gold), this.data.attacks.splice(this.data.attacks.indexOf(e), 1)) : this.data.attacks.splice(this.data.attacks.indexOf(e), 1);
+                        else if (!e.returning && e.progress >= e.dist) {
                             let l = this.dataService.city(e.from.x, e.from.y),
                                 n = this.dataService.city(e.to.x, e.to.y);
                             if (l && n)
@@ -24226,7 +24311,7 @@
                                     l.sciences[l.science_queue[0]].progress || (l.sciences[l.science_queue[0]].progress = 0), l.sciences[l.science_queue[0]].progress += n, l.sciences[l.science_queue[0]].progress >= this.dataService.scienceCost(this.dataService.conf.sciences[l.science_queue[0]], l.id) && this.dataService.discoverScience(l.id), l.faith += n
                                 }
                                 if (this.dataService.hasPolicy("crusades", t.id) && (t.faith += 10 * (r - p)), s.isAttacker = 0 == e.ownerid, s.victory = 0 == e.ownerid && h > 0 || 0 != e.ownerid && 0 == h, s.defeat = 0 == e.ownerid && 0 == h || 0 != e.ownerid && 0 == p, e.returning = !0, (e.troops.slaver || e.troops.warrior && "aztecs" == t.civ_id && this.dataService.hasScience("bronze_working", t)) && (0 != p || !e.troops.governor)) {
-                                    let l = (p / r - h / u) * (this.dataService.pop(n) - 1) * .1 * (this.dataService.hasWonder(t.id, "ziggurat") ? 2 : 1),
+                                    let l = (h / (.1 + u) - p / (.1 + r)) * (this.dataService.pop(n) - 1) * .1 * (this.dataService.hasWonder(t.id, "ziggurat") ? 2 : 1),
                                         i = 0;
                                     e.troops.slaver && (i += e.troops.slaver), e.troops.warrior && "aztecs" == t.civ_id && (i += e.troops.warrior), l = 1 - Math.pow(1 - l, i), yg.roll(l) && (this.dataService.killCitizen(n), e.troops.worker = 1, this.dataService.pop(n) > 1 && this.dataService.hasPolicy("slavery") && yg.roll(.5) && (this.dataService.killCitizen(n), e.troops.worker = 2))
                                 }
@@ -24708,7 +24793,7 @@
                             let e = this.dataService.citiesInRange(n, 10).filter(e => e.ownerid != l.id && (1 == e.ownerid || this.dataService.era(e.ownerid) != this.conf.eras.prehistory.id) && !(0 == e.ownerid && 0 == this.data.difficulty) && !(0 == e.ownerid && 1 == this.data.difficulty && 1 == l.id) && (1 == e.ownerid || 1 == l.id || this.dataService.atWar(l.id, e.ownerid)) && (3 != this.data.difficulty && this.dataService.cityAttack(n) > this.dataService.attackRatioRequired(l.civ_id) * this.dataService.playerAttack(this.dataService.player(e.ownerid)) / this.dataService.player(e.ownerid).cities.length || 3 == this.data.difficulty && this.dataService.cityAttack(n) > this.dataService.attackRatioRequired(l.civ_id) * this.dataService.cityAttack(e)));
                             if (e.length) {
                                 let t = .05;
-                                if (1 == this.data.difficulty ? t = 1 == l.id ? 0 : .05 : 2 == this.data.difficulty ? t = 1 == l.id ? .01 : .1 : 3 == this.data.difficulty && (t = 1 == l.id ? .1 : .5), yg.roll(t)) {
+                                if (1 == this.data.difficulty ? t = 1 == l.id ? 0 : .05 : 2 == this.data.difficulty ? t = 1 == l.id ? .001 : .1 : 3 == this.data.difficulty && (t = 1 == l.id ? .01 : .5), yg.roll(t)) {
                                     let t = yg.fromArray(e);
                                     !Pr.production && n.troops.governor && console.log(l.name + " is launching an attack with gov from " + n.name + " to " + t.name);
                                     let i = {};
@@ -24788,7 +24873,7 @@
             return this.dataService.isTroopAvailable(l, n, e)
         }
         isBuildingAvailable(l, n) {
-            return this.dataService.isBuildingSelectable(l, n)
+            return (1 != l.ownerid || !n.wonder) && this.dataService.isBuildingSelectable(l, n)
         }
     }
     const Uv = new El("WindowToken", "undefined" != typeof window && window.document ? {
@@ -25313,7 +25398,7 @@
             return "click" === n && (t = !1 !== l.component.exit() && t), t
         }), null, null)), (l()(), su(49, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), iu(0, [["content", 2]], null, 0, null, ob)), (l()(), iu(0, [["confirmation", 2]], null, 0, null, hb)), (l()(), iu(0, [["confirmation2", 2]], null, 0, null, gb)), (l()(), iu(0, [["popColony", 2]], null, 0, null, yb))], (function (l, n) {
             var e = n.component;
-            l(n, 8, 0, e.dataService.hasScience("art")), l(n, 14, 0, e.dataService.isUnlocked("trade")), l(n, 16, 0, e.dataService.isUnlocked("colonization")), l(n, 20, 0, e.dataService.player().science_queue.length), l(n, 22, 0, !e.dataService.player().science_queue.length), l(n, 24, 0, e.dataService.hasScience("spirituality") && e.dataService.player().orientation <= 0), l(n, 26, 0, e.dataService.player().orientation > 0), l(n, 28, 0, e.dataService.isUnlocked("orientation")), l(n, 30, 0, e.data.prestige), l(n, 33, 0, e.dataService.player().deity), l(n, 37, 0, !e.environment.production), l(n, 39, 0, e.inIframe()), l(n, 41, 0, !e.data.noautosave), l(n, 43, 0, e.data.noautosave), l(n, 45, 0, e.dataService.isUnlocked("reincarnation") && e.dataService.player().orientation <= 0), l(n, 47, 0, e.dataService.player().orientation > 0)
+            l(n, 8, 0, e.dataService.hasScience("art")), l(n, 14, 0, e.dataService.isUnlocked("trade")), l(n, 16, 0, e.dataService.isUnlocked("colonization")), l(n, 20, 0, e.dataService.player().science_queue.length), l(n, 22, 0, !e.dataService.player().science_queue.length), l(n, 24, 0, e.dataService.hasScience("spirituality") && e.dataService.player().orientation <= 0), l(n, 26, 0, e.dataService.player().orientation > 0), l(n, 28, 0, e.dataService.isUnlocked("orientation")), l(n, 30, 0, e.data.prestige), l(n, 33, 0, e.dataService.player().deity && e.dataService.player().orientation <= 0), l(n, 37, 0, !e.environment.production), l(n, 39, 0, e.inIframe()), l(n, 41, 0, !e.data.noautosave), l(n, 43, 0, e.data.noautosave), l(n, 45, 0, e.dataService.isUnlocked("reincarnation") && e.dataService.player().orientation <= 0), l(n, 47, 0, e.dataService.player().orientation > 0)
         }), (function (l, n) {
             var e = n.component;
             l(n, 5, 0, e.icons.pop), l(n, 6, 0, e.dataService.pop()), l(n, 10, 0, e.icons.happiness);
@@ -27073,6 +27158,13 @@
             let n = 25 * (l - 4);
             return n < 0 && n >= this.dataService.player().orientation || n > 0 && n <= this.dataService.player().orientation
         }
+        repent() {
+            this.dataService.player().orientation = -25, this.dataService.player().progress = 0, Object.values(this.conf.buildings).filter(l => l.industrial).forEach(l => {
+                this.dataService.player().cities.forEach(n => {
+                    delete n.buildings[l.id], n.building_queue.includes(l.id) && n.building_queue.splice(n.building_queue.indexOf(l.id), 1)
+                })
+            })
+        }
         mouseenter(l, n) {
             let e = "";
             0 == n && (e = 'Unlock <span class="text-magic">Autocast <i class="' + ug.spells + '"></i> Spells</span>'), 1 == n && (e = 'Unlock <span class="text-magic"><i class="' + ug.spells + '"></i> Spell 3</span>'), 2 == n && (e = 'Unlock <span class="text-magic"><i class="' + ug.spells + '"></i> Spell 2</span>'), 3 == n && (e = 'Unlock <span class="text-magic"><i class="' + ug.spells + '"></i> Spell 1</span>.'), 4 == n && (e = '0-: Unlock <span class="text-magic"><i class="' + ug.favor + '"></i> Reincarnation</span>. Allow incremental spells effects.<br/>0+: <span class="text-prestige"><i class="' + ug.prestige + '"></i> Time Travel</span>'), 5 == n && (e = 'Unlock <span class="text-tech">Industrial buildings</span>'), 6 == n && (e = 'Unlock <span class="text-tech">Industrial improvements</span>'), 7 == n && (e = 'Unlock <span class="text-tech">Industrial wonders</span>'), 8 == n && (e = 'Unlock <span class="text-tech">Archeologists & Ruins</span>'), l.open({
@@ -27628,6 +27720,22 @@
     }
 
     function Yx(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 8, "div", [], null, null, null, null, null)), (l()(), su(1, 16777216, null, null, 7, "button", [["class", "btn btn-warning btn-sm mt-2"], ["ngbPopover", "Sacrifice all you progress to reset your orienation to -25. All your industrial buildings & wonders will be lost."]], null, [[null, "click"]], (function (l, n, e) {
+            var t = !0;
+            return "click" === n && (t = !1 !== l.component.repent() && t), t
+        }), null, null)), gi(2, 737280, null, 0, Zy, [fe, be, Ln, ce, Fe, Gy, ys, Ua, Rn, zs], {
+            ngbPopover: [0, "ngbPopover"]
+        }, null), (l()(), _u(-1, null, ["Repent ("])), (l()(), su(4, 0, null, null, 3, "span", [["class", "text-progress"]], null, null, null, null, null)), (l()(), su(5, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(6, null, [" ", ""])), yu(7, 1), (l()(), _u(-1, null, [")"]))], (function (l, n) {
+            l(n, 2, 0, "Sacrifice all you progress to reset your orienation to -25. All your industrial buildings & wonders will be lost.")
+        }), (function (l, n) {
+            var e = n.component;
+            l(n, 5, 0, e.icons.progress);
+            var t = et(n, 6, 0, l(n, 7, 0, ei(n.parent.parent.parent, 0), e.dataService.player().progress));
+            l(n, 6, 0, t)
+        }))
+    }
+
+    function Xx(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 30, "div", [["class", "d-flex align-items-center m-3"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), su(2, 0, null, null, 27, ":svg:svg", [["class", "mx-3"]], [[1, "width", 0], [1, "height", 0]], null, null, null, null)), (l()(), su(3, 0, null, null, 19, ":svg:defs", [], null, null, null, null, null)), (l()(), su(4, 0, null, null, 2, ":svg:linearGradient", [["id", "center"], ["x1", "0%"], ["x2", "100%"], ["y1", "0%"], ["y2", "0%"]], null, null, null, null, null)), (l()(), su(5, 0, null, null, 0, ":svg:stop", [["offset", "0%"], ["style", "stop-color:#58ca8f;stop-opacity:1"]], null, null, null, null, null)), (l()(), su(6, 0, null, null, 0, ":svg:stop", [["offset", "100%"], ["style", "stop-color:#e18c55;stop-opacity:1"]], null, null, null, null, null)), (l()(), su(7, 0, null, null, 15, ":svg:linearGradient", [["id", "grad"]], null, null, null, null, null)), (l()(), su(8, 0, null, null, 0, ":svg:stop", [["offset", "0%"], ["stop-color", "white"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, Fx)), gi(10, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), iu(16777216, null, null, 1, null, qx)), gi(12, 16384, null, 0, Pa, [Fe, $e], {
@@ -27653,9 +27761,11 @@
             container: [3, "container"]
         }, null), (l()(), _u(28, null, [" ", " "])), yu(29, 2), (l()(), su(30, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, Qx)), gi(32, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
+        }, null), (l()(), iu(16777216, null, null, 1, null, Yx)), gi(34, 16384, null, 0, Pa, [Fe, $e], {
+            ngIf: [0, "ngIf"]
         }, null), (l()(), iu(0, null, null, 0))], (function (l, n) {
             var e = n.component;
-            l(n, 10, 0, e.dataService.player().orientation < 0), l(n, 12, 0, e.dataService.player().orientation < 0), l(n, 14, 0, e.dataService.player().orientation < 0), l(n, 17, 0, e.dataService.player().orientation > 0), l(n, 19, 0, e.dataService.player().orientation > 0), l(n, 21, 0, e.dataService.player().orientation > 0), l(n, 25, 0, e.svg.steps), l(n, 27, 0, ei(n.parent.parent, 21), "bottom", "manuel", "body"), l(n, 32, 0, e.dataService.player().orientation >= 100)
+            l(n, 10, 0, e.dataService.player().orientation < 0), l(n, 12, 0, e.dataService.player().orientation < 0), l(n, 14, 0, e.dataService.player().orientation < 0), l(n, 17, 0, e.dataService.player().orientation > 0), l(n, 19, 0, e.dataService.player().orientation > 0), l(n, 21, 0, e.dataService.player().orientation > 0), l(n, 25, 0, e.svg.steps), l(n, 27, 0, ei(n.parent.parent, 21), "bottom", "manuel", "body"), l(n, 32, 0, e.dataService.player().orientation >= 100), l(n, 34, 0, e.dataService.player().orientation > -25)
         }), (function (l, n) {
             var e = n.component;
             l(n, 1, 0, e.icons.spells + " text-300 text-magic"), l(n, 2, 0, e.svg.cdist * (e.svg.steps.length - 1) + 2 * e.svg.cr + 2 * e.svg.pad, 2 * (e.svg.cr2 + e.svg.pad)), l(n, 23, 0, e.svg.cr + e.svg.pad, e.svg.cr2 - e.svg.rh / 2 + e.svg.pad, e.svg.cdist * (e.svg.steps.length - 1), e.svg.rh), l(n, 26, 0, e.svg.cdist * (e.svg.steps.length - 1) / 2 + e.svg.cr + e.svg.pad, e.svg.cr2 + 5 + e.svg.pad);
@@ -27664,7 +27774,7 @@
         }))
     }
 
-    function Xx(l) {
+    function Jx(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "ngb-tab", [["id", "tab_orientation"], ["title", "Orientation"]], null, null, null, null, null)), gi(1, 2113536, [[1, 4]], 2, ev, [], {
             id: [0, "id"],
             title: [1, "title"]
@@ -27672,18 +27782,18 @@
             titleTpls: 1
         }), cu(603979776, 9, {
             contentTpls: 1
-        }), (l()(), iu(0, null, null, 1, null, Yx)), gi(5, 16384, [[9, 4]], 0, nv, [$e], null, null)], (function (l, n) {
+        }), (l()(), iu(0, null, null, 1, null, Xx)), gi(5, 16384, [[9, 4]], 0, nv, [$e], null, null)], (function (l, n) {
             l(n, 1, 0, "tab_orientation", "Orientation")
         }), null)
     }
 
-    function Jx(l) {
+    function lk(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 0, "div", [], [[8, "innerHTML", 1]], null, null, null, null))], null, (function (l, n) {
             l(n, 0, 0, n.context.desc)
         }))
     }
 
-    function lk(l) {
+    function nk(l) {
         return ku(0, [mi(0, zv, []), mi(0, $v, []), (l()(), su(2, 0, null, null, 18, "ngb-tabset", [], null, null, null, K_, U_)), gi(3, 2146304, null, 1, tv, [Jy], {
             activeId: [0, "activeId"]
         }, null), cu(603979776, 1, {
@@ -27702,20 +27812,20 @@
             contentTpls: 1
         }), (l()(), iu(0, null, null, 1, null, Px)), gi(16, 16384, [[5, 4]], 0, nv, [$e], null, null), (l()(), iu(16777216, null, null, 1, null, Lx)), gi(18, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, Xx)), gi(20, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, Jx)), gi(20, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(0, [["popContent", 2]], null, 0, null, Jx))], (function (l, n) {
+        }, null), (l()(), iu(0, [["popContent", 2]], null, 0, null, lk))], (function (l, n) {
             var e = n.component;
             l(n, 3, 0, e.activetabeid), l(n, 6, 0, "Cities"), l(n, 12, 0, "Armies"), l(n, 18, 0, e.dataService.isUnlocked("empire_orders")), l(n, 20, 0, e.dataService.isUnlocked("orientation"))
         }), null)
     }
 
-    function nk(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 1, "app-home", [], null, null, null, lk, ux)), gi(1, 114688, null, 0, sx, [Tg, Pg, zg, oh], null, null)], (function (l, n) {
+    function ek(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 1, "app-home", [], null, null, null, nk, ux)), gi(1, 114688, null, 0, sx, [Tg, Pg, zg, oh], null, null)], (function (l, n) {
             l(n, 1, 0)
         }), null)
     }
-    var ek = jt("app-home", sx, nk, {}, {}, []); class tk {
+    var tk = jt("app-home", sx, ek, {}, {}, []); class ik {
         constructor(l, n, e) {
             this.dataService = l, this.conf = n, this.data = e, this.edit = !1, this.icons = ug
         }
@@ -27732,13 +27842,13 @@
             return mg.capitalizeFirstLetter(l)
         }
     }
-    var ik = st({
+    var sk = st({
         encapsulation: 0,
         styles: [[""]],
         data: {}
     });
 
-    function sk(l) {
+    function uk(l) {
         return ku(0, [(l()(), su(0, 16777216, null, null, 3, "div", [["class", "mr-2"], ["placement", "bottom"]], null, null, null, null, null)), gi(1, 737280, null, 0, Zy, [fe, be, Ln, ce, Fe, Gy, ys, Ua, Rn, zs], {
             ngbPopover: [0, "ngbPopover"],
             placement: [1, "placement"]
@@ -27750,13 +27860,13 @@
         }))
     }
 
-    function uk(l) {
+    function rk(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null))], null, (function (l, n) {
             l(n, 0, 0, n.component.icons.capital + " mr-1")
         }))
     }
 
-    function rk(l) {
+    function ak(l) {
         return ku(0, [(l()(), su(0, 16777216, null, null, 1, "i", [["placement", "bottom"], ["triggers", "mouseenter:mouseleave"]], [[8, "className", 0]], null, null, null, null)), gi(1, 737280, null, 0, Zy, [fe, be, Ln, ce, Fe, Gy, ys, Ua, Rn, zs], {
             ngbPopover: [0, "ngbPopover"],
             placement: [1, "placement"],
@@ -27770,10 +27880,10 @@
         }))
     }
 
-    function ak(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 8, "div", [["class", "bg-dark text-light mr-2"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, uk)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
+    function ok(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 8, "div", [["class", "bg-dark text-light mr-2"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, rk)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, rk)), gi(4, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, ak)), gi(4, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), su(5, 0, null, null, 1, "b", [], null, null, null, null, null)), (l()(), _u(6, null, ["", ""])), (l()(), su(7, 0, null, null, 1, "button", [["class", "btn btn-dark btn-sm line-height-1 ml-2"], ["title", "Rename"]], null, [[null, "click"]], (function (l, n, e) {
             var t = !0,
@@ -27788,7 +27898,7 @@
         }))
     }
 
-    function ok(l) {
+    function ck(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 10, "div", [["class", "bg-dark text-light input-group  form-inline mr-2"], ["style", "width:200px"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 5, "input", [["class", "form-control form-control-sm"], ["type", "text"]], [[2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "ngModelChange"], [null, "input"], [null, "blur"], [null, "compositionstart"], [null, "compositionend"]], (function (l, n, e) {
             var t = !0,
                 i = l.component;
@@ -27814,7 +27924,7 @@
         }))
     }
 
-    function ck(l) {
+    function dk(l) {
         return ku(0, [(l()(), su(0, 16777216, null, null, 4, "div", [["class", "text-prod mr-2"], ["placement", "bottom"]], null, null, null, null, null)), gi(1, 737280, null, 0, Zy, [fe, be, Ln, ce, Fe, Gy, ys, Ua, Rn, zs], {
             ngbPopover: [0, "ngbPopover"],
             placement: [1, "placement"]
@@ -27828,13 +27938,13 @@
         }))
     }
 
-    function dk(l) {
+    function hk(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null))], null, (function (l, n) {
             l(n, 0, 0, n.component.icons.exclamation)
         }))
     }
 
-    function hk(l) {
+    function pk(l) {
         return ku(0, [(l()(), su(0, 16777216, null, null, 4, "div", [["class", "text-culture mr-2"], ["placement", "bottom"]], null, null, null, null, null)), gi(1, 737280, null, 0, Zy, [fe, be, Ln, ce, Fe, Gy, ys, Ua, Rn, zs], {
             ngbPopover: [0, "ngbPopover"],
             placement: [1, "placement"]
@@ -27848,7 +27958,7 @@
         }))
     }
 
-    function pk(l) {
+    function fk(l) {
         return ku(0, [(l()(), su(0, 16777216, null, null, 4, "div", [["class", "text-faith mr-2"], ["placement", "bottom"]], null, null, null, null, null)), gi(1, 737280, null, 0, Zy, [fe, be, Ln, ce, Fe, Gy, ys, Ua, Rn, zs], {
             ngbPopover: [0, "ngbPopover"],
             placement: [1, "placement"]
@@ -27862,7 +27972,7 @@
         }))
     }
 
-    function fk(l) {
+    function gk(l) {
         return ku(0, [(l()(), su(0, 16777216, null, null, 6, "div", [["class", "text-gold mr-2"], ["placement", "bottom"]], null, null, null, null, null)), gi(1, 737280, null, 0, Zy, [fe, be, Ln, ce, Fe, Gy, ys, Ua, Rn, zs], {
             ngbPopover: [0, "ngbPopover"],
             placement: [1, "placement"]
@@ -27876,7 +27986,7 @@
         }))
     }
 
-    function gk(l) {
+    function mk(l) {
         return ku(0, [(l()(), su(0, 16777216, null, null, 4, "div", [["class", "text-light mr-2"], ["placement", "bottom"]], null, null, null, null, null)), gi(1, 737280, null, 0, Zy, [fe, be, Ln, ce, Fe, Gy, ys, Ua, Rn, zs], {
             ngbPopover: [0, "ngbPopover"],
             placement: [1, "placement"]
@@ -27890,7 +28000,7 @@
         }))
     }
 
-    function mk(l) {
+    function yk(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 3, "button", [["class", "dropdown-item"], ["ngbDropdownItem", ""]], [[2, "disabled", null]], [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== l.component.useBonus(l.context.index) && t), t
@@ -27900,7 +28010,7 @@
         }))
     }
 
-    function yk(l) {
+    function vk(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 13, "div", [["class", "d-inline-block"], ["container", "body"], ["ngbDropdown", ""]], [[2, "show", null]], null, null, null, null)), gi(1, 1720320, null, 3, Ty, [Rn, wy, Ua, ys, fe, be, [2, xy]], {
             container: [0, "container"]
         }, null), cu(603979776, 1, {
@@ -27917,7 +28027,7 @@
             return "keydown.ArrowUp" === n && (t = !1 !== ei(l, 10).dropdown.onKeyDown(e) && t), "keydown.ArrowDown" === n && (t = !1 !== ei(l, 10).dropdown.onKeyDown(e) && t), "keydown.Home" === n && (t = !1 !== ei(l, 10).dropdown.onKeyDown(e) && t), "keydown.End" === n && (t = !1 !== ei(l, 10).dropdown.onKeyDown(e) && t), "keydown.Enter" === n && (t = !1 !== ei(l, 10).dropdown.onKeyDown(e) && t), "keydown.Space" === n && (t = !1 !== ei(l, 10).dropdown.onKeyDown(e) && t), t
         }), null, null)), gi(10, 16384, [[1, 4]], 1, Sy, [Ty], null, null), cu(603979776, 4, {
             menuItems: 1
-        }), (l()(), iu(16777216, null, null, 1, null, mk)), gi(13, 278528, null, 0, Ea, [Fe, $e, Oe], {
+        }), (l()(), iu(16777216, null, null, 1, null, yk)), gi(13, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
         }, null)], (function (l, n) {
             var e = n.component;
@@ -27927,7 +28037,7 @@
         }))
     }
 
-    function vk(l) {
+    function bk(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 2, "span", [], null, null, null, null, null)), (l()(), _u(1, null, ["New citizen in ", ""])), yu(2, 1)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 1, 0, l(n, 2, 0, ei(n.parent.parent, 2), e.dataService.citizenTime(e.city)));
@@ -27935,7 +28045,7 @@
         }))
     }
 
-    function bk(l) {
+    function _k(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 2, "span", [], null, null, null, null, null)), (l()(), _u(1, null, ["Loosing citizen in ", ""])), yu(2, 1)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 1, 0, l(n, 2, 0, ei(n.parent.parent, 2), 0 - e.dataService.citizenTime(e.city)));
@@ -27943,10 +28053,10 @@
         }))
     }
 
-    function _k(l) {
-        return ku(0, [(l()(), iu(16777216, null, null, 1, null, vk)), gi(1, 16384, null, 0, Pa, [Fe, $e], {
+    function wk(l) {
+        return ku(0, [(l()(), iu(16777216, null, null, 1, null, bk)), gi(1, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, bk)), gi(3, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, _k)), gi(3, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), iu(0, null, null, 0))], (function (l, n) {
             var e = n.component;
@@ -27954,60 +28064,60 @@
         }), null)
     }
 
-    function wk(l) {
+    function xk(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 6, "span", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "span", [["class", "text-food"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Food"])), (l()(), _u(-1, null, [" bonus: "])), (l()(), su(4, 0, null, null, 1, "span", [["class", "text-food"]], null, null, null, null, null)), (l()(), su(5, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(-1, null, [" +20%"]))], null, (function (l, n) {
             l(n, 5, 0, n.component.icons.food)
         }))
     }
 
-    function xk(l) {
+    function kk(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 6, "span", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "span", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Industry"])), (l()(), _u(-1, null, [" bonus: "])), (l()(), su(4, 0, null, null, 1, "span", [["class", "text-prod"]], null, null, null, null, null)), (l()(), su(5, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(-1, null, [" +20%"]))], null, (function (l, n) {
             l(n, 5, 0, n.component.icons.prod)
         }))
     }
 
-    function kk(l) {
+    function Sk(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 6, "span", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "span", [["class", "text-science"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Science"])), (l()(), _u(-1, null, [" bonus: "])), (l()(), su(4, 0, null, null, 1, "span", [["class", "text-science"]], null, null, null, null, null)), (l()(), su(5, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(-1, null, [" +20%"]))], null, (function (l, n) {
             l(n, 5, 0, n.component.icons.science)
         }))
     }
 
-    function Sk(l) {
+    function Ck(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 6, "span", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "span", [["class", "text-gold"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Gold"])), (l()(), _u(-1, null, [" bonus: "])), (l()(), su(4, 0, null, null, 1, "span", [["class", "text-gold"]], null, null, null, null, null)), (l()(), su(5, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(-1, null, [" +20%"]))], null, (function (l, n) {
             l(n, 5, 0, n.component.icons.gold)
         }))
     }
 
-    function Ck(l) {
+    function Ik(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 6, "span", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "span", [["class", "text-culture"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Culture"])), (l()(), _u(-1, null, [" bonus: "])), (l()(), su(4, 0, null, null, 1, "span", [["class", "text-culture"]], null, null, null, null, null)), (l()(), su(5, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(-1, null, [" +20%"]))], null, (function (l, n) {
             l(n, 5, 0, n.component.icons.culture)
         }))
     }
 
-    function Ik(l) {
+    function Tk(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 6, "span", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "span", [["class", "text-faith"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Faith"])), (l()(), _u(-1, null, [" bonus: "])), (l()(), su(4, 0, null, null, 1, "span", [["class", "text-faith"]], null, null, null, null, null)), (l()(), su(5, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(-1, null, [" +20%"]))], null, (function (l, n) {
             l(n, 5, 0, n.component.icons.faith)
         }))
     }
 
-    function Tk(l) {
+    function Ek(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 3, "span", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "span", [["class", "text-dark"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Recruitment"])), (l()(), _u(-1, null, [" bonus: recruitment speed +25%"]))], null, null)
     }
 
-    function Ek(l) {
-        return ku(0, [(l()(), iu(16777216, null, null, 1, null, wk)), gi(1, 16384, null, 0, Pa, [Fe, $e], {
+    function Ak(l) {
+        return ku(0, [(l()(), iu(16777216, null, null, 1, null, xk)), gi(1, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, xk)), gi(3, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, kk)), gi(3, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, kk)), gi(5, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, Sk)), gi(5, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, Sk)), gi(7, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, Ck)), gi(7, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, Ck)), gi(9, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, Ik)), gi(9, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, Ik)), gi(11, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, Tk)), gi(11, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, Tk)), gi(13, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, Ek)), gi(13, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), iu(0, null, null, 0))], (function (l, n) {
             var e = n.component;
@@ -28015,38 +28125,38 @@
         }), null)
     }
 
-    function Ak(l) {
+    function Pk(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Palace: "])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 2"]))], null, null)
     }
 
-    function Pk(l) {
+    function Dk(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(2, null, ["", ": "])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(4, null, ["+ ", ""]))], null, (function (l, n) {
             var e = n.component;
             l(n, 2, 0, e.conf.buildings.granary.label(e.dataService.player())), l(n, 4, 0, e.dataService.buildingBonus("granary", 0))
         }))
     }
 
-    function Dk(l) {
+    function Mk(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Harbor: "])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 5"]))], null, null)
     }
 
-    function Mk(l) {
+    function Ok(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Mill: "])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 10"]))], null, null)
     }
 
-    function Ok(l) {
+    function Nk(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Hanging Gardens: "])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 10"]))], null, null)
     }
 
-    function Nk(l) {
+    function Rk(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["City bonus"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 20 %"]))], null, null)
     }
 
-    function Rk(l) {
+    function Bk(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Monopoly"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 10%"]))], null, null)
     }
 
-    function Bk(l) {
+    function zk(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Feathered Serpent"])), (l()(), su(3, 0, null, null, 2, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(4, null, ["+ ", ""])), yu(5, 1)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 4, 0, l(n, 5, 0, ei(n.parent.parent, 1), e.dataService.serpentBonus(e.city)));
@@ -28054,7 +28164,7 @@
         }))
     }
 
-    function zk(l) {
+    function $k(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Abundance"])), (l()(), su(3, 0, null, null, 2, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(4, null, ["+ ", ""])), yu(5, 1)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 4, 0, l(n, 5, 0, ei(n.parent.parent, 1), e.dataService.abundanceBonus()));
@@ -28062,7 +28172,7 @@
         }))
     }
 
-    function $k(l) {
+    function Lk(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Third Eye"])), (l()(), su(3, 0, null, null, 2, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(4, null, ["+ ", ""])), yu(5, 1)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 4, 0, l(n, 5, 0, ei(n.parent.parent, 1), e.dataService.thirdeyeBonus(e.city)));
@@ -28070,7 +28180,7 @@
         }))
     }
 
-    function Lk(l) {
+    function Fk(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Prestige"])), (l()(), su(3, 0, null, null, 2, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(4, null, ["+ ", " %"])), yu(5, 1)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 4, 0, l(n, 5, 0, ei(n.parent.parent, 0), 100 * e.dataService.prestigeBonus(0)));
@@ -28078,28 +28188,28 @@
         }))
     }
 
-    function Fk(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 1, "b", [["class", "text-center d-block border-bottom bg-dark text-light"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Food"])), (l()(), su(2, 0, null, null, 63, "table", [["class", "popover-table"]], null, null, null, null, null)), (l()(), su(3, 0, null, null, 62, "tbody", [], null, null, null, null, null)), (l()(), su(4, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(5, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Base"])), (l()(), su(7, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["1"])), (l()(), su(9, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(10, 0, null, null, 1, "td", [["class", "text-pop"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Idle"])), (l()(), su(12, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(13, 2), (l()(), su(14, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(15, 0, null, null, 1, "td", [["class", "text-pop"]], null, null, null, null, null)), (l()(), _u(16, null, ["", ": "])), (l()(), su(17, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(18, 2), (l()(), iu(16777216, null, null, 1, null, Ak)), gi(20, 16384, null, 0, Pa, [Fe, $e], {
+    function qk(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 1, "b", [["class", "text-center d-block border-bottom bg-dark text-light"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Food"])), (l()(), su(2, 0, null, null, 63, "table", [["class", "popover-table"]], null, null, null, null, null)), (l()(), su(3, 0, null, null, 62, "tbody", [], null, null, null, null, null)), (l()(), su(4, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(5, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Base"])), (l()(), su(7, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["1"])), (l()(), su(9, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(10, 0, null, null, 1, "td", [["class", "text-pop"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Idle"])), (l()(), su(12, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(13, 2), (l()(), su(14, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(15, 0, null, null, 1, "td", [["class", "text-pop"]], null, null, null, null, null)), (l()(), _u(16, null, ["", ": "])), (l()(), su(17, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(18, 2), (l()(), iu(16777216, null, null, 1, null, Pk)), gi(20, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, Pk)), gi(22, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, Dk)), gi(22, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, Dk)), gi(24, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, Mk)), gi(24, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, Mk)), gi(26, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, Ok)), gi(26, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, Ok)), gi(28, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, Nk)), gi(28, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), su(29, 0, null, null, 4, "tr", [["class", "border-top"]], null, null, null, null, null)), (l()(), su(30, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Total production: "])), (l()(), su(32, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(33, 2), (l()(), su(34, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(35, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Happiness"])), (l()(), su(37, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(38, 2), (l()(), iu(16777216, null, null, 1, null, Nk)), gi(40, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), su(29, 0, null, null, 4, "tr", [["class", "border-top"]], null, null, null, null, null)), (l()(), su(30, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Total production: "])), (l()(), su(32, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(33, 2), (l()(), su(34, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(35, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Happiness"])), (l()(), su(37, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(38, 2), (l()(), iu(16777216, null, null, 1, null, Rk)), gi(40, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, Rk)), gi(42, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, Bk)), gi(42, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, Bk)), gi(44, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, zk)), gi(44, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, zk)), gi(46, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, $k)), gi(46, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, $k)), gi(48, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, Lk)), gi(48, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, Lk)), gi(50, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, Fk)), gi(50, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), su(51, 0, null, null, 4, "tr", [["class", "border-top"]], null, null, null, null, null)), (l()(), su(52, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Total gains: "])), (l()(), su(54, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(55, 2), (l()(), su(56, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(57, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Citizens"])), (l()(), su(59, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(60, 2), (l()(), su(61, 0, null, null, 4, "tr", [["class", "border-top"]], null, null, null, null, null)), (l()(), su(62, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Total"])), (l()(), su(64, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(65, 2)], (function (l, n) {
             var e = n.component;
@@ -28123,46 +28233,46 @@
         }))
     }
 
-    function qk(l) {
+    function Uk(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Palace"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 2"]))], null, null)
     }
 
-    function Uk(l) {
+    function Hk(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Copper mine"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 5"]))], null, null)
     }
 
-    function Hk(l) {
+    function Vk(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Gold mine"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 15"]))], null, null)
     }
 
-    function Vk(l) {
+    function jk(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Coal mine"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 25"]))], null, null)
     }
 
-    function jk(l) {
+    function Gk(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(2, null, ["", ""])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 10"]))], null, (function (l, n) {
             var e = n.component;
             l(n, 2, 0, e.conf.buildings.castle.label(e.dataService.player()))
         }))
     }
 
-    function Gk(l) {
+    function Wk(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-special"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Colossus"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 10"]))], null, null)
     }
 
-    function Wk(l) {
+    function Kk(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-culture"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Aristocracy"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 25 %"]))], null, null)
     }
 
-    function Kk(l) {
+    function Zk(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-culture"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Meritocracy"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 5 %"]))], null, null)
     }
 
-    function Zk(l) {
+    function Qk(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-special"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Connected to capital"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 25 %"]))], null, null)
     }
 
-    function Qk(l) {
+    function Yk(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-colony"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Colonies"])), (l()(), su(3, 0, null, null, 2, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(4, null, ["+ ", ""])), yu(5, 1)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 4, 0, l(n, 5, 0, ei(n.parent.parent, 1), e.dataService.colonyTotalGoldBonus()));
@@ -28170,11 +28280,11 @@
         }))
     }
 
-    function Yk(l) {
+    function Xk(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["City bonus"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 20 %"]))], null, null)
     }
 
-    function Xk(l) {
+    function Jk(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Upgrades"])), (l()(), su(3, 0, null, null, 2, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(4, null, ["+ ", ""])), yu(5, 1)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 4, 0, l(n, 5, 0, ei(n.parent.parent, 1), e.dataService.upgradeGoldMult(0) - 1));
@@ -28182,7 +28292,7 @@
         }))
     }
 
-    function Jk(l) {
+    function lS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Trade"])), (l()(), su(3, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(4, 2)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 3, 0, l(n, 4, 0, ei(n.parent.parent, 0), e.dataService.tradeRouteGains(e.city).gold, "+.1c"));
@@ -28190,7 +28300,7 @@
         }))
     }
 
-    function lS(l) {
+    function nS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Troop maintenance"])), (l()(), su(3, 0, null, null, 2, "td", [["class", "text-danger"]], null, null, null, null, null)), (l()(), _u(4, null, ["- ", " "])), yu(5, 2)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 4, 0, l(n, 5, 0, ei(n.parent.parent, 0), e.dataService.maintenanceCost(e.city), ".1"));
@@ -28198,34 +28308,34 @@
         }))
     }
 
-    function nS(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 1, "b", [["class", "text-center d-block border-bottom bg-dark text-light"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Gold"])), (l()(), su(2, 0, null, null, 54, "table", [["class", "popover-table"]], null, null, null, null, null)), (l()(), su(3, 0, null, null, 53, "tbody", [], null, null, null, null, null)), (l()(), su(4, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(5, 0, null, null, 1, "td", [["class", "text-pop"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Merchants"])), (l()(), su(7, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(8, 2), (l()(), iu(16777216, null, null, 1, null, qk)), gi(10, 16384, null, 0, Pa, [Fe, $e], {
+    function eS(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 1, "b", [["class", "text-center d-block border-bottom bg-dark text-light"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Gold"])), (l()(), su(2, 0, null, null, 54, "table", [["class", "popover-table"]], null, null, null, null, null)), (l()(), su(3, 0, null, null, 53, "tbody", [], null, null, null, null, null)), (l()(), su(4, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(5, 0, null, null, 1, "td", [["class", "text-pop"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Merchants"])), (l()(), su(7, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(8, 2), (l()(), iu(16777216, null, null, 1, null, Uk)), gi(10, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, Uk)), gi(12, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, Hk)), gi(12, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, Hk)), gi(14, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, Vk)), gi(14, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, Vk)), gi(16, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, jk)), gi(16, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, jk)), gi(18, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, Gk)), gi(18, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, Gk)), gi(20, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, Wk)), gi(20, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), su(21, 0, null, null, 4, "tr", [["class", "border-top"]], null, null, null, null, null)), (l()(), su(22, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Total production: "])), (l()(), su(24, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(25, 2), (l()(), iu(16777216, null, null, 1, null, Wk)), gi(27, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), su(21, 0, null, null, 4, "tr", [["class", "border-top"]], null, null, null, null, null)), (l()(), su(22, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Total production: "])), (l()(), su(24, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(25, 2), (l()(), iu(16777216, null, null, 1, null, Kk)), gi(27, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, Kk)), gi(29, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, Zk)), gi(29, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, Zk)), gi(31, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, Qk)), gi(31, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), su(32, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(33, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Happiness"])), (l()(), su(35, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(36, 2), (l()(), iu(16777216, null, null, 1, null, Qk)), gi(38, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), su(32, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(33, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Happiness"])), (l()(), su(35, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(36, 2), (l()(), iu(16777216, null, null, 1, null, Yk)), gi(38, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, Yk)), gi(40, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, Xk)), gi(40, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, Xk)), gi(42, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, Jk)), gi(42, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, Jk)), gi(44, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, lS)), gi(44, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), su(45, 0, null, null, 4, "tr", [["class", "border-top"]], null, null, null, null, null)), (l()(), su(46, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Total gains: "])), (l()(), su(48, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(49, 2), (l()(), iu(16777216, null, null, 1, null, lS)), gi(51, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), su(45, 0, null, null, 4, "tr", [["class", "border-top"]], null, null, null, null, null)), (l()(), su(46, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Total gains: "])), (l()(), su(48, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(49, 2), (l()(), iu(16777216, null, null, 1, null, nS)), gi(51, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), su(52, 0, null, null, 4, "tr", [["class", "border-top"]], null, null, null, null, null)), (l()(), su(53, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Total"])), (l()(), su(55, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(56, 2)], (function (l, n) {
             var e = n.component;
@@ -28245,7 +28355,7 @@
         }))
     }
 
-    function eS(l) {
+    function tS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-pop"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Scientists"])), (l()(), su(3, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(4, 2)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 3, 0, l(n, 4, 0, ei(n.parent.parent, 0), e.city.citizens.scientists * e.conf.citizens.scientists.science(e.dataService, e.city), "+.1c"));
@@ -28253,42 +28363,42 @@
         }))
     }
 
-    function tS(l) {
+    function iS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Palace"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 2"]))], null, null)
     }
 
-    function iS(l) {
+    function sS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(2, null, ["", ""])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(4, null, ["+ ", ""]))], null, (function (l, n) {
             var e = n.component;
             l(n, 2, 0, e.conf.buildings.library.label(e.dataService.player())), l(n, 4, 0, e.dataService.buildingBonus("library", 0))
         }))
     }
 
-    function sS(l) {
+    function uS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(-1, null, ["University"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 15"]))], null, null)
     }
 
-    function uS(l) {
+    function rS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Public School"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 25"]))], null, null)
     }
 
-    function rS(l) {
+    function aS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-culture"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Monastery (Reformation)"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 10 %"]))], null, null)
     }
 
-    function aS(l) {
+    function oS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-culture"]], null, null, null, null, null)), (l()(), _u(-1, null, ["University (Scientific State)"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 10 %"]))], null, null)
     }
 
-    function oS(l) {
+    function cS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-culture"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Wisdom of the Ancients"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 25 %"]))], null, null)
     }
 
-    function cS(l) {
+    function dS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-special"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Oxford University"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 50 %"]))], null, null)
     }
 
-    function dS(l) {
+    function hS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-colony"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Colonies"])), (l()(), su(3, 0, null, null, 2, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(4, null, ["+ ", ""])), yu(5, 1)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 4, 0, l(n, 5, 0, ei(n.parent.parent, 1), e.dataService.colonyTotalScienceBonus()));
@@ -28296,11 +28406,11 @@
         }))
     }
 
-    function hS(l) {
+    function pS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["City bonus"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 20 %"]))], null, null)
     }
 
-    function pS(l) {
+    function fS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Trade"])), (l()(), su(3, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(4, 2)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 3, 0, l(n, 4, 0, ei(n.parent.parent, 0), e.dataService.tradeRouteGains(e.city).science, "+.1c"));
@@ -28308,7 +28418,7 @@
         }))
     }
 
-    function fS(l) {
+    function gS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Clairvoyance"])), (l()(), su(3, 0, null, null, 2, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(4, null, ["+ ", ""])), yu(5, 1)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 4, 0, l(n, 5, 0, ei(n.parent.parent, 1), e.dataService.clairvoyanceBonus(e.city.ownerid)));
@@ -28316,7 +28426,7 @@
         }))
     }
 
-    function gS(l) {
+    function mS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Enlightment"])), (l()(), su(3, 0, null, null, 2, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(4, null, ["+ ", ""])), yu(5, 1)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 4, 0, l(n, 5, 0, ei(n.parent.parent, 1), e.dataService.enlightmentBonus()));
@@ -28324,7 +28434,7 @@
         }))
     }
 
-    function mS(l) {
+    function yS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Bacchanalia"])), (l()(), su(3, 0, null, null, 2, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(4, null, ["+ ", ""])), yu(5, 1)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 4, 0, l(n, 5, 0, ei(n.parent.parent, 1), e.dataService.bacchanaliaBonus(e.city.ownerid)));
@@ -28332,7 +28442,7 @@
         }))
     }
 
-    function yS(l) {
+    function vS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["The Punisher"])), (l()(), su(3, 0, null, null, 2, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(4, null, ["+ ", ""])), yu(5, 1)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 4, 0, l(n, 5, 0, ei(n.parent.parent, 1), e.dataService.punisherBonus() * e.dataService.plagueNb()));
@@ -28340,7 +28450,7 @@
         }))
     }
 
-    function vS(l) {
+    function bS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Upgrades"])), (l()(), su(3, 0, null, null, 2, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(4, null, ["+ ", ""])), yu(5, 1)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 4, 0, l(n, 5, 0, ei(n.parent.parent, 1), e.dataService.upgradeScienceMult(0) - 1));
@@ -28348,40 +28458,40 @@
         }))
     }
 
-    function bS(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 1, "b", [["class", "text-center d-block border-bottom bg-dark text-light"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Science"])), (l()(), su(2, 0, null, null, 55, "table", [["class", "popover-table"]], null, null, null, null, null)), (l()(), su(3, 0, null, null, 54, "tbody", [], null, null, null, null, null)), (l()(), su(4, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(5, 0, null, null, 1, "td", [["class", "text-pop"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Population"])), (l()(), su(7, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(8, 2), (l()(), iu(16777216, null, null, 1, null, eS)), gi(10, 16384, null, 0, Pa, [Fe, $e], {
+    function _S(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 1, "b", [["class", "text-center d-block border-bottom bg-dark text-light"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Science"])), (l()(), su(2, 0, null, null, 55, "table", [["class", "popover-table"]], null, null, null, null, null)), (l()(), su(3, 0, null, null, 54, "tbody", [], null, null, null, null, null)), (l()(), su(4, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(5, 0, null, null, 1, "td", [["class", "text-pop"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Population"])), (l()(), su(7, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(8, 2), (l()(), iu(16777216, null, null, 1, null, tS)), gi(10, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, tS)), gi(12, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, iS)), gi(12, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, iS)), gi(14, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, sS)), gi(14, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, sS)), gi(16, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, uS)), gi(16, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, uS)), gi(18, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, rS)), gi(18, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), su(19, 0, null, null, 4, "tr", [["class", "border-top"]], null, null, null, null, null)), (l()(), su(20, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Total production: "])), (l()(), su(22, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(23, 2), (l()(), iu(16777216, null, null, 1, null, rS)), gi(25, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), su(19, 0, null, null, 4, "tr", [["class", "border-top"]], null, null, null, null, null)), (l()(), su(20, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Total production: "])), (l()(), su(22, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(23, 2), (l()(), iu(16777216, null, null, 1, null, aS)), gi(25, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, aS)), gi(27, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, oS)), gi(27, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, oS)), gi(29, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, cS)), gi(29, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, cS)), gi(31, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, dS)), gi(31, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), su(32, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(33, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Happiness"])), (l()(), su(35, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(36, 2), (l()(), iu(16777216, null, null, 1, null, dS)), gi(38, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), su(32, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(33, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Happiness"])), (l()(), su(35, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(36, 2), (l()(), iu(16777216, null, null, 1, null, hS)), gi(38, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, hS)), gi(40, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, pS)), gi(40, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, pS)), gi(42, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, fS)), gi(42, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, fS)), gi(44, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, gS)), gi(44, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, gS)), gi(46, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, mS)), gi(46, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, mS)), gi(48, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, yS)), gi(48, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, yS)), gi(50, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, vS)), gi(50, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, vS)), gi(52, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, bS)), gi(52, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), su(53, 0, null, null, 4, "tr", [["class", "border-top"]], null, null, null, null, null)), (l()(), su(54, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Total"])), (l()(), su(56, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(57, 2)], (function (l, n) {
             var e = n.component;
@@ -28399,7 +28509,7 @@
         }))
     }
 
-    function _S(l) {
+    function wS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-pop"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Idle"])), (l()(), su(3, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(4, 2)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 3, 0, l(n, 4, 0, ei(n.parent.parent, 0), e.city.citizens.idle * e.conf.citizens.idle.culture(e.dataService), "+.1c"));
@@ -28407,83 +28517,83 @@
         }))
     }
 
-    function wS(l) {
+    function xS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Palace"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 2"]))], null, null)
     }
 
-    function xS(l) {
+    function kS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Monument"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 1"]))], null, null)
     }
 
-    function kS(l) {
+    function SS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Amphitheatre"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 2"]))], null, null)
     }
 
-    function SS(l) {
+    function CS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Opera"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 5"]))], null, null)
     }
 
-    function CS(l) {
+    function IS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Museum"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 10"]))], null, null)
     }
 
-    function IS(l) {
+    function TS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(2, null, ["", ""])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 10"]))], null, (function (l, n) {
             var e = n.component;
             l(n, 2, 0, e.conf.buildings.castle.label(e.dataService.player()))
         }))
     }
 
-    function TS(l) {
+    function ES(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(2, null, ["", ""])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 10"]))], null, (function (l, n) {
             var e = n.component;
             l(n, 2, 0, e.conf.buildings.zoo.label(e.dataService.player()))
         }))
     }
 
-    function ES(l) {
+    function AS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-special"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Pyramids"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 5"]))], null, null)
     }
 
-    function AS(l) {
+    function PS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-special"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Mausoleum"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 5"]))], null, null)
     }
 
-    function PS(l) {
+    function DS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-special"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Forbidden City"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 5"]))], null, null)
     }
 
-    function DS(l) {
+    function MS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-special"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Sistine Chapel"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 15"]))], null, null)
     }
 
-    function MS(l) {
+    function OS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-special"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Versailles"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 15"]))], null, null)
     }
 
-    function OS(l) {
+    function NS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-special"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Hermitage"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(4, null, ["+ ", ""]))], null, (function (l, n) {
             l(n, 4, 0, 5 * n.component.city.relics)
         }))
     }
 
-    function NS(l) {
+    function RS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-culture"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Library (Philosophy)"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 5 %"]))], null, null)
     }
 
-    function RS(l) {
+    function BS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-culture"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Traditionalism"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 15 %"]))], null, null)
     }
 
-    function BS(l) {
+    function zS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-culture"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Imperialism"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 5 %"]))], null, null)
     }
 
-    function zS(l) {
+    function $S(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["City bonus"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 20 %"]))], null, null)
     }
 
-    function $S(l) {
+    function LS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Ouroboros"])), (l()(), su(3, 0, null, null, 2, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(4, null, ["+ ", ""])), yu(5, 1)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 4, 0, l(n, 5, 0, ei(n.parent.parent, 1), e.dataService.ouroborosBonus(e.city.ownerid)));
@@ -28491,7 +28601,7 @@
         }))
     }
 
-    function LS(l) {
+    function FS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Trade routes"])), (l()(), su(3, 0, null, null, 2, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(4, null, ["+ ", " "])), yu(5, 1)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 4, 0, l(n, 5, 0, ei(n.parent.parent, 0), e.dataService.tradeRouteGains(e.city).culture));
@@ -28499,7 +28609,7 @@
         }))
     }
 
-    function FS(l) {
+    function qS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Dionysia"])), (l()(), su(3, 0, null, null, 2, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(4, null, ["+ ", ""])), yu(5, 1)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 4, 0, l(n, 5, 0, ei(n.parent.parent, 1), e.dataService.dionysiaBonus(e.city.ownerid)));
@@ -28507,52 +28617,52 @@
         }))
     }
 
-    function qS(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 1, "b", [["class", "text-center d-block border-bottom bg-dark text-light"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Culture"])), (l()(), su(2, 0, null, null, 63, "table", [["class", "popover-table"]], null, null, null, null, null)), (l()(), su(3, 0, null, null, 62, "tbody", [], null, null, null, null, null)), (l()(), su(4, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(5, 0, null, null, 1, "td", [["class", "text-pop"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Artists"])), (l()(), su(7, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(8, 2), (l()(), iu(16777216, null, null, 1, null, _S)), gi(10, 16384, null, 0, Pa, [Fe, $e], {
+    function US(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 1, "b", [["class", "text-center d-block border-bottom bg-dark text-light"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Culture"])), (l()(), su(2, 0, null, null, 63, "table", [["class", "popover-table"]], null, null, null, null, null)), (l()(), su(3, 0, null, null, 62, "tbody", [], null, null, null, null, null)), (l()(), su(4, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(5, 0, null, null, 1, "td", [["class", "text-pop"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Artists"])), (l()(), su(7, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(8, 2), (l()(), iu(16777216, null, null, 1, null, wS)), gi(10, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, wS)), gi(12, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, xS)), gi(12, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, xS)), gi(14, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, kS)), gi(14, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, kS)), gi(16, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, SS)), gi(16, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, SS)), gi(18, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, CS)), gi(18, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, CS)), gi(20, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, IS)), gi(20, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, IS)), gi(22, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, TS)), gi(22, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, TS)), gi(24, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, ES)), gi(24, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, ES)), gi(26, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, AS)), gi(26, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, AS)), gi(28, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, PS)), gi(28, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, PS)), gi(30, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, DS)), gi(30, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, DS)), gi(32, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, MS)), gi(32, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, MS)), gi(34, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, OS)), gi(34, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, OS)), gi(36, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, NS)), gi(36, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), su(37, 0, null, null, 4, "tr", [["class", "border-top"]], null, null, null, null, null)), (l()(), su(38, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Total production: "])), (l()(), su(40, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(41, 2), (l()(), iu(16777216, null, null, 1, null, NS)), gi(43, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), su(37, 0, null, null, 4, "tr", [["class", "border-top"]], null, null, null, null, null)), (l()(), su(38, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Total production: "])), (l()(), su(40, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(41, 2), (l()(), iu(16777216, null, null, 1, null, RS)), gi(43, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, RS)), gi(45, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, BS)), gi(45, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, BS)), gi(47, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, zS)), gi(47, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), su(48, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(49, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Happiness"])), (l()(), su(51, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(52, 2), (l()(), iu(16777216, null, null, 1, null, zS)), gi(54, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), su(48, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(49, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Happiness"])), (l()(), su(51, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(52, 2), (l()(), iu(16777216, null, null, 1, null, $S)), gi(54, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, $S)), gi(56, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, LS)), gi(56, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, LS)), gi(58, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, FS)), gi(58, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, FS)), gi(60, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, qS)), gi(60, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), su(61, 0, null, null, 4, "tr", [["class", "border-top"]], null, null, null, null, null)), (l()(), su(62, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Total"])), (l()(), su(64, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(65, 2)], (function (l, n) {
             var e = n.component;
-            l(n, 10, 0, e.conf.citizens.idle.culture(e.dataService)), l(n, 12, 0, e.dataService.hasBuilding(e.city, "palace")), l(n, 14, 0, e.dataService.hasBuilding(e.city, "monument")), l(n, 16, 0, e.dataService.hasBuilding(e.city, "amphitheatre")), l(n, 18, 0, e.dataService.hasBuilding(e.city, "opera")), l(n, 20, 0, e.dataService.hasBuilding(e.city, "museum")), l(n, 22, 0, e.dataService.hasBuilding(e.city, "castle") && "french" == e.dataService.player().civ_id), l(n, 24, 0, e.dataService.hasBuilding(e.city, "zoo") && "french" == e.dataService.player().civ_id), l(n, 26, 0, e.dataService.hasBuilding(e.city, "pyramid")), l(n, 28, 0, e.dataService.hasBuilding(e.city, "mausoleum")), l(n, 30, 0, e.dataService.hasBuilding(e.city, "forbidden")), l(n, 32, 0, e.dataService.hasBuilding(e.city, "sistine")), l(n, 34, 0, e.dataService.hasBuilding(e.city, "versailles")), l(n, 36, 0, e.dataService.hasWonder(e.city.ownerid, "hermitage") && e.city.relics), l(n, 43, 0, e.dataService.hasBuilding(e.city, "library") && e.dataService.hasPolicy("philosophy")), l(n, 45, 0, e.city.capital && e.dataService.hasPolicyGroup("traditionalism")), l(n, 47, 0, e.dataService.hasPolicyGroup("imperialism")), l(n, 54, 0, "culture" == e.city.bonus), l(n, 56, 0, e.dataService.player().powers.ouroboros), l(n, 58, 0, e.dataService.isUnlocked("trade")), l(n, 60, 0, e.data.spelltime.dionysia)
+            l(n, 10, 0, e.conf.citizens.idle.culture(e.dataService)), l(n, 12, 0, e.dataService.hasBuilding(e.city, "palace")), l(n, 14, 0, e.dataService.hasBuilding(e.city, "monument")), l(n, 16, 0, e.dataService.hasBuilding(e.city, "amphitheatre")), l(n, 18, 0, e.dataService.hasBuilding(e.city, "opera")), l(n, 20, 0, e.dataService.hasBuilding(e.city, "museum")), l(n, 22, 0, e.dataService.hasBuilding(e.city, "castle") && "french" == e.dataService.player().civ_id), l(n, 24, 0, e.dataService.hasBuilding(e.city, "zoo") && "brazilians" == e.dataService.player().civ_id), l(n, 26, 0, e.dataService.hasBuilding(e.city, "pyramid")), l(n, 28, 0, e.dataService.hasBuilding(e.city, "mausoleum")), l(n, 30, 0, e.dataService.hasBuilding(e.city, "forbidden")), l(n, 32, 0, e.dataService.hasBuilding(e.city, "sistine")), l(n, 34, 0, e.dataService.hasBuilding(e.city, "versailles")), l(n, 36, 0, e.dataService.hasWonder(e.city.ownerid, "hermitage") && e.city.relics), l(n, 43, 0, e.dataService.hasBuilding(e.city, "library") && e.dataService.hasPolicy("philosophy")), l(n, 45, 0, e.city.capital && e.dataService.hasPolicyGroup("traditionalism")), l(n, 47, 0, e.dataService.hasPolicyGroup("imperialism")), l(n, 54, 0, "culture" == e.city.bonus), l(n, 56, 0, e.dataService.player().powers.ouroboros), l(n, 58, 0, e.dataService.isUnlocked("trade")), l(n, 60, 0, e.data.spelltime.dionysia)
         }), (function (l, n) {
             var e = n.component,
                 t = et(n, 7, 0, l(n, 8, 0, ei(n.parent, 0), e.city.citizens.artists * e.conf.citizens.artists.culture(e.dataService), "+.1c"));
@@ -28566,7 +28676,7 @@
         }))
     }
 
-    function US(l) {
+    function HS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-pop"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Population (Orphic Mysteries)"])), (l()(), su(3, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(4, 2)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 3, 0, l(n, 4, 0, ei(n.parent.parent, 0), e.dataService.pop(e.city) * e.dataService.orphicBonus(0), "+.1c"));
@@ -28574,50 +28684,50 @@
         }))
     }
 
-    function HS(l) {
+    function VS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Shrine"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(4, null, ["+ ", ""]))], null, (function (l, n) {
             l(n, 4, 0, n.component.dataService.hasPolicyGroup("piety") ? 3 : 1)
         }))
     }
 
-    function VS(l) {
+    function jS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Temple"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 5"]))], null, null)
     }
 
-    function jS(l) {
+    function GS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Monastery"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 15"]))], null, null)
     }
 
-    function GS(l) {
+    function WS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Pyramids"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(4, null, ["+ ", ""]))], null, (function (l, n) {
             var e = n.component;
             l(n, 4, 0, 2 * e.dataService.wondersNbInCity(e.city))
         }))
     }
 
-    function WS(l) {
+    function KS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-culture"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Monastery (Reformation)"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 10 %"]))], null, null)
     }
 
-    function KS(l) {
+    function ZS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-culture"]], null, null, null, null, null)), (l()(), _u(-1, null, ["University (Scientific State)"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 10 %"]))], null, null)
     }
 
-    function ZS(l) {
+    function QS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-culture"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Landed Elite"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 50 %"]))], null, null)
     }
 
-    function QS(l) {
+    function YS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-culture"]], null, null, null, null, null)), (l()(), _u(-1, null, ["State Religion"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 15 %"]))], null, null)
     }
 
-    function YS(l) {
+    function XS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-culture"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Proselytism"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(4, null, ["+ ", " %"]))], null, (function (l, n) {
             l(n, 4, 0, n.component.dataService.player().cities.length)
         }))
     }
 
-    function XS(l) {
+    function JS(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Bacchanalia"])), (l()(), su(3, 0, null, null, 2, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(4, null, ["+ ", ""])), yu(5, 1)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 4, 0, l(n, 5, 0, ei(n.parent.parent, 1), e.dataService.bacchanaliaBonus(e.city.ownerid)));
@@ -28625,7 +28735,7 @@
         }))
     }
 
-    function JS(l) {
+    function lC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["The Punisher"])), (l()(), su(3, 0, null, null, 2, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(4, null, ["+ ", ""])), yu(5, 1)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 4, 0, l(n, 5, 0, ei(n.parent.parent, 1), e.dataService.punisherBonus() * e.dataService.plagueNb()));
@@ -28633,11 +28743,11 @@
         }))
     }
 
-    function lC(l) {
+    function nC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["City bonus"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 20 %"]))], null, null)
     }
 
-    function nC(l) {
+    function eC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Trade"])), (l()(), su(3, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(4, 2)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 3, 0, l(n, 4, 0, ei(n.parent.parent, 0), e.dataService.tradeRouteGains(e.city).faith, "+.1c"));
@@ -28645,7 +28755,7 @@
         }))
     }
 
-    function eC(l) {
+    function tC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-special"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Difficulty"])), (l()(), su(3, 0, null, null, 2, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(4, null, ["+ ", ""])), yu(5, 1)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 4, 0, l(n, 5, 0, ei(n.parent.parent, 1), e.dataService.difficulty().faith_mult - 1));
@@ -28653,36 +28763,36 @@
         }))
     }
 
-    function tC(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 1, "b", [["class", "text-center d-block border-bottom bg-dark text-light"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Faith"])), (l()(), su(2, 0, null, null, 51, "table", [["class", "popover-table"]], null, null, null, null, null)), (l()(), su(3, 0, null, null, 50, "tbody", [], null, null, null, null, null)), (l()(), su(4, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(5, 0, null, null, 1, "td", [["class", "text-pop"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Priests"])), (l()(), su(7, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(8, 2), (l()(), iu(16777216, null, null, 1, null, US)), gi(10, 16384, null, 0, Pa, [Fe, $e], {
+    function iC(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 1, "b", [["class", "text-center d-block border-bottom bg-dark text-light"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Faith"])), (l()(), su(2, 0, null, null, 51, "table", [["class", "popover-table"]], null, null, null, null, null)), (l()(), su(3, 0, null, null, 50, "tbody", [], null, null, null, null, null)), (l()(), su(4, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(5, 0, null, null, 1, "td", [["class", "text-pop"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Priests"])), (l()(), su(7, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(8, 2), (l()(), iu(16777216, null, null, 1, null, HS)), gi(10, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, HS)), gi(12, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, VS)), gi(12, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, VS)), gi(14, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, jS)), gi(14, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, jS)), gi(16, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, GS)), gi(16, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, GS)), gi(18, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, WS)), gi(18, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), su(19, 0, null, null, 4, "tr", [["class", "border-top"]], null, null, null, null, null)), (l()(), su(20, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Total production: "])), (l()(), su(22, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(23, 2), (l()(), iu(16777216, null, null, 1, null, WS)), gi(25, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), su(19, 0, null, null, 4, "tr", [["class", "border-top"]], null, null, null, null, null)), (l()(), su(20, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Total production: "])), (l()(), su(22, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(23, 2), (l()(), iu(16777216, null, null, 1, null, KS)), gi(25, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, KS)), gi(27, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, ZS)), gi(27, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, ZS)), gi(29, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, QS)), gi(29, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, QS)), gi(31, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, YS)), gi(31, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, YS)), gi(33, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, XS)), gi(33, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, XS)), gi(35, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, JS)), gi(35, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, JS)), gi(37, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, lC)), gi(37, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), su(38, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(39, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Happiness"])), (l()(), su(41, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(42, 2), (l()(), iu(16777216, null, null, 1, null, lC)), gi(44, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), su(38, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(39, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Happiness"])), (l()(), su(41, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(42, 2), (l()(), iu(16777216, null, null, 1, null, nC)), gi(44, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, nC)), gi(46, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, eC)), gi(46, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, eC)), gi(48, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, tC)), gi(48, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), su(49, 0, null, null, 4, "tr", [["class", "border-top"]], null, null, null, null, null)), (l()(), su(50, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Total"])), (l()(), su(52, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(53, 2)], (function (l, n) {
             var e = n.component;
@@ -28700,57 +28810,57 @@
         }))
     }
 
-    function iC(l) {
+    function sC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Palace"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 2"]))], null, null)
     }
 
-    function sC(l) {
+    function uC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(2, null, ["", ""])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(4, null, ["+ ", ""]))], null, (function (l, n) {
             var e = n.component;
             l(n, 2, 0, e.conf.buildings.workshop.label(e.dataService.player())), l(n, 4, 0, e.dataService.buildingBonus("workshop", 0))
         }))
     }
 
-    function uC(l) {
+    function rC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Furnace"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 15"]))], null, null)
     }
 
-    function rC(l) {
+    function aC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(2, null, ["", ""])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(4, null, ["+ ", ""]))], null, (function (l, n) {
             var e = n.component;
             l(n, 2, 0, e.conf.buildings.ironworks.label(e.dataService.player())), l(n, 4, 0, e.dataService.buildingBonus("ironworks", 0))
         }))
     }
 
-    function aC(l) {
+    function oC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Factory"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 50"]))], null, null)
     }
 
-    function oC(l) {
+    function cC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Hydro Plant"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 50"]))], null, null)
     }
 
-    function cC(l) {
+    function dC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-culture"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Administration"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 5 %"]))], null, null)
     }
 
-    function dC(l) {
+    function hC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-culture"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Liberalism"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 25 %"]))], null, null)
     }
 
-    function hC(l) {
+    function pC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-culture"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Ruhr Valley"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 25 %"]))], null, null)
     }
 
-    function pC(l) {
+    function fC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-special"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Connected to capital"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 25 %"]))], null, null)
     }
 
-    function fC(l) {
+    function gC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["City bonus"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 20 %"]))], null, null)
     }
 
-    function gC(l) {
+    function mC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Gateway to Eternity"])), (l()(), su(3, 0, null, null, 2, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(4, null, ["+ ", ""])), yu(5, 1)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 4, 0, l(n, 5, 0, ei(n.parent.parent, 1), e.dataService.eternityBonus(e.city.ownerid)));
@@ -28758,7 +28868,7 @@
         }))
     }
 
-    function mC(l) {
+    function yC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Third Eye"])), (l()(), su(3, 0, null, null, 2, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(4, null, ["+ ", ""])), yu(5, 1)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 4, 0, l(n, 5, 0, ei(n.parent.parent, 1), e.dataService.thirdeyeBonus(e.city)));
@@ -28766,7 +28876,7 @@
         }))
     }
 
-    function yC(l) {
+    function vC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Prestige"])), (l()(), su(3, 0, null, null, 2, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(4, null, ["+ ", " %"])), yu(5, 1)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 4, 0, l(n, 5, 0, ei(n.parent.parent, 0), 100 * e.dataService.prestigeBonus(0)));
@@ -28774,34 +28884,34 @@
         }))
     }
 
-    function vC(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 1, "b", [["class", "text-center d-block border-bottom bg-dark text-light"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Production"])), (l()(), su(2, 0, null, null, 49, "table", [["class", "popover-table"]], null, null, null, null, null)), (l()(), su(3, 0, null, null, 48, "tbody", [], null, null, null, null, null)), (l()(), su(4, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(5, 0, null, null, 1, "td", [["class", "text-pop"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Builders: "])), (l()(), su(7, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(8, 2), (l()(), iu(16777216, null, null, 1, null, iC)), gi(10, 16384, null, 0, Pa, [Fe, $e], {
+    function bC(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 1, "b", [["class", "text-center d-block border-bottom bg-dark text-light"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Production"])), (l()(), su(2, 0, null, null, 49, "table", [["class", "popover-table"]], null, null, null, null, null)), (l()(), su(3, 0, null, null, 48, "tbody", [], null, null, null, null, null)), (l()(), su(4, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(5, 0, null, null, 1, "td", [["class", "text-pop"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Builders: "])), (l()(), su(7, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(8, 2), (l()(), iu(16777216, null, null, 1, null, sC)), gi(10, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, sC)), gi(12, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, uC)), gi(12, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, uC)), gi(14, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, rC)), gi(14, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, rC)), gi(16, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, aC)), gi(16, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, aC)), gi(18, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, oC)), gi(18, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, oC)), gi(20, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, cC)), gi(20, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), su(21, 0, null, null, 4, "tr", [["class", "border-top"]], null, null, null, null, null)), (l()(), su(22, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Total production: "])), (l()(), su(24, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(25, 2), (l()(), iu(16777216, null, null, 1, null, cC)), gi(27, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), su(21, 0, null, null, 4, "tr", [["class", "border-top"]], null, null, null, null, null)), (l()(), su(22, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Total production: "])), (l()(), su(24, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(25, 2), (l()(), iu(16777216, null, null, 1, null, dC)), gi(27, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, dC)), gi(29, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, hC)), gi(29, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, hC)), gi(31, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, pC)), gi(31, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, pC)), gi(33, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, fC)), gi(33, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), su(34, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(35, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Happiness: "])), (l()(), su(37, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(38, 2), (l()(), iu(16777216, null, null, 1, null, fC)), gi(40, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), su(34, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(35, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Happiness: "])), (l()(), su(37, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(38, 2), (l()(), iu(16777216, null, null, 1, null, gC)), gi(40, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, gC)), gi(42, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, mC)), gi(42, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, mC)), gi(44, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, yC)), gi(44, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, yC)), gi(46, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, vC)), gi(46, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), su(47, 0, null, null, 4, "tr", [["class", "border-top"]], null, null, null, null, null)), (l()(), su(48, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Total"])), (l()(), su(50, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(51, 2)], (function (l, n) {
             var e = n.component;
@@ -28819,7 +28929,7 @@
         }))
     }
 
-    function bC(l) {
+    function _C(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-pop"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Scientists"])), (l()(), su(3, 0, null, null, 2, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(4, null, [" +", " "])), yu(5, 1)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 4, 0, l(n, 5, 0, ei(n.parent.parent, 1), e.city.citizens.scientists * e.conf.citizens.scientists.health(e.dataService)));
@@ -28827,49 +28937,49 @@
         }))
     }
 
-    function _C(l) {
+    function wC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-danger"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Plague !"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-danger"]], null, null, null, null, null)), (l()(), _u(-1, null, ["- 30%"]))], null, null)
     }
 
-    function wC(l) {
+    function xC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-science"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Pottery"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 5 %"]))], null, null)
     }
 
-    function xC(l) {
+    function kC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Well"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 5 %"]))], null, null)
     }
 
-    function kC(l) {
+    function SC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Aqueduct"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 10 %"]))], null, null)
     }
 
-    function SC(l) {
+    function CC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Hospital"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(4, null, ["+ ", " %"]))], null, (function (l, n) {
             l(n, 4, 0, n.component.dataService.hasPolicy("procedures") ? "20" : "15")
         }))
     }
 
-    function CC(l) {
+    function IC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Dispensary"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 20 %"]))], null, null)
     }
 
-    function IC(l) {
+    function TC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Quarantine Station"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 10 %"]))], null, null)
     }
 
-    function TC(l) {
+    function EC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Temple (Organized Religion)"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 5 %"]))], null, null)
     }
 
-    function EC(l) {
+    function AC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-culture"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Isolationism"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 15 %"]))], null, null)
     }
 
-    function AC(l) {
+    function PC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-culture"]], null, null, null, null, null)), (l()(), _u(-1, null, ["National Institute of Health"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 5 %"]))], null, null)
     }
 
-    function PC(l) {
+    function DC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Upgrades"])), (l()(), su(3, 0, null, null, 2, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(4, null, ["+ ", ""])), yu(5, 1)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 4, 0, l(n, 5, 0, ei(n.parent.parent, 1), e.dataService.upgradeHealth(0)));
@@ -28877,30 +28987,30 @@
         }))
     }
 
-    function DC(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 1, "b", [["class", "text-center d-block border-bottom bg-dark text-light"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Health"])), (l()(), su(2, 0, null, null, 42, "table", [["class", "popover-table"]], null, null, null, null, null)), (l()(), su(3, 0, null, null, 41, "tbody", [], null, null, null, null, null)), (l()(), su(4, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(5, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Base"])), (l()(), su(7, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["100 %"])), (l()(), su(9, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(10, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Population"])), (l()(), su(12, 0, null, null, 2, "td", [["class", "text-danger"]], null, null, null, null, null)), (l()(), _u(13, null, ["- ", ""])), yu(14, 1), (l()(), iu(16777216, null, null, 1, null, bC)), gi(16, 16384, null, 0, Pa, [Fe, $e], {
+    function MC(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 1, "b", [["class", "text-center d-block border-bottom bg-dark text-light"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Health"])), (l()(), su(2, 0, null, null, 42, "table", [["class", "popover-table"]], null, null, null, null, null)), (l()(), su(3, 0, null, null, 41, "tbody", [], null, null, null, null, null)), (l()(), su(4, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(5, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Base"])), (l()(), su(7, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["100 %"])), (l()(), su(9, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(10, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Population"])), (l()(), su(12, 0, null, null, 2, "td", [["class", "text-danger"]], null, null, null, null, null)), (l()(), _u(13, null, ["- ", ""])), yu(14, 1), (l()(), iu(16777216, null, null, 1, null, _C)), gi(16, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, _C)), gi(18, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, wC)), gi(18, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, wC)), gi(20, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, xC)), gi(20, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, xC)), gi(22, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, kC)), gi(22, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, kC)), gi(24, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, SC)), gi(24, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, SC)), gi(26, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, CC)), gi(26, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, CC)), gi(28, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, IC)), gi(28, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, IC)), gi(30, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, TC)), gi(30, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, TC)), gi(32, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, EC)), gi(32, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, EC)), gi(34, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, AC)), gi(34, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, AC)), gi(36, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, PC)), gi(36, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, PC)), gi(38, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, DC)), gi(38, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), su(39, 0, null, null, 5, "tr", [["class", "border-top"]], null, null, null, null, null)), (l()(), su(40, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Total"])), (l()(), su(42, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), _u(43, null, ["", ""])), yu(44, 1)], (function (l, n) {
             var e = n.component;
@@ -28914,7 +29024,7 @@
         }))
     }
 
-    function MC(l) {
+    function OC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-pop"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Idle"])), (l()(), su(3, 0, null, null, 2, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(4, null, ["+ ", ""])), yu(5, 1)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 4, 0, l(n, 5, 0, ei(n.parent.parent, 1), e.city.citizens.idle * e.conf.citizens.idle.happiness(e.dataService)));
@@ -28922,7 +29032,7 @@
         }))
     }
 
-    function OC(l) {
+    function NC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Distance from capital"])), (l()(), su(3, 0, null, null, 2, "td", [["class", "text-danger"]], null, null, null, null, null)), (l()(), _u(4, null, ["- ", ""])), yu(5, 1)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 4, 0, l(n, 5, 0, ei(n.parent.parent, 1), e.dataService.happinessDistance(e.city)));
@@ -28930,7 +29040,7 @@
         }))
     }
 
-    function NC(l) {
+    function RC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-colony"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Colonies"])), (l()(), su(3, 0, null, null, 2, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(4, null, ["+ ", ""])), yu(5, 1)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 4, 0, l(n, 5, 0, ei(n.parent.parent, 1), e.dataService.colonyTotalHappinessBonus()));
@@ -28938,12 +29048,12 @@
         }))
     }
 
-    function RC(l) {
+    function BC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "span", [], null, null, null, null, null)), (l()(), _u(-1, null, ["(Rightful)"]))], null, null)
     }
 
-    function BC(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 7, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 3, "td", [], null, null, null, null, null)), (l()(), _u(2, null, ["Infl. from ", " "])), (l()(), iu(16777216, null, null, 1, null, RC)), gi(4, 16384, null, 0, Pa, [Fe, $e], {
+    function zC(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 7, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 3, "td", [], null, null, null, null, null)), (l()(), _u(2, null, ["Infl. from ", " "])), (l()(), iu(16777216, null, null, 1, null, BC)), gi(4, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), su(5, 0, null, null, 2, "td", [["class", "text-danger"]], null, null, null, null, null)), (l()(), _u(6, null, ["- ", ""])), yu(7, 1)], (function (l, n) {
             l(n, 4, 0, n.component.city.rightful_ownerid == n.parent.context.$implicit.id)
@@ -28955,8 +29065,8 @@
         }))
     }
 
-    function zC(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 2, null, null, null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, BC)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
+    function $C(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 2, null, null, null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, zC)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), iu(0, null, null, 0))], (function (l, n) {
             var e = n.component;
@@ -28964,53 +29074,53 @@
         }), null)
     }
 
-    function $C(l) {
+    function LC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-culture"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Patriotism"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 5 %"]))], null, null)
     }
 
-    function LC(l) {
+    function FC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(2, null, ["", ""])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(4, null, ["+ ", " %"]))], null, (function (l, n) {
             var e = n.component;
             l(n, 2, 0, e.conf.buildings.gardens.label(e.dataService.player())), l(n, 4, 0, 100 * e.dataService.buildingBonus("gardens", 0))
         }))
     }
 
-    function FC(l) {
+    function qC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Theatre"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 10 %"]))], null, null)
     }
 
-    function qC(l) {
+    function UC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Hanging Gardens"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 10 %"]))], null, null)
     }
 
-    function UC(l) {
+    function HC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Circus"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 15 %"]))], null, null)
     }
 
-    function HC(l) {
+    function VC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(2, null, ["", ""])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 15 %"]))], null, (function (l, n) {
             var e = n.component;
             l(n, 2, 0, e.conf.buildings.zoo.label(e.dataService.player()))
         }))
     }
 
-    function VC(l) {
+    function jC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Monopoly"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 5%"]))], null, null)
     }
 
-    function jC(l) {
+    function GC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Monastery (Theocracy)"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 5 %"]))], null, null)
     }
 
-    function GC(l) {
+    function WC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Shrine (Secularism)"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 5 %"]))], null, null)
     }
 
-    function WC(l) {
+    function KC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Barracks (Despotism)"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 5 %"]))], null, null)
     }
 
-    function KC(l) {
+    function ZC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Bliss"])), (l()(), su(3, 0, null, null, 2, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(4, null, ["+ ", ""])), yu(5, 1)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 4, 0, l(n, 5, 0, ei(n.parent.parent, 1), e.dataService.blissBonus(e.city.ownerid)));
@@ -29018,7 +29128,7 @@
         }))
     }
 
-    function ZC(l) {
+    function QC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Eye of Horus"])), (l()(), su(3, 0, null, null, 2, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(4, null, ["+ ", ""])), yu(5, 1)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 4, 0, l(n, 5, 0, ei(n.parent.parent, 1), e.dataService.eyeBonus()));
@@ -29026,7 +29136,7 @@
         }))
     }
 
-    function QC(l) {
+    function YC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Valhalla"])), (l()(), su(3, 0, null, null, 2, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(4, null, ["+ ", ""])), yu(5, 1)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 4, 0, l(n, 5, 0, ei(n.parent.parent, 1), e.dataService.valhallaBonus(e.city)));
@@ -29034,7 +29144,7 @@
         }))
     }
 
-    function YC(l) {
+    function XC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["New Fire"])), (l()(), su(3, 0, null, null, 2, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(4, null, ["+ ", ""])), yu(5, 1)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 4, 0, l(n, 5, 0, ei(n.parent.parent, 1), e.dataService.newfireBonus()));
@@ -29042,7 +29152,7 @@
         }))
     }
 
-    function XC(l) {
+    function JC(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Upgrades"])), (l()(), su(3, 0, null, null, 2, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(4, null, ["+ ", ""])), yu(5, 1)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 4, 0, l(n, 5, 0, ei(n.parent.parent, 1), e.dataService.upgradeHappiness(0)));
@@ -29050,44 +29160,44 @@
         }))
     }
 
-    function JC(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 1, "b", [["class", "text-center d-block border-bottom bg-dark text-light"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Happiness"])), (l()(), su(2, 0, null, null, 68, "table", [["class", "popover-table"]], null, null, null, null, null)), (l()(), su(3, 0, null, null, 67, "tbody", [], null, null, null, null, null)), (l()(), su(4, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(5, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Base"])), (l()(), su(7, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["100 %"])), (l()(), su(9, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(10, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Population"])), (l()(), su(12, 0, null, null, 2, "td", [["class", "text-danger"]], null, null, null, null, null)), (l()(), _u(13, null, ["- ", ""])), yu(14, 1), (l()(), su(15, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(16, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Artists"])), (l()(), su(18, 0, null, null, 2, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(19, null, ["+ ", ""])), yu(20, 1), (l()(), iu(16777216, null, null, 1, null, MC)), gi(22, 16384, null, 0, Pa, [Fe, $e], {
+    function lI(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 1, "b", [["class", "text-center d-block border-bottom bg-dark text-light"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Happiness"])), (l()(), su(2, 0, null, null, 68, "table", [["class", "popover-table"]], null, null, null, null, null)), (l()(), su(3, 0, null, null, 67, "tbody", [], null, null, null, null, null)), (l()(), su(4, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(5, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Base"])), (l()(), su(7, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["100 %"])), (l()(), su(9, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(10, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Population"])), (l()(), su(12, 0, null, null, 2, "td", [["class", "text-danger"]], null, null, null, null, null)), (l()(), _u(13, null, ["- ", ""])), yu(14, 1), (l()(), su(15, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(16, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Artists"])), (l()(), su(18, 0, null, null, 2, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(19, null, ["+ ", ""])), yu(20, 1), (l()(), iu(16777216, null, null, 1, null, OC)), gi(22, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), su(23, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(24, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Number of Cities"])), (l()(), su(26, 0, null, null, 2, "td", [["class", "text-danger"]], null, null, null, null, null)), (l()(), _u(27, null, ["- ", ""])), yu(28, 1), (l()(), iu(16777216, null, null, 1, null, OC)), gi(30, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), su(23, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(24, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Number of Cities"])), (l()(), su(26, 0, null, null, 2, "td", [["class", "text-danger"]], null, null, null, null, null)), (l()(), _u(27, null, ["- ", ""])), yu(28, 1), (l()(), iu(16777216, null, null, 1, null, NC)), gi(30, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, NC)), gi(32, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, RC)), gi(32, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, zC)), gi(34, 278528, null, 0, Ea, [Fe, $e, Oe], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, $C)), gi(34, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, $C)), gi(36, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, LC)), gi(36, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, LC)), gi(38, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, FC)), gi(38, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, FC)), gi(40, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, qC)), gi(40, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, qC)), gi(42, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, UC)), gi(42, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, UC)), gi(44, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, HC)), gi(44, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, HC)), gi(46, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, VC)), gi(46, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, VC)), gi(48, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, jC)), gi(48, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, jC)), gi(50, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, GC)), gi(50, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, GC)), gi(52, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, WC)), gi(52, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, WC)), gi(54, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, KC)), gi(54, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, KC)), gi(56, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, ZC)), gi(56, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, ZC)), gi(58, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, QC)), gi(58, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, QC)), gi(60, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, YC)), gi(60, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, YC)), gi(62, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, XC)), gi(62, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, XC)), gi(64, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, JC)), gi(64, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), su(65, 0, null, null, 5, "tr", [["class", "border-top"]], null, null, null, null, null)), (l()(), su(66, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Total"])), (l()(), su(68, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), _u(69, null, ["", ""])), yu(70, 1)], (function (l, n) {
             var e = n.component;
@@ -29105,34 +29215,34 @@
         }))
     }
 
-    function lI(l) {
+    function nI(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Walls"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 50 %"]))], null, null)
     }
 
-    function nI(l) {
+    function eI(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(2, null, ["", ""])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 50 %"]))], null, (function (l, n) {
             var e = n.component;
             l(n, 2, 0, e.conf.buildings.castle.label(e.dataService.player()))
         }))
     }
 
-    function eI(l) {
+    function tI(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Fortress"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 50 %"]))], null, null)
     }
 
-    function tI(l) {
+    function iI(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-special"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Temple of Artemis"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 50 %"]))], null, null)
     }
 
-    function iI(l) {
+    function sI(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-special"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Great Wall"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 50 %"]))], null, null)
     }
 
-    function sI(l) {
+    function uI(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-culture"]], null, null, null, null, null)), (l()(), _u(-1, null, ["City-state"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 20 %"]))], null, null)
     }
 
-    function uI(l) {
+    function rI(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-culture"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Stone Skin"])), (l()(), su(3, 0, null, null, 2, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(4, null, ["+ ", ""])), yu(5, 1)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 4, 0, l(n, 5, 0, ei(n.parent.parent, 1), e.dataService.stoneBonus(e.city.ownerid)));
@@ -29140,20 +29250,20 @@
         }))
     }
 
-    function rI(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 1, "b", [["class", "text-center d-block border-bottom bg-dark text-light"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Defense"])), (l()(), su(2, 0, null, null, 32, "table", [["class", "popover-table"]], null, null, null, null, null)), (l()(), su(3, 0, null, null, 31, "tbody", [], null, null, null, null, null)), (l()(), su(4, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(5, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Base"])), (l()(), su(7, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["100 %"])), (l()(), su(9, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(10, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Population"])), (l()(), su(12, 0, null, null, 2, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(13, null, ["+ ", ""])), yu(14, 1), (l()(), iu(16777216, null, null, 1, null, lI)), gi(16, 16384, null, 0, Pa, [Fe, $e], {
+    function aI(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 1, "b", [["class", "text-center d-block border-bottom bg-dark text-light"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Defense"])), (l()(), su(2, 0, null, null, 32, "table", [["class", "popover-table"]], null, null, null, null, null)), (l()(), su(3, 0, null, null, 31, "tbody", [], null, null, null, null, null)), (l()(), su(4, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(5, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Base"])), (l()(), su(7, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["100 %"])), (l()(), su(9, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(10, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Population"])), (l()(), su(12, 0, null, null, 2, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(13, null, ["+ ", ""])), yu(14, 1), (l()(), iu(16777216, null, null, 1, null, nI)), gi(16, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, nI)), gi(18, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, eI)), gi(18, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, eI)), gi(20, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, tI)), gi(20, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, tI)), gi(22, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, iI)), gi(22, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, iI)), gi(24, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, sI)), gi(24, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, sI)), gi(26, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, uI)), gi(26, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, uI)), gi(28, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, rI)), gi(28, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), su(29, 0, null, null, 5, "tr", [["class", "border-top"]], null, null, null, null, null)), (l()(), su(30, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Total"])), (l()(), su(32, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), _u(33, null, ["", ""])), yu(34, 1)], (function (l, n) {
             var e = n.component;
@@ -29167,19 +29277,19 @@
         }))
     }
 
-    function aI(l) {
+    function oI(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-prod"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Armory"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["- 50 %"]))], null, null)
     }
 
-    function oI(l) {
+    function cI(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-culture"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Oligarchy"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["- 50 %"]))], null, null)
     }
 
-    function cI(l) {
+    function dI(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-culture"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Professional Army"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["- 50 %"]))], null, null)
     }
 
-    function dI(l) {
+    function hI(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-magic"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Warpath"])), (l()(), su(3, 0, null, null, 2, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(4, null, ["- ", ""])), yu(5, 1)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 4, 0, l(n, 5, 0, ei(n.parent.parent, 1), e.dataService.warpathMaintenanceBonus(0)));
@@ -29187,14 +29297,14 @@
         }))
     }
 
-    function hI(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 1, "b", [["class", "text-center d-block border-bottom bg-dark text-light"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Troop unitary maintenance cost"])), (l()(), su(2, 0, null, null, 21, "table", [["class", "popover-table"]], null, null, null, null, null)), (l()(), su(3, 0, null, null, 20, "tbody", [], null, null, null, null, null)), (l()(), su(4, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(5, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Base"])), (l()(), su(7, 0, null, null, 2, "td", [["class", "text-danger"]], null, null, null, null, null)), (l()(), _u(8, null, ["", ""])), yu(9, 2), (l()(), iu(16777216, null, null, 1, null, aI)), gi(11, 16384, null, 0, Pa, [Fe, $e], {
+    function pI(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 1, "b", [["class", "text-center d-block border-bottom bg-dark text-light"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Troop unitary maintenance cost"])), (l()(), su(2, 0, null, null, 21, "table", [["class", "popover-table"]], null, null, null, null, null)), (l()(), su(3, 0, null, null, 20, "tbody", [], null, null, null, null, null)), (l()(), su(4, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(5, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Base"])), (l()(), su(7, 0, null, null, 2, "td", [["class", "text-danger"]], null, null, null, null, null)), (l()(), _u(8, null, ["", ""])), yu(9, 2), (l()(), iu(16777216, null, null, 1, null, oI)), gi(11, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, oI)), gi(13, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, cI)), gi(13, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, cI)), gi(15, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, dI)), gi(15, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, dI)), gi(17, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, hI)), gi(17, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), su(18, 0, null, null, 5, "tr", [["class", "border-top"]], null, null, null, null, null)), (l()(), su(19, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Total"])), (l()(), su(21, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), _u(22, null, ["", ""])), yu(23, 2)], (function (l, n) {
             var e = n.component;
@@ -29208,12 +29318,12 @@
         }))
     }
 
-    function pI(l) {
-        return ku(0, [mi(0, zv, []), mi(0, $v, []), mi(0, gv, []), (l()(), su(3, 0, null, null, 69, "nav", [["class", "d-flex bg-dark px-2 py-1 font-weight-bold flex-wrap"], ["style", "margin-top: -1px;"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, sk)), gi(5, 16384, null, 0, Pa, [Fe, $e], {
+    function fI(l) {
+        return ku(0, [mi(0, zv, []), mi(0, $v, []), mi(0, gv, []), (l()(), su(3, 0, null, null, 69, "nav", [["class", "d-flex bg-dark px-2 py-1 font-weight-bold flex-wrap"], ["style", "margin-top: -1px;"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, uk)), gi(5, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, ak)), gi(7, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, ok)), gi(7, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, ok)), gi(9, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, ck)), gi(9, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), su(10, 16777216, null, null, 3, "div", [["class", "text-pop mr-2"], ["placement", "bottom"]], null, null, null, null, null)), gi(11, 737280, null, 0, Zy, [fe, be, Ln, ce, Fe, Gy, ys, Ua, Rn, zs], {
             ngbPopover: [0, "ngbPopover"],
@@ -29232,7 +29342,7 @@
         }), (l()(), _u(29, null, ["", ")"])), yu(30, 2), (l()(), su(31, 16777216, null, null, 4, "div", [["class", "text-health mr-2"], ["placement", "bottom"]], null, null, null, null, null)), gi(32, 737280, null, 0, Zy, [fe, be, Ln, ce, Fe, Gy, ys, Ua, Rn, zs], {
             ngbPopover: [0, "ngbPopover"],
             placement: [1, "placement"]
-        }, null), (l()(), su(33, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(34, null, [" ", ""])), yu(35, 1), (l()(), iu(16777216, null, null, 1, null, ck)), gi(37, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), su(33, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(34, null, [" ", ""])), yu(35, 1), (l()(), iu(16777216, null, null, 1, null, dk)), gi(37, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), su(38, 16777216, null, null, 14, "div", [["class", "text-gold mr-2"], ["placement", "bottom"]], null, null, null, null, null)), gi(39, 737280, null, 0, Zy, [fe, be, Ln, ce, Fe, Gy, ys, Ua, Rn, zs], {
             ngbPopover: [0, "ngbPopover"],
@@ -29241,25 +29351,25 @@
             ngClass: [0, "ngClass"]
         }, null), vu(47, {
             "text-danger": 0
-        }), (l()(), _u(48, null, ["", ""])), yu(49, 2), (l()(), _u(-1, null, [") "])), (l()(), iu(16777216, null, null, 1, null, dk)), gi(52, 16384, null, 0, Pa, [Fe, $e], {
+        }), (l()(), _u(48, null, ["", ""])), yu(49, 2), (l()(), _u(-1, null, [") "])), (l()(), iu(16777216, null, null, 1, null, hk)), gi(52, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), su(53, 16777216, null, null, 4, "div", [["class", "text-science mr-2"], ["placement", "bottom"]], null, null, null, null, null)), gi(54, 737280, null, 0, Zy, [fe, be, Ln, ce, Fe, Gy, ys, Ua, Rn, zs], {
             ngbPopover: [0, "ngbPopover"],
             placement: [1, "placement"]
-        }, null), (l()(), su(55, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(56, null, [" ", ""])), yu(57, 2), (l()(), iu(16777216, null, null, 1, null, hk)), gi(59, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), su(55, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(56, null, [" ", ""])), yu(57, 2), (l()(), iu(16777216, null, null, 1, null, pk)), gi(59, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, pk)), gi(61, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, fk)), gi(61, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), su(62, 16777216, null, null, 4, "div", [["class", "text-happiness mr-2"], ["placement", "bottom"]], null, null, null, null, null)), gi(63, 737280, null, 0, Zy, [fe, be, Ln, ce, Fe, Gy, ys, Ua, Rn, zs], {
             ngbPopover: [0, "ngbPopover"],
             placement: [1, "placement"]
-        }, null), (l()(), su(64, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(65, null, [" ", ""])), yu(66, 1), (l()(), iu(16777216, null, null, 1, null, fk)), gi(68, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), su(64, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(65, null, [" ", ""])), yu(66, 1), (l()(), iu(16777216, null, null, 1, null, gk)), gi(68, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, gk)), gi(70, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, mk)), gi(70, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, yk)), gi(72, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, vk)), gi(72, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(0, [["popPop", 2]], null, 0, null, _k)), (l()(), iu(0, [["popBonus", 2]], null, 0, null, Ek)), (l()(), iu(0, [["popFood", 2]], null, 0, null, Fk)), (l()(), iu(0, [["popGold", 2]], null, 0, null, nS)), (l()(), iu(0, [["popScience", 2]], null, 0, null, bS)), (l()(), iu(0, [["popCulture", 2]], null, 0, null, qS)), (l()(), iu(0, [["popFaith", 2]], null, 0, null, tC)), (l()(), iu(0, [["popProd", 2]], null, 0, null, vC)), (l()(), iu(0, [["popHealth", 2]], null, 0, null, DC)), (l()(), iu(0, [["popHappiness", 2]], null, 0, null, JC)), (l()(), iu(0, [["popDefense", 2]], null, 0, null, rI)), (l()(), iu(0, [["popMaintenance", 2]], null, 0, null, hI))], (function (l, n) {
+        }, null), (l()(), iu(0, [["popPop", 2]], null, 0, null, wk)), (l()(), iu(0, [["popBonus", 2]], null, 0, null, Ak)), (l()(), iu(0, [["popFood", 2]], null, 0, null, qk)), (l()(), iu(0, [["popGold", 2]], null, 0, null, eS)), (l()(), iu(0, [["popScience", 2]], null, 0, null, _S)), (l()(), iu(0, [["popCulture", 2]], null, 0, null, US)), (l()(), iu(0, [["popFaith", 2]], null, 0, null, iC)), (l()(), iu(0, [["popProd", 2]], null, 0, null, bC)), (l()(), iu(0, [["popHealth", 2]], null, 0, null, MC)), (l()(), iu(0, [["popHappiness", 2]], null, 0, null, lI)), (l()(), iu(0, [["popDefense", 2]], null, 0, null, aI)), (l()(), iu(0, [["popMaintenance", 2]], null, 0, null, pI))], (function (l, n) {
             var e = n.component;
             l(n, 5, 0, e.city.bonus), l(n, 7, 0, !e.edit), l(n, 9, 0, e.edit), l(n, 11, 0, ei(n, 73), "bottom"), l(n, 15, 0, ei(n, 75), "bottom");
             var t = l(n, 20, 0, e.city.autoassign_options && e.city.autoassign_options.nogrowth && e.city.food == e.dataService.foodRequired(e.city));
@@ -29289,7 +29399,7 @@
             l(n, 65, 0, d)
         }))
     }
-    class fI {
+    class gI {
         constructor(l, n, e) {
             this.conf = l, this.data = n, this.dataService = e, this.ctrl = !1, this.shift = !1, this.icons = ug, this.troopSelection = !1
         }
@@ -29408,18 +29518,18 @@
             l.close()
         }
     }
-    var gI = st({
+    var mI = st({
         encapsulation: 0,
         styles: [[""]],
         data: {}
     });
 
-    function mI(l) {
+    function yI(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "span", [], null, null, null, null, null)), (l()(), _u(-1, null, [" & Shift for x100"]))], null, null)
     }
 
-    function yI(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 4, "div", [["class", "text-primary"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(-1, null, [" Ctrl for x10 "])), (l()(), iu(16777216, null, null, 1, null, mI)), gi(4, 16384, null, 0, Pa, [Fe, $e], {
+    function vI(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 4, "div", [["class", "text-primary"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(-1, null, [" Ctrl for x10 "])), (l()(), iu(16777216, null, null, 1, null, yI)), gi(4, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null)], (function (l, n) {
             l(n, 4, 0, n.component.dataService.isUnlocked("recruit_x100"))
@@ -29428,7 +29538,7 @@
         }))
     }
 
-    function vI(l) {
+    function bI(l) {
         return ku(0, [(l()(), su(0, 16777216, null, null, 2, "button", [["triggers", "manuel"]], [[8, "className", 0]], [[null, "click"], [null, "mouseenter"], [null, "mouseleave"]], (function (l, n, e) {
             var t = !0,
                 i = l.component;
@@ -29444,7 +29554,7 @@
         }))
     }
 
-    function bI(l) {
+    function _I(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 2, "button", [["class", "btn btn-sm btn-danger bg-pop mr-1"], ["title", "Populate (only if city population less than 20)"]], [[8, "disabled", 0]], [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== l.component.execute(l.parent.parent.context.$implicit.key) && t), t
@@ -29454,7 +29564,7 @@
         }))
     }
 
-    function _I(l) {
+    function wI(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 3, "button", [["class", "btn btn-sm btn-danger bg-pop mr-1"], ["title", "Whip !"]], null, [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== l.component.execute(l.parent.parent.context.$implicit.key, !0) && t), t
@@ -29466,7 +29576,7 @@
         }))
     }
 
-    function wI(l) {
+    function xI(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "button", [["class", "btn btn-sm btn-danger mr-1"], ["title", "Disband"]], null, [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== l.component.execute(l.parent.parent.context.$implicit.key) && t), t
@@ -29475,7 +29585,7 @@
         }))
     }
 
-    function xI(l) {
+    function kI(l) {
         return ku(0, [(l()(), su(0, 16777216, null, null, 11, "div", [["class", "d-flex p-1"], ["placement", "left"], ["triggers", "manual"]], null, [[null, "mouseenter"], [null, "mouseleave"]], (function (l, n, e) {
             var t = !0,
                 i = l.component;
@@ -29485,50 +29595,50 @@
             popoverTitle: [1, "popoverTitle"],
             placement: [2, "placement"],
             triggers: [3, "triggers"]
-        }, null), (l()(), su(2, 0, null, null, 1, "div", [["class", "flex-fill"]], null, null, null, null, null)), (l()(), _u(3, null, ["", ": ", ""])), (l()(), iu(16777216, null, null, 1, null, vI)), gi(5, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), su(2, 0, null, null, 1, "div", [["class", "flex-fill"]], null, null, null, null, null)), (l()(), _u(3, null, ["", ": ", ""])), (l()(), iu(16777216, null, null, 1, null, bI)), gi(5, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, bI)), gi(7, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, _I)), gi(7, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, _I)), gi(9, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, wI)), gi(9, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, wI)), gi(11, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, xI)), gi(11, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), iu(0, null, null, 0))], (function (l, n) {
             var e = n.component;
-            l(n, 1, 0, ei(n.parent.parent, 24), ei(n.parent.parent, 23), "left", "manual"), l(n, 5, 0, e.isUpgradable(e.conf.troops[n.parent.context.$implicit.key])), l(n, 7, 0, "worker" == n.parent.context.$implicit.key), l(n, 9, 0, "worker" == n.parent.context.$implicit.key && e.dataService.hasPolicy("wonder_builder")), l(n, 11, 0, "worker" != n.parent.context.$implicit.key)
+            l(n, 1, 0, ei(n.parent.parent, 24), ei(n.parent.parent, 23), "left", "manual"), l(n, 5, 0, e.isUpgradable(e.conf.troops[n.parent.context.$implicit.key])), l(n, 7, 0, e.conf.troops[n.parent.context.$implicit.key].citizen), l(n, 9, 0, "worker" == n.parent.context.$implicit.key && e.dataService.hasPolicy("wonder_builder")), l(n, 11, 0, !e.conf.troops[n.parent.context.$implicit.key].citizen)
         }), (function (l, n) {
             var e = n.component;
             l(n, 3, 0, e.conf.troops[n.parent.context.$implicit.key].name(e.dataService.player()), n.parent.context.$implicit.value)
         }))
     }
 
-    function kI(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 2, null, null, null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, xI)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
+    function SI(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 2, null, null, null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, kI)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), iu(0, null, null, 0))], (function (l, n) {
             l(n, 2, 0, n.context.$implicit.value > 0)
         }), null)
     }
 
-    function SI(l) {
+    function CI(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 2, "div", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(-1, null, ["Recruiting nothing"]))], null, (function (l, n) {
             l(n, 1, 0, n.component.icons.exclamation)
         }))
     }
 
-    function CI(l) {
+    function II(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 3, "span", [], null, null, null, null, null)), (l()(), _u(-1, null, ["("])), (l()(), su(2, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(-1, null, [" auto-recruiting)"]))], null, (function (l, n) {
             l(n, 2, 0, n.component.icons.auto + " text-primary")
         }))
     }
 
-    function II(l) {
+    function TI(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "span", [], null, null, null, null, null)), (l()(), _u(1, null, ["(x", ")"]))], null, (function (l, n) {
             l(n, 1, 0, n.parent.context.$implicit.nb)
         }))
     }
 
-    function TI(l) {
+    function EI(l) {
         return ku(0, [(l()(), su(0, 16777216, null, null, 3, "button", [["style", "width:68px"], ["triggers", "manuel"]], [[8, "className", 0]], [[null, "click"], [null, "mouseenter"], [null, "mouseleave"]], (function (l, n, e) {
             var t = !0,
                 i = l.component;
@@ -29544,7 +29654,7 @@
         }))
     }
 
-    function EI(l) {
+    function AI(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "button", [["class", "btn btn-sm btn-danger mr-1"], ["style", "width:40px"]], null, [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== l.component.remove(l.parent.context.index) && t), t
@@ -29553,12 +29663,12 @@
         }))
     }
 
-    function AI(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 10, "li", [["class", "d-flex align-items-center px-1"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 5, "div", [["class", "flex-fill"], ["style", "height:auto!important"]], null, null, null, null, null)), (l()(), _u(2, null, [" ", " "])), (l()(), iu(16777216, null, null, 1, null, II)), gi(4, 16384, null, 0, Pa, [Fe, $e], {
+    function PI(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 10, "li", [["class", "d-flex align-items-center px-1"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 5, "div", [["class", "flex-fill"], ["style", "height:auto!important"]], null, null, null, null, null)), (l()(), _u(2, null, [" ", " "])), (l()(), iu(16777216, null, null, 1, null, TI)), gi(4, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), _u(5, null, [": ", " "])), yu(6, 1), (l()(), iu(16777216, null, null, 1, null, TI)), gi(8, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), _u(5, null, [": ", " "])), yu(6, 1), (l()(), iu(16777216, null, null, 1, null, EI)), gi(8, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, EI)), gi(10, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, AI)), gi(10, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null)], (function (l, n) {
             var e = n.component;
@@ -29571,10 +29681,10 @@
         }))
     }
 
-    function PI(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 6, "div", [["class", "overflow-auto flex-fill"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Recruiting "])), (l()(), iu(16777216, null, null, 1, null, CI)), gi(3, 16384, null, 0, Pa, [Fe, $e], {
+    function DI(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 6, "div", [["class", "overflow-auto flex-fill"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Recruiting "])), (l()(), iu(16777216, null, null, 1, null, II)), gi(3, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), su(4, 0, null, null, 2, "ul", [["class", "list-unstyled"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, AI)), gi(6, 278528, null, 0, Ea, [Fe, $e, Oe], {
+        }, null), (l()(), su(4, 0, null, null, 2, "ul", [["class", "list-unstyled"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, PI)), gi(6, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
         }, null)], (function (l, n) {
             var e = n.component;
@@ -29582,7 +29692,7 @@
         }), null)
     }
 
-    function DI(l) {
+    function MI(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "button", [["title", "Auto-recruit"]], [[8, "className", 0]], [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== l.component.autorecruit(l.parent.parent.context.$implicit.key) && t), t
@@ -29592,13 +29702,13 @@
         }))
     }
 
-    function MI(l) {
+    function OI(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 2, "div", [["class", "text-pop"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(2, null, [" ", " "]))], null, (function (l, n) {
             l(n, 1, 0, n.component.icons.pop), l(n, 2, 0, n.parent.parent.context.$implicit.value.citizen)
         }))
     }
 
-    function OI(l) {
+    function NI(l) {
         return ku(0, [(l()(), su(0, 16777216, null, null, 19, "div", [["class", "border px-2"], ["placement", "left-bottom"], ["triggers", "manual"]], null, [[null, "mouseenter"], [null, "mouseleave"]], (function (l, n, e) {
             var t = !0,
                 i = l.component;
@@ -29611,9 +29721,9 @@
         }, null), (l()(), su(2, 0, null, null, 6, "div", [["class", "d-flex"]], null, null, null, null, null)), (l()(), su(3, 0, null, null, 1, "div", [["class", "flex-fill"]], null, null, null, null, null)), (l()(), _u(4, null, ["", ""])), (l()(), su(5, 0, null, null, 1, "button", [["class", "btn btn-sm btn-primary mr-1"]], [[8, "disabled", 0]], [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== l.component.selectTroop(l.parent.context.$implicit.value) && t), t
-        }), null, null)), (l()(), _u(6, null, ["+", ""])), (l()(), iu(16777216, null, null, 1, null, DI)), gi(8, 16384, null, 0, Pa, [Fe, $e], {
+        }), null, null)), (l()(), _u(6, null, ["+", ""])), (l()(), iu(16777216, null, null, 1, null, MI)), gi(8, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), su(9, 0, null, null, 10, "div", [["class", "d-flex"]], null, null, null, null, null)), (l()(), su(10, 0, null, null, 3, "div", [["class", "text-gold mr-2"]], null, null, null, null, null)), (l()(), _u(11, null, ["", " "])), yu(12, 1), (l()(), su(13, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), su(14, 0, null, null, 3, "div", [["class", "mr-2"]], null, null, null, null, null)), (l()(), su(15, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(16, null, [" ", " "])), yu(17, 1), (l()(), iu(16777216, null, null, 1, null, MI)), gi(19, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), su(9, 0, null, null, 10, "div", [["class", "d-flex"]], null, null, null, null, null)), (l()(), su(10, 0, null, null, 3, "div", [["class", "text-gold mr-2"]], null, null, null, null, null)), (l()(), _u(11, null, ["", " "])), yu(12, 1), (l()(), su(13, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), su(14, 0, null, null, 3, "div", [["class", "mr-2"]], null, null, null, null, null)), (l()(), su(15, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(16, null, [" ", " "])), yu(17, 1), (l()(), iu(16777216, null, null, 1, null, OI)), gi(19, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), iu(0, null, null, 0))], (function (l, n) {
             var e = n.component;
@@ -29629,16 +29739,16 @@
         }))
     }
 
-    function NI(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 2, null, null, null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, OI)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
+    function RI(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 2, null, null, null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, NI)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), iu(0, null, null, 0))], (function (l, n) {
             l(n, 2, 0, n.component.isVisible(n.context.$implicit.value))
         }), null)
     }
 
-    function RI(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 3, "div", [["class", "overflow-auto flex-fill"], ["style", "height:0"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 2, null, NI)), gi(2, 278528, null, 0, Ea, [Fe, $e, Oe], {
+    function BI(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 3, "div", [["class", "overflow-auto flex-fill"], ["style", "height:0"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 2, null, RI)), gi(2, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
         }, null), mi(0, ig, [Ne])], (function (l, n) {
             var e = n.component;
@@ -29646,53 +29756,53 @@
         }), null)
     }
 
-    function BI(l) {
+    function zI(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "div", [], null, null, null, null, null)), (l()(), _u(-1, null, [" There is no troop available for recruit in this city "]))], null, null)
     }
 
-    function zI(l) {
+    function $I(l) {
         return ku(0, [(l()(), _u(0, null, ["", ""]))], null, (function (l, n) {
             l(n, 0, 0, n.context.title)
         }))
     }
 
-    function $I(l) {
+    function LI(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "div", [["class", "border-top mt-1"]], null, null, null, null, null)), (l()(), _u(1, null, [" Range: ", " "]))], null, (function (l, n) {
             l(n, 1, 0, n.component.dataService.tradeRouteMaxDist())
         }))
     }
 
-    function LI(l) {
+    function FI(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "span", [["class", "mr-2"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null))], null, (function (l, n) {
             l(n, 1, 0, n.component.icons.ranged)
         }))
     }
 
-    function FI(l) {
+    function qI(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "span", [["class", "mr-2"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null))], null, (function (l, n) {
             l(n, 1, 0, n.component.icons.siege)
         }))
     }
 
-    function qI(l) {
+    function UI(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 2, "span", [["class", "text-pop"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(2, null, [" (", ")"]))], null, (function (l, n) {
             l(n, 1, 0, n.component.icons.pop), l(n, 2, 0, n.parent.context.troop.citizen)
         }))
     }
 
-    function UI(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 0, "div", [], [[8, "innerHTML", 1]], null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, $I)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
+    function HI(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 0, "div", [], [[8, "innerHTML", 1]], null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, LI)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), su(3, 0, null, null, 16, "div", [["class", "border-top mt-1"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, LI)), gi(5, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), su(3, 0, null, null, 16, "div", [["class", "border-top mt-1"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, FI)), gi(5, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, FI)), gi(7, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, qI)), gi(7, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), su(8, 0, null, null, 2, "span", [["class", "mr-2"]], null, null, null, null, null)), (l()(), su(9, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(10, null, [" ", ""])), (l()(), su(11, 0, null, null, 2, "span", [["class", "mr-2"]], null, null, null, null, null)), (l()(), su(12, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(13, null, [" ", ""])), (l()(), su(14, 0, null, null, 2, "span", [["class", "mr-2"]], null, null, null, null, null)), (l()(), su(15, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(16, null, [" ", ""])), (l()(), su(17, 0, null, null, 2, "span", [["class", "mr-2"]], null, null, null, null, null)), (l()(), su(18, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(19, null, [" ", ""])), (l()(), su(20, 0, null, null, 10, "div", [["class", "border-top mt-1"]], null, null, null, null, null)), (l()(), su(21, 0, null, null, 3, "span", [["class", "text-gold mr-2"]], null, null, null, null, null)), (l()(), su(22, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(23, null, [" ", ""])), yu(24, 1), (l()(), su(25, 0, null, null, 3, "span", [["class", "text-time mr-2"]], null, null, null, null, null)), (l()(), su(26, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(27, null, [" (", ")"])), yu(28, 1), (l()(), iu(16777216, null, null, 1, null, qI)), gi(30, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), su(8, 0, null, null, 2, "span", [["class", "mr-2"]], null, null, null, null, null)), (l()(), su(9, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(10, null, [" ", ""])), (l()(), su(11, 0, null, null, 2, "span", [["class", "mr-2"]], null, null, null, null, null)), (l()(), su(12, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(13, null, [" ", ""])), (l()(), su(14, 0, null, null, 2, "span", [["class", "mr-2"]], null, null, null, null, null)), (l()(), su(15, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(16, null, [" ", ""])), (l()(), su(17, 0, null, null, 2, "span", [["class", "mr-2"]], null, null, null, null, null)), (l()(), su(18, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(19, null, [" ", ""])), (l()(), su(20, 0, null, null, 10, "div", [["class", "border-top mt-1"]], null, null, null, null, null)), (l()(), su(21, 0, null, null, 3, "span", [["class", "text-gold mr-2"]], null, null, null, null, null)), (l()(), su(22, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(23, null, [" ", ""])), yu(24, 1), (l()(), su(25, 0, null, null, 3, "span", [["class", "text-time mr-2"]], null, null, null, null, null)), (l()(), su(26, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(27, null, [" (", ")"])), yu(28, 1), (l()(), iu(16777216, null, null, 1, null, UI)), gi(30, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null)], (function (l, n) {
             var e = n.component;
             l(n, 2, 0, "caravan" == n.context.troop.id);
-            var t = n.context.troop.ranged(e.dataService.player);
+            var t = n.context.troop.ranged(e.dataService.player());
             l(n, 5, 0, t), l(n, 7, 0, n.context.troop.siege), l(n, 30, 0, n.context.troop.citizen)
         }), (function (l, n) {
             var e = n.component;
@@ -29710,7 +29820,7 @@
         }))
     }
 
-    function HI(l) {
+    function VI(l) {
         return ku(0, [(l()(), _u(0, null, [" Buy ", " for "])), (l()(), su(1, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(2, null, ["", "\n"])), yu(3, 1)], null, (function (l, n) {
             var e = n.component;
             l(n, 0, 0, e.nb(n.context.idx)), l(n, 1, 0, "text-gold " + e.icons.gold);
@@ -29719,7 +29829,7 @@
         }))
     }
 
-    function VI(l) {
+    function jI(l) {
         return ku(0, [(l()(), _u(-1, null, [" Upgrade to "])), (l()(), su(1, 0, null, null, 1, "span", [["class", "text-troop"]], null, null, null, null, null)), (l()(), _u(2, null, ["", ""])), (l()(), _u(-1, null, [" for "])), (l()(), su(4, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(5, null, ["", "\n"])), yu(6, 1)], null, (function (l, n) {
             var e = n.component;
             l(n, 2, 0, n.context.upgrade), l(n, 4, 0, "text-gold " + e.icons.gold);
@@ -29728,30 +29838,30 @@
         }))
     }
 
-    function jI(l) {
-        return ku(0, [mi(0, zv, []), mi(0, gv, []), (l()(), su(2, 0, null, null, 20, "div", [["class", "border-left h-100 d-flex flex-column"]], null, null, null, null, null)), (l()(), su(3, 0, null, null, 8, "div", [["class", "h-40 d-flex flex-column"]], null, null, null, null, null)), (l()(), su(4, 0, null, null, 1, "h3", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Troops"])), (l()(), iu(16777216, null, null, 1, null, yI)), gi(7, 16384, null, 0, Pa, [Fe, $e], {
+    function GI(l) {
+        return ku(0, [mi(0, zv, []), mi(0, gv, []), (l()(), su(2, 0, null, null, 20, "div", [["class", "border-left h-100 d-flex flex-column"]], null, null, null, null, null)), (l()(), su(3, 0, null, null, 8, "div", [["class", "h-40 d-flex flex-column"]], null, null, null, null, null)), (l()(), su(4, 0, null, null, 1, "h3", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Troops"])), (l()(), iu(16777216, null, null, 1, null, vI)), gi(7, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), su(8, 0, null, null, 3, "div", [["class", "flex-fill overflow-auto"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 2, null, kI)), gi(10, 278528, null, 0, Ea, [Fe, $e, Oe], {
+        }, null), (l()(), su(8, 0, null, null, 3, "div", [["class", "flex-fill overflow-auto"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 2, null, SI)), gi(10, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
-        }, null), mi(0, ig, [Ne]), (l()(), su(12, 0, null, null, 10, "div", [["class", "h-60 border-top d-flex flex-column"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, SI)), gi(14, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), mi(0, ig, [Ne]), (l()(), su(12, 0, null, null, 10, "div", [["class", "h-60 border-top d-flex flex-column"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, CI)), gi(14, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, PI)), gi(16, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, DI)), gi(16, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), su(17, 0, null, null, 1, "button", [["class", "btn btn-primary"]], null, [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== l.component.toggleTroopSelection() && t), t
-        }), null, null)), (l()(), _u(18, null, ["", ""])), (l()(), iu(16777216, null, null, 1, null, RI)), gi(20, 16384, null, 0, Pa, [Fe, $e], {
+        }), null, null)), (l()(), _u(18, null, ["", ""])), (l()(), iu(16777216, null, null, 1, null, BI)), gi(20, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, BI)), gi(22, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, zI)), gi(22, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(0, [["popTitle", 2]], null, 0, null, zI)), (l()(), iu(0, [["popContent", 2]], null, 0, null, UI)), (l()(), iu(0, [["popBuy", 2]], null, 0, null, HI)), (l()(), iu(0, [["popUpgrade", 2]], null, 0, null, VI))], (function (l, n) {
+        }, null), (l()(), iu(0, [["popTitle", 2]], null, 0, null, $I)), (l()(), iu(0, [["popContent", 2]], null, 0, null, HI)), (l()(), iu(0, [["popBuy", 2]], null, 0, null, VI)), (l()(), iu(0, [["popUpgrade", 2]], null, 0, null, jI))], (function (l, n) {
             var e = n.component;
             l(n, 7, 0, e.dataService.isUnlocked("recruit_x10")), l(n, 10, 0, et(n, 10, 0, ei(n, 11).transform(e.city.troops))), l(n, 14, 0, !e.city.troop_queue.length), l(n, 16, 0, e.city.troop_queue.length), l(n, 20, 0, e.troopSelection && e.isAnythingVisible()), l(n, 22, 0, e.troopSelection && !e.isAnythingVisible())
         }), (function (l, n) {
             l(n, 18, 0, n.component.isQueueAllowed() ? "Add to queue" : "Select troop")
         }))
     }
-    class GI {
+    class WI {
         constructor(l, n, e) {
             this.dataService = l, this.data = n, this.conf = e, this.icons = ug, this.buildingSelection = !1, this.orderByCategoryAndId = (l, n) => {
                 let e = this.conf.buildings[l.key],
@@ -29779,11 +29889,7 @@
             return this.dataService.isBuildingAvailable(this.city, l)
         }
         visibleBuildings() {
-            return Object.values(this.conf.buildings).filter(l => this.isVisible(l)).sort((l, n) => {
-                let e = this.conf.sciences[l.require.science].rank,
-                    t = this.conf.sciences[n.require.science].rank;
-                return e > t ? 1 : e < t ? -1 : 0
-            })
+            return this.dataService.visibleBuildings(this.city)
         }
         remove(l) {
             this.city.building_queue.splice(this.city.building_queue.indexOf(l), 1), delete this.city.buildings[l], this.city.gold += this.dataService.buildingGoldCost(this.conf.buildings[l]), this.city.building_queue.forEach(n => {
@@ -29823,20 +29929,20 @@
             l.close()
         }
     }
-    var WI = st({
+    var KI = st({
         encapsulation: 0,
         styles: [[".cursor-forbidden[_ngcontent-%COMP%]   .text-special[_ngcontent-%COMP%]{color:#6c757d!important}"]],
         data: {}
     });
 
-    function KI(l) {
+    function ZI(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 0, "span", [], [[8, "innerHTML", 1]], null, null, null, null))], null, (function (l, n) {
             var e = n.component;
             l(n, 0, 0, e.conf.buildings[n.parent.parent.context.$implicit.key].desc(0, e.dataService, e.city))
         }))
     }
 
-    function ZI(l) {
+    function QI(l) {
         return ku(0, [(l()(), su(0, 16777216, null, null, 8, "div", [["class", "d-flex justify-content-between"], ["placement", "left"], ["triggers", "manuel"]], null, [[null, "mouseenter"], [null, "mouseleave"]], (function (l, n, e) {
             var t = !0,
                 i = l.component;
@@ -29850,11 +29956,11 @@
             ngClass: [0, "ngClass"]
         }, null), vu(5, {
             "text-special font-weight-bold": 0
-        }), (l()(), _u(6, null, ["", ""])), (l()(), iu(16777216, null, null, 1, null, KI)), gi(8, 16384, null, 0, Pa, [Fe, $e], {
+        }), (l()(), _u(6, null, ["", ""])), (l()(), iu(16777216, null, null, 1, null, ZI)), gi(8, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), iu(0, null, null, 0))], (function (l, n) {
             var e = n.component;
-            l(n, 1, 0, ei(n.parent.parent, 22), ei(n.parent.parent, 21), "left", "manuel");
+            l(n, 1, 0, ei(n.parent.parent, 24), ei(n.parent.parent, 23), "left", "manuel");
             var t = l(n, 5, 0, e.conf.buildings[n.parent.context.$implicit.key].wonder);
             l(n, 4, 0, t), l(n, 8, 0, e.conf.buildings[n.parent.context.$implicit.key].desc)
         }), (function (l, n) {
@@ -29863,21 +29969,39 @@
         }))
     }
 
-    function QI(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 2, "div", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, ZI)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
+    function YI(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 2, "div", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, QI)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null)], (function (l, n) {
             l(n, 2, 0, n.context.$implicit.value.done)
         }), null)
     }
 
-    function YI(l) {
+    function XI(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 8, "div", [["class", "form-group form-check mb-0"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 5, "input", [["class", "form-check-input"], ["id", "autobuild"], ["type", "checkbox"]], [[2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "ngModelChange"], [null, "change"], [null, "blur"]], (function (l, n, e) {
+            var t = !0,
+                i = l.component;
+            return "change" === n && (t = !1 !== ei(l, 2).onChange(e.target.checked) && t), "blur" === n && (t = !1 !== ei(l, 2).onTouched() && t), "ngModelChange" === n && (t = !1 !== (i.city.autobuild = e) && t), t
+        }), null, null)), gi(2, 16384, null, 0, nf, [be, fe], null, null), yi(1024, null, lf, (function (l) {
+            return [l]
+        }), [nf]), gi(4, 671744, null, 0, lg, [[8, null], [8, null], [8, null], [6, lf]], {
+            model: [0, "model"]
+        }, {
+            update: "ngModelChange"
+        }), yi(2048, null, af, null, [lg]), gi(6, 16384, null, 0, cf, [[4, af]], null, null), (l()(), su(7, 0, null, null, 1, "label", [["class", "form-check-label"], ["for", "autobuild"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Auto build (cheapest)"]))], (function (l, n) {
+            l(n, 4, 0, n.component.city.autobuild)
+        }), (function (l, n) {
+            l(n, 1, 0, ei(n, 6).ngClassUntouched, ei(n, 6).ngClassTouched, ei(n, 6).ngClassPristine, ei(n, 6).ngClassDirty, ei(n, 6).ngClassValid, ei(n, 6).ngClassInvalid, ei(n, 6).ngClassPending)
+        }))
+    }
+
+    function JI(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 2, "div", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(-1, null, ["Building nothing"]))], null, (function (l, n) {
             l(n, 1, 0, n.component.icons.exclamation)
         }))
     }
 
-    function XI(l) {
+    function lT(l) {
         return ku(0, [(l()(), su(0, 16777216, null, null, 2, "button", [["triggers", "manuel"]], [[8, "className", 0]], [[null, "click"], [null, "mouseenter"], [null, "mouseleave"]], (function (l, n, e) {
             var t = !0,
                 i = l.component;
@@ -29886,14 +30010,14 @@
             ngbPopover: [0, "ngbPopover"],
             triggers: [1, "triggers"]
         }, null), (l()(), su(2, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), iu(0, null, null, 0))], (function (l, n) {
-            l(n, 1, 0, ei(n.parent.parent.parent, 23), "manuel")
+            l(n, 1, 0, ei(n.parent.parent.parent, 25), "manuel")
         }), (function (l, n) {
             var e = n.component;
             l(n, 0, 0, "btn btn-sm mr-1 " + (e.canBuy(n.parent.context.$implicit) ? " btn-dark text-gold" : " btn-secondary text-light")), l(n, 2, 0, e.icons.opt_buy)
         }))
     }
 
-    function JI(l) {
+    function nT(l) {
         return ku(0, [(l()(), su(0, 16777216, null, null, 9, "li", [["class", "d-flex align-items-center px-1"], ["placement", "left"], ["triggers", "manuel"]], null, [[null, "mouseenter"], [null, "mouseleave"]], (function (l, n, e) {
             var t = !0,
                 i = l.component;
@@ -29903,7 +30027,7 @@
             popoverTitle: [1, "popoverTitle"],
             placement: [2, "placement"],
             triggers: [3, "triggers"]
-        }, null), (l()(), su(2, 0, null, null, 2, "div", [["class", "flex-fill"], ["style", "height:auto!important"]], null, null, null, null, null)), (l()(), _u(3, null, [" ", " : ", " "])), yu(4, 1), (l()(), iu(16777216, null, null, 1, null, XI)), gi(6, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), su(2, 0, null, null, 2, "div", [["class", "flex-fill"], ["style", "height:auto!important"]], null, null, null, null, null)), (l()(), _u(3, null, [" ", " : ", " "])), yu(4, 1), (l()(), iu(16777216, null, null, 1, null, lT)), gi(6, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), su(7, 16777216, null, null, 2, "button", [["class", "btn btn-sm btn-danger mr-1"], ["ngbPopover", "Remove from queue"]], null, [[null, "click"]], (function (l, n, e) {
             var t = !0;
@@ -29912,7 +30036,7 @@
             ngbPopover: [0, "ngbPopover"]
         }, null), (l()(), su(9, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), iu(0, null, null, 0))], (function (l, n) {
             var e = n.component;
-            l(n, 1, 0, ei(n.parent.parent, 22), ei(n.parent.parent, 21), "left", "manuel"), l(n, 6, 0, !e.conf.buildings[n.context.$implicit].wonder && e.dataService.isUnlocked("prod_purchase")), l(n, 8, 0, "Remove from queue")
+            l(n, 1, 0, ei(n.parent.parent, 24), ei(n.parent.parent, 23), "left", "manuel"), l(n, 6, 0, !e.conf.buildings[n.context.$implicit].wonder && e.dataService.isUnlocked("prod_purchase")), l(n, 8, 0, "Remove from queue")
         }), (function (l, n) {
             var e = n.component,
                 t = e.conf.buildings[n.context.$implicit].label(e.dataService.player()),
@@ -29921,16 +30045,16 @@
         }))
     }
 
-    function lT(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 4, "div", [["class", "overflow-auto flex-fill"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Building: "])), (l()(), su(2, 0, null, null, 2, "ul", [["class", "list-unstyled"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, JI)), gi(4, 278528, null, 0, Ea, [Fe, $e, Oe], {
+    function eT(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 4, "div", [["class", "overflow-auto flex-fill"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Building: "])), (l()(), su(2, 0, null, null, 2, "ul", [["class", "list-unstyled"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, nT)), gi(4, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
         }, null)], (function (l, n) {
             l(n, 4, 0, n.component.city.building_queue)
         }), null)
     }
 
-    function nT(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 17, "div", [], null, null, null, null, null)), (l()(), su(1, 16777216, null, null, 16, "div", [["placement", "left-bottom"], ["triggers", "manual"]], null, [[null, "click"], [null, "mouseenter"], [null, "mouseleave"]], (function (l, n, e) {
+    function tT(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 19, "div", [], null, null, null, null, null)), (l()(), su(1, 16777216, null, null, 18, "div", [["placement", "left-bottom"], ["triggers", "manual"]], null, [[null, "click"], [null, "mouseenter"], [null, "mouseleave"]], (function (l, n, e) {
             var t = !0,
                 i = l.component;
             return "click" === n && (t = !1 !== i.selectBuilding(l.context.$implicit) && t), "mouseenter" === n && (t = !1 !== i.mouseenter(ei(l, 5), l.context.$implicit.id) && t), "mouseleave" === n && (t = !1 !== i.mouseleave(ei(l, 5)) && t), t
@@ -29948,41 +30072,41 @@
             ngClass: [0, "ngClass"]
         }, null), vu(9, {
             "text-special font-weight-bold": 0
-        }), (l()(), _u(10, null, ["", ""])), (l()(), _u(-1, null, [" - "])), (l()(), su(12, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(13, null, [" ", " - "])), yu(14, 1), (l()(), su(15, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(16, null, [" ", " "])), yu(17, 1)], (function (l, n) {
+        }), (l()(), _u(10, null, ["", ""])), (l()(), _u(-1, null, [" - "])), (l()(), su(12, 0, null, null, 3, "span", [["class", "text-gold"]], null, null, null, null, null)), (l()(), su(13, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(14, null, [" ", ""])), yu(15, 1), (l()(), _u(-1, null, [" - "])), (l()(), su(17, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(18, null, [" ", " "])), yu(19, 1)], (function (l, n) {
             var e = l(n, 4, 0, !0, !n.component.isAvailable(n.context.$implicit));
-            l(n, 3, 0, e), l(n, 5, 0, ei(n.parent.parent, 22), ei(n.parent.parent, 21), "left-bottom", "manual");
+            l(n, 3, 0, e), l(n, 5, 0, ei(n.parent.parent, 24), ei(n.parent.parent, 23), "left-bottom", "manual");
             var t = l(n, 9, 0, n.context.$implicit.wonder);
             l(n, 8, 0, t)
         }), (function (l, n) {
             var e = n.component,
                 t = n.context.$implicit.label(e.dataService.player());
-            l(n, 10, 0, t), l(n, 12, 0, e.icons.gold);
-            var i = et(n, 13, 0, l(n, 14, 0, ei(n.parent.parent, 1), e.dataService.buildingGoldCost(n.context.$implicit, 0)));
-            l(n, 13, 0, i), l(n, 15, 0, e.icons.time);
-            var s = et(n, 16, 0, l(n, 17, 0, ei(n.parent.parent, 0), e.dataService.buildingTime(e.city, n.context.$implicit.id)));
-            l(n, 16, 0, s)
+            l(n, 10, 0, t), l(n, 13, 0, e.icons.gold);
+            var i = et(n, 14, 0, l(n, 15, 0, ei(n.parent.parent, 1), e.dataService.buildingGoldCost(n.context.$implicit, 0)));
+            l(n, 14, 0, i), l(n, 17, 0, e.icons.time);
+            var s = et(n, 18, 0, l(n, 19, 0, ei(n.parent.parent, 0), e.dataService.buildingTime(e.city, n.context.$implicit.id)));
+            l(n, 18, 0, s)
         }))
     }
 
-    function eT(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 2, "div", [["class", "list-group overflow-auto flex-fill"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, nT)), gi(2, 278528, null, 0, Ea, [Fe, $e, Oe], {
+    function iT(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 2, "div", [["class", "list-group overflow-auto flex-fill"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, tT)), gi(2, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
         }, null)], (function (l, n) {
             l(n, 2, 0, n.component.visibleBuildings())
         }), null)
     }
 
-    function tT(l) {
+    function sT(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "div", [], null, null, null, null, null)), (l()(), _u(-1, null, [" There is nothing we can build in this city "]))], null, null)
     }
 
-    function iT(l) {
+    function uT(l) {
         return ku(0, [(l()(), _u(0, null, ["", ""]))], null, (function (l, n) {
             l(n, 0, 0, n.context.title)
         }))
     }
 
-    function sT(l) {
+    function rT(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 3, "span", [["class", "text-time"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(2, null, [" (", ")"])), yu(3, 1)], null, (function (l, n) {
             l(n, 1, 0, n.component.icons.time);
             var e = et(n, 2, 0, l(n, 3, 0, ei(n.parent.parent, 0), n.parent.context.time));
@@ -29990,40 +30114,40 @@
         }))
     }
 
-    function uT(l) {
+    function aT(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "span", [], null, null, null, null, null)), (l()(), _u(1, null, [" ", " "]))], null, (function (l, n) {
             l(n, 1, 0, n.context.$implicit)
         }))
     }
 
-    function rT(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 3, "div", [["class", "border-top mt-1"]], null, null, null, null, null)), (l()(), _u(-1, null, [" Required: "])), (l()(), iu(16777216, null, null, 1, null, uT)), gi(3, 278528, null, 0, Ea, [Fe, $e, Oe], {
+    function oT(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 3, "div", [["class", "border-top mt-1"]], null, null, null, null, null)), (l()(), _u(-1, null, [" Required: "])), (l()(), iu(16777216, null, null, 1, null, aT)), gi(3, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
         }, null)], (function (l, n) {
             l(n, 3, 0, n.parent.context.req)
         }), null)
     }
 
-    function aT(l) {
+    function cT(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "div", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Required: "])), (l()(), su(2, 0, null, null, 2, "span", [["class", "text-tech"]], null, null, null, null, null)), (l()(), su(3, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(-1, null, [" +75"]))], null, (function (l, n) {
             l(n, 3, 0, n.component.icons.tech)
         }))
     }
 
-    function oT(l) {
+    function dT(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "div", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Required: "])), (l()(), su(2, 0, null, null, 2, "span", [["class", "text-tech"]], null, null, null, null, null)), (l()(), su(3, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(-1, null, [" +25"]))], null, (function (l, n) {
             l(n, 3, 0, n.component.icons.tech)
         }))
     }
 
-    function cT(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 0, "div", [], [[8, "innerHTML", 1]], null, null, null, null)), (l()(), su(1, 0, null, null, 10, "div", [["class", "border-top mt-1"]], null, null, null, null, null)), (l()(), su(2, 0, null, null, 3, "span", [["class", "text-gold mr-2"]], null, null, null, null, null)), (l()(), su(3, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(4, null, [" ", ""])), yu(5, 1), (l()(), su(6, 0, null, null, 3, "span", [["class", "text-prod mr-2"]], null, null, null, null, null)), (l()(), su(7, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(8, null, [" ", ""])), yu(9, 1), (l()(), iu(16777216, null, null, 1, null, sT)), gi(11, 16384, null, 0, Pa, [Fe, $e], {
+    function hT(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 0, "div", [], [[8, "innerHTML", 1]], null, null, null, null)), (l()(), su(1, 0, null, null, 10, "div", [["class", "border-top mt-1"]], null, null, null, null, null)), (l()(), su(2, 0, null, null, 3, "span", [["class", "text-gold mr-2"]], null, null, null, null, null)), (l()(), su(3, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(4, null, [" ", ""])), yu(5, 1), (l()(), su(6, 0, null, null, 3, "span", [["class", "text-prod mr-2"]], null, null, null, null, null)), (l()(), su(7, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(8, null, [" ", ""])), yu(9, 1), (l()(), iu(16777216, null, null, 1, null, rT)), gi(11, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, rT)), gi(13, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, oT)), gi(13, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, aT)), gi(15, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, cT)), gi(15, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, oT)), gi(17, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, dT)), gi(17, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), iu(0, null, null, 0))], (function (l, n) {
             l(n, 11, 0, !n.component.isDone(n.context.building)), l(n, 13, 0, n.context.req.length), l(n, 15, 0, n.context.building.industrial && n.context.building.wonder), l(n, 17, 0, n.context.building.industrial && !n.context.building.wonder)
@@ -30037,7 +30161,7 @@
         }))
     }
 
-    function dT(l) {
+    function pT(l) {
         return ku(0, [(l()(), _u(-1, null, [" Buy for "])), (l()(), su(1, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(2, null, ["", "\n"])), yu(3, 1)], null, (function (l, n) {
             var e = n.component;
             l(n, 1, 0, "text-gold " + e.icons.gold);
@@ -30046,51 +30170,53 @@
         }))
     }
 
-    function hT(l) {
-        return ku(0, [mi(0, gv, []), mi(0, zv, []), (l()(), su(2, 0, null, null, 18, "div", [["class", "border-left h-100 d-flex flex-column"]], null, null, null, null, null)), (l()(), su(3, 0, null, null, 6, "div", [["class", "h-40 d-flex flex-column"]], null, null, null, null, null)), (l()(), su(4, 0, null, null, 1, "h3", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Buildings"])), (l()(), su(6, 0, null, null, 3, "div", [["class", "flex-fill overflow-auto"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 2, null, QI)), gi(8, 278528, null, 0, Ea, [Fe, $e, Oe], {
+    function fT(l) {
+        return ku(0, [mi(0, gv, []), mi(0, zv, []), (l()(), su(2, 0, null, null, 20, "div", [["class", "border-left h-100 d-flex flex-column"]], null, null, null, null, null)), (l()(), su(3, 0, null, null, 6, "div", [["class", "h-40 d-flex flex-column"]], null, null, null, null, null)), (l()(), su(4, 0, null, null, 1, "h3", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Buildings"])), (l()(), su(6, 0, null, null, 3, "div", [["class", "flex-fill overflow-auto"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 2, null, YI)), gi(8, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
-        }, null), mi(0, La, [Ne]), (l()(), su(10, 0, null, null, 10, "div", [["class", "h-60 border-top d-flex flex-column"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, YI)), gi(12, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), mi(0, La, [Ne]), (l()(), su(10, 0, null, null, 12, "div", [["class", "h-60 border-top d-flex flex-column"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, XI)), gi(12, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, lT)), gi(14, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, JI)), gi(14, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), su(15, 0, null, null, 1, "button", [["class", "btn btn-primary"]], null, [[null, "click"]], (function (l, n, e) {
+        }, null), (l()(), iu(16777216, null, null, 1, null, eT)), gi(16, 16384, null, 0, Pa, [Fe, $e], {
+            ngIf: [0, "ngIf"]
+        }, null), (l()(), su(17, 0, null, null, 1, "button", [["class", "btn btn-primary"]], null, [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== l.component.toggleBuildingSelection() && t), t
-        }), null, null)), (l()(), _u(16, null, ["", ""])), (l()(), iu(16777216, null, null, 1, null, eT)), gi(18, 16384, null, 0, Pa, [Fe, $e], {
+        }), null, null)), (l()(), _u(18, null, ["", ""])), (l()(), iu(16777216, null, null, 1, null, iT)), gi(20, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, tT)), gi(20, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, sT)), gi(22, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(0, [["popTitle", 2]], null, 0, null, iT)), (l()(), iu(0, [["popContent", 2]], null, 0, null, cT)), (l()(), iu(0, [["popBuy", 2]], null, 0, null, dT))], (function (l, n) {
+        }, null), (l()(), iu(0, [["popTitle", 2]], null, 0, null, uT)), (l()(), iu(0, [["popContent", 2]], null, 0, null, hT)), (l()(), iu(0, [["popBuy", 2]], null, 0, null, pT))], (function (l, n) {
             var e = n.component;
-            l(n, 8, 0, et(n, 8, 0, ei(n, 9).transform(e.city.buildings, e.orderByCategoryAndId))), l(n, 12, 0, !e.city.building_queue.length), l(n, 14, 0, e.city.building_queue.length), l(n, 18, 0, e.buildingSelection && e.isAnythingVisible()), l(n, 20, 0, e.buildingSelection && !e.isAnythingVisible())
+            l(n, 8, 0, et(n, 8, 0, ei(n, 9).transform(e.city.buildings, e.orderByCategoryAndId))), l(n, 12, 0, e.dataService.isUnlocked("auto_building")), l(n, 14, 0, !e.city.building_queue.length), l(n, 16, 0, e.city.building_queue.length), l(n, 20, 0, e.buildingSelection && e.isAnythingVisible()), l(n, 22, 0, e.buildingSelection && !e.isAnythingVisible())
         }), (function (l, n) {
-            l(n, 16, 0, n.component.isQueueAllowed() ? "Add to queue" : "Select building")
+            l(n, 18, 0, n.component.isQueueAllowed() ? "Add to queue" : "Select building")
         }))
     }
-    class pT {
+    class gT {
         constructor() {
             this.icons = ug
         }
         ngOnInit() {}
     }
-    var fT = st({
+    var mT = st({
         encapsulation: 0,
         styles: [[".bgicon[_ngcontent-%COMP%]{position:absolute;left:50%;z-index:-9}.bgicon[_ngcontent-%COMP%] > i[_ngcontent-%COMP%]{position:relative;top:15px;left:-50%;font-size:75vh;opacity:.05}"]],
         data: {}
     });
 
-    function gT(l) {
+    function yT(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "div", [["class", "bgicon"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null))], null, (function (l, n) {
             var e = n.component;
             l(n, 1, 0, e.icons[e.icon])
         }))
     }
-    class mT {
+    class vT {
         constructor(l, n, e, t, i) {
             this.data = l, this.dataService = n, this.conf = e, this.activatedRoute = t, this.modalService = i, this.icons = ug, this.cityId = this.dataService.player().cities[0].id
         }
         handleKeydownEvent(l) {
-            39 == l.keyCode ? this.goNext() : 37 == l.keyCode && this.goNext(!0)
+            "INPUT" != l.target.tagName.toUpperCase() && (39 == l.keyCode ? this.goNext() : 37 == l.keyCode && this.goNext(!0))
         }
         ngOnInit() {
             this.activatedRoute.paramMap.subscribe(l => {
@@ -30143,27 +30269,27 @@
             l > 1 && n.appreciation[0] && (n.appreciation[0] += 20, n.appreciation[0] > 100 && (n.appreciation[0] = 100)), this.goNext(!0)
         }
     }
-    var yT = st({
+    var bT = st({
         encapsulation: 0,
         styles: [[""]],
         data: {}
     });
 
-    function vT(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 1, "app-citytopmenu", [], null, null, null, pI, ik)), gi(1, 114688, null, 0, tk, [zg, Tg, Pg], {
+    function _T(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 1, "app-citytopmenu", [], null, null, null, fI, sk)), gi(1, 114688, null, 0, ik, [zg, Tg, Pg], {
             city: [0, "city"]
         }, null)], (function (l, n) {
             l(n, 1, 0, n.component.city)
         }), null)
     }
 
-    function bT(l) {
+    function wT(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "span", [["class", "text-plague"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null))], null, (function (l, n) {
             l(n, 1, 0, n.component.icons.plague)
         }))
     }
 
-    function _T(l) {
+    function xT(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 3, "a", [["class", "btn btn-link text-primary"], ["routerLink", "/game/world"]], [[1, "target", 0], [8, "href", 4]], [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== ei(l, 1).onClick(e.button, e.ctrlKey, e.metaKey, e.shiftKey) && t), t
@@ -30182,7 +30308,7 @@
         }))
     }
 
-    function wT(l) {
+    function kT(l) {
         return ku(0, [(l()(), su(0, 16777216, null, null, 2, "button", [], [[8, "className", 0]], [[null, "click"]], (function (l, n, e) {
             var t = !0,
                 i = l.component;
@@ -30196,21 +30322,21 @@
         }))
     }
 
-    function xT(l) {
+    function ST(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "button", [["class", "btn btn-link text-primary"]], null, [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== l.component.modalService.open(ei(l.parent.parent, 13)) && t), t
         }), null, null)), (l()(), _u(-1, null, ["Liberate the city"]))], null, null)
     }
 
-    function kT(l) {
+    function CT(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "button", [["class", "btn btn-link text-danger"]], null, [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== l.component.modalService.open(ei(l.parent.parent, 12)) && t), t
         }), null, null)), (l()(), _u(-1, null, ["Abandon the city"]))], null, null)
     }
 
-    function ST(l) {
+    function IT(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 2, "span", [["class", "text-food mr-2"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(2, null, [" +", ""]))], null, (function (l, n) {
             var e = n.component;
             l(n, 1, 0, e.icons.food);
@@ -30219,7 +30345,7 @@
         }))
     }
 
-    function CT(l) {
+    function TT(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 2, "span", [["class", "text-prod mr-2"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(2, null, [" +", ""]))], null, (function (l, n) {
             var e = n.component;
             l(n, 1, 0, e.icons.prod);
@@ -30228,7 +30354,7 @@
         }))
     }
 
-    function IT(l) {
+    function ET(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 2, "span", [["class", "text-gold mr-2"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(2, null, [" +", ""]))], null, (function (l, n) {
             var e = n.component;
             l(n, 1, 0, e.icons.gold);
@@ -30237,7 +30363,7 @@
         }))
     }
 
-    function TT(l) {
+    function AT(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 2, "span", [["class", "text-science mr-2"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(2, null, [" +", ""]))], null, (function (l, n) {
             var e = n.component;
             l(n, 1, 0, e.icons.science);
@@ -30246,7 +30372,7 @@
         }))
     }
 
-    function ET(l) {
+    function PT(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 2, "span", [["class", "text-culture mr-2"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(2, null, [" +", ""]))], null, (function (l, n) {
             var e = n.component;
             l(n, 1, 0, e.icons.culture);
@@ -30255,7 +30381,7 @@
         }))
     }
 
-    function AT(l) {
+    function DT(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 2, "span", [["class", "text-faith mr-2"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(2, null, [" +", ""]))], null, (function (l, n) {
             var e = n.component;
             l(n, 1, 0, e.icons.faith);
@@ -30264,7 +30390,7 @@
         }))
     }
 
-    function PT(l) {
+    function MT(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 3, "span", [["class", "text-happiness"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(2, null, [" +", ""])), yu(3, 1)], null, (function (l, n) {
             var e = n.component;
             l(n, 1, 0, e.icons.happiness);
@@ -30273,7 +30399,7 @@
         }))
     }
 
-    function DT(l) {
+    function OT(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 3, "span", [["class", "text-health"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(2, null, [" +", ""])), yu(3, 1)], null, (function (l, n) {
             var e = n.component;
             l(n, 1, 0, e.icons.health);
@@ -30282,7 +30408,7 @@
         }))
     }
 
-    function MT(l) {
+    function NT(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "button", [["class", "btn btn-primary btn-sm line-height-1 font-weight-bold mr-1"]], [[8, "disabled", 0]], [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== l.component.decreaseCitizen(l.parent.parent.context.$implicit.key, 5) && t), t
@@ -30292,7 +30418,7 @@
         }))
     }
 
-    function OT(l) {
+    function RT(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "button", [["class", "btn btn-primary btn-sm line-height-1 font-weight-bold"]], [[8, "disabled", 0]], [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== l.component.decreaseCitizen(l.parent.parent.context.$implicit.key) && t), t
@@ -30302,7 +30428,7 @@
         }))
     }
 
-    function NT(l) {
+    function BT(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "button", [["class", "btn btn-primary btn-sm line-height-1 font-weight-bold"]], [[8, "disabled", 0]], [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== l.component.increaseCitizen(l.parent.parent.context.$implicit.key) && t), t
@@ -30312,7 +30438,7 @@
         }))
     }
 
-    function RT(l) {
+    function zT(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "button", [["class", "btn btn-primary btn-sm line-height-1 font-weight-bold ml-1"]], [[8, "disabled", 0]], [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== l.component.increaseCitizen(l.parent.parent.context.$implicit.key, 5) && t), t
@@ -30322,30 +30448,30 @@
         }))
     }
 
-    function BT(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 32, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), su(2, 0, null, null, 1, "b", [], null, null, null, null, null)), (l()(), _u(3, null, ["", ""])), (l()(), su(4, 0, null, null, 16, "td", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, ST)), gi(6, 16384, null, 0, Pa, [Fe, $e], {
+    function $T(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 32, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), su(2, 0, null, null, 1, "b", [], null, null, null, null, null)), (l()(), _u(3, null, ["", ""])), (l()(), su(4, 0, null, null, 16, "td", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, IT)), gi(6, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, CT)), gi(8, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, TT)), gi(8, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, IT)), gi(10, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, ET)), gi(10, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, TT)), gi(12, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, AT)), gi(12, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, ET)), gi(14, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, PT)), gi(14, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, AT)), gi(16, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, DT)), gi(16, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, PT)), gi(18, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, MT)), gi(18, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, DT)), gi(20, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, OT)), gi(20, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), su(21, 0, null, null, 4, "td", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, MT)), gi(23, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), su(21, 0, null, null, 4, "td", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, NT)), gi(23, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, OT)), gi(25, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, RT)), gi(25, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), su(26, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(27, null, ["", ""])), (l()(), su(28, 0, null, null, 4, "td", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, NT)), gi(30, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), su(26, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(27, null, ["", ""])), (l()(), su(28, 0, null, null, 4, "td", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, BT)), gi(30, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, RT)), gi(32, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, zT)), gi(32, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null)], (function (l, n) {
             var e = n.component;
@@ -30365,15 +30491,15 @@
         }))
     }
 
-    function zT(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 2, null, null, null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, BT)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
+    function LT(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 2, null, null, null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, $T)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), iu(0, null, null, 0))], (function (l, n) {
             l(n, 2, 0, n.component.isAvailable(n.context.$implicit.key))
         }), null)
     }
 
-    function $T(l) {
+    function FT(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 3, "option", [["value", "builders"]], null, null, null, null, null)), gi(1, 147456, null, 0, If, [fe, be, [2, Cf]], {
             value: [0, "value"]
         }, null), gi(2, 147456, null, 0, Ef, [fe, be, [8, null]], {
@@ -30383,7 +30509,7 @@
         }), null)
     }
 
-    function LT(l) {
+    function qT(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 3, "option", [["value", "merchants"]], null, null, null, null, null)), gi(1, 147456, null, 0, If, [fe, be, [2, Cf]], {
             value: [0, "value"]
         }, null), gi(2, 147456, null, 0, Ef, [fe, be, [8, null]], {
@@ -30393,7 +30519,7 @@
         }), null)
     }
 
-    function FT(l) {
+    function UT(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 3, "option", [["value", "scientists"]], null, null, null, null, null)), gi(1, 147456, null, 0, If, [fe, be, [2, Cf]], {
             value: [0, "value"]
         }, null), gi(2, 147456, null, 0, Ef, [fe, be, [8, null]], {
@@ -30403,7 +30529,7 @@
         }), null)
     }
 
-    function qT(l) {
+    function HT(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 3, "option", [["value", "artists"]], null, null, null, null, null)), gi(1, 147456, null, 0, If, [fe, be, [2, Cf]], {
             value: [0, "value"]
         }, null), gi(2, 147456, null, 0, Ef, [fe, be, [8, null]], {
@@ -30413,7 +30539,7 @@
         }), null)
     }
 
-    function UT(l) {
+    function VT(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 3, "option", [["value", "priests"]], null, null, null, null, null)), gi(1, 147456, null, 0, If, [fe, be, [2, Cf]], {
             value: [0, "value"]
         }, null), gi(2, 147456, null, 0, Ef, [fe, be, [8, null]], {
@@ -30423,7 +30549,7 @@
         }), null)
     }
 
-    function HT(l) {
+    function jT(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 26, "div", [["class", "form-group form-check mb-0"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "label", [["class", "form-check-label"], ["for", "autoassign_priority"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Priority"])), (l()(), su(3, 0, null, null, 23, "select", [["id", "autoassign_priority"]], [[2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "ngModelChange"], [null, "change"], [null, "blur"]], (function (l, n, e) {
             var t = !0,
                 i = l.component;
@@ -30442,15 +30568,15 @@
             value: [0, "value"]
         }, null), gi(15, 147456, null, 0, Ef, [fe, be, [8, null]], {
             value: [0, "value"]
-        }, null), (l()(), _u(-1, null, ["Food"])), (l()(), iu(16777216, null, null, 1, null, $T)), gi(18, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), _u(-1, null, ["Food"])), (l()(), iu(16777216, null, null, 1, null, FT)), gi(18, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, LT)), gi(20, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, qT)), gi(20, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, FT)), gi(22, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, UT)), gi(22, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, qT)), gi(24, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, HT)), gi(24, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, UT)), gi(26, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, VT)), gi(26, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null)], (function (l, n) {
             var e = n.component;
@@ -30460,7 +30586,7 @@
         }))
     }
 
-    function VT(l) {
+    function GT(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 8, "div", [["class", "form-group form-check mb-0"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 5, "input", [["class", "form-check-input"], ["id", "autoassign_strong"], ["type", "checkbox"]], [[2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "change"], [null, "ngModelChange"], [null, "blur"]], (function (l, n, e) {
             var t = !0,
                 i = l.component;
@@ -30480,37 +30606,37 @@
         }))
     }
 
-    function jT(l) {
+    function WT(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 2, "div", [["class", "col-3"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "app-citytroops", [], null, [["document", "keydown"], ["document", "keyup"]], (function (l, n, e) {
             var t = !0;
             return "document:keydown" === n && (t = !1 !== ei(l, 2).handleKeydownEvent(e) && t), "document:keyup" === n && (t = !1 !== ei(l, 2).handleKeyupEvent(e) && t), t
-        }), jI, gI)), gi(2, 114688, null, 0, fI, [Tg, Pg, zg], {
+        }), GI, mI)), gi(2, 114688, null, 0, gI, [Tg, Pg, zg], {
             city: [0, "city"]
         }, null)], (function (l, n) {
             l(n, 2, 0, n.component.city)
         }), null)
     }
 
-    function GT(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 2, "div", [["class", "col-3"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "app-citybuildings", [], null, null, null, hT, WI)), gi(2, 114688, null, 0, GI, [zg, Pg, Tg], {
+    function KT(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 2, "div", [["class", "col-3"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "app-citybuildings", [], null, null, null, fT, KI)), gi(2, 114688, null, 0, WI, [zg, Pg, Tg], {
             city: [0, "city"]
         }, null)], (function (l, n) {
             l(n, 2, 0, n.component.city)
         }), null)
     }
 
-    function WT(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 43, "div", [["class", "row flex-fill no-gutters pl-2"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 38, "div", [["class", "col-6"]], null, null, null, null, null)), (l()(), su(2, 0, null, null, 10, "div", [["class", "d-flex border-bottom border-secondary"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, bT)), gi(4, 16384, null, 0, Pa, [Fe, $e], {
+    function ZT(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 43, "div", [["class", "row flex-fill no-gutters pl-2"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 38, "div", [["class", "col-6"]], null, null, null, null, null)), (l()(), su(2, 0, null, null, 10, "div", [["class", "d-flex border-bottom border-secondary"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, wT)), gi(4, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, _T)), gi(6, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, xT)), gi(6, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, wT)), gi(8, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, kT)), gi(8, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, xT)), gi(10, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, ST)), gi(10, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, kT)), gi(12, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, CT)), gi(12, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), su(13, 0, null, null, 4, "table", [["class", "table table-borderless w-auto table-sm mr-5"]], null, null, null, null, null)), (l()(), su(14, 0, null, null, 3, "tbody", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 2, null, zT)), gi(16, 278528, null, 0, Ea, [Fe, $e, Oe], {
+        }, null), (l()(), su(13, 0, null, null, 4, "table", [["class", "table table-borderless w-auto table-sm mr-5"]], null, null, null, null, null)), (l()(), su(14, 0, null, null, 3, "tbody", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 2, null, LT)), gi(16, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
         }, null), mi(0, ig, [Ne]), (l()(), su(18, 0, null, null, 8, "div", [["class", "form-group form-check mb-0"]], null, null, null, null, null)), (l()(), su(19, 0, null, null, 5, "input", [["class", "form-check-input"], ["id", "autoassign_nogrowth"], ["type", "checkbox"]], [[2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "ngModelChange"], [null, "change"], [null, "blur"]], (function (l, n, e) {
             var t = !0,
@@ -30532,13 +30658,13 @@
             model: [0, "model"]
         }, {
             update: "ngModelChange"
-        }), yi(2048, null, af, null, [lg]), gi(33, 16384, null, 0, cf, [[4, af]], null, null), (l()(), su(34, 0, null, null, 1, "label", [["class", "form-check-label"], ["for", "autoassign"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Auto-assign"])), (l()(), iu(16777216, null, null, 1, null, HT)), gi(37, 16384, null, 0, Pa, [Fe, $e], {
+        }), yi(2048, null, af, null, [lg]), gi(33, 16384, null, 0, cf, [[4, af]], null, null), (l()(), su(34, 0, null, null, 1, "label", [["class", "form-check-label"], ["for", "autoassign"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Auto-assign"])), (l()(), iu(16777216, null, null, 1, null, jT)), gi(37, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, VT)), gi(39, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, GT)), gi(39, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, jT)), gi(41, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, WT)), gi(41, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, GT)), gi(43, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, KT)), gi(43, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null)], (function (l, n) {
             var e = n.component;
@@ -30548,7 +30674,7 @@
         }))
     }
 
-    function KT(l) {
+    function QT(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 9, "div", [["class", "row border-top"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 2, "div", [["class", "col-4"]], null, null, null, null, null)), (l()(), su(2, 0, null, null, 1, "button", [["class", "btn btn-link"]], null, [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== l.component.goNext(!0) && t), t
@@ -30561,7 +30687,7 @@
         }))
     }
 
-    function ZT(l) {
+    function YT(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "div", [["class", "modal-header"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "h4", [["class", "modal-title"]], null, null, null, null, null)), (l()(), _u(2, null, ["Abandon ", ""])), (l()(), su(3, 0, null, null, 2, "button", [["class", "close"], ["type", "button"]], null, [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== l.context.$implicit.dismiss() && t), t
@@ -30578,7 +30704,7 @@
         }))
     }
 
-    function QT(l) {
+    function XT(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "div", [["class", "modal-header"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "h4", [["class", "modal-title"]], null, null, null, null, null)), (l()(), _u(2, null, ["Liberate ", ""])), (l()(), su(3, 0, null, null, 2, "button", [["class", "close"], ["type", "button"]], null, [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== l.context.$implicit.dismiss() && t), t
@@ -30595,7 +30721,7 @@
         }))
     }
 
-    function YT(l) {
+    function JT(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "div", [["class", "modal-header"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "h4", [["class", "modal-title"]], null, null, null, null, null)), (l()(), _u(2, null, ["Relocate capital to ", ""])), (l()(), su(3, 0, null, null, 2, "button", [["class", "close"], ["type", "button"]], null, [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== l.context.$implicit.dismiss() && t), t
@@ -30616,11 +30742,11 @@
         }))
     }
 
-    function XT(l) {
+    function lE(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "div", [["class", "text-danger"]], null, null, null, null, null)), (l()(), _u(-1, null, ["A town hall is required"]))], null, null)
     }
 
-    function JT(l) {
+    function nE(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 2, "div", [], null, null, null, null, null)), (l()(), _u(1, null, ["Capital Relocation allowed in ", " "])), yu(2, 1)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 1, 0, l(n, 2, 0, ei(n.parent.parent, 1), e.data.capitalchange_cooldown));
@@ -30628,10 +30754,10 @@
         }))
     }
 
-    function lE(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 1, "b", [], null, null, null, null, null)), (l()(), _u(1, null, ["Relocate ", " as capital"])), (l()(), su(2, 0, null, null, 0, "br", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, XT)), gi(4, 16384, null, 0, Pa, [Fe, $e], {
+    function eE(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 1, "b", [], null, null, null, null, null)), (l()(), _u(1, null, ["Relocate ", " as capital"])), (l()(), su(2, 0, null, null, 0, "br", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, lE)), gi(4, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), su(5, 0, null, null, 4, "div", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Cost: "])), (l()(), su(7, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(8, null, [" ", ""])), yu(9, 1), (l()(), iu(16777216, null, null, 1, null, JT)), gi(11, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), su(5, 0, null, null, 4, "div", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Cost: "])), (l()(), su(7, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(8, null, [" ", ""])), yu(9, 1), (l()(), iu(16777216, null, null, 1, null, nE)), gi(11, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), iu(0, null, null, 0))], (function (l, n) {
             var e = n.component;
@@ -30644,30 +30770,30 @@
         }))
     }
 
-    function nE(l) {
-        return ku(0, [mi(0, $v, []), mi(0, gv, []), mi(0, zv, []), (l()(), su(3, 0, null, null, 8, "div", [["class", "h-100 d-flex flex-column p-relative"]], null, null, null, null, null)), (l()(), su(4, 0, null, null, 1, "bgicon", [["icon", "city"]], null, null, null, gT, fT)), gi(5, 114688, null, 0, pT, [], {
+    function tE(l) {
+        return ku(0, [mi(0, $v, []), mi(0, gv, []), mi(0, zv, []), (l()(), su(3, 0, null, null, 8, "div", [["class", "h-100 d-flex flex-column p-relative"]], null, null, null, null, null)), (l()(), su(4, 0, null, null, 1, "bgicon", [["icon", "city"]], null, null, null, yT, mT)), gi(5, 114688, null, 0, gT, [], {
             icon: [0, "icon"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, vT)), gi(7, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, _T)), gi(7, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, WT)), gi(9, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, ZT)), gi(9, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, KT)), gi(11, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, QT)), gi(11, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(0, [["content", 2]], null, 0, null, ZT)), (l()(), iu(0, [["contentl", 2]], null, 0, null, QT)), (l()(), iu(0, [["popRelocate", 2]], null, 0, null, YT)), (l()(), iu(0, [["popCapital", 2]], null, 0, null, lE))], (function (l, n) {
+        }, null), (l()(), iu(0, [["content", 2]], null, 0, null, YT)), (l()(), iu(0, [["contentl", 2]], null, 0, null, XT)), (l()(), iu(0, [["popRelocate", 2]], null, 0, null, JT)), (l()(), iu(0, [["popCapital", 2]], null, 0, null, eE))], (function (l, n) {
             var e = n.component;
             l(n, 5, 0, "city"), l(n, 7, 0, e.city), l(n, 9, 0, e.city), l(n, 11, 0, e.city && e.dataService.isUnlocked("menu_empire"))
         }), null)
     }
 
-    function eE(l) {
+    function iE(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "app-citycontainer", [], null, [["document", "keydown"]], (function (l, n, e) {
             var t = !0;
             return "document:keydown" === n && (t = !1 !== ei(l, 1).handleKeydownEvent(e) && t), t
-        }), nE, yT)), gi(1, 245760, null, 0, mT, [Pg, zg, Tg, oh, Fy], null, null)], (function (l, n) {
+        }), tE, bT)), gi(1, 245760, null, 0, vT, [Pg, zg, Tg, oh, Fy], null, null)], (function (l, n) {
             l(n, 1, 0)
         }), null)
     }
-    var tE = jt("app-citycontainer", mT, eE, {}, {}, []); class iE {
+    var sE = jt("app-citycontainer", vT, iE, {}, {}, []); class uE {
         constructor(l, n, e) {
             this.data = l, this.dataService = n, this.conf = e, this.icons = ug, this.ranks_nb = 0, this.max_nodes = 5, this.era_height = 28, this.node_width = 150, this.node_height = 40, this.rank_sep = 100, this.node_sep = 20, this.curve = 20, this.link_color = "black", this.era_color = "url(#black)", this.node_colors = {
                 current: "url(#blue)",
@@ -30788,21 +30914,21 @@
             return (l.rank_start - 1) * (this.node_width + this.rank_sep) - (1 == l.rank_start ? 0 : this.rank_sep / 2)
         }
     }
-    var sE = st({
+    var rE = st({
         encapsulation: 0,
         styles: [["g[_ngcontent-%COMP%], rect[_ngcontent-%COMP%], text[_ngcontent-%COMP%]{cursor:pointer}"]],
         data: {}
     });
 
-    function uE(l) {
+    function aE(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, ":svg:text", [["fill", "#888"], ["font-size", "400"], ["font-weight", "bold"], ["text-anchor", "middle"]], [[1, "x", 0], [1, "y", 0]], null, null, null, null)), (l()(), _u(-1, null, ["?"]))], null, (function (l, n) {
             var e = n.component;
             l(n, 0, 0, e.eraX(n.parent.context.$implicit.value) + e.eraWidth(n.parent.context.$implicit.value) / 2, e.svg_data.height + e.era_height + e.node_height)
         }))
     }
 
-    function rE(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 6, null, null, null, null, null, null, null)), (l()(), su(1, 0, null, null, 3, ":svg:g", [], [[1, "width", 0], [1, "height", 0]], null, null, null, null)), (l()(), su(2, 0, null, null, 0, ":svg:rect", [["rx", "5"], ["ry", "5"], ["stroke", "black"]], [[1, "width", 0], [1, "height", 0], [1, "x", 0], [1, "y", 0], [1, "fill", 0]], null, null, null, null)), (l()(), su(3, 0, null, null, 1, ":svg:text", [["dominant-baseline", "middle"], ["fill", "white"], ["font-size", "14"], ["font-weight", "bold"], ["text-anchor", "middle"]], [[1, "x", 0], [1, "y", 0]], null, null, null, null)), (l()(), _u(4, null, ["", ""])), (l()(), iu(16777216, null, null, 1, null, uE)), gi(6, 16384, null, 0, Pa, [Fe, $e], {
+    function oE(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 6, null, null, null, null, null, null, null)), (l()(), su(1, 0, null, null, 3, ":svg:g", [], [[1, "width", 0], [1, "height", 0]], null, null, null, null)), (l()(), su(2, 0, null, null, 0, ":svg:rect", [["rx", "5"], ["ry", "5"], ["stroke", "black"]], [[1, "width", 0], [1, "height", 0], [1, "x", 0], [1, "y", 0], [1, "fill", 0]], null, null, null, null)), (l()(), su(3, 0, null, null, 1, ":svg:text", [["dominant-baseline", "middle"], ["fill", "white"], ["font-size", "14"], ["font-weight", "bold"], ["text-anchor", "middle"]], [[1, "x", 0], [1, "y", 0]], null, null, null, null)), (l()(), _u(4, null, ["", ""])), (l()(), iu(16777216, null, null, 1, null, aE)), gi(6, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), iu(0, null, null, 0))], (function (l, n) {
             l(n, 6, 0, !n.component.isEraUnlocked(n.context.$implicit.key))
@@ -30812,7 +30938,7 @@
         }))
     }
 
-    function aE(l) {
+    function cE(l) {
         return ku(0, [(l()(), su(0, 16777216, null, null, 4, ":svg:g", [["container", "body"], ["triggers", "manuel"]], [[1, "width", 0], [1, "height", 0]], [[null, "click"], [null, "mouseenter"], [null, "mouseleave"]], (function (l, n, e) {
             var t = !0,
                 i = l.component;
@@ -30830,32 +30956,32 @@
         }))
     }
 
-    function oE(l) {
+    function dE(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 0, ":svg:path", [["fill", "transparent"], ["marker-end", "url(#head)"]], [[1, "d", 0], [1, "stroke", 0]], null, null, null, null))], null, (function (l, n) {
             l(n, 0, 0, n.context.$implicit.d, n.component.link_color)
         }))
     }
 
-    function cE(l) {
+    function hE(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 3, ":svg:g", [], [[1, "width", 0], [1, "height", 0]], null, null, null, null)), (l()(), su(1, 0, null, null, 0, ":svg:rect", [["rx", "5"], ["ry", "5"], ["stroke", "black"]], [[1, "width", 0], [1, "height", 0], [1, "x", 0], [1, "y", 0], [1, "fill", 0]], null, null, null, null)), (l()(), su(2, 0, null, null, 1, ":svg:text", [["dominant-baseline", "middle"], ["fill", "white"], ["font-size", "16"], ["font-weight", "bold"], ["text-anchor", "middle"]], [[1, "x", 0], [1, "y", 0]], null, null, null, null)), (l()(), _u(-1, null, ["In queue"]))], null, (function (l, n) {
             var e = n.component;
             l(n, 0, 0, e.node_width, e.node_height), l(n, 1, 0, e.node_width, e.node_height, 4 * (e.node_width + e.node_sep), e.svg_data.height + 2 * e.node_sep + e.era_height, e.node_colors.inqueue), l(n, 2, 0, 4 * (e.node_width + e.node_sep) + e.node_width / 2, e.svg_data.height + e.node_height / 2 + 2 * e.node_sep + e.era_height)
         }))
     }
 
-    function dE(l) {
+    function pE(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 2, "div", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(-1, null, [" Use ctrl + click to add to queue"]))], null, (function (l, n) {
             l(n, 1, 0, n.component.icons.info)
         }))
     }
 
-    function hE(l) {
+    function fE(l) {
         return ku(0, [(l()(), _u(0, null, ["", ""]))], null, (function (l, n) {
             l(n, 0, 0, n.context.title)
         }))
     }
 
-    function pE(l) {
+    function gE(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 0, "div", [], [[8, "innerHTML", 1]], null, null, null, null)), (l()(), su(1, 0, null, null, 6, "div", [["class", "border-top mt-1"]], null, null, null, null, null)), (l()(), su(2, 0, null, null, 3, "span", [["class", "text-science"]], null, null, null, null, null)), (l()(), su(3, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(4, null, [" ", ""])), yu(5, 1), (l()(), _u(6, null, [" (", ")"])), yu(7, 1)], null, (function (l, n) {
             var e = n.component;
             l(n, 0, 0, n.context.desc), l(n, 3, 0, e.icons.science);
@@ -30866,23 +30992,23 @@
         }))
     }
 
-    function fE(l) {
+    function mE(l) {
         return ku(0, [mi(0, zv, []), mi(0, gv, []), cu(402653184, 1, {
             container: 0
-        }), (l()(), su(3, 0, [[1, 0], ["container", 1]], null, 44, "div", [["class", "bg-dark p-4"], ["style", "overflow:auto"]], null, null, null, null, null)), (l()(), su(4, 0, null, null, 43, ":svg:svg", [], [[1, "width", 0], [1, "height", 0]], null, null, null, null)), (l()(), su(5, 0, null, null, 17, ":svg:defs", [], null, null, null, null, null)), (l()(), su(6, 0, null, null, 1, ":svg:marker", [["id", "head"], ["markerHeight", "8"], ["markerWidth", "4"], ["orient", "auto"], ["refX", "0"], ["refY", "4"]], null, null, null, null, null)), (l()(), su(7, 0, null, null, 0, ":svg:path", [["d", "M0,0 V8 L4,4 Z"]], [[1, "fill", 0]], null, null, null, null)), (l()(), su(8, 0, null, null, 2, ":svg:linearGradient", [["id", "blue"], ["x1", "0%"], ["x2", "100%"], ["y1", "100%"], ["y2", "0%"]], null, null, null, null, null)), (l()(), su(9, 0, null, null, 0, ":svg:stop", [["offset", "0%"], ["style", "stop-color:#2E86C1;stop-opacity:1"]], null, null, null, null, null)), (l()(), su(10, 0, null, null, 0, ":svg:stop", [["offset", "100%"], ["style", "stop-color:#5DADE2;stop-opacity:1"]], null, null, null, null, null)), (l()(), su(11, 0, null, null, 2, ":svg:linearGradient", [["id", "gold"], ["x1", "0%"], ["x2", "100%"], ["y1", "100%"], ["y2", "0%"]], null, null, null, null, null)), (l()(), su(12, 0, null, null, 0, ":svg:stop", [["offset", "0%"], ["style", "stop-color:#D4AC0D;stop-opacity:1"]], null, null, null, null, null)), (l()(), su(13, 0, null, null, 0, ":svg:stop", [["offset", "100%"], ["style", "stop-color:#F4D03F;stop-opacity:1"]], null, null, null, null, null)), (l()(), su(14, 0, null, null, 2, ":svg:linearGradient", [["id", "green"], ["x1", "0%"], ["x2", "100%"], ["y1", "100%"], ["y2", "0%"]], null, null, null, null, null)), (l()(), su(15, 0, null, null, 0, ":svg:stop", [["offset", "0%"], ["style", "stop-color:#196F3D;stop-opacity:1"]], null, null, null, null, null)), (l()(), su(16, 0, null, null, 0, ":svg:stop", [["offset", "100%"], ["style", "stop-color:#27AE60;stop-opacity:1"]], null, null, null, null, null)), (l()(), su(17, 0, null, null, 2, ":svg:linearGradient", [["id", "black"], ["x1", "0%"], ["x2", "100%"], ["y1", "100%"], ["y2", "0%"]], null, null, null, null, null)), (l()(), su(18, 0, null, null, 0, ":svg:stop", [["offset", "0%"], ["style", "stop-color:#17202A;stop-opacity:1"]], null, null, null, null, null)), (l()(), su(19, 0, null, null, 0, ":svg:stop", [["offset", "100%"], ["style", "stop-color:#34495E;stop-opacity:1"]], null, null, null, null, null)), (l()(), su(20, 0, null, null, 2, ":svg:linearGradient", [["id", "lightblue"], ["x1", "0%"], ["x2", "100%"], ["y1", "100%"], ["y2", "0%"]], null, null, null, null, null)), (l()(), su(21, 0, null, null, 0, ":svg:stop", [["offset", "0%"], ["style", "stop-color:#17202A;stop-opacity:1"]], null, null, null, null, null)), (l()(), su(22, 0, null, null, 0, ":svg:stop", [["offset", "100%"], ["style", "stop-color:#2E86C1;stop-opacity:1"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 2, null, rE)), gi(24, 278528, null, 0, Ea, [Fe, $e, Oe], {
+        }), (l()(), su(3, 0, [[1, 0], ["container", 1]], null, 44, "div", [["class", "bg-dark p-4"], ["style", "overflow:auto"]], null, null, null, null, null)), (l()(), su(4, 0, null, null, 43, ":svg:svg", [], [[1, "width", 0], [1, "height", 0]], null, null, null, null)), (l()(), su(5, 0, null, null, 17, ":svg:defs", [], null, null, null, null, null)), (l()(), su(6, 0, null, null, 1, ":svg:marker", [["id", "head"], ["markerHeight", "8"], ["markerWidth", "4"], ["orient", "auto"], ["refX", "0"], ["refY", "4"]], null, null, null, null, null)), (l()(), su(7, 0, null, null, 0, ":svg:path", [["d", "M0,0 V8 L4,4 Z"]], [[1, "fill", 0]], null, null, null, null)), (l()(), su(8, 0, null, null, 2, ":svg:linearGradient", [["id", "blue"], ["x1", "0%"], ["x2", "100%"], ["y1", "100%"], ["y2", "0%"]], null, null, null, null, null)), (l()(), su(9, 0, null, null, 0, ":svg:stop", [["offset", "0%"], ["style", "stop-color:#2E86C1;stop-opacity:1"]], null, null, null, null, null)), (l()(), su(10, 0, null, null, 0, ":svg:stop", [["offset", "100%"], ["style", "stop-color:#5DADE2;stop-opacity:1"]], null, null, null, null, null)), (l()(), su(11, 0, null, null, 2, ":svg:linearGradient", [["id", "gold"], ["x1", "0%"], ["x2", "100%"], ["y1", "100%"], ["y2", "0%"]], null, null, null, null, null)), (l()(), su(12, 0, null, null, 0, ":svg:stop", [["offset", "0%"], ["style", "stop-color:#D4AC0D;stop-opacity:1"]], null, null, null, null, null)), (l()(), su(13, 0, null, null, 0, ":svg:stop", [["offset", "100%"], ["style", "stop-color:#F4D03F;stop-opacity:1"]], null, null, null, null, null)), (l()(), su(14, 0, null, null, 2, ":svg:linearGradient", [["id", "green"], ["x1", "0%"], ["x2", "100%"], ["y1", "100%"], ["y2", "0%"]], null, null, null, null, null)), (l()(), su(15, 0, null, null, 0, ":svg:stop", [["offset", "0%"], ["style", "stop-color:#196F3D;stop-opacity:1"]], null, null, null, null, null)), (l()(), su(16, 0, null, null, 0, ":svg:stop", [["offset", "100%"], ["style", "stop-color:#27AE60;stop-opacity:1"]], null, null, null, null, null)), (l()(), su(17, 0, null, null, 2, ":svg:linearGradient", [["id", "black"], ["x1", "0%"], ["x2", "100%"], ["y1", "100%"], ["y2", "0%"]], null, null, null, null, null)), (l()(), su(18, 0, null, null, 0, ":svg:stop", [["offset", "0%"], ["style", "stop-color:#17202A;stop-opacity:1"]], null, null, null, null, null)), (l()(), su(19, 0, null, null, 0, ":svg:stop", [["offset", "100%"], ["style", "stop-color:#34495E;stop-opacity:1"]], null, null, null, null, null)), (l()(), su(20, 0, null, null, 2, ":svg:linearGradient", [["id", "lightblue"], ["x1", "0%"], ["x2", "100%"], ["y1", "100%"], ["y2", "0%"]], null, null, null, null, null)), (l()(), su(21, 0, null, null, 0, ":svg:stop", [["offset", "0%"], ["style", "stop-color:#17202A;stop-opacity:1"]], null, null, null, null, null)), (l()(), su(22, 0, null, null, 0, ":svg:stop", [["offset", "100%"], ["style", "stop-color:#2E86C1;stop-opacity:1"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 2, null, oE)), gi(24, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
-        }, null), mi(0, ig, [Ne]), (l()(), iu(16777216, null, null, 1, null, aE)), gi(27, 278528, null, 0, Ea, [Fe, $e, Oe], {
+        }, null), mi(0, ig, [Ne]), (l()(), iu(16777216, null, null, 1, null, cE)), gi(27, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, oE)), gi(29, 278528, null, 0, Ea, [Fe, $e, Oe], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, dE)), gi(29, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
-        }, null), (l()(), su(30, 0, null, null, 3, ":svg:g", [], [[1, "width", 0], [1, "height", 0]], null, null, null, null)), (l()(), su(31, 0, null, null, 0, ":svg:rect", [["rx", "5"], ["ry", "5"], ["stroke", "black"], ["x", "0"]], [[1, "width", 0], [1, "height", 0], [1, "y", 0], [1, "fill", 0]], null, null, null, null)), (l()(), su(32, 0, null, null, 1, ":svg:text", [["dominant-baseline", "middle"], ["fill", "white"], ["font-size", "16"], ["font-weight", "bold"], ["text-anchor", "middle"]], [[1, "x", 0], [1, "y", 0]], null, null, null, null)), (l()(), _u(-1, null, ["Current"])), (l()(), su(34, 0, null, null, 3, ":svg:g", [], [[1, "width", 0], [1, "height", 0]], null, null, null, null)), (l()(), su(35, 0, null, null, 0, ":svg:rect", [["rx", "5"], ["ry", "5"], ["stroke", "black"]], [[1, "width", 0], [1, "height", 0], [1, "x", 0], [1, "y", 0], [1, "fill", 0]], null, null, null, null)), (l()(), su(36, 0, null, null, 1, ":svg:text", [["dominant-baseline", "middle"], ["fill", "white"], ["font-size", "16"], ["font-weight", "bold"], ["text-anchor", "middle"]], [[1, "x", 0], [1, "y", 0]], null, null, null, null)), (l()(), _u(-1, null, ["Locked"])), (l()(), su(38, 0, null, null, 3, ":svg:g", [], [[1, "width", 0], [1, "height", 0]], null, null, null, null)), (l()(), su(39, 0, null, null, 0, ":svg:rect", [["rx", "5"], ["ry", "5"], ["stroke", "black"]], [[1, "width", 0], [1, "height", 0], [1, "x", 0], [1, "y", 0], [1, "fill", 0]], null, null, null, null)), (l()(), su(40, 0, null, null, 1, ":svg:text", [["dominant-baseline", "middle"], ["fill", "white"], ["font-size", "16"], ["font-weight", "bold"], ["text-anchor", "middle"]], [[1, "x", 0], [1, "y", 0]], null, null, null, null)), (l()(), _u(-1, null, ["Available"])), (l()(), su(42, 0, null, null, 3, ":svg:g", [], [[1, "width", 0], [1, "height", 0]], null, null, null, null)), (l()(), su(43, 0, null, null, 0, ":svg:rect", [["rx", "5"], ["ry", "5"], ["stroke", "black"]], [[1, "width", 0], [1, "height", 0], [1, "x", 0], [1, "y", 0], [1, "fill", 0]], null, null, null, null)), (l()(), su(44, 0, null, null, 1, ":svg:text", [["dominant-baseline", "middle"], ["fill", "white"], ["font-size", "16"], ["font-weight", "bold"], ["text-anchor", "middle"]], [[1, "x", 0], [1, "y", 0]], null, null, null, null)), (l()(), _u(-1, null, ["Done"])), (l()(), iu(16777216, null, null, 1, null, cE)), gi(47, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), su(30, 0, null, null, 3, ":svg:g", [], [[1, "width", 0], [1, "height", 0]], null, null, null, null)), (l()(), su(31, 0, null, null, 0, ":svg:rect", [["rx", "5"], ["ry", "5"], ["stroke", "black"], ["x", "0"]], [[1, "width", 0], [1, "height", 0], [1, "y", 0], [1, "fill", 0]], null, null, null, null)), (l()(), su(32, 0, null, null, 1, ":svg:text", [["dominant-baseline", "middle"], ["fill", "white"], ["font-size", "16"], ["font-weight", "bold"], ["text-anchor", "middle"]], [[1, "x", 0], [1, "y", 0]], null, null, null, null)), (l()(), _u(-1, null, ["Current"])), (l()(), su(34, 0, null, null, 3, ":svg:g", [], [[1, "width", 0], [1, "height", 0]], null, null, null, null)), (l()(), su(35, 0, null, null, 0, ":svg:rect", [["rx", "5"], ["ry", "5"], ["stroke", "black"]], [[1, "width", 0], [1, "height", 0], [1, "x", 0], [1, "y", 0], [1, "fill", 0]], null, null, null, null)), (l()(), su(36, 0, null, null, 1, ":svg:text", [["dominant-baseline", "middle"], ["fill", "white"], ["font-size", "16"], ["font-weight", "bold"], ["text-anchor", "middle"]], [[1, "x", 0], [1, "y", 0]], null, null, null, null)), (l()(), _u(-1, null, ["Locked"])), (l()(), su(38, 0, null, null, 3, ":svg:g", [], [[1, "width", 0], [1, "height", 0]], null, null, null, null)), (l()(), su(39, 0, null, null, 0, ":svg:rect", [["rx", "5"], ["ry", "5"], ["stroke", "black"]], [[1, "width", 0], [1, "height", 0], [1, "x", 0], [1, "y", 0], [1, "fill", 0]], null, null, null, null)), (l()(), su(40, 0, null, null, 1, ":svg:text", [["dominant-baseline", "middle"], ["fill", "white"], ["font-size", "16"], ["font-weight", "bold"], ["text-anchor", "middle"]], [[1, "x", 0], [1, "y", 0]], null, null, null, null)), (l()(), _u(-1, null, ["Available"])), (l()(), su(42, 0, null, null, 3, ":svg:g", [], [[1, "width", 0], [1, "height", 0]], null, null, null, null)), (l()(), su(43, 0, null, null, 0, ":svg:rect", [["rx", "5"], ["ry", "5"], ["stroke", "black"]], [[1, "width", 0], [1, "height", 0], [1, "x", 0], [1, "y", 0], [1, "fill", 0]], null, null, null, null)), (l()(), su(44, 0, null, null, 1, ":svg:text", [["dominant-baseline", "middle"], ["fill", "white"], ["font-size", "16"], ["font-weight", "bold"], ["text-anchor", "middle"]], [[1, "x", 0], [1, "y", 0]], null, null, null, null)), (l()(), _u(-1, null, ["Done"])), (l()(), iu(16777216, null, null, 1, null, hE)), gi(47, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, dE)), gi(49, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, pE)), gi(49, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), su(50, 0, null, null, 1, "button", [["class", "btn btn-secondary"]], null, [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== l.component.clearQueue() && t), t
-        }), null, null)), (l()(), _u(-1, null, ["Clear queue"])), (l()(), iu(0, [["popTitle", 2]], null, 0, null, hE)), (l()(), iu(0, [["popContent", 2]], null, 0, null, pE))], (function (l, n) {
+        }), null, null)), (l()(), _u(-1, null, ["Clear queue"])), (l()(), iu(0, [["popTitle", 2]], null, 0, null, fE)), (l()(), iu(0, [["popContent", 2]], null, 0, null, gE))], (function (l, n) {
             var e = n.component;
             l(n, 24, 0, et(n, 24, 0, ei(n, 25).transform(e.conf.eras))), l(n, 27, 0, e.svg_data.nodes), l(n, 29, 0, e.svg_data.links), l(n, 47, 0, e.dataService.isUnlocked("queue_science")), l(n, 49, 0, e.dataService.isUnlocked("queue_science"))
         }), (function (l, n) {
@@ -30891,15 +31017,15 @@
         }))
     }
 
-    function gE(l) {
+    function yE(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "app-science", [], null, [["document", "keydown"], ["document", "keyup"]], (function (l, n, e) {
             var t = !0;
             return "document:keydown" === n && (t = !1 !== ei(l, 1).handleKeydownEvent(e) && t), "document:keyup" === n && (t = !1 !== ei(l, 1).handleKeyupEvent(e) && t), t
-        }), fE, sE)), gi(1, 114688, null, 0, iE, [Pg, zg, Tg], null, null)], (function (l, n) {
+        }), mE, rE)), gi(1, 114688, null, 0, uE, [Pg, zg, Tg], null, null)], (function (l, n) {
             l(n, 1, 0)
         }), null)
     }
-    var mE = jt("app-science", iE, gE, {}, {}, []); class yE {
+    var vE = jt("app-science", uE, yE, {}, {}, []); class bE {
         constructor(l) {
             this.dataService = l, this.icons = ug
         }
@@ -30915,13 +31041,13 @@
             }
         }
     }
-    var vE = st({
+    var _E = st({
         encapsulation: 0,
         styles: [[""]],
         data: {}
     });
 
-    function bE(l) {
+    function wE(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, null, null, null, null, null, null, null)), (l()(), su(1, 0, null, null, 3, "span", [], null, null, null, null, null)), yi(512, null, Oa, Na, [fe, Ne, be]), gi(3, 278528, null, 0, Ba, [Oa], {
             ngStyle: [0, "ngStyle"]
         }, null), (l()(), su(4, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(5, null, [" ", "\n"]))], (function (l, n) {
@@ -30932,14 +31058,14 @@
         }))
     }
 
-    function _E(l) {
-        return ku(0, [(l()(), iu(16777216, null, null, 1, null, bE)), gi(1, 16384, null, 0, Pa, [Fe, $e], {
+    function xE(l) {
+        return ku(0, [(l()(), iu(16777216, null, null, 1, null, wE)), gi(1, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null)], (function (l, n) {
             l(n, 1, 0, n.component.player)
         }), null)
     }
-    class wE {
+    class kE {
         constructor(l, n, e, t, i) {
             this.conf = l, this.data = n, this.activatedRoute = e, this.dataService = t, this.router = i, this.ctrl = !1, this.icons = ug, this.unicode = {
                 pop: "\uf0c0",
@@ -30993,7 +31119,7 @@
                 let n = 0,
                     e = this.img_src.length;
                 this.img_src.forEach(l => {
-                    this.img[l] = new Image, this.img[l].src = "assets/img/" + l + ".png", this.img[l].onload = () => {
+                    this.img[l] = new Image, this.img[l].src = "/assets/img/" + l + ".png", this.img[l].onload = () => {
                         ++n == e && this.initCanvas()
                     }
                 })
@@ -31077,7 +31203,7 @@
                     destid: 0,
                     dist: this.dataService.distance(this.menu.city.x, this.menu.city.y, this.archeologist.x, this.archeologist.y),
                     progress: 0,
-                    speed: this.dataService.speed("archeologist", 0, this.menu.city, this.archeologist),
+                    speed: this.dataService.speedNoCity("archeologist", 0, this.menu.city, this.archeologist),
                     returning: !1
                 }), this.menu.city.troops.archeologist--, this.menu.city.troops.archeologist || delete this.menu.city.troops.archeologist, this.archeologist = void 0) : this.escape()
             }, this.container.nativeElement.addEventListener("mousemove", this.selectTile), this.container.nativeElement.addEventListener("mousedown", this.selectTileDone))
@@ -31280,7 +31406,7 @@
             this.attack.troops[l.id][n] = l.troops[n]
         }
         drawAll() {
-            this.draw(), this.drawTroops(), this.animationFrame = requestAnimationFrame(this.drawAll.bind(this))
+            this.attack || this.spy || this.gold || this.trade ? setTimeout(this.drawAll.bind(this), 100) : (this.draw(), this.drawTroops(), this.animationFrame = requestAnimationFrame(this.drawAll.bind(this)))
         }
         draw() {
             let l = this.tileSize();
@@ -31494,19 +31620,19 @@
             l.close()
         }
     }
-    var xE = st({
+    var SE = st({
         encapsulation: 0,
         styles: [[".map-menu[_ngcontent-%COMP%]{background:rgba(0,0,0,.6);border-radius:5px;padding:2px 8px}.menu-list[_ngcontent-%COMP%] > div[_ngcontent-%COMP%]{border-radius:50%;width:24px;height:24px;color:#fff;font-size:18px;text-align:center;cursor:pointer;margin:2px}.menu-list[_ngcontent-%COMP%] > div[_ngcontent-%COMP%]:hover{background:#fff;color:#000}.menu-list[_ngcontent-%COMP%] > div.disabled[_ngcontent-%COMP%]{background:0 0!important;color:#aaa!important;cursor:forbidden!important}.menu-desc[_ngcontent-%COMP%]{color:#fff;text-align:center;font-size:16px}.imp-menu[_ngcontent-%COMP%]{background:rgba(52,58,64,.8)!important}.imp-menu[_ngcontent-%COMP%]   img[_ngcontent-%COMP%]{width:48px;height:48px}"]],
         data: {}
     });
 
-    function kE(l) {
+    function CE(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "div", [["class", "position-absolute d-flex bg-dark p-2 text-light"], ["style", "left:10px;bottom:10px;z-index:5"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 0, "span", [], [[8, "innerHTML", 1]], null, null, null, null))], null, (function (l, n) {
             l(n, 1, 0, n.component.label)
         }))
     }
 
-    function SE(l) {
+    function IE(l) {
         return ku(0, [(l()(), su(0, 16777216, null, null, 6, "div", [["container", "body"], ["hover-class", "bg-light"], ["placement", "right"], ["triggers", "manuel"]], null, [[null, "click"], [null, "mouseenter"], [null, "mouseleave"]], (function (l, n, e) {
             var t = !0,
                 i = l.component;
@@ -31530,11 +31656,11 @@
                 t = l(n, 3, 0, !0, e.worker.type == n.parent.context.$implicit.key, !e.dataService.isImprovementAvailable(n.parent.context.$implicit.value, e.worker.level, e.menu.city));
             l(n, 2, 0, t), l(n, 4, 0, ei(n.parent.parent.parent, 60), ei(n.parent.parent.parent, 59), "right", "manuel", "body"), l(n, 5, 0, "bg-light")
         }), (function (l, n) {
-            l(n, 6, 0, Mt(1, "assets/img/imp", n.parent.context.$implicit.key, ".png"), Mt(1, "", n.parent.context.$implicit.value.name, ""))
+            l(n, 6, 0, Mt(1, "/assets/img/imp", n.parent.context.$implicit.key, ".png"), Mt(1, "", n.parent.context.$implicit.value.name, ""))
         }))
     }
 
-    function CE(l) {
+    function TE(l) {
         return ku(0, [(l()(), su(0, 16777216, null, null, 6, "div", [["container", "body"], ["hover-class", "bg-light"], ["placement", "right"], ["triggers", "manuel"]], null, [[null, "click"], [null, "mouseenter"], [null, "mouseleave"]], (function (l, n, e) {
             var t = !0,
                 i = l.component;
@@ -31558,14 +31684,14 @@
                 t = l(n, 3, 0, !0, e.worker.type == n.parent.context.$implicit.key, !e.dataService.isImprovementAvailable(n.parent.context.$implicit.value, e.worker.level, e.menu.city));
             l(n, 2, 0, t), l(n, 4, 0, ei(n.parent.parent.parent, 60), ei(n.parent.parent.parent, 59), "right", "manuel", "body"), l(n, 5, 0, "bg-light")
         }), (function (l, n) {
-            l(n, 6, 0, Mt(1, "assets/img/imp", n.parent.context.$implicit.key, "2.png"), Mt(1, "", n.parent.context.$implicit.value.name, ""))
+            l(n, 6, 0, Mt(1, "/assets/img/imp", n.parent.context.$implicit.key, "2.png"), Mt(1, "", n.parent.context.$implicit.value.name, ""))
         }))
     }
 
-    function IE(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 4, null, null, null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, SE)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
+    function EE(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 4, null, null, null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, IE)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, CE)), gi(4, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, TE)), gi(4, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), iu(0, null, null, 0))], (function (l, n) {
             var e = n.component;
@@ -31573,8 +31699,8 @@
         }), null)
     }
 
-    function TE(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 3, "div", [["class", "position-absolute d-flex d-flex flex-column justify-content-center p-1 rounded imp-menu"], ["style", "left:10px;top:10%;z-index:5"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 2, null, IE)), gi(2, 278528, null, 0, Ea, [Fe, $e, Oe], {
+    function AE(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 3, "div", [["class", "position-absolute d-flex d-flex flex-column justify-content-center p-1 rounded imp-menu"], ["style", "left:10px;top:10%;z-index:5"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 2, null, EE)), gi(2, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
         }, null), mi(0, ig, [Ne])], (function (l, n) {
             var e = n.component;
@@ -31582,11 +31708,11 @@
         }), null)
     }
 
-    function EE(l) {
+    function PE(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "div", [["class", "bg-dark text-warning px-1 position-absolute d-flex"], ["style", "left:40%;top:10px;z-index:5"]], null, null, null, null, null)), (l()(), _u(-1, null, [" Keep Ctrl or Command to create a waypoint "]))], null, null)
     }
 
-    function AE(l) {
+    function DE(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "div", [], null, [[null, "mouseenter"], [null, "mouseleave"], [null, "click"]], (function (l, n, e) {
             var t = !0,
                 i = l.component;
@@ -31596,7 +31722,7 @@
         }))
     }
 
-    function PE(l) {
+    function ME(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "div", [], null, [[null, "mouseenter"], [null, "mouseleave"], [null, "click"]], (function (l, n, e) {
             var t = !0,
                 i = l.component;
@@ -31606,7 +31732,7 @@
         }))
     }
 
-    function DE(l) {
+    function OE(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "div", [], null, [[null, "mouseenter"], [null, "mouseleave"], [null, "click"]], (function (l, n, e) {
             var t = !0,
                 i = l.component;
@@ -31623,7 +31749,7 @@
         }))
     }
 
-    function ME(l) {
+    function NE(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "div", [], null, [[null, "mouseenter"], [null, "mouseleave"], [null, "click"]], (function (l, n, e) {
             var t = !0,
                 i = l.component;
@@ -31640,7 +31766,7 @@
         }))
     }
 
-    function OE(l) {
+    function RE(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "div", [], null, [[null, "mouseenter"], [null, "mouseleave"], [null, "click"]], (function (l, n, e) {
             var t = !0,
                 i = l.component;
@@ -31657,7 +31783,7 @@
         }))
     }
 
-    function NE(l) {
+    function BE(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "div", [], null, [[null, "mouseenter"], [null, "mouseleave"], [null, "click"]], (function (l, n, e) {
             var t = !0,
                 i = l.component;
@@ -31674,14 +31800,14 @@
         }))
     }
 
-    function RE(l) {
+    function zE(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 25, null, null, null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "div", [], null, [[null, "mouseenter"], [null, "mouseleave"], [null, "click"]], (function (l, n, e) {
             var t = !0,
                 i = l.component;
             return "mouseenter" === n && (t = !1 !== (i.menu.desc = "View") && t), "mouseleave" === n && (t = !1 !== (i.menu.desc = "") && t), "click" === n && (t = !1 !== i.viewCity() && t), t
-        }), null, null)), (l()(), su(2, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, AE)), gi(4, 16384, null, 0, Pa, [Fe, $e], {
+        }), null, null)), (l()(), su(2, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, DE)), gi(4, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, PE)), gi(6, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, ME)), gi(6, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), su(7, 0, null, null, 4, "div", [], null, [[null, "mouseenter"], [null, "mouseleave"], [null, "click"]], (function (l, n, e) {
             var t = !0,
@@ -31699,13 +31825,13 @@
             ngClass: [0, "ngClass"]
         }, null), vu(15, {
             disabled: 0
-        }), (l()(), su(16, 0, null, null, 1, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(-1, null, ["A"])), (l()(), iu(16777216, null, null, 1, null, DE)), gi(19, 16384, null, 0, Pa, [Fe, $e], {
+        }), (l()(), su(16, 0, null, null, 1, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(-1, null, ["A"])), (l()(), iu(16777216, null, null, 1, null, OE)), gi(19, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, ME)), gi(21, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, NE)), gi(21, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, OE)), gi(23, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, RE)), gi(23, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, NE)), gi(25, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, BE)), gi(25, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), iu(0, null, null, 0))], (function (l, n) {
             var e = n.component;
@@ -31720,7 +31846,7 @@
         }))
     }
 
-    function BE(l) {
+    function $E(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "div", [], null, [[null, "mouseenter"], [null, "mouseleave"], [null, "click"]], (function (l, n, e) {
             var t = !0,
                 i = l.component;
@@ -31737,7 +31863,7 @@
         }))
     }
 
-    function zE(l) {
+    function LE(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "div", [], null, [[null, "mouseenter"], [null, "mouseleave"], [null, "click"]], (function (l, n, e) {
             var t = !0,
                 i = l.component;
@@ -31754,7 +31880,7 @@
         }))
     }
 
-    function $E(l) {
+    function FE(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "div", [], null, [[null, "mouseenter"], [null, "mouseleave"], [null, "click"]], (function (l, n, e) {
             var t = !0,
                 i = l.component;
@@ -31771,7 +31897,7 @@
         }))
     }
 
-    function LE(l) {
+    function qE(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 15, "div", [["class", "map-menu position-absolute"]], null, [[null, "mousedown"]], (function (l, n, e) {
             var t = !0;
             return "mousedown" === n && (t = !1 !== e.stopPropagation() && t), t
@@ -31781,13 +31907,13 @@
             "left.px": 0,
             "top.px": 1,
             "z-index": 2
-        }), (l()(), su(4, 0, null, null, 8, "div", [["class", "menu-list d-flex mx-3"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, RE)), gi(6, 16384, null, 0, Pa, [Fe, $e], {
+        }), (l()(), su(4, 0, null, null, 8, "div", [["class", "menu-list d-flex mx-3"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, zE)), gi(6, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, BE)), gi(8, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, $E)), gi(8, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, zE)), gi(10, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, LE)), gi(10, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, $E)), gi(12, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, FE)), gi(12, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), su(13, 0, null, null, 2, "div", [["class", "menu-desc"]], null, null, null, null, null)), (l()(), su(14, 0, null, null, 1, "b", [], null, null, null, null, null)), (l()(), _u(15, null, ["", ""]))], (function (l, n) {
             var e = n.component,
@@ -31798,21 +31924,21 @@
         }))
     }
 
-    function FE(l) {
+    function UE(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "h5", [], null, null, null, null, null)), (l()(), _u(1, null, ["Attacking ", ""]))], null, (function (l, n) {
             var e = n.component;
             l(n, 1, 0, e.dataService.city(e.attack.to).name)
         }))
     }
 
-    function qE(l) {
+    function HE(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "h5", [], null, null, null, null, null)), (l()(), _u(1, null, ["Transfer to ", ""]))], null, (function (l, n) {
             var e = n.component;
             l(n, 1, 0, e.dataService.city(e.attack.to).name)
         }))
     }
 
-    function UE(l) {
+    function VE(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 8, "div", [["class", "form-group form-check mb-1"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 5, "input", [["class", "form-check-input"], ["id", "burn"], ["type", "checkbox"]], [[2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "ngModelChange"], [null, "change"], [null, "blur"]], (function (l, n, e) {
             var t = !0,
                 i = l.component;
@@ -31830,7 +31956,7 @@
         }))
     }
 
-    function HE(l) {
+    function jE(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 8, "div", [["class", "form-group form-check mb-1"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 5, "input", [["class", "form-check-input"], ["id", "noreturn"], ["type", "checkbox"]], [[2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "ngModelChange"], [null, "change"], [null, "blur"]], (function (l, n, e) {
             var t = !0,
                 i = l.component;
@@ -31850,22 +31976,22 @@
         }))
     }
 
-    function VE(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(1, null, [" ", " "]))], null, (function (l, n) {
-            var e = n.context.$implicit.name(n.component.dataService.player());
-            l(n, 1, 0, e)
-        }))
-    }
-
-    function jE(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(1, null, [" ", " "]))], null, (function (l, n) {
-            var e = n.context.$implicit.name(n.component.dataService.player());
-            l(n, 1, 0, e)
-        }))
-    }
-
     function GE(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 9, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["City"])), (l()(), iu(16777216, null, null, 1, null, jE)), gi(4, 278528, null, 0, Ea, [Fe, $e, Oe], {
+        return ku(0, [(l()(), su(0, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(1, null, [" ", " "]))], null, (function (l, n) {
+            var e = n.context.$implicit.name(n.component.dataService.player());
+            l(n, 1, 0, e)
+        }))
+    }
+
+    function WE(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(1, null, [" ", " "]))], null, (function (l, n) {
+            var e = n.context.$implicit.name(n.component.dataService.player());
+            l(n, 1, 0, e)
+        }))
+    }
+
+    function KE(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 9, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["City"])), (l()(), iu(16777216, null, null, 1, null, WE)), gi(4, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
         }, null), (l()(), su(5, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Distance"])), (l()(), su(7, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Time"])), (l()(), su(9, 0, null, null, 0, "th", [], null, null, null, null, null))], (function (l, n) {
             var e = n.component;
@@ -31873,7 +31999,7 @@
         }), null)
     }
 
-    function WE(l) {
+    function ZE(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 9, "td", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 6, "input", [["class", "d-inline"], ["min", "0"], ["style", "width:64px"], ["type", "number"]], [[1, "max", 0], [2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "ngModelChange"], [null, "input"], [null, "blur"], [null, "compositionstart"], [null, "compositionend"], [null, "change"]], (function (l, n, e) {
             var t = !0,
                 i = l.component;
@@ -31894,7 +32020,7 @@
         }))
     }
 
-    function KE(l) {
+    function QE(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 2, "span", [], null, null, null, null, null)), (l()(), _u(1, null, [" ", " "])), yu(2, 1)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 1, 0, l(n, 2, 0, ei(n.parent.parent.parent, 1), e.dataService.cityDistance(n.parent.context.$implicit.id, e.attack.to) / (e.attackSpeed(n.parent.context.$implicit, e.dataService.city(e.attack.to)) * e.conf.troop_speed_ratio)));
@@ -31902,7 +32028,7 @@
         }))
     }
 
-    function ZE(l) {
+    function YE(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "button", [["class", "btn btn-danger btn-sm"]], [[8, "disabled", 0]], [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== l.component.doAttack(l.parent.context.$implicit) && t), t
@@ -31911,7 +32037,7 @@
         }))
     }
 
-    function QE(l) {
+    function XE(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "button", [["class", "btn btn-primary btn-sm"]], [[8, "disabled", 0]], [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== l.component.doAttack(l.parent.context.$implicit) && t), t
@@ -31920,16 +32046,16 @@
         }))
     }
 
-    function YE(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 18, null, null, null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, GE)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
+    function JE(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 18, null, null, null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, KE)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), su(3, 0, null, null, 15, "tr", [], null, null, null, null, null)), (l()(), su(4, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(5, null, ["", ""])), (l()(), iu(16777216, null, null, 1, null, WE)), gi(7, 278528, null, 0, Ea, [Fe, $e, Oe], {
+        }, null), (l()(), su(3, 0, null, null, 15, "tr", [], null, null, null, null, null)), (l()(), su(4, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(5, null, ["", ""])), (l()(), iu(16777216, null, null, 1, null, ZE)), gi(7, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
-        }, null), (l()(), su(8, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), _u(9, null, ["", ""])), yu(10, 2), (l()(), su(11, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, KE)), gi(13, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), su(8, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), _u(9, null, ["", ""])), yu(10, 2), (l()(), su(11, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, QE)), gi(13, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), su(14, 0, null, null, 4, "td", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, ZE)), gi(16, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), su(14, 0, null, null, 4, "td", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, YE)), gi(16, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, QE)), gi(18, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, XE)), gi(18, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null)], (function (l, n) {
             var e = n.component;
@@ -31942,21 +32068,21 @@
         }))
     }
 
-    function XE(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 28, "div", [["class", "pl-2 overflow-auto h-100 pb-4"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, FE)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
+    function lA(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 28, "div", [["class", "pl-2 overflow-auto h-100 pb-4"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, UE)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, qE)), gi(4, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, HE)), gi(4, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), su(5, 0, null, null, 1, "button", [["class", "btn btn-sm btn-secondary"]], null, [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== (l.component.attack = void 0) && t), t
-        }), null, null)), (l()(), _u(-1, null, ["Return"])), (l()(), su(7, 0, null, null, 2, "div", [], null, null, null, null, null)), (l()(), su(8, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(-1, null, [" Click on a troop number to select all."])), (l()(), iu(16777216, null, null, 1, null, UE)), gi(11, 16384, null, 0, Pa, [Fe, $e], {
+        }), null, null)), (l()(), _u(-1, null, ["Return"])), (l()(), su(7, 0, null, null, 2, "div", [], null, null, null, null, null)), (l()(), su(8, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(-1, null, [" Click on a troop number to select all."])), (l()(), iu(16777216, null, null, 1, null, VE)), gi(11, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, HE)), gi(13, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, jE)), gi(13, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), su(14, 0, null, null, 14, "table", [["class", "table-sm"]], null, null, null, null, null)), (l()(), su(15, 0, null, null, 10, "thead", [], null, null, null, null, null)), (l()(), su(16, 0, null, null, 9, "tr", [], null, null, null, null, null)), (l()(), su(17, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["City"])), (l()(), iu(16777216, null, null, 1, null, VE)), gi(20, 278528, null, 0, Ea, [Fe, $e, Oe], {
+        }, null), (l()(), su(14, 0, null, null, 14, "table", [["class", "table-sm"]], null, null, null, null, null)), (l()(), su(15, 0, null, null, 10, "thead", [], null, null, null, null, null)), (l()(), su(16, 0, null, null, 9, "tr", [], null, null, null, null, null)), (l()(), su(17, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["City"])), (l()(), iu(16777216, null, null, 1, null, GE)), gi(20, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
-        }, null), (l()(), su(21, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Distance"])), (l()(), su(23, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Time"])), (l()(), su(25, 0, null, null, 0, "th", [], null, null, null, null, null)), (l()(), su(26, 0, null, null, 2, "tbody", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, YE)), gi(28, 278528, null, 0, Ea, [Fe, $e, Oe], {
+        }, null), (l()(), su(21, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Distance"])), (l()(), su(23, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Time"])), (l()(), su(25, 0, null, null, 0, "th", [], null, null, null, null, null)), (l()(), su(26, 0, null, null, 2, "tbody", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, JE)), gi(28, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
         }, null)], (function (l, n) {
             var e = n.component;
@@ -31966,7 +32092,7 @@
         }))
     }
 
-    function JE(l) {
+    function nA(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 21, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(2, null, ["", ""])), (l()(), su(3, 0, null, null, 9, "td", [], null, null, null, null, null)), (l()(), su(4, 0, null, null, 6, "input", [["class", "d-inline"], ["min", "0"], ["style", "width:64px"], ["type", "number"]], [[1, "max", 0], [2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "ngModelChange"], [null, "input"], [null, "blur"], [null, "compositionstart"], [null, "compositionend"], [null, "change"]], (function (l, n, e) {
             var t = !0,
                 i = l.component;
@@ -31995,19 +32121,19 @@
         }))
     }
 
-    function lA(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 2, null, null, null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, JE)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
+    function eA(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 2, null, null, null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, nA)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), iu(0, null, null, 0))], (function (l, n) {
             l(n, 2, 0, n.context.$implicit.troops.spy)
         }), null)
     }
 
-    function nA(l) {
+    function tA(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 22, "div", [["class", "pl-2 overflow-auto h-100 pb-4"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "h5", [], null, null, null, null, null)), (l()(), _u(2, null, ["Spying ", ""])), (l()(), su(3, 0, null, null, 1, "button", [["class", "btn btn-sm btn-secondary"]], null, [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== (l.component.spy = void 0) && t), t
-        }), null, null)), (l()(), _u(-1, null, ["Return"])), (l()(), su(5, 0, null, null, 2, "div", [], null, null, null, null, null)), (l()(), su(6, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(-1, null, [" Click on a spy nb to send all."])), (l()(), su(8, 0, null, null, 14, "table", [["class", "table-sm"]], null, null, null, null, null)), (l()(), su(9, 0, null, null, 10, "thead", [], null, null, null, null, null)), (l()(), su(10, 0, null, null, 9, "tr", [], null, null, null, null, null)), (l()(), su(11, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["City"])), (l()(), su(13, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Spy"])), (l()(), su(15, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Distance"])), (l()(), su(17, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Time"])), (l()(), su(19, 0, null, null, 0, "th", [], null, null, null, null, null)), (l()(), su(20, 0, null, null, 2, "tbody", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, lA)), gi(22, 278528, null, 0, Ea, [Fe, $e, Oe], {
+        }), null, null)), (l()(), _u(-1, null, ["Return"])), (l()(), su(5, 0, null, null, 2, "div", [], null, null, null, null, null)), (l()(), su(6, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(-1, null, [" Click on a spy nb to send all."])), (l()(), su(8, 0, null, null, 14, "table", [["class", "table-sm"]], null, null, null, null, null)), (l()(), su(9, 0, null, null, 10, "thead", [], null, null, null, null, null)), (l()(), su(10, 0, null, null, 9, "tr", [], null, null, null, null, null)), (l()(), su(11, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["City"])), (l()(), su(13, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Spy"])), (l()(), su(15, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Distance"])), (l()(), su(17, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Time"])), (l()(), su(19, 0, null, null, 0, "th", [], null, null, null, null, null)), (l()(), su(20, 0, null, null, 2, "tbody", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, eA)), gi(22, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
         }, null)], (function (l, n) {
             var e = n.component;
@@ -32018,13 +32144,13 @@
         }))
     }
 
-    function eA(l) {
+    function iA(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 2, "th", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(-1, null, [" Relations gains (est.)"]))], null, (function (l, n) {
             l(n, 1, 0, n.component.icons.diplomacy + " text-diplomacy")
         }))
     }
 
-    function tA(l) {
+    function sA(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 3, "span", [["class", "text-diplomacy"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(2, null, [" +", " "])), yu(3, 2)], null, (function (l, n) {
             var e = n.component;
             l(n, 1, 0, e.icons.diplomacy);
@@ -32033,19 +32159,19 @@
         }))
     }
 
-    function iA(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, tA)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
+    function uA(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, sA)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null)], (function (l, n) {
             l(n, 2, 0, n.component.gold.gold[n.parent.context.$implicit.id])
         }), null)
     }
 
-    function sA(l) {
+    function rA(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 25, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(2, null, ["", ""])), (l()(), su(3, 0, null, null, 3, "td", [["class", "cursor-pointer"]], null, [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== l.component.setMaxGold(l.context.$implicit) && t), t
-        }), null, null)), (l()(), su(4, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(5, null, [" ", ""])), yu(6, 1), (l()(), su(7, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), _u(8, null, ["", ""])), yu(9, 2), (l()(), su(10, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), _u(11, null, [" ", " "])), yu(12, 1), (l()(), iu(16777216, null, null, 1, null, iA)), gi(14, 16384, null, 0, Pa, [Fe, $e], {
+        }), null, null)), (l()(), su(4, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(5, null, [" ", ""])), yu(6, 1), (l()(), su(7, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), _u(8, null, ["", ""])), yu(9, 2), (l()(), su(10, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), _u(11, null, [" ", " "])), yu(12, 1), (l()(), iu(16777216, null, null, 1, null, uA)), gi(14, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), su(15, 0, null, null, 7, "td", [], null, null, null, null, null)), (l()(), su(16, 0, null, null, 6, "input", [["min", "0"], ["style", "width:180px"], ["type", "number"]], [[1, "max", 0], [2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "ngModelChange"], [null, "input"], [null, "blur"], [null, "compositionstart"], [null, "compositionend"], [null, "change"]], (function (l, n, e) {
             var t = !0,
@@ -32075,13 +32201,13 @@
         }))
     }
 
-    function uA(l) {
+    function aA(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 26, "div", [["class", "pl-2 overflow-auto h-100 pb-4"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "h5", [], null, null, null, null, null)), (l()(), _u(2, null, ["Sending gold to ", ""])), (l()(), su(3, 0, null, null, 1, "button", [["class", "btn btn-sm btn-secondary"]], null, [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== (l.component.gold = void 0) && t), t
-        }), null, null)), (l()(), _u(-1, null, ["Return"])), (l()(), su(5, 0, null, null, 2, "div", [], null, null, null, null, null)), (l()(), su(6, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(-1, null, [" Click on a gold value to send all."])), (l()(), su(8, 0, null, null, 18, "table", [["class", "table-sm"]], null, null, null, null, null)), (l()(), su(9, 0, null, null, 14, "thead", [], null, null, null, null, null)), (l()(), su(10, 0, null, null, 13, "tr", [], null, null, null, null, null)), (l()(), su(11, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["City"])), (l()(), su(13, 0, null, null, 2, "th", [], null, null, null, null, null)), (l()(), su(14, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(-1, null, [" Gold"])), (l()(), su(16, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Distance"])), (l()(), su(18, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Time"])), (l()(), iu(16777216, null, null, 1, null, eA)), gi(21, 16384, null, 0, Pa, [Fe, $e], {
+        }), null, null)), (l()(), _u(-1, null, ["Return"])), (l()(), su(5, 0, null, null, 2, "div", [], null, null, null, null, null)), (l()(), su(6, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(-1, null, [" Click on a gold value to send all."])), (l()(), su(8, 0, null, null, 18, "table", [["class", "table-sm"]], null, null, null, null, null)), (l()(), su(9, 0, null, null, 14, "thead", [], null, null, null, null, null)), (l()(), su(10, 0, null, null, 13, "tr", [], null, null, null, null, null)), (l()(), su(11, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["City"])), (l()(), su(13, 0, null, null, 2, "th", [], null, null, null, null, null)), (l()(), su(14, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(-1, null, [" Gold"])), (l()(), su(16, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Distance"])), (l()(), su(18, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Time"])), (l()(), iu(16777216, null, null, 1, null, iA)), gi(21, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), su(22, 0, null, null, 0, "th", [], null, null, null, null, null)), (l()(), su(23, 0, null, null, 0, "th", [], null, null, null, null, null)), (l()(), su(24, 0, null, null, 2, "tbody", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, sA)), gi(26, 278528, null, 0, Ea, [Fe, $e, Oe], {
+        }, null), (l()(), su(22, 0, null, null, 0, "th", [], null, null, null, null, null)), (l()(), su(23, 0, null, null, 0, "th", [], null, null, null, null, null)), (l()(), su(24, 0, null, null, 2, "tbody", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, rA)), gi(26, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
         }, null)], (function (l, n) {
             var e = n.component;
@@ -32092,7 +32218,7 @@
         }))
     }
 
-    function rA(l) {
+    function oA(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 3, "div", [["class", "text-science"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(2, null, [" +", ""])), yu(3, 1)], null, (function (l, n) {
             var e = n.component;
             l(n, 1, 0, e.icons.science);
@@ -32101,7 +32227,7 @@
         }))
     }
 
-    function aA(l) {
+    function cA(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 3, "div", [["class", "text-faith"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(2, null, [" +", ""])), yu(3, 1)], null, (function (l, n) {
             var e = n.component;
             l(n, 1, 0, e.icons.faith);
@@ -32110,18 +32236,18 @@
         }))
     }
 
-    function oA(l) {
+    function dA(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 43, "div", [["class", "card cursor-pointer"], ["hover-class", "bg-dark text-light"], ["style", "width:500px"]], null, [[null, "click"], [null, "mouseenter"], [null, "mouseleave"]], (function (l, n, e) {
             var t = !0,
                 i = l.component;
             return "mouseenter" === n && (t = !1 !== ei(l, 1).onMouseEnter() && t), "mouseleave" === n && (t = !1 !== ei(l, 1).onMouseLeave() && t), "click" === n && (t = !1 !== i.doCreateTrade(l.context.index) && t), t
         }), null, null)), gi(1, 16384, null, 0, sg, [fe], {
             hoverClass: [0, "hoverClass"]
-        }, null), (l()(), su(2, 0, null, null, 41, "div", [["class", "card-body p-2"]], null, null, null, null, null)), (l()(), su(3, 0, null, null, 40, "div", [["class", "card-text d-flex align-items-center"]], null, null, null, null, null)), (l()(), su(4, 0, null, null, 16, "div", [], null, null, null, null, null)), (l()(), su(5, 0, null, null, 3, "div", [["class", "text-gold"]], null, null, null, null, null)), (l()(), su(6, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(7, null, [" +", ""])), yu(8, 1), (l()(), su(9, 0, null, null, 3, "div", [["class", "text-culture"]], null, null, null, null, null)), (l()(), su(10, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(11, null, [" +", " "])), yu(12, 1), (l()(), su(13, 0, null, null, 3, "div", [["class", "text-diplomacy"]], null, null, null, null, null)), (l()(), su(14, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(15, null, [" +", ""])), yu(16, 2), (l()(), iu(16777216, null, null, 1, null, rA)), gi(18, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), su(2, 0, null, null, 41, "div", [["class", "card-body p-2"]], null, null, null, null, null)), (l()(), su(3, 0, null, null, 40, "div", [["class", "card-text d-flex align-items-center"]], null, null, null, null, null)), (l()(), su(4, 0, null, null, 16, "div", [], null, null, null, null, null)), (l()(), su(5, 0, null, null, 3, "div", [["class", "text-gold"]], null, null, null, null, null)), (l()(), su(6, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(7, null, [" +", ""])), yu(8, 1), (l()(), su(9, 0, null, null, 3, "div", [["class", "text-culture"]], null, null, null, null, null)), (l()(), su(10, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(11, null, [" +", " "])), yu(12, 1), (l()(), su(13, 0, null, null, 3, "div", [["class", "text-diplomacy"]], null, null, null, null, null)), (l()(), su(14, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(15, null, [" +", ""])), yu(16, 2), (l()(), iu(16777216, null, null, 1, null, oA)), gi(18, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, aA)), gi(20, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, cA)), gi(20, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), su(21, 0, null, null, 1, "div", [["class", "mx-4 text-200 text-secondary"]], null, null, null, null, null)), (l()(), su(22, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), su(23, 0, null, null, 5, "div", [["class", "mx-3 flex-fill text-center"], ["style", "height:auto!important"]], null, null, null, null, null)), (l()(), su(24, 0, null, null, 1, "div", [["class", "text-120"]], null, null, null, null, null)), (l()(), _u(25, null, ["", ""])), (l()(), su(26, 0, null, null, 2, "div", [], null, null, null, null, null)), (l()(), su(27, 0, null, null, 1, "player", [], null, null, null, _E, vE)), gi(28, 114688, null, 0, yE, [zg], {
+        }, null), (l()(), su(21, 0, null, null, 1, "div", [["class", "mx-4 text-200 text-secondary"]], null, null, null, null, null)), (l()(), su(22, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), su(23, 0, null, null, 5, "div", [["class", "mx-3 flex-fill text-center"], ["style", "height:auto!important"]], null, null, null, null, null)), (l()(), su(24, 0, null, null, 1, "div", [["class", "text-120"]], null, null, null, null, null)), (l()(), _u(25, null, ["", ""])), (l()(), su(26, 0, null, null, 2, "div", [], null, null, null, null, null)), (l()(), su(27, 0, null, null, 1, "player", [], null, null, null, xE, _E)), gi(28, 114688, null, 0, bE, [zg], {
             id: [0, "id"]
         }, null), (l()(), su(29, 0, null, null, 1, "div", [["class", "mx-4 text-200 text-secondary"]], null, null, null, null, null)), (l()(), su(30, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), su(31, 0, null, null, 12, "div", [], null, null, null, null, null)), (l()(), su(32, 0, null, null, 3, "div", [["class", "text-gold"]], null, null, null, null, null)), (l()(), su(33, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(34, null, [" +", ""])), yu(35, 1), (l()(), su(36, 0, null, null, 3, "div", [["class", "text-culture"]], null, null, null, null, null)), (l()(), su(37, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(38, null, [" +", ""])), yu(39, 1), (l()(), su(40, 0, null, null, 3, "div", [["class", "text-diplomacy"]], null, null, null, null, null)), (l()(), su(41, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(42, null, [" +", ""])), yu(43, 1)], (function (l, n) {
             var e = n.component;
@@ -32144,8 +32270,8 @@
         }))
     }
 
-    function cA(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 4, "div", [["class", ""]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "div", [], null, null, null, null, null)), (l()(), _u(2, null, ["Maximum distance allowed: ", ""])), (l()(), iu(16777216, null, null, 1, null, oA)), gi(4, 278528, null, 0, Ea, [Fe, $e, Oe], {
+    function hA(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 4, "div", [["class", ""]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "div", [], null, null, null, null, null)), (l()(), _u(2, null, ["Maximum distance allowed: ", ""])), (l()(), iu(16777216, null, null, 1, null, dA)), gi(4, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
         }, null)], (function (l, n) {
             l(n, 4, 0, n.component.trade.cities)
@@ -32154,14 +32280,14 @@
         }))
     }
 
-    function dA(l) {
+    function pA(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "div", [], null, null, null, null, null)), (l()(), _u(-1, null, [" There is no available trade routes at the moment. "]))], null, null)
     }
 
-    function hA(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 9, "div", [["class", "h-100 overflow-auto pl-2"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "h2", [], null, null, null, null, null)), (l()(), _u(2, null, ["Create trade route from ", ""])), (l()(), iu(16777216, null, null, 1, null, cA)), gi(4, 16384, null, 0, Pa, [Fe, $e], {
+    function fA(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 9, "div", [["class", "h-100 overflow-auto pl-2"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "h2", [], null, null, null, null, null)), (l()(), _u(2, null, ["Create trade route from ", ""])), (l()(), iu(16777216, null, null, 1, null, hA)), gi(4, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, dA)), gi(6, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, pA)), gi(6, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), su(7, 0, null, null, 2, "div", [["class", "d-flex"]], null, null, null, null, null)), (l()(), su(8, 0, null, null, 1, "button", [["class", "btn btn-secondary"]], null, [[null, "click"]], (function (l, n, e) {
             var t = !0;
@@ -32174,13 +32300,13 @@
         }))
     }
 
-    function pA(l) {
+    function gA(l) {
         return ku(0, [(l()(), _u(0, null, ["", ""]))], null, (function (l, n) {
             l(n, 0, 0, n.context.title)
         }))
     }
 
-    function fA(l) {
+    function mA(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 0, "div", [], [[8, "innerHTML", 1]], null, null, null, null)), (l()(), su(1, 0, null, null, 7, "div", [["class", "border-top mt-1"]], null, null, null, null, null)), (l()(), su(2, 0, null, null, 3, "span", [["class", "text-gold mr-2"]], null, null, null, null, null)), (l()(), su(3, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(4, null, [" ", ""])), yu(5, 1), (l()(), su(6, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(7, null, [" ", " "])), yu(8, 1)], null, (function (l, n) {
             var e = n.component;
             l(n, 0, 0, n.context.desc), l(n, 3, 0, e.icons.gold);
@@ -32191,7 +32317,7 @@
         }))
     }
 
-    function gA(l) {
+    function yA(l) {
         return ku(0, [mi(0, zv, []), mi(0, gv, []), cu(402653184, 1, {
             container: 0
         }), cu(402653184, 2, {
@@ -32237,23 +32363,23 @@
             model: [0, "model"]
         }, {
             update: "ngModelChange"
-        }), yi(2048, null, af, null, [lg]), gi(40, 16384, null, 0, cf, [[4, af]], null, null), (l()(), su(41, 0, null, null, 1, "label", [["class", "m-0"], ["for", "showter"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Hide Terrain"])), (l()(), iu(16777216, null, null, 1, null, kE)), gi(44, 16384, null, 0, Pa, [Fe, $e], {
+        }), yi(2048, null, af, null, [lg]), gi(40, 16384, null, 0, cf, [[4, af]], null, null), (l()(), su(41, 0, null, null, 1, "label", [["class", "m-0"], ["for", "showter"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Hide Terrain"])), (l()(), iu(16777216, null, null, 1, null, CE)), gi(44, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, TE)), gi(46, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, AE)), gi(46, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, EE)), gi(48, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, PE)), gi(48, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, LE)), gi(50, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, qE)), gi(50, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, XE)), gi(52, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, lA)), gi(52, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, nA)), gi(54, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, tA)), gi(54, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, uA)), gi(56, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, aA)), gi(56, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, hA)), gi(58, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, fA)), gi(58, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(0, [["popTitle", 2]], null, 0, null, pA)), (l()(), iu(0, [["popContent", 2]], null, 0, null, fA))], (function (l, n) {
+        }, null), (l()(), iu(0, [["popTitle", 2]], null, 0, null, gA)), (l()(), iu(0, [["popContent", 2]], null, 0, null, mA))], (function (l, n) {
             var e = n.component;
             l(n, 20, 0, e.data.world_hide_tr), l(n, 29, 0, e.data.world_hide_un), l(n, 38, 0, e.data.world_hide_ter), l(n, 44, 0, e.label), l(n, 46, 0, e.worker), l(n, 48, 0, e.scout), l(n, 50, 0, e.menu.show), l(n, 52, 0, e.attack), l(n, 54, 0, e.spy), l(n, 56, 0, e.gold), l(n, 58, 0, e.trade)
         }), (function (l, n) {
@@ -32262,15 +32388,15 @@
         }))
     }
 
-    function mA(l) {
+    function vA(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "app-world", [], null, [["document", "keydown"], ["document", "keyup"]], (function (l, n, e) {
             var t = !0;
             return "document:keydown" === n && (t = !1 !== ei(l, 1).handleKeydownEvent(e) && t), "document:keyup" === n && (t = !1 !== ei(l, 1).handleKeyupEvent(e) && t), t
-        }), gA, xE)), gi(1, 245760, null, 0, wE, [Tg, Pg, oh, zg, _p], null, null)], (function (l, n) {
+        }), yA, SE)), gi(1, 245760, null, 0, kE, [Tg, Pg, oh, zg, _p], null, null)], (function (l, n) {
             l(n, 1, 0)
         }), null)
     }
-    var yA = jt("app-world", wE, mA, {}, {}, []); class vA {
+    var bA = jt("app-world", kE, vA, {}, {}, []); class _A {
         constructor(l, n, e) {
             this.data = l, this.dataService = n, this.conf = e, this.icons = ug
         }
@@ -32296,43 +32422,44 @@
             return "(" + Math.abs(l.y) + (l.y < 0 ? "N" : "S") + "," + Math.abs(l.x) + (l.x < 0 ? "W" : "E") + ")"
         }
     }
-    var bA = st({
+    var wA = st({
         encapsulation: 0,
         styles: [[""]],
         data: {}
     });
 
-    function _A(l) {
+    function xA(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "span", [["class", "badge badge-pill badge-danger mr-2"]], null, null, null, null, null)), (l()(), _u(-1, null, ["!"]))], null, null)
     }
 
-    function wA(l) {
+    function kA(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "span", [["class", "mr-2"]], null, null, null, null, null)), (l()(), _u(1, null, ["", ": ", ""]))], null, (function (l, n) {
-            l(n, 1, 0, n.parent.context.$implicit.key, n.parent.context.$implicit.value)
+            var e = n.component;
+            l(n, 1, 0, e.conf.troops[n.parent.context.$implicit.key].name(e.dataService.player(n.parent.parent.parent.parent.context.$implicit.ownerid)), n.parent.context.$implicit.value)
         }))
     }
 
-    function xA(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 2, null, null, null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, wA)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
+    function SA(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 2, null, null, null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, kA)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), iu(0, null, null, 0))], (function (l, n) {
             l(n, 2, 0, n.context.$implicit.value)
         }), null)
     }
 
-    function kA(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 3, "td", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 2, null, xA)), gi(2, 278528, null, 0, Ea, [Fe, $e, Oe], {
+    function CA(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 3, "td", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 2, null, SA)), gi(2, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
         }, null), mi(0, La, [Ne])], (function (l, n) {
             l(n, 2, 0, et(n, 2, 0, ei(n, 3).transform(n.parent.parent.context.$implicit.troops)))
         }), null)
     }
 
-    function SA(l) {
+    function IA(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["?"]))], null, null)
     }
 
-    function CA(l) {
+    function TA(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "button", [["class", "btn btn-danger"], ["title", "Cancel"]], [[8, "disabled", 0]], [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== l.component.cancel(l.parent.parent.context.$implicit) && t), t
@@ -32342,8 +32469,8 @@
         }))
     }
 
-    function IA(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 25, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 4, "td", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, _A)), gi(3, 16384, null, 0, Pa, [Fe, $e], {
+    function EA(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 25, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 4, "td", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, xA)), gi(3, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), su(4, 0, null, null, 1, "city", [], null, null, null, ix, ex)), gi(5, 114688, null, 0, nx, [Pg, zg], {
             x: [0, "x"],
@@ -32351,11 +32478,11 @@
         }, null), (l()(), su(6, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), su(7, 0, null, null, 1, "city", [], null, null, null, ix, ex)), gi(8, 114688, null, 0, nx, [Pg, zg], {
             x: [0, "x"],
             y: [1, "y"]
-        }, null), (l()(), su(9, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(10, null, ["", ""])), (l()(), su(11, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(12, null, ["", ""])), (l()(), su(13, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), _u(14, null, ["", ""])), yu(15, 1), (l()(), su(16, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), _u(17, null, ["", ""])), yu(18, 1), (l()(), iu(16777216, null, null, 1, null, kA)), gi(20, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), su(9, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(10, null, ["", ""])), (l()(), su(11, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(12, null, ["", ""])), (l()(), su(13, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), _u(14, null, ["", ""])), yu(15, 1), (l()(), su(16, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), _u(17, null, ["", ""])), yu(18, 1), (l()(), iu(16777216, null, null, 1, null, CA)), gi(20, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, SA)), gi(22, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, IA)), gi(22, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), su(23, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, CA)), gi(25, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), su(23, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, TA)), gi(25, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null)], (function (l, n) {
             l(n, 3, 0, 0 != n.parent.context.$implicit.ownerid), l(n, 5, 0, n.parent.context.$implicit.from.x, n.parent.context.$implicit.from.y), l(n, 8, 0, n.parent.context.$implicit.to.x, n.parent.context.$implicit.to.y), l(n, 20, 0, 0 == n.parent.context.$implicit.ownerid), l(n, 22, 0, 0 != n.parent.context.$implicit.ownerid), l(n, 25, 0, 0 == n.parent.context.$implicit.ownerid)
@@ -32369,25 +32496,25 @@
         }))
     }
 
-    function TA(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 2, null, null, null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, IA)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
+    function AA(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 2, null, null, null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, EA)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), iu(0, null, null, 0))], (function (l, n) {
             l(n, 2, 0, 0 == n.context.$implicit.ownerid || 0 == n.context.$implicit.destid && !n.context.$implicit.returning)
         }), null)
     }
 
-    function EA(l) {
+    function PA(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(1, null, ["Spy: ", ""]))], null, (function (l, n) {
             l(n, 1, 0, n.parent.context.$implicit.spies)
         }))
     }
 
-    function AA(l) {
+    function DA(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["?"]))], null, null)
     }
 
-    function PA(l) {
+    function MA(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "button", [["class", "btn btn-danger"], ["title", "Cancel"]], [[8, "disabled", 0]], [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== l.component.cancel(l.parent.context.$implicit) && t), t
@@ -32397,18 +32524,18 @@
         }))
     }
 
-    function DA(l) {
+    function OA(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 21, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), su(2, 0, null, null, 1, "city", [], null, null, null, ix, ex)), gi(3, 114688, null, 0, nx, [Pg, zg], {
             x: [0, "x"],
             y: [1, "y"]
         }, null), (l()(), su(4, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), su(5, 0, null, null, 1, "city", [], null, null, null, ix, ex)), gi(6, 114688, null, 0, nx, [Pg, zg], {
             x: [0, "x"],
             y: [1, "y"]
-        }, null), (l()(), su(7, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(8, null, ["", ""])), (l()(), su(9, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(10, null, ["", ""])), (l()(), su(11, 0, null, null, 0, "td", [], null, null, null, null, null)), (l()(), su(12, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), _u(13, null, ["", ""])), yu(14, 1), (l()(), iu(16777216, null, null, 1, null, EA)), gi(16, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), su(7, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(8, null, ["", ""])), (l()(), su(9, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(10, null, ["", ""])), (l()(), su(11, 0, null, null, 0, "td", [], null, null, null, null, null)), (l()(), su(12, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), _u(13, null, ["", ""])), yu(14, 1), (l()(), iu(16777216, null, null, 1, null, PA)), gi(16, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, AA)), gi(18, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, DA)), gi(18, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), su(19, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, PA)), gi(21, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), su(19, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, MA)), gi(21, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null)], (function (l, n) {
             l(n, 3, 0, n.context.$implicit.from.x, n.context.$implicit.from.y), l(n, 6, 0, n.context.$implicit.to.x, n.context.$implicit.to.y), l(n, 16, 0, 0 == n.context.$implicit.ownerid), l(n, 18, 0, 0 != n.context.$implicit.ownerid), l(n, 21, 0, 0 == n.context.$implicit.ownerid)
@@ -32420,7 +32547,7 @@
         }))
     }
 
-    function MA(l) {
+    function NA(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "button", [["class", "btn btn-danger"], ["title", "Cancel"]], [[8, "disabled", 0]], [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== l.component.cancelScout(l.parent.parent.context.$implicit) && t), t
@@ -32430,7 +32557,7 @@
         }))
     }
 
-    function OA(l) {
+    function RA(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 21, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), su(2, 0, null, null, 1, "city", [], null, null, null, ix, ex)), gi(3, 114688, null, 0, nx, [Pg, zg], {
             x: [0, "x"],
             y: [1, "y"]
@@ -32443,7 +32570,7 @@
         }, null), vu(7, {
             x: 0,
             y: 1
-        }), (l()(), _u(8, null, ["", ""])), (l()(), su(9, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(10, null, ["", ""])), (l()(), su(11, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(12, null, ["", ""])), (l()(), su(13, 0, null, null, 0, "td", [], null, null, null, null, null)), (l()(), su(14, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), _u(15, null, ["", ""])), yu(16, 1), (l()(), su(17, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(18, null, ["", ": 1"])), (l()(), su(19, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, MA)), gi(21, 16384, null, 0, Pa, [Fe, $e], {
+        }), (l()(), _u(8, null, ["", ""])), (l()(), su(9, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(10, null, ["", ""])), (l()(), su(11, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(12, null, ["", ""])), (l()(), su(13, 0, null, null, 0, "td", [], null, null, null, null, null)), (l()(), su(14, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), _u(15, null, ["", ""])), yu(16, 1), (l()(), su(17, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(18, null, ["", ": 1"])), (l()(), su(19, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, NA)), gi(21, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null)], (function (l, n) {
             l(n, 3, 0, n.parent.context.$implicit.from.x, n.parent.context.$implicit.from.y);
@@ -32457,15 +32584,15 @@
         }))
     }
 
-    function NA(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 2, null, null, null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, OA)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
+    function BA(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 2, null, null, null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, RA)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), iu(0, null, null, 0))], (function (l, n) {
             l(n, 2, 0, 0 == n.context.$implicit.ownerid)
         }), null)
     }
 
-    function RA(l) {
+    function zA(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "button", [["class", "btn btn-danger"], ["title", "Cancel"]], [[8, "disabled", 0]], [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== l.component.cancelWorker(l.parent.parent.context.$implicit) && t), t
@@ -32475,7 +32602,7 @@
         }))
     }
 
-    function BA(l) {
+    function $A(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 20, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), su(2, 0, null, null, 1, "city", [], null, null, null, ix, ex)), gi(3, 114688, null, 0, nx, [Pg, zg], {
             x: [0, "x"],
             y: [1, "y"]
@@ -32488,7 +32615,7 @@
         }, null), vu(7, {
             x: 0,
             y: 1
-        }), (l()(), _u(8, null, ["", ""])), (l()(), su(9, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(10, null, ["", ""])), (l()(), su(11, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(12, null, ["", ""])), (l()(), su(13, 0, null, null, 0, "td", [], null, null, null, null, null)), (l()(), su(14, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), _u(15, null, ["", ""])), yu(16, 1), (l()(), su(17, 0, null, null, 0, "td", [], null, null, null, null, null)), (l()(), su(18, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, RA)), gi(20, 16384, null, 0, Pa, [Fe, $e], {
+        }), (l()(), _u(8, null, ["", ""])), (l()(), su(9, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(10, null, ["", ""])), (l()(), su(11, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(12, null, ["", ""])), (l()(), su(13, 0, null, null, 0, "td", [], null, null, null, null, null)), (l()(), su(14, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), _u(15, null, ["", ""])), yu(16, 1), (l()(), su(17, 0, null, null, 0, "td", [], null, null, null, null, null)), (l()(), su(18, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, zA)), gi(20, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null)], (function (l, n) {
             l(n, 3, 0, n.parent.context.$implicit.from.x, n.parent.context.$implicit.from.y);
@@ -32502,15 +32629,15 @@
         }))
     }
 
-    function zA(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 2, null, null, null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, BA)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
+    function LA(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 2, null, null, null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, $A)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), iu(0, null, null, 0))], (function (l, n) {
             l(n, 2, 0, 0 == n.context.$implicit.ownerid)
         }), null)
     }
 
-    function $A(l) {
+    function FA(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "button", [["class", "btn btn-danger"], ["title", "Cancel"]], [[8, "disabled", 0]], [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== l.component.cancel(l.parent.parent.context.$implicit) && t), t
@@ -32520,7 +32647,7 @@
         }))
     }
 
-    function LA(l) {
+    function qA(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 20, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), su(2, 0, null, null, 1, "city", [], null, null, null, ix, ex)), gi(3, 114688, null, 0, nx, [Pg, zg], {
             x: [0, "x"],
             y: [1, "y"]
@@ -32533,7 +32660,7 @@
         }, null), vu(7, {
             x: 0,
             y: 1
-        }), (l()(), _u(8, null, ["", ""])), (l()(), su(9, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(10, null, ["", ""])), (l()(), su(11, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Moving"])), (l()(), su(13, 0, null, null, 0, "td", [], null, null, null, null, null)), (l()(), su(14, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), _u(15, null, ["", ""])), yu(16, 1), (l()(), su(17, 0, null, null, 0, "td", [], null, null, null, null, null)), (l()(), su(18, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, $A)), gi(20, 16384, null, 0, Pa, [Fe, $e], {
+        }), (l()(), _u(8, null, ["", ""])), (l()(), su(9, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(10, null, ["", ""])), (l()(), su(11, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Moving"])), (l()(), su(13, 0, null, null, 0, "td", [], null, null, null, null, null)), (l()(), su(14, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), _u(15, null, ["", ""])), yu(16, 1), (l()(), su(17, 0, null, null, 0, "td", [], null, null, null, null, null)), (l()(), su(18, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, FA)), gi(20, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null)], (function (l, n) {
             l(n, 3, 0, n.parent.context.$implicit.from.x, n.parent.context.$implicit.from.y);
@@ -32547,15 +32674,15 @@
         }))
     }
 
-    function FA(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 2, null, null, null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, LA)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
+    function UA(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 2, null, null, null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, qA)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), iu(0, null, null, 0))], (function (l, n) {
             l(n, 2, 0, 0 == n.context.$implicit.ownerid)
         }), null)
     }
 
-    function qA(l) {
+    function HA(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "button", [["class", "btn btn-danger"], ["title", "Cancel"]], [[8, "disabled", 0]], [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== l.component.cancel(l.parent.parent.context.$implicit) && t), t
@@ -32565,14 +32692,14 @@
         }))
     }
 
-    function UA(l) {
+    function VA(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 20, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), su(2, 0, null, null, 1, "city", [], null, null, null, ix, ex)), gi(3, 114688, null, 0, nx, [Pg, zg], {
             x: [0, "x"],
             y: [1, "y"]
         }, null), (l()(), su(4, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), su(5, 0, null, null, 1, "city", [], null, null, null, ix, ex)), gi(6, 114688, null, 0, nx, [Pg, zg], {
             x: [0, "x"],
             y: [1, "y"]
-        }, null), (l()(), su(7, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(8, null, ["", ""])), (l()(), su(9, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Gold transfer"])), (l()(), su(11, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), _u(12, null, ["", ""])), yu(13, 1), (l()(), su(14, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), _u(15, null, ["", ""])), yu(16, 1), (l()(), su(17, 0, null, null, 0, "td", [], null, null, null, null, null)), (l()(), su(18, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, qA)), gi(20, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), su(7, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(8, null, ["", ""])), (l()(), su(9, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Gold transfer"])), (l()(), su(11, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), _u(12, null, ["", ""])), yu(13, 1), (l()(), su(14, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), _u(15, null, ["", ""])), yu(16, 1), (l()(), su(17, 0, null, null, 0, "td", [], null, null, null, null, null)), (l()(), su(18, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, HA)), gi(20, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null)], (function (l, n) {
             l(n, 3, 0, n.parent.context.$implicit.from.x, n.parent.context.$implicit.from.y), l(n, 6, 0, n.parent.context.$implicit.to.x, n.parent.context.$implicit.to.y), l(n, 20, 0, 0 == n.parent.context.$implicit.ownerid)
@@ -32586,26 +32713,26 @@
         }))
     }
 
-    function HA(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 2, null, null, null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, UA)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
+    function jA(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 2, null, null, null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, VA)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), iu(0, null, null, 0))], (function (l, n) {
             l(n, 2, 0, 0 == n.context.$implicit.ownerid || 0 == n.context.$implicit.destid)
         }), null)
     }
 
-    function VA(l) {
-        return ku(0, [mi(0, zv, []), mi(0, gv, []), (l()(), su(2, 0, null, null, 29, "div", [["class", "overflow-auto h-100"]], null, null, null, null, null)), (l()(), su(3, 0, null, null, 28, "table", [["class", "table"]], null, null, null, null, null)), (l()(), su(4, 0, null, null, 14, "thead", [], null, null, null, null, null)), (l()(), su(5, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Origin"])), (l()(), su(7, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Destination"])), (l()(), su(9, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Speed"])), (l()(), su(11, 0, null, null, 0, "th", [], null, null, null, null, null)), (l()(), su(12, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Gold"])), (l()(), su(14, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Remaining Time"])), (l()(), su(16, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Troops"])), (l()(), su(18, 0, null, null, 0, "th", [], null, null, null, null, null)), (l()(), su(19, 0, null, null, 12, "tbody", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, TA)), gi(21, 278528, null, 0, Ea, [Fe, $e, Oe], {
+    function GA(l) {
+        return ku(0, [mi(0, zv, []), mi(0, gv, []), (l()(), su(2, 0, null, null, 29, "div", [["class", "overflow-auto h-100"]], null, null, null, null, null)), (l()(), su(3, 0, null, null, 28, "table", [["class", "table"]], null, null, null, null, null)), (l()(), su(4, 0, null, null, 14, "thead", [], null, null, null, null, null)), (l()(), su(5, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Origin"])), (l()(), su(7, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Destination"])), (l()(), su(9, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Speed"])), (l()(), su(11, 0, null, null, 0, "th", [], null, null, null, null, null)), (l()(), su(12, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Gold"])), (l()(), su(14, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Remaining Time"])), (l()(), su(16, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Troops"])), (l()(), su(18, 0, null, null, 0, "th", [], null, null, null, null, null)), (l()(), su(19, 0, null, null, 12, "tbody", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, AA)), gi(21, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, DA)), gi(23, 278528, null, 0, Ea, [Fe, $e, Oe], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, OA)), gi(23, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, NA)), gi(25, 278528, null, 0, Ea, [Fe, $e, Oe], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, BA)), gi(25, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, zA)), gi(27, 278528, null, 0, Ea, [Fe, $e, Oe], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, LA)), gi(27, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, FA)), gi(29, 278528, null, 0, Ea, [Fe, $e, Oe], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, UA)), gi(29, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, HA)), gi(31, 278528, null, 0, Ea, [Fe, $e, Oe], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, jA)), gi(31, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
         }, null)], (function (l, n) {
             var e = n.component;
@@ -32613,12 +32740,12 @@
         }), null)
     }
 
-    function jA(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 1, "app-attacks", [], null, null, null, VA, bA)), gi(1, 114688, null, 0, vA, [Pg, zg, Tg], null, null)], (function (l, n) {
+    function WA(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 1, "app-attacks", [], null, null, null, GA, wA)), gi(1, 114688, null, 0, _A, [Pg, zg, Tg], null, null)], (function (l, n) {
             l(n, 1, 0)
         }), null)
     }
-    var GA = jt("app-attacks", vA, jA, {}, {}, []); class WA {
+    var KA = jt("app-attacks", _A, WA, {}, {}, []); class ZA {
         constructor(l, n, e, t) {
             this.dataService = l, this.conf = n, this.data = e, this.messageService = t, this.icons = ug, this.attacking = {}, this.defending = {}, this.attacking_results = {}, this.defending_results = {}, this.walls = !1, this.walls_result = !1, this.castle = !1, this.castle_result = !1, this.fortress = !1, this.fortress_result = !1, this.pop = 5, this.def = 0
         }
@@ -32656,7 +32783,7 @@
             return l
         }
     }
-    let KA = (() => {
+    let QA = (() => {
         class l {
             storeMessage(l) {
                 this.message = l
@@ -32676,13 +32803,13 @@
             providedIn: "root"
         }), l
     })();
-    var ZA = st({
+    var YA = st({
         encapsulation: 0,
         styles: [[""]],
         data: {}
     });
 
-    function QA(l) {
+    function XA(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 13, "tr", [["class", "form-group"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), su(2, 0, null, null, 1, "label", [], [[8, "htmlFor", 0]], null, null, null, null)), (l()(), _u(3, null, ["", ""])), (l()(), su(4, 0, null, null, 7, "td", [], null, null, null, null, null)), (l()(), su(5, 0, null, null, 6, "input", [["class", "form-control form-control-sm"], ["min", "0"], ["type", "number"]], [[8, "id", 0], [2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "ngModelChange"], [null, "input"], [null, "blur"], [null, "compositionstart"], [null, "compositionend"], [null, "change"]], (function (l, n, e) {
             var t = !0,
                 i = l.component;
@@ -32697,11 +32824,11 @@
             l(n, 9, 0, n.component.attacking[n.context.$implicit.key])
         }), (function (l, n) {
             var e = n.component;
-            l(n, 2, 0, Mt(1, "a-troop-", n.context.$implicit.key, "")), l(n, 3, 0, n.context.$implicit.key), l(n, 5, 0, Mt(1, "a-troop-", n.context.$implicit.key, ""), ei(n, 11).ngClassUntouched, ei(n, 11).ngClassTouched, ei(n, 11).ngClassPristine, ei(n, 11).ngClassDirty, ei(n, 11).ngClassValid, ei(n, 11).ngClassInvalid, ei(n, 11).ngClassPending), l(n, 13, 0, e.attacking_results[n.context.$implicit.key])
+            l(n, 2, 0, Mt(1, "a-troop-", n.context.$implicit.key, "")), l(n, 3, 0, e.conf.troops[n.context.$implicit.key].name(e.dataService.player())), l(n, 5, 0, Mt(1, "a-troop-", n.context.$implicit.key, ""), ei(n, 11).ngClassUntouched, ei(n, 11).ngClassTouched, ei(n, 11).ngClassPristine, ei(n, 11).ngClassDirty, ei(n, 11).ngClassValid, ei(n, 11).ngClassInvalid, ei(n, 11).ngClassPending), l(n, 13, 0, e.attacking_results[n.context.$implicit.key])
         }))
     }
 
-    function YA(l) {
+    function JA(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 13, "tr", [["class", "form-group"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), su(2, 0, null, null, 1, "label", [], [[8, "htmlFor", 0]], null, null, null, null)), (l()(), _u(3, null, ["", ""])), (l()(), su(4, 0, null, null, 7, "td", [], null, null, null, null, null)), (l()(), su(5, 0, null, null, 6, "input", [["class", "form-control form-control-sm"], ["min", "0"], ["type", "number"]], [[8, "id", 0], [2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "ngModelChange"], [null, "input"], [null, "blur"], [null, "compositionstart"], [null, "compositionend"], [null, "change"]], (function (l, n, e) {
             var t = !0,
                 i = l.component;
@@ -32720,7 +32847,7 @@
         }))
     }
 
-    function XA(l) {
+    function lP(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 123, "div", [["class", "h-100 overflow-auto"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 2, "div", [], null, null, null, null, null)), (l()(), su(2, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(-1, null, [" Civilizations might have various bonuses that are not included in this simulation. Results might be different in a real situation."])), (l()(), su(4, 0, null, null, 22, "div", [], null, null, null, null, null)), (l()(), su(5, 0, null, null, 1, "b", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Defender: "])), (l()(), su(7, 0, null, null, 9, "div", [["class", "form-group form-check d-inline-block mr-1"]], null, null, null, null, null)), (l()(), su(8, 0, null, null, 6, "input", [["class", "form-check-input"], ["id", "type-0"], ["name", "def"], ["type", "radio"]], [[2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "ngModelChange"], [null, "input"], [null, "blur"], [null, "compositionstart"], [null, "compositionend"], [null, "change"]], (function (l, n, e) {
             var t = !0,
                 i = l.component;
@@ -32749,10 +32876,10 @@
             model: [1, "model"]
         }, {
             update: "ngModelChange"
-        }), yi(2048, null, af, null, [lg]), gi(24, 16384, null, 0, cf, [[4, af]], null, null), (l()(), su(25, 0, null, null, 1, "label", [["class", "form-check-label"], ["for", "type-1"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Civilization"])), (l()(), su(27, 0, null, null, 94, "div", [["class", "d-flex"]], null, null, null, null, null)), (l()(), su(28, 0, null, null, 14, "div", [], null, null, null, null, null)), (l()(), su(29, 0, null, null, 1, "h4", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Attacker"])), (l()(), su(31, 0, null, null, 11, "table", [["class", "table table-sm"]], null, null, null, null, null)), (l()(), su(32, 0, null, null, 6, "thead", [], null, null, null, null, null)), (l()(), su(33, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Troop"])), (l()(), su(35, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Number"])), (l()(), su(37, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Remaining"])), (l()(), su(39, 0, null, null, 3, "tbody", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 2, null, QA)), gi(41, 278528, null, 0, Ea, [Fe, $e, Oe], {
+        }), yi(2048, null, af, null, [lg]), gi(24, 16384, null, 0, cf, [[4, af]], null, null), (l()(), su(25, 0, null, null, 1, "label", [["class", "form-check-label"], ["for", "type-1"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Civilization"])), (l()(), su(27, 0, null, null, 94, "div", [["class", "d-flex"]], null, null, null, null, null)), (l()(), su(28, 0, null, null, 14, "div", [], null, null, null, null, null)), (l()(), su(29, 0, null, null, 1, "h4", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Attacker"])), (l()(), su(31, 0, null, null, 11, "table", [["class", "table table-sm"]], null, null, null, null, null)), (l()(), su(32, 0, null, null, 6, "thead", [], null, null, null, null, null)), (l()(), su(33, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Troop"])), (l()(), su(35, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Number"])), (l()(), su(37, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Remaining"])), (l()(), su(39, 0, null, null, 3, "tbody", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 2, null, XA)), gi(41, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"],
             ngForTrackBy: [1, "ngForTrackBy"]
-        }, null), mi(0, ig, [Ne]), (l()(), su(43, 0, null, null, 78, "div", [["class", "ml-2 pl-2 border-left"]], null, null, null, null, null)), (l()(), su(44, 0, null, null, 1, "h4", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Defender"])), (l()(), su(46, 0, null, null, 75, "table", [["class", "table table-sm"]], null, null, null, null, null)), (l()(), su(47, 0, null, null, 6, "thead", [], null, null, null, null, null)), (l()(), su(48, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Troop"])), (l()(), su(50, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Number"])), (l()(), su(52, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Remaining"])), (l()(), su(54, 0, null, null, 67, "tbody", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 2, null, YA)), gi(56, 278528, null, 0, Ea, [Fe, $e, Oe], {
+        }, null), mi(0, ig, [Ne]), (l()(), su(43, 0, null, null, 78, "div", [["class", "ml-2 pl-2 border-left"]], null, null, null, null, null)), (l()(), su(44, 0, null, null, 1, "h4", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Defender"])), (l()(), su(46, 0, null, null, 75, "table", [["class", "table table-sm"]], null, null, null, null, null)), (l()(), su(47, 0, null, null, 6, "thead", [], null, null, null, null, null)), (l()(), su(48, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Troop"])), (l()(), su(50, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Number"])), (l()(), su(52, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Remaining"])), (l()(), su(54, 0, null, null, 67, "tbody", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 2, null, JA)), gi(56, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"],
             ngForTrackBy: [1, "ngForTrackBy"]
         }, null), mi(0, ig, [Ne]), (l()(), su(58, 0, null, null, 12, "tr", [], null, null, null, null, null)), (l()(), su(59, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), su(60, 0, null, null, 1, "label", [["for", "d-pop"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Population"])), (l()(), su(62, 0, null, null, 7, "td", [], null, null, null, null, null)), (l()(), su(63, 0, null, null, 6, "input", [["class", "form-control form-control-sm"], ["min", "0"], ["name", "d-pop"], ["type", "number"]], [[2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "ngModelChange"], [null, "input"], [null, "blur"], [null, "compositionstart"], [null, "compositionend"], [null, "change"]], (function (l, n, e) {
@@ -32840,12 +32967,12 @@
         }))
     }
 
-    function JA(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 1, "app-simulator", [], null, null, null, XA, ZA)), gi(1, 114688, null, 0, WA, [zg, Tg, Pg, KA], null, null)], (function (l, n) {
+    function nP(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 1, "app-simulator", [], null, null, null, lP, YA)), gi(1, 114688, null, 0, ZA, [zg, Tg, Pg, QA], null, null)], (function (l, n) {
             l(n, 1, 0)
         }), null)
     }
-    var lP = jt("app-simulator", WA, JA, {}, {}, []); class nP {
+    var eP = jt("app-simulator", ZA, nP, {}, {}, []); class tP {
         constructor(l, n, e, t, i, s) {
             this.conf = l, this.data = n, this.dataService = e, this.activatedRoute = t, this.messageService = i, this.router = s, this.icons = ug
         }
@@ -32873,26 +33000,26 @@
             this.messageService.storeMessage(this.report), this.router.navigate(["/game/simulator"])
         }
     }
-    var eP = st({
+    var iP = st({
         encapsulation: 0,
         styles: [[""]],
         data: {}
     });
 
-    function tP(l) {
+    function sP(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "button", [["class", "btn btn-sm btn-danger"]], null, [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== l.component.readAll() && t), t
         }), null, null)), (l()(), _u(-1, null, ["Mark all as read"]))], null, null)
     }
 
-    function iP(l) {
+    function uP(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null))], null, (function (l, n) {
             l(n, 0, 0, n.component.icons.exclamation)
         }))
     }
 
-    function sP(l) {
+    function rP(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "city", [], null, null, null, ix, ex)), gi(1, 114688, null, 0, nx, [Pg, zg], {
             id: [0, "id"]
         }, null)], (function (l, n) {
@@ -32900,20 +33027,20 @@
         }), null)
     }
 
-    function uP(l) {
+    function aP(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "span", [], null, null, null, null, null)), (l()(), _u(1, null, ["", ""]))], null, (function (l, n) {
             l(n, 1, 0, n.parent.context.$implicit.name)
         }))
     }
 
-    function rP(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 20, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 3, "td", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, iP)), gi(3, 16384, null, 0, Pa, [Fe, $e], {
+    function oP(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 20, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 3, "td", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, uP)), gi(3, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), su(4, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), su(5, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), _u(6, null, ["", ""])), yu(7, 2), (l()(), su(8, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), su(9, 0, null, null, 1, "city", [], null, null, null, ix, ex)), gi(10, 114688, null, 0, nx, [Pg, zg], {
             id: [0, "id"]
-        }, null), (l()(), su(11, 0, null, null, 4, "td", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, sP)), gi(13, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), su(11, 0, null, null, 4, "td", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, rP)), gi(13, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, uP)), gi(15, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, aP)), gi(15, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), su(16, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(17, null, ["", ""])), (l()(), su(18, 0, null, null, 2, "td", [["class", "btn-link cursor-pointer"]], null, [[null, "click"]], (function (l, n, e) {
             var t = !0;
@@ -32929,35 +33056,35 @@
         }))
     }
 
-    function aP(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 16, "div", [["class", "d-flex flex-column h-100"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 15, "div", [["class", "flex-fill"], ["style", "height:0"]], null, null, null, null, null)), (l()(), su(2, 0, null, null, 14, "table", [["class", "table table-sm"]], null, null, null, null, null)), (l()(), su(3, 0, null, null, 10, "thead", [], null, null, null, null, null)), (l()(), su(4, 0, null, null, 0, "th", [], null, null, null, null, null)), (l()(), su(5, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Date"])), (l()(), su(7, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["From"])), (l()(), su(9, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["To"])), (l()(), su(11, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Status"])), (l()(), su(13, 0, null, null, 0, "th", [], null, null, null, null, null)), (l()(), su(14, 0, null, null, 2, "tbody", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, rP)), gi(16, 278528, null, 0, Ea, [Fe, $e, Oe], {
+    function cP(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 16, "div", [["class", "d-flex flex-column h-100"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 15, "div", [["class", "flex-fill"], ["style", "height:0"]], null, null, null, null, null)), (l()(), su(2, 0, null, null, 14, "table", [["class", "table table-sm"]], null, null, null, null, null)), (l()(), su(3, 0, null, null, 10, "thead", [], null, null, null, null, null)), (l()(), su(4, 0, null, null, 0, "th", [], null, null, null, null, null)), (l()(), su(5, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Date"])), (l()(), su(7, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["From"])), (l()(), su(9, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["To"])), (l()(), su(11, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Status"])), (l()(), su(13, 0, null, null, 0, "th", [], null, null, null, null, null)), (l()(), su(14, 0, null, null, 2, "tbody", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, oP)), gi(16, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
         }, null)], (function (l, n) {
             l(n, 16, 0, n.component.data.reports.slice().reverse())
         }), null)
     }
 
-    function oP(l) {
+    function dP(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "span", [], null, null, null, null, null)), (l()(), _u(1, null, ["of ", ""]))], null, (function (l, n) {
             l(n, 1, 0, n.component.to.name)
         }))
     }
 
-    function cP(l) {
+    function hP(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "span", [], null, null, null, null, null)), (l()(), _u(1, null, ["of ", ""]))], null, (function (l, n) {
             l(n, 1, 0, n.component.report.name)
         }))
     }
 
-    function dP(l) {
+    function pP(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "div", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Walls have been destroyed"]))], null, null)
     }
 
-    function hP(l) {
+    function fP(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "div", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Castle has been destroyed"]))], null, null)
     }
 
-    function pP(l) {
+    function gP(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 2, "div", [], null, null, null, null, null)), (l()(), _u(1, null, ["Defense: ", ""])), yu(2, 1)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 1, 0, l(n, 2, 0, ei(n.parent.parent, 1), e.report.defense));
@@ -32965,7 +33092,7 @@
         }))
     }
 
-    function fP(l) {
+    function mP(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 2, "div", [], null, null, null, null, null)), (l()(), _u(1, null, ["Influence: -", " defense"])), yu(2, 1)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 1, 0, l(n, 2, 0, ei(n.parent.parent, 1), e.report.influence));
@@ -32973,7 +33100,7 @@
         }))
     }
 
-    function gP(l) {
+    function yP(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "div", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 3, "b", [], null, null, null, null, null)), (l()(), su(2, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(3, null, [" ", " stolen !"])), yu(4, 1)], null, (function (l, n) {
             var e = n.component;
             l(n, 2, 0, e.icons.science + " text-science");
@@ -32982,38 +33109,38 @@
         }))
     }
 
-    function mP(l) {
+    function vP(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 8, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(2, null, ["", ""])), (l()(), su(3, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(4, null, ["", ""])), (l()(), su(5, 0, null, null, 1, "td", [["class", "text-danger"]], null, null, null, null, null)), (l()(), _u(6, null, ["- ", " "])), (l()(), su(7, 0, null, null, 1, "td", [["class", "text-info"]], null, null, null, null, null)), (l()(), _u(8, null, ["", ""]))], null, (function (l, n) {
             var e = n.component;
             l(n, 2, 0, e.conf.troops[n.parent.context.$implicit.key].name(e.dataService.player(e.from.ownerid))), l(n, 4, 0, n.parent.context.$implicit.value), l(n, 6, 0, n.parent.context.$implicit.value - e.report.troops.remaining.attacker[n.parent.context.$implicit.key]), l(n, 8, 0, e.report.troops.remaining.attacker[n.parent.context.$implicit.key])
         }))
     }
 
-    function yP(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 2, null, null, null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, mP)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
+    function bP(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 2, null, null, null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, vP)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), iu(0, null, null, 0))], (function (l, n) {
             l(n, 2, 0, n.context.$implicit.value)
         }), null)
     }
 
-    function vP(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 1, "player", [], null, null, null, _E, vE)), gi(1, 114688, null, 0, yE, [zg], {
+    function _P(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 1, "player", [], null, null, null, xE, _E)), gi(1, 114688, null, 0, bE, [zg], {
             id: [0, "id"]
         }, null)], (function (l, n) {
             l(n, 1, 0, n.component.report.to_pid)
         }), null)
     }
 
-    function bP(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 1, "player", [], null, null, null, _E, vE)), gi(1, 114688, null, 0, yE, [zg], {
+    function wP(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 1, "player", [], null, null, null, xE, _E)), gi(1, 114688, null, 0, bE, [zg], {
             id: [0, "id"]
         }, null)], (function (l, n) {
             l(n, 1, 0, n.component.to.ownerid)
         }), null)
     }
 
-    function _P(l) {
+    function xP(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "city", [], null, null, null, ix, ex)), gi(1, 114688, null, 0, nx, [Pg, zg], {
             id: [0, "id"]
         }, null)], (function (l, n) {
@@ -33021,35 +33148,35 @@
         }), null)
     }
 
-    function wP(l) {
+    function kP(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "span", [], null, null, null, null, null)), (l()(), _u(1, null, ["", ""]))], null, (function (l, n) {
             l(n, 1, 0, n.component.report.name)
         }))
     }
 
-    function xP(l) {
+    function SP(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 8, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(2, null, ["", ""])), (l()(), su(3, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(4, null, ["", ""])), (l()(), su(5, 0, null, null, 1, "td", [["class", "text-danger"]], null, null, null, null, null)), (l()(), _u(6, null, ["- ", " "])), (l()(), su(7, 0, null, null, 1, "td", [["class", "text-info"]], null, null, null, null, null)), (l()(), _u(8, null, ["", ""]))], null, (function (l, n) {
             var e = n.component;
             l(n, 2, 0, e.conf.troops[n.parent.context.$implicit.key].name(e.dataService.player(e.to.ownerid))), l(n, 4, 0, e.nb(n.parent.context.$implicit.value)), l(n, 6, 0, e.nb(n.parent.context.$implicit.value - e.report.troops.remaining.defender[n.parent.context.$implicit.key])), l(n, 8, 0, e.nb(e.report.troops.remaining.defender[n.parent.context.$implicit.key]))
         }))
     }
 
-    function kP(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 2, null, null, null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, xP)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
+    function CP(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 2, null, null, null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, SP)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), iu(0, null, null, 0))], (function (l, n) {
             l(n, 2, 0, n.context.$implicit.value)
         }), null)
     }
 
-    function SP(l) {
+    function IP(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "tr", [], null, null, null, null, null)), (l()(), _u(-1, null, [" Empty "]))], null, null)
     }
 
-    function CP(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 6, "table", [["class", "table table-sm"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 5, "tbody", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 2, null, kP)), gi(3, 278528, null, 0, Ea, [Fe, $e, Oe], {
+    function TP(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 6, "table", [["class", "table table-sm"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 5, "tbody", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 2, null, CP)), gi(3, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
-        }, null), mi(0, ig, [Ne]), (l()(), iu(16777216, null, null, 1, null, SP)), gi(6, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), mi(0, ig, [Ne]), (l()(), iu(16777216, null, null, 1, null, IP)), gi(6, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null)], (function (l, n) {
             var e = n.component;
@@ -33057,23 +33184,23 @@
         }), null)
     }
 
-    function IP(l) {
+    function EP(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "div", [], null, null, null, null, null)), (l()(), _u(1, null, [" ", ""]))], null, (function (l, n) {
             var e = n.component;
             l(n, 1, 0, e.conf.buildings[n.parent.context.$implicit.key].label(e.dataService.player(e.to.ownerid)))
         }))
     }
 
-    function TP(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 2, null, null, null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, IP)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
+    function AP(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 2, null, null, null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, EP)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), iu(0, null, null, 0))], (function (l, n) {
             l(n, 2, 0, n.context.$implicit.value.done)
         }), null)
     }
 
-    function EP(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 5, "div", [["class", "border p-2 m-2"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "h5", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Buildings"])), (l()(), iu(16777216, null, null, 2, null, TP)), gi(4, 278528, null, 0, Ea, [Fe, $e, Oe], {
+    function PP(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 5, "div", [["class", "border p-2 m-2"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "h5", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Buildings"])), (l()(), iu(16777216, null, null, 2, null, AP)), gi(4, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
         }, null), mi(0, ig, [Ne])], (function (l, n) {
             var e = n.component;
@@ -33081,23 +33208,23 @@
         }), null)
     }
 
-    function AP(l) {
+    function DP(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "div", [], null, null, null, null, null)), (l()(), _u(1, null, ["", " : ", ""]))], null, (function (l, n) {
             var e = n.component;
             l(n, 1, 0, e.conf.troops[n.parent.context.$implicit.key].name(e.dataService.player(e.to.ownerid)), n.parent.context.$implicit.value)
         }))
     }
 
-    function PP(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 2, null, null, null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, AP)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
+    function MP(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 2, null, null, null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, DP)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), iu(0, null, null, 0))], (function (l, n) {
             l(n, 2, 0, n.context.$implicit.value)
         }), null)
     }
 
-    function DP(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 5, "div", [["class", "border p-2 m-2"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "h5", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Troops"])), (l()(), iu(16777216, null, null, 2, null, PP)), gi(4, 278528, null, 0, Ea, [Fe, $e, Oe], {
+    function OP(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 5, "div", [["class", "border p-2 m-2"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "h5", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Troops"])), (l()(), iu(16777216, null, null, 2, null, MP)), gi(4, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
         }, null), mi(0, ig, [Ne])], (function (l, n) {
             var e = n.component;
@@ -33105,10 +33232,10 @@
         }), null)
     }
 
-    function MP(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 10, "div", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "div", [], null, null, null, null, null)), (l()(), _u(2, null, ["Population: ", ""])), (l()(), su(3, 0, null, null, 2, "div", [], null, null, null, null, null)), (l()(), _u(4, null, ["Gold: ", ""])), yu(5, 1), (l()(), su(6, 0, null, null, 4, "div", [["class", "d-flex"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, EP)), gi(8, 16384, null, 0, Pa, [Fe, $e], {
+    function NP(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 10, "div", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "div", [], null, null, null, null, null)), (l()(), _u(2, null, ["Population: ", ""])), (l()(), su(3, 0, null, null, 2, "div", [], null, null, null, null, null)), (l()(), _u(4, null, ["Gold: ", ""])), yu(5, 1), (l()(), su(6, 0, null, null, 4, "div", [["class", "d-flex"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, PP)), gi(8, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, DP)), gi(10, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, OP)), gi(10, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null)], (function (l, n) {
             var e = n.component;
@@ -33121,50 +33248,50 @@
         }))
     }
 
-    function OP(l) {
+    function RP(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "button", [["class", "btn btn-primary"]], null, [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== l.component.toSim() && t), t
         }), null, null)), (l()(), _u(-1, null, ["Send to Battle Simulator"]))], null, null)
     }
 
-    function NP(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 54, "div", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 8, "h4", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Battle "])), (l()(), iu(16777216, null, null, 1, null, oP)), gi(4, 16384, null, 0, Pa, [Fe, $e], {
+    function BP(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 54, "div", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 8, "h4", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Battle "])), (l()(), iu(16777216, null, null, 1, null, dP)), gi(4, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, cP)), gi(6, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, hP)), gi(6, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), su(7, 0, null, null, 2, "small", [["class", "text-muted ml-2"]], null, null, null, null, null)), (l()(), _u(8, null, ["", ""])), yu(9, 2), (l()(), su(10, 0, null, null, 2, "div", [], null, null, null, null, null)), (l()(), su(11, 0, null, null, 1, "b", [], null, null, null, null, null)), (l()(), _u(12, null, ["", " ", ""])), (l()(), iu(16777216, null, null, 1, null, dP)), gi(14, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), su(7, 0, null, null, 2, "small", [["class", "text-muted ml-2"]], null, null, null, null, null)), (l()(), _u(8, null, ["", ""])), yu(9, 2), (l()(), su(10, 0, null, null, 2, "div", [], null, null, null, null, null)), (l()(), su(11, 0, null, null, 1, "b", [], null, null, null, null, null)), (l()(), _u(12, null, ["", " ", ""])), (l()(), iu(16777216, null, null, 1, null, pP)), gi(14, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, hP)), gi(16, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, fP)), gi(16, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, pP)), gi(18, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, gP)), gi(18, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, fP)), gi(20, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, mP)), gi(20, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, gP)), gi(22, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, yP)), gi(22, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), su(23, 0, null, null, 27, "div", [["class", "d-flex text-center"]], null, null, null, null, null)), (l()(), su(24, 0, null, null, 11, "div", [["class", "mr-3"]], null, null, null, null, null)), (l()(), su(25, 0, null, null, 2, "div", [], null, null, null, null, null)), (l()(), su(26, 0, null, null, 1, "player", [], null, null, null, _E, vE)), gi(27, 114688, null, 0, yE, [zg], {
+        }, null), (l()(), su(23, 0, null, null, 27, "div", [["class", "d-flex text-center"]], null, null, null, null, null)), (l()(), su(24, 0, null, null, 11, "div", [["class", "mr-3"]], null, null, null, null, null)), (l()(), su(25, 0, null, null, 2, "div", [], null, null, null, null, null)), (l()(), su(26, 0, null, null, 1, "player", [], null, null, null, xE, _E)), gi(27, 114688, null, 0, bE, [zg], {
             id: [0, "id"]
         }, null), (l()(), su(28, 0, null, null, 2, "div", [], null, null, null, null, null)), (l()(), su(29, 0, null, null, 1, "city", [], null, null, null, ix, ex)), gi(30, 114688, null, 0, nx, [Pg, zg], {
             id: [0, "id"]
-        }, null), (l()(), su(31, 0, null, null, 4, "table", [["class", "table table-sm"]], null, null, null, null, null)), (l()(), su(32, 0, null, null, 3, "tbody", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 2, null, yP)), gi(34, 278528, null, 0, Ea, [Fe, $e, Oe], {
+        }, null), (l()(), su(31, 0, null, null, 4, "table", [["class", "table table-sm"]], null, null, null, null, null)), (l()(), su(32, 0, null, null, 3, "tbody", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 2, null, bP)), gi(34, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
-        }, null), mi(0, ig, [Ne]), (l()(), su(36, 0, null, null, 14, "div", [], null, null, null, null, null)), (l()(), su(37, 0, null, null, 4, "div", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, vP)), gi(39, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), mi(0, ig, [Ne]), (l()(), su(36, 0, null, null, 14, "div", [], null, null, null, null, null)), (l()(), su(37, 0, null, null, 4, "div", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, _P)), gi(39, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, bP)), gi(41, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, wP)), gi(41, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), su(42, 0, null, null, 4, "div", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, _P)), gi(44, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), su(42, 0, null, null, 4, "div", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, xP)), gi(44, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, wP)), gi(46, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, kP)), gi(46, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, CP)), gi(48, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, TP)), gi(48, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, MP)), gi(50, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, NP)), gi(50, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), su(51, 0, null, null, 1, "button", [["class", "btn btn-secondary"]], null, [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== (l.component.report = void 0) && t), t
-        }), null, null)), (l()(), _u(-1, null, ["Back to list"])), (l()(), iu(16777216, null, null, 1, null, OP)), gi(54, 16384, null, 0, Pa, [Fe, $e], {
+        }), null, null)), (l()(), _u(-1, null, ["Back to list"])), (l()(), iu(16777216, null, null, 1, null, RP)), gi(54, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null)], (function (l, n) {
             var e = n.component;
@@ -33176,12 +33303,12 @@
         }))
     }
 
-    function RP(l) {
-        return ku(0, [mi(0, $a, [Ji]), mi(0, $v, []), mi(0, zv, []), (l()(), su(3, 0, null, null, 8, "div", [["class", "h-100 overflow-auto"]], null, null, null, null, null)), (l()(), su(4, 0, null, null, 1, "h2", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Battle reports"])), (l()(), iu(16777216, null, null, 1, null, tP)), gi(7, 16384, null, 0, Pa, [Fe, $e], {
+    function zP(l) {
+        return ku(0, [mi(0, $a, [Ji]), mi(0, $v, []), mi(0, zv, []), (l()(), su(3, 0, null, null, 8, "div", [["class", "h-100 overflow-auto"]], null, null, null, null, null)), (l()(), su(4, 0, null, null, 1, "h2", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Battle reports"])), (l()(), iu(16777216, null, null, 1, null, sP)), gi(7, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, aP)), gi(9, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, cP)), gi(9, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, NP)), gi(11, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, BP)), gi(11, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null)], (function (l, n) {
             var e = n.component;
@@ -33189,12 +33316,12 @@
         }), null)
     }
 
-    function BP(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 1, "app-reports", [], null, null, null, RP, eP)), gi(1, 114688, null, 0, nP, [Tg, Pg, zg, oh, KA, _p], null, null)], (function (l, n) {
+    function $P(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 1, "app-reports", [], null, null, null, zP, iP)), gi(1, 114688, null, 0, tP, [Tg, Pg, zg, oh, QA, _p], null, null)], (function (l, n) {
             l(n, 1, 0)
         }), null)
     }
-    var zP = jt("app-reports", nP, BP, {}, {}, []); class $P {
+    var LP = jt("app-reports", tP, $P, {}, {}, []); class FP {
         constructor(l, n, e) {
             this.data = l, this.conf = n, this.dataService = e, this.icons = ug
         }
@@ -33257,13 +33384,13 @@
             return l ? Object.values(this.conf.policies.policies).filter(n => 1 == n.groups.length && n.groups[0] == l) : Object.values(this.conf.policies.policies).filter(l => 2 == l.groups.length)
         }
     }
-    var LP = st({
+    var qP = st({
         encapsulation: 0,
         styles: [[".policy-unlocked[_ngcontent-%COMP%]{background-color:#d6eaf8}.policy-locked[_ngcontent-%COMP%]{background-color:#fadbd8}.list-group-item[_ngcontent-%COMP%]{background-color:transparent!important;padding:.5rem .75rem!important}"]],
         data: {}
     });
 
-    function FP(l) {
+    function UP(l) {
         return ku(0, [(l()(), su(0, 16777216, null, null, 2, "div", [["container", "body"], ["triggers", "manual"]], [[8, "className", 0]], [[null, "click"], [null, "mouseenter"], [null, "mouseleave"]], (function (l, n, e) {
             var t = !0,
                 i = l.component;
@@ -33280,7 +33407,7 @@
         }))
     }
 
-    function qP(l) {
+    function HP(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 6, "div", [["style", "width:225px"]], [[8, "className", 0]], null, null, null, null)), (l()(), su(1, 16777216, null, null, 2, "h4", [["triggers", "manual"]], [[8, "className", 0]], [[null, "click"], [null, "mouseenter"], [null, "mouseleave"]], (function (l, n, e) {
             var t = !0,
                 i = l.component;
@@ -33289,7 +33416,7 @@
             ngbPopover: [0, "ngbPopover"],
             popoverTitle: [1, "popoverTitle"],
             triggers: [2, "triggers"]
-        }, null), (l()(), _u(3, null, [" ", " "])), (l()(), su(4, 0, null, null, 2, "div", [["class", "list-group"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, FP)), gi(6, 278528, null, 0, Ea, [Fe, $e, Oe], {
+        }, null), (l()(), _u(3, null, [" ", " "])), (l()(), su(4, 0, null, null, 2, "div", [["class", "list-group"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, UP)), gi(6, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
         }, null)], (function (l, n) {
             var e = n.component;
@@ -33300,11 +33427,11 @@
         }))
     }
 
-    function UP(l) {
+    function VP(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 0, "br", [], null, null, null, null, null))], null, null)
     }
 
-    function HP(l) {
+    function jP(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, null, null, null, null, null, null, null)), (l()(), su(1, 16777216, null, null, 2, "span", [["container", "body"], ["style", "width:236px"], ["triggers", "manual"]], [[8, "className", 0]], [[null, "click"], [null, "mouseenter"], [null, "mouseleave"]], (function (l, n, e) {
             var t = !0,
                 i = l.component;
@@ -33314,7 +33441,7 @@
             popoverTitle: [1, "popoverTitle"],
             triggers: [2, "triggers"],
             container: [3, "container"]
-        }, null), (l()(), _u(3, null, [" ", " "])), (l()(), iu(16777216, null, null, 1, null, UP)), gi(5, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), _u(3, null, [" ", " "])), (l()(), iu(16777216, null, null, 1, null, VP)), gi(5, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), iu(0, null, null, 0))], (function (l, n) {
             l(n, 2, 0, ei(n.parent, 37), ei(n.parent, 36), "manual", "body"), l(n, 5, 0, n.context.index % 6 == 5)
@@ -33323,7 +33450,7 @@
         }))
     }
 
-    function VP(l) {
+    function GP(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 6, "button", [["class", "btn btn-success ml-4"]], [[8, "disabled", 0]], [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== l.component.reset() && t), t
@@ -33340,7 +33467,7 @@
         }))
     }
 
-    function jP(l) {
+    function WP(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 3, "button", [["class", "btn btn-success ml-4"]], [[8, "disabled", 0]], [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== l.component.reset2() && t), t
@@ -33350,7 +33477,7 @@
         }))
     }
 
-    function GP(l) {
+    function KP(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 8, "div", [["class", "form-group form-check mb-0"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 5, "input", [["class", "form-check-input"], ["id", "emp_noconscription"], ["type", "checkbox"]], [[2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "ngModelChange"], [null, "change"], [null, "blur"]], (function (l, n, e) {
             var t = !0,
                 i = l.component;
@@ -33368,28 +33495,28 @@
         }))
     }
 
-    function WP(l) {
+    function ZP(l) {
         return ku(0, [(l()(), _u(0, null, ["", ""]))], null, (function (l, n) {
             l(n, 0, 0, n.context.title)
         }))
     }
 
-    function KP(l) {
+    function QP(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "span", [["class", "text-culture"]], null, null, null, null, null)), (l()(), _u(1, null, ["", ""]))], null, (function (l, n) {
             l(n, 1, 0, n.component.conf.policies.groups[n.context.$implicit].name + (0 == n.context.index ? " and " : ""))
         }))
     }
 
-    function ZP(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 3, "div", [["class", "border-top font-weight-bold"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Required: "])), (l()(), iu(16777216, null, null, 1, null, KP)), gi(3, 278528, null, 0, Ea, [Fe, $e, Oe], {
+    function YP(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 3, "div", [["class", "border-top font-weight-bold"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Required: "])), (l()(), iu(16777216, null, null, 1, null, QP)), gi(3, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
         }, null)], (function (l, n) {
             l(n, 3, 0, n.parent.context.groups)
         }), null)
     }
 
-    function QP(l) {
-        return ku(0, [(l()(), iu(16777216, null, null, 1, null, ZP)), gi(1, 16384, null, 0, Pa, [Fe, $e], {
+    function XP(l) {
+        return ku(0, [(l()(), iu(16777216, null, null, 1, null, YP)), gi(1, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), su(2, 0, null, null, 0, "div", [], [[8, "innerHTML", 1]], null, null, null, null)), (l()(), su(3, 0, null, null, 3, "div", [["class", "border-top"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Required: "])), (l()(), su(5, 0, null, null, 1, "span", [["class", "text-science"]], null, null, null, null, null)), (l()(), _u(6, null, ["", ""]))], (function (l, n) {
             l(n, 1, 0, n.context.groups && n.context.groups.length > 1)
@@ -33399,20 +33526,20 @@
         }))
     }
 
-    function YP(l) {
-        return ku(0, [mi(0, zv, []), (l()(), su(1, 0, null, null, 34, "div", [["class", "h-100 overflow-auto"]], null, null, null, null, null)), (l()(), su(2, 0, null, null, 5, "h5", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Policy cost: "])), (l()(), su(4, 0, null, null, 3, "span", [["class", "text-culture"]], null, null, null, null, null)), (l()(), su(5, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(6, null, [" ", ""])), yu(7, 1), (l()(), su(8, 0, null, null, 12, "div", [["class", "d-flex flex-wrap p-relative"]], null, null, null, null, null)), (l()(), su(9, 0, null, null, 1, "bgicon", [["icon", "culture"]], null, null, null, gT, fT)), gi(10, 114688, null, 0, pT, [], {
+    function JP(l) {
+        return ku(0, [mi(0, zv, []), (l()(), su(1, 0, null, null, 34, "div", [["class", "h-100 overflow-auto"]], null, null, null, null, null)), (l()(), su(2, 0, null, null, 5, "h5", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Policy cost: "])), (l()(), su(4, 0, null, null, 3, "span", [["class", "text-culture"]], null, null, null, null, null)), (l()(), su(5, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(6, null, [" ", ""])), yu(7, 1), (l()(), su(8, 0, null, null, 12, "div", [["class", "d-flex flex-wrap p-relative"]], null, null, null, null, null)), (l()(), su(9, 0, null, null, 1, "bgicon", [["icon", "culture"]], null, null, null, yT, mT)), gi(10, 114688, null, 0, gT, [], {
             icon: [0, "icon"]
-        }, null), (l()(), iu(16777216, null, null, 2, null, qP)), gi(12, 278528, null, 0, Ea, [Fe, $e, Oe], {
+        }, null), (l()(), iu(16777216, null, null, 2, null, HP)), gi(12, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
-        }, null), mi(0, ig, [Ne]), (l()(), su(14, 0, null, null, 6, "div", [["class", "policy-container border m-2 rounded-lg policy-unlocked"], ["style", "max-width:1430px"]], null, null, null, null, null)), (l()(), su(15, 0, null, null, 3, "h4", [["class", "px-3 py-2 m-0 text-dark"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Mixed policies "])), (l()(), su(17, 0, null, null, 1, "span", [["class", "text-70 text-secondary"]], null, null, null, null, null)), (l()(), _u(-1, null, ["(Policies that require 2 groups)"])), (l()(), iu(16777216, null, null, 1, null, HP)), gi(20, 278528, null, 0, Ea, [Fe, $e, Oe], {
+        }, null), mi(0, ig, [Ne]), (l()(), su(14, 0, null, null, 6, "div", [["class", "policy-container border m-2 rounded-lg policy-unlocked"], ["style", "max-width:1430px"]], null, null, null, null, null)), (l()(), su(15, 0, null, null, 3, "h4", [["class", "px-3 py-2 m-0 text-dark"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Mixed policies "])), (l()(), su(17, 0, null, null, 1, "span", [["class", "text-70 text-secondary"]], null, null, null, null, null)), (l()(), _u(-1, null, ["(Policies that require 2 groups)"])), (l()(), iu(16777216, null, null, 1, null, jP)), gi(20, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
-        }, null), (l()(), su(21, 0, null, null, 12, "div", [["class", "d-flex"]], null, null, null, null, null)), (l()(), su(22, 0, null, null, 1, "div", [["class", "border p-3 text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Available for purchase"])), (l()(), su(24, 0, null, null, 1, "div", [["class", "border p-3 text-primary"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Purchased"])), (l()(), su(26, 0, null, null, 1, "div", [["class", "border p-3 text-secondary"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Unavailable"])), (l()(), su(28, 0, null, null, 1, "div", [["class", "border p-3 policy-locked text-danger"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Locked"])), (l()(), iu(16777216, null, null, 1, null, VP)), gi(31, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), su(21, 0, null, null, 12, "div", [["class", "d-flex"]], null, null, null, null, null)), (l()(), su(22, 0, null, null, 1, "div", [["class", "border p-3 text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Available for purchase"])), (l()(), su(24, 0, null, null, 1, "div", [["class", "border p-3 text-primary"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Purchased"])), (l()(), su(26, 0, null, null, 1, "div", [["class", "border p-3 text-secondary"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Unavailable"])), (l()(), su(28, 0, null, null, 1, "div", [["class", "border p-3 policy-locked text-danger"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Locked"])), (l()(), iu(16777216, null, null, 1, null, GP)), gi(31, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, jP)), gi(33, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, WP)), gi(33, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, GP)), gi(35, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, KP)), gi(35, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(0, [["popTitle", 2]], null, 0, null, WP)), (l()(), iu(0, [["popContent", 2]], null, 0, null, QP))], (function (l, n) {
+        }, null), (l()(), iu(0, [["popTitle", 2]], null, 0, null, ZP)), (l()(), iu(0, [["popContent", 2]], null, 0, null, XP))], (function (l, n) {
             var e = n.component;
             l(n, 10, 0, "culture"), l(n, 12, 0, et(n, 12, 0, ei(n, 13).transform(e.conf.policies.groups))), l(n, 20, 0, e.policies()), l(n, 31, 0, e.data.rebirths > 0), l(n, 33, 0, e.data.prestige), l(n, 35, 0, e.dataService.hasPolicy("conscription"))
         }), (function (l, n) {
@@ -33423,36 +33550,36 @@
         }))
     }
 
-    function XP(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 1, "app-policies", [], null, null, null, YP, LP)), gi(1, 114688, null, 0, $P, [Pg, Tg, zg], null, null)], (function (l, n) {
+    function lD(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 1, "app-policies", [], null, null, null, JP, qP)), gi(1, 114688, null, 0, FP, [Pg, Tg, zg], null, null)], (function (l, n) {
             l(n, 1, 0)
         }), null)
     }
-    var JP = jt("app-policies", $P, XP, {}, {}, []); class lD {
+    var nD = jt("app-policies", FP, lD, {}, {}, []); class eD {
         constructor(l) {
             this.data = l
         }
         ngOnInit() {}
     }
-    var nD = st({
+    var tD = st({
         encapsulation: 0,
         styles: [[""]],
         data: {}
     });
 
-    function eD(l) {
+    function iD(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null))], null, (function (l, n) {
             l(n, 0, 0, n.parent.context.$implicit.icon)
         }))
     }
 
-    function tD(l) {
+    function sD(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 7, "div", [], null, null, null, null, null)), (l()(), _u(1, null, [" ", " "])), yu(2, 2), (l()(), su(3, 0, null, null, 4, "a", [], [[8, "className", 0], [1, "target", 0], [8, "href", 4]], [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== ei(l, 4).onClick(e.button, e.ctrlKey, e.metaKey, e.shiftKey) && t), t
         }), null, null)), gi(4, 671744, null, 0, xp, [_p, oh, Rr], {
             routerLink: [0, "routerLink"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, eD)), gi(6, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, iD)), gi(6, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), _u(7, null, [" ", ""]))], (function (l, n) {
             l(n, 4, 0, n.context.$implicit.link), l(n, 6, 0, n.context.$implicit.icon)
@@ -33462,21 +33589,21 @@
         }))
     }
 
-    function iD(l) {
-        return ku(0, [mi(0, $a, [Ji]), (l()(), su(1, 0, null, null, 1, "h3", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Notifications"])), (l()(), su(3, 0, null, null, 2, "div", [["class", "overflow-auto vh-100"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, tD)), gi(5, 278528, null, 0, Ea, [Fe, $e, Oe], {
+    function uD(l) {
+        return ku(0, [mi(0, $a, [Ji]), (l()(), su(1, 0, null, null, 1, "h3", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Notifications"])), (l()(), su(3, 0, null, null, 2, "div", [["class", "overflow-auto vh-100"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, sD)), gi(5, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
         }, null)], (function (l, n) {
             l(n, 5, 0, n.component.data.notifications.slice().reverse())
         }), null)
     }
 
-    function sD(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 1, "app-notifications", [], null, null, null, iD, nD)), gi(1, 114688, null, 0, lD, [Pg], null, null)], (function (l, n) {
+    function rD(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 1, "app-notifications", [], null, null, null, uD, tD)), gi(1, 114688, null, 0, eD, [Pg], null, null)], (function (l, n) {
             l(n, 1, 0)
         }), null)
     }
-    var uD = jt("app-notifications", lD, sD, {}, {}, []);
-    const rD = {
+    var aD = jt("app-notifications", eD, rD, {}, {}, []);
+    const oD = {
         home: {
             id: "home",
             name: "Cividlization II",
@@ -33545,7 +33672,7 @@
         improvements: {
             id: "improvements",
             name: "Improvements",
-            html: () => '<p>Improvements greatly improve your citizens production</p><p>To build an improvement, you need to recruit a worker or an engineer and allocate them to the task by clicking on your city in the world menu.</p><p>Improvements (other than roads & railroads) only affect the cities right next to them.</p><p>All tasks, appart from building a road or a railroad, will consume the worker or the engineer.</p><p>When a city is connected to the capital, an icon will be displayed : <i class="' + ug.connected + ' text-connected1"></i> when connected by road and <i class="' + ug.connected + ' text-connected2"></i> when connected by railroad</p>Here is a list of all improvements available in this game:<table class="table table-sm"><tbody><tr><th></th><th>Improvement</th><th>Description</th><th>Cost</th><th>Terrains</th><th>Worker required</th></tr>' + Object.values(Ig).reduce((l, n) => l + '<tr><td><img src="assets/img/imp' + n.id + '.png" width="48"/></td><td>' + n.name + "</td><td>" + n.description + '</td><td><span class="text-gold"><i class="' + ug.gold + '"></i> ' + mg.format(n.cost) + '</span><br/><span class="text-time"><i class="' + ug.time + '"></i> ' + mg.formatTime(n.time) + "</span></td><td>" + Object.values(n.terrains).reduce((l, e, t) => l + Cg[e].name + (t != n.terrains.length - 1 ? ", " : ""), "") + "</td><td>" + (1 == n.level ? "Worker" : "Engineer") + "</td></tr>", "") + "</tbody></table>",
+            html: () => '<p>Improvements greatly improve your citizens production</p><p>To build an improvement, you need to recruit a worker or an engineer and allocate them to the task by clicking on your city in the world menu.</p><p>Improvements (other than roads & railroads) only affect the cities right next to them.</p><p>All tasks, appart from building a road or a railroad, will consume the worker or the engineer.</p><p>When a city is connected to the capital, an icon will be displayed : <i class="' + ug.connected + ' text-connected1"></i> when connected by road and <i class="' + ug.connected + ' text-connected2"></i> when connected by railroad</p>Here is a list of all improvements available in this game:<table class="table table-sm"><tbody><tr><th></th><th>Improvement</th><th>Description</th><th>Cost</th><th>Terrains</th><th>Worker required</th></tr>' + Object.values(Ig).reduce((l, n) => l + '<tr><td><img src="/assets/img/imp' + n.id + '.png" width="48"/></td><td>' + n.name + "</td><td>" + n.description + '</td><td><span class="text-gold"><i class="' + ug.gold + '"></i> ' + mg.format(n.cost) + '</span><br/><span class="text-time"><i class="' + ug.time + '"></i> ' + mg.formatTime(n.time) + "</span></td><td>" + Object.values(n.terrains).reduce((l, e, t) => l + Cg[e].name + (t != n.terrains.length - 1 ? ", " : ""), "") + "</td><td>" + (1 == n.level ? "Worker" : "Engineer") + "</td></tr>", "") + "</tbody></table>",
             parent: "citizens"
         },
         food: {
@@ -33635,7 +33762,7 @@
                 return 12 == l ? "--" : 13 == l ? "-" : 14 == l ? "+" : 15 == l ? "++" : void 0
             }(n.agressivity) + "</td><td>" + n.starting_relations + "</td><td>" + n.relation_decrease + "</td><td>" + function (l) {
                 return l >= 6e8 ? "--" : l > 1e8 ? "-" : l > 1e7 ? "+" : "++"
-            }(n.war_fatigue_ratio) + "</td><td>" + aD(n.mult.food) + "</td><td>" + aD(n.mult.gold) + "</td><td>" + aD(n.mult.science) + "</td><td>" + aD(n.mult.prod) + "</td><td>" + aD(n.mult.culture) + "</td><td>" + aD(n.mult.recruitment) + "</td><td>" + aD(n.mult.attack) + "</td><td>" + aD(n.mult.defense) + "</td></tr>", "") + "</tbody></table>",
+            }(n.war_fatigue_ratio) + "</td><td>" + cD(n.mult.food) + "</td><td>" + cD(n.mult.gold) + "</td><td>" + cD(n.mult.science) + "</td><td>" + cD(n.mult.prod) + "</td><td>" + cD(n.mult.culture) + "</td><td>" + cD(n.mult.recruitment) + "</td><td>" + cD(n.mult.attack) + "</td><td>" + cD(n.mult.defense) + "</td></tr>", "") + "</tbody></table>",
             parent: "diplomacy"
         },
         barbarians: {
@@ -33706,29 +33833,29 @@
         }
     };
 
-    function aD(l) {
+    function cD(l) {
         return l >= 1.2 ? "++" : l >= 1.1 ? "+" : l >= 1 ? "-" : "--"
     }
-    class oD {
+    class dD {
         constructor(l, n, e) {
-            this.activatedRoute = l, this.dataService = n, this.sanitizer = e, this.helpData = rD
+            this.activatedRoute = l, this.dataService = n, this.sanitizer = e, this.helpData = oD
         }
         isAvailable(l) {
             return !l.lock || this.dataService.isUnlocked(l.lock)
         }
         ngOnInit() {
             this.activatedRoute.fragment.subscribe(l => {
-                this.id = l || "home", this.help = rD[this.id], this.html = this.sanitizer.bypassSecurityTrustHtml(this.help.html(this.dataService)), this.parent = this.help.parent ? rD[this.help.parent] : void 0, this.siblings = Object.values(this.helpData).filter(l => l.parent == this.help.parent), this.children = Object.values(this.helpData).filter(l => l.parent == this.id)
+                this.id = l || "home", this.help = oD[this.id], this.html = this.sanitizer.bypassSecurityTrustHtml(this.help.html(this.dataService)), this.parent = this.help.parent ? oD[this.help.parent] : void 0, this.siblings = Object.values(this.helpData).filter(l => l.parent == this.help.parent), this.children = Object.values(this.helpData).filter(l => l.parent == this.id)
             })
         }
     }
-    var cD = st({
+    var hD = st({
         encapsulation: 0,
         styles: [[""]],
         data: {}
     });
 
-    function dD(l) {
+    function pD(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 6, "nav", [["class", "border-top d-flex"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "div", [["class", "bg-dark text-light p-2"], ["style", "width:95px"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Parent"])), (l()(), su(3, 0, null, null, 3, "div", [["class", "nav"]], null, null, null, null, null)), (l()(), su(4, 0, null, null, 2, "a", [["class", "nav-link"]], [[1, "target", 0], [8, "href", 4]], [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== ei(l, 5).onClick(e.button, e.ctrlKey, e.metaKey, e.shiftKey) && t), t
@@ -33742,7 +33869,7 @@
         }))
     }
 
-    function hD(l) {
+    function fD(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 2, "a", [["class", "nav-link"]], [[1, "target", 0], [8, "href", 4]], [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== ei(l, 1).onClick(e.button, e.ctrlKey, e.metaKey, e.shiftKey) && t), t
@@ -33755,23 +33882,23 @@
         }))
     }
 
-    function pD(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 2, null, null, null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, hD)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
+    function gD(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 2, null, null, null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, fD)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), iu(0, null, null, 0))], (function (l, n) {
             l(n, 2, 0, n.component.isAvailable(n.context.$implicit))
         }), null)
     }
 
-    function fD(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 5, "nav", [["class", "border-top d-flex"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "div", [["class", "bg-dark text-light p-2"], ["style", "width:95px"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Children"])), (l()(), su(3, 0, null, null, 2, "div", [["class", "nav"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, pD)), gi(5, 278528, null, 0, Ea, [Fe, $e, Oe], {
+    function mD(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 5, "nav", [["class", "border-top d-flex"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "div", [["class", "bg-dark text-light p-2"], ["style", "width:95px"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Children"])), (l()(), su(3, 0, null, null, 2, "div", [["class", "nav"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, gD)), gi(5, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
         }, null)], (function (l, n) {
             l(n, 5, 0, n.component.children)
         }), null)
     }
 
-    function gD(l) {
+    function yD(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "a", [], [[1, "target", 0], [8, "href", 4]], [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== ei(l, 4).onClick(e.button, e.ctrlKey, e.metaKey, e.shiftKey) && t), t
@@ -33790,28 +33917,28 @@
         }))
     }
 
-    function mD(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 2, null, null, null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, gD)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
+    function vD(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 2, null, null, null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, yD)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), iu(0, null, null, 0))], (function (l, n) {
             l(n, 2, 0, n.component.isAvailable(n.context.$implicit))
         }), null)
     }
 
-    function yD(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 5, "nav", [["class", "border-top d-flex"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "div", [["class", "bg-dark text-light p-2"], ["style", "width:95px"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Related"])), (l()(), su(3, 0, null, null, 2, "div", [["class", "nav"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, mD)), gi(5, 278528, null, 0, Ea, [Fe, $e, Oe], {
+    function bD(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 5, "nav", [["class", "border-top d-flex"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "div", [["class", "bg-dark text-light p-2"], ["style", "width:95px"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Related"])), (l()(), su(3, 0, null, null, 2, "div", [["class", "nav"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, vD)), gi(5, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
         }, null)], (function (l, n) {
             l(n, 5, 0, n.component.siblings)
         }), null)
     }
 
-    function vD(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 10, "div", [["class", "d-flex flex-column h-100"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 3, "div", [["class", "flex-fill overflow-auto"], ["style", "height:0"]], null, null, null, null, null)), (l()(), su(2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (l()(), _u(3, null, ["", ""])), (l()(), su(4, 0, null, null, 0, "div", [], [[8, "innerHTML", 1]], null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, dD)), gi(6, 16384, null, 0, Pa, [Fe, $e], {
+    function _D(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 10, "div", [["class", "d-flex flex-column h-100"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 3, "div", [["class", "flex-fill overflow-auto"], ["style", "height:0"]], null, null, null, null, null)), (l()(), su(2, 0, null, null, 1, "h3", [], null, null, null, null, null)), (l()(), _u(3, null, ["", ""])), (l()(), su(4, 0, null, null, 0, "div", [], [[8, "innerHTML", 1]], null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, pD)), gi(6, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, fD)), gi(8, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, mD)), gi(8, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, yD)), gi(10, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, bD)), gi(10, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null)], (function (l, n) {
             var e = n.component;
@@ -33822,20 +33949,20 @@
         }))
     }
 
-    function bD(l) {
-        return ku(0, [(l()(), iu(16777216, null, null, 1, null, vD)), gi(1, 16384, null, 0, Pa, [Fe, $e], {
+    function wD(l) {
+        return ku(0, [(l()(), iu(16777216, null, null, 1, null, _D)), gi(1, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null)], (function (l, n) {
             l(n, 1, 0, n.component.id)
         }), null)
     }
 
-    function _D(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 1, "app-help", [], null, null, null, bD, cD)), gi(1, 114688, null, 0, oD, [oh, zg, Vc], null, null)], (function (l, n) {
+    function xD(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 1, "app-help", [], null, null, null, wD, hD)), gi(1, 114688, null, 0, dD, [oh, zg, Vc], null, null)], (function (l, n) {
             l(n, 1, 0)
         }), null)
     }
-    var wD = jt("app-help", oD, _D, {}, {}, []); class xD {
+    var kD = jt("app-help", dD, xD, {}, {}, []); class SD {
         constructor(l, n) {
             this.kongService = l, this.dataService = n, this.thanks = !1, this.icons = ug
         }
@@ -33847,20 +33974,20 @@
             l.success && (this.thanks = !0)
         }
     }
-    var kD = st({
+    var CD = st({
         encapsulation: 0,
         styles: [[".bg[_ngcontent-%COMP%]{position:fixed;width:100%;height:100vh;background-color:rgba(0,0,0,.85);padding:10px;top:0;left:0;z-index:500;font-size:800%}@-webkit-keyframes bounce{0%,10%,100%,20%,50%,80%{-webkit-transform:translateY(0);transform:translateY(0)}40%,60%{-webkit-transform:translateY(-15px);transform:translateY(-15px)}}@keyframes bounce{0%,10%,100%,20%,50%,80%{-webkit-transform:translateY(0);transform:translateY(0)}40%,60%{-webkit-transform:translateY(-15px);transform:translateY(-15px)}}.bg[_ngcontent-%COMP%] > i[_ngcontent-%COMP%]{-webkit-animation:2s infinite bounce;animation:2s infinite bounce}"]],
         data: {}
     });
 
-    function SD(l) {
+    function ID(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "div", [["class", "bg d-flex flex-column justify-content-center align-items-center text-light"]], null, [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = 0 != (l.component.thanks = !1) && t), t
         }), null, null)), (l()(), su(1, 0, null, null, 0, "i", [["class", "fas fa-thumbs-up"]], null, null, null, null, null)), (l()(), su(2, 0, null, null, 2, "div", [], null, null, null, null, null)), (l()(), su(3, 0, null, null, 1, "b", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Thanks !"]))], null, null)
     }
 
-    function CD(l) {
+    function TD(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "h3", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Support"])), (l()(), su(2, 0, null, null, 9, "p", [], null, null, null, null, null)), (l()(), _u(-1, null, ["This game is "])), (l()(), su(4, 0, null, null, 1, "u", [], null, null, null, null, null)), (l()(), _u(-1, null, ["completly free"])), (l()(), _u(-1, null, [" and provided "])), (l()(), su(7, 0, null, null, 1, "u", [], null, null, null, null, null)), (l()(), _u(-1, null, ["without ads"])), (l()(), _u(-1, null, ["."])), (l()(), su(10, 0, null, null, 0, "br", [], null, null, null, null, null)), (l()(), _u(-1, null, [" However, if you wish to support it, you can still offer a gift !"])), (l()(), su(12, 0, null, null, 1, "h5", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Buy those useless items"])), (l()(), su(14, 0, null, null, 2, "button", [["class", "btn btn-outline-info"]], null, [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== l.component.buy(10) && t), t
@@ -33882,7 +34009,7 @@
         }), null, null)), (l()(), su(30, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(-1, null, [" Give 500 Kreds"])), (l()(), su(32, 0, null, null, 2, "button", [["class", "btn btn-outline-danger"]], null, [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== l.component.buy(1e3) && t), t
-        }), null, null)), (l()(), su(33, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(-1, null, [" Give 1000 Kreds"])), (l()(), su(35, 0, null, null, 1, "h3", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Thanks"])), (l()(), _u(-1, null, ["\nMany thanks to "])), (l()(), su(38, 0, null, null, 1, "b", [], null, null, null, null, null)), (l()(), _u(-1, null, ["henkekalmar"])), (l()(), _u(-1, null, [", "])), (l()(), su(41, 0, null, null, 1, "b", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Wicia777"])), (l()(), _u(-1, null, [", "])), (l()(), su(44, 0, null, null, 1, "b", [], null, null, null, null, null)), (l()(), _u(-1, null, ["aussy8"])), (l()(), _u(-1, null, [", "])), (l()(), su(47, 0, null, null, 1, "b", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Rekaniso"])), (l()(), _u(-1, null, [", "])), (l()(), su(50, 0, null, null, 1, "b", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Sieker"])), (l()(), _u(-1, null, [", "])), (l()(), su(53, 0, null, null, 1, "b", [], null, null, null, null, null)), (l()(), _u(-1, null, ["WLBjork"])), (l()(), _u(-1, null, [" and\n"])), (l()(), su(56, 0, null, null, 1, "b", [], null, null, null, null, null)), (l()(), _u(-1, null, ["cbianco8808"])), (l()(), _u(-1, null, [" for\nhelping with beta-testing this game ! "])), (l()(), su(59, 0, null, null, 1, "h3", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Credits"])), (l()(), su(61, 0, null, null, 9, "div", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Icons made by "])), (l()(), su(63, 0, null, null, 1, "a", [["href", "https://www.flaticon.com/authors/freepik"], ["title", "Freepik"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Freepik"])), (l()(), _u(-1, null, [", "])), (l()(), su(66, 0, null, null, 1, "a", [["href", "https://www.flaticon.com/authors/eucalyp"], ["title", "Eucalyp"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Eucalyp"])), (l()(), _u(-1, null, [" from "])), (l()(), su(69, 0, null, null, 1, "a", [["href", "https://www.flaticon.com/"], ["title", "Flaticon"]], null, null, null, null, null)), (l()(), _u(-1, null, ["www.flaticon.com"])), (l()(), iu(16777216, null, null, 1, null, SD)), gi(72, 16384, null, 0, Pa, [Fe, $e], {
+        }), null, null)), (l()(), su(33, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(-1, null, [" Give 1000 Kreds"])), (l()(), su(35, 0, null, null, 1, "h3", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Thanks"])), (l()(), _u(-1, null, ["\nMany thanks to "])), (l()(), su(38, 0, null, null, 1, "b", [], null, null, null, null, null)), (l()(), _u(-1, null, ["henkekalmar"])), (l()(), _u(-1, null, [", "])), (l()(), su(41, 0, null, null, 1, "b", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Wicia777"])), (l()(), _u(-1, null, [", "])), (l()(), su(44, 0, null, null, 1, "b", [], null, null, null, null, null)), (l()(), _u(-1, null, ["aussy8"])), (l()(), _u(-1, null, [", "])), (l()(), su(47, 0, null, null, 1, "b", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Rekaniso"])), (l()(), _u(-1, null, [", "])), (l()(), su(50, 0, null, null, 1, "b", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Sieker"])), (l()(), _u(-1, null, [", "])), (l()(), su(53, 0, null, null, 1, "b", [], null, null, null, null, null)), (l()(), _u(-1, null, ["WLBjork"])), (l()(), _u(-1, null, [" and\n"])), (l()(), su(56, 0, null, null, 1, "b", [], null, null, null, null, null)), (l()(), _u(-1, null, ["cbianco8808"])), (l()(), _u(-1, null, [" for\nhelping with beta-testing this game ! "])), (l()(), su(59, 0, null, null, 1, "h3", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Credits"])), (l()(), su(61, 0, null, null, 9, "div", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Icons made by "])), (l()(), su(63, 0, null, null, 1, "a", [["href", "https://www.flaticon.com/authors/freepik"], ["title", "Freepik"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Freepik"])), (l()(), _u(-1, null, [", "])), (l()(), su(66, 0, null, null, 1, "a", [["href", "https://www.flaticon.com/authors/eucalyp"], ["title", "Eucalyp"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Eucalyp"])), (l()(), _u(-1, null, [" from "])), (l()(), su(69, 0, null, null, 1, "a", [["href", "https://www.flaticon.com/"], ["title", "Flaticon"]], null, null, null, null, null)), (l()(), _u(-1, null, ["www.flaticon.com"])), (l()(), iu(16777216, null, null, 1, null, ID)), gi(72, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), su(73, 0, null, null, 1, "div", [["class", "position-absolute text-secondary"], ["style", "bottom:5px;right:5px"]], null, null, null, null, null)), (l()(), _u(74, null, ["Version: ", "\n"])), (l()(), su(75, 0, null, null, 1, "h3", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Changelog"])), (l()(), su(77, 0, null, null, 1, "a", [["class", "btn btn-primary"], ["href", "https://festive-perlman-5fad70.netlify.com/changelog"], ["target", "_blank"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Complete Changelog"]))], (function (l, n) {
             l(n, 72, 0, n.component.thanks)
@@ -33892,12 +34019,12 @@
         }))
     }
 
-    function ID(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 1, "app-support", [], null, null, null, CD, kD)), gi(1, 114688, null, 0, xD, [Bg, zg], null, null)], (function (l, n) {
+    function ED(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 1, "app-support", [], null, null, null, TD, CD)), gi(1, 114688, null, 0, SD, [Bg, zg], null, null)], (function (l, n) {
             l(n, 1, 0)
         }), null)
     }
-    var TD = jt("app-support", xD, ID, {}, {}, []); class ED {
+    var AD = jt("app-support", SD, ED, {}, {}, []); class PD {
         constructor(l, n, e, t) {
             this.data = l, this.conf = n, this.dataService = e, this.modalService = t, this.icons = ug
         }
@@ -33911,13 +34038,13 @@
             this.dataService.reincarnation(!0)
         }
     }
-    var AD = st({
+    var DD = st({
         encapsulation: 0,
         styles: [[".card-body[_ngcontent-%COMP%]{height:auto!important}"]],
         data: {}
     });
 
-    function PD(l) {
+    function MD(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 6, "div", [], null, [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== (l.component.difficulty = l.context.$implicit.key) && t), t
@@ -33934,12 +34061,12 @@
         }))
     }
 
-    function DD(l) {
+    function OD(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "div", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Changes saved succesfully !"]))], null, null)
     }
 
-    function MD(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 1, "h2", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Game options"])), (l()(), su(2, 0, null, null, 1, "h5", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Difficulty"])), (l()(), su(4, 0, null, null, 3, "div", [["class", "d-flex"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 2, null, PD)), gi(6, 278528, null, 0, Ea, [Fe, $e, Oe], {
+    function ND(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 1, "h2", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Game options"])), (l()(), su(2, 0, null, null, 1, "h5", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Difficulty"])), (l()(), su(4, 0, null, null, 3, "div", [["class", "d-flex"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 2, null, MD)), gi(6, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
         }, null), mi(0, ig, [Ne]), (l()(), su(8, 0, null, null, 1, "h5", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Offline"])), (l()(), su(10, 0, null, null, 8, "div", [["class", "form-group form-check d-inline-block mr-1"]], null, null, null, null, null)), (l()(), su(11, 0, null, null, 5, "input", [["class", "form-check-input"], ["id", "a-save"], ["type", "checkbox"]], [[2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "ngModelChange"], [null, "change"], [null, "blur"]], (function (l, n, e) {
             var t = !0,
@@ -33974,7 +34101,7 @@
         }), yi(2048, null, af, null, [lg]), gi(38, 16384, null, 0, cf, [[4, af]], null, null), (l()(), su(39, 0, null, null, 1, "label", [["class", "form-check-label"], ["for", "nostats"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Do not send stats & highscores"])), (l()(), su(41, 0, null, null, 1, "button", [["class", "btn btn-primary"]], null, [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== l.component.save() && t), t
-        }), null, null)), (l()(), _u(-1, null, ["Save"])), (l()(), iu(16777216, null, null, 1, null, DD)), gi(44, 16384, null, 0, Pa, [Fe, $e], {
+        }), null, null)), (l()(), _u(-1, null, ["Save"])), (l()(), iu(16777216, null, null, 1, null, OD)), gi(44, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), su(45, 0, null, null, 1, "h5", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Restart this run"])), (l()(), su(47, 0, null, null, 1, "p", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Like a reincarnation but without any gain from this run !"])), (l()(), su(49, 0, null, null, 1, "button", [["class", "btn btn-danger"]], null, [[null, "click"]], (function (l, n, e) {
             var t = !0;
@@ -33987,11 +34114,11 @@
         }))
     }
 
-    function OD(l) {
+    function RD(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "div", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Changes saved succesfully !"]))], null, null)
     }
 
-    function ND(l) {
+    function BD(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "h2", [], null, null, null, null, null)), (l()(), _u(-1, null, ["UI options"])), (l()(), su(2, 0, null, null, 1, "h5", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Theme"])), (l()(), su(4, 0, null, null, 8, "div", [["class", "form-group form-check"]], null, null, null, null, null)), (l()(), su(5, 0, null, null, 5, "input", [["class", "form-check-input"], ["id", "darktheme"], ["type", "checkbox"]], [[2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "ngModelChange"], [null, "change"], [null, "blur"]], (function (l, n, e) {
             var t = !0,
                 i = l.component;
@@ -34125,7 +34252,7 @@
         }), yi(2048, null, af, null, [lg]), gi(127, 16384, null, 0, cf, [[4, af]], null, null), (l()(), su(128, 0, null, null, 1, "button", [["class", "btn btn-primary"]], null, [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== l.component.save() && t), t
-        }), null, null)), (l()(), _u(-1, null, ["Save"])), (l()(), iu(16777216, null, null, 1, null, OD)), gi(131, 16384, null, 0, Pa, [Fe, $e], {
+        }), null, null)), (l()(), _u(-1, null, ["Save"])), (l()(), iu(16777216, null, null, 1, null, RD)), gi(131, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), iu(0, null, null, 0))], (function (l, n) {
             var e = n.component;
@@ -34135,7 +34262,7 @@
         }))
     }
 
-    function RD(l) {
+    function zD(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "div", [["class", "modal-header"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "h4", [["class", "modal-title"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Restart this run"])), (l()(), su(3, 0, null, null, 2, "button", [["class", "close"], ["type", "button"]], null, [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== l.context.$implicit.dismiss() && t), t
@@ -34149,7 +34276,7 @@
         }), null, null)), (l()(), _u(-1, null, ["Restart"]))], null, null)
     }
 
-    function BD(l) {
+    function $D(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 14, "ngb-tabset", [], null, null, null, K_, U_)), gi(1, 2146304, null, 1, tv, [Jy], null, null), cu(603979776, 1, {
             tabs: 1
         }), (l()(), su(3, 0, null, null, 5, "ngb-tab", [["title", "Game Options"]], null, null, null, null, null)), gi(4, 2113536, [[1, 4]], 2, ev, [], {
@@ -34158,23 +34285,23 @@
             titleTpls: 1
         }), cu(603979776, 3, {
             contentTpls: 1
-        }), (l()(), iu(0, null, null, 1, null, MD)), gi(8, 16384, [[3, 4]], 0, nv, [$e], null, null), (l()(), su(9, 0, null, null, 5, "ngb-tab", [["title", "UI Options"]], null, null, null, null, null)), gi(10, 2113536, [[1, 4]], 2, ev, [], {
+        }), (l()(), iu(0, null, null, 1, null, ND)), gi(8, 16384, [[3, 4]], 0, nv, [$e], null, null), (l()(), su(9, 0, null, null, 5, "ngb-tab", [["title", "UI Options"]], null, null, null, null, null)), gi(10, 2113536, [[1, 4]], 2, ev, [], {
             title: [0, "title"]
         }, null), cu(603979776, 4, {
             titleTpls: 1
         }), cu(603979776, 5, {
             contentTpls: 1
-        }), (l()(), iu(0, null, null, 1, null, ND)), gi(14, 16384, [[5, 4]], 0, nv, [$e], null, null), (l()(), iu(0, [["content", 2]], null, 0, null, RD))], (function (l, n) {
+        }), (l()(), iu(0, null, null, 1, null, BD)), gi(14, 16384, [[5, 4]], 0, nv, [$e], null, null), (l()(), iu(0, [["content", 2]], null, 0, null, zD))], (function (l, n) {
             l(n, 4, 0, "Game Options"), l(n, 10, 0, "UI Options")
         }), null)
     }
 
-    function zD(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 1, "app-options", [], null, null, null, BD, AD)), gi(1, 114688, null, 0, ED, [Pg, Tg, zg, Fy], null, null)], (function (l, n) {
+    function LD(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 1, "app-options", [], null, null, null, $D, DD)), gi(1, 114688, null, 0, PD, [Pg, Tg, zg, Fy], null, null)], (function (l, n) {
             l(n, 1, 0)
         }), null)
     }
-    var $D = jt("app-options", ED, zD, {}, {}, []); class LD {
+    var FD = jt("app-options", PD, LD, {}, {}, []); class qD {
         constructor(l, n, e, t) {
             this.activatedRoute = l, this.data = n, this.conf = e, this.dataService = t, this.icons = ug
         }
@@ -34436,17 +34563,17 @@
             l.close()
         }
     }
-    var FD = st({
+    var UD = st({
         encapsulation: 0,
         styles: [["g[_ngcontent-%COMP%]{cursor:pointer}g[_ngcontent-%COMP%]   circle[_ngcontent-%COMP%], line[_ngcontent-%COMP%]{stroke-width:3px}text[_ngcontent-%COMP%]{font-size:90%;font-weight:700}g.selected[_ngcontent-%COMP%]   circle[_ngcontent-%COMP%], g[_ngcontent-%COMP%]:hover   circle[_ngcontent-%COMP%]{stroke-width:5px}.progress[_ngcontent-%COMP%]{height:20px}.progress[_ngcontent-%COMP%]   span[_ngcontent-%COMP%]{color:#000}.line[_ngcontent-%COMP%]{width:20px;height:4px;display:inline-block;margin-bottom:4px}"]],
         data: {}
     });
 
-    function qD(l) {
+    function HD(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "div", [["class", "bg-info text-light p-3"]], null, null, null, null, null)), (l()(), _u(-1, null, [" You haven't discovered any civilization yet ! "]))], null, null)
     }
 
-    function UD(l) {
+    function VD(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "span", [], null, null, null, null, null)), yi(512, null, Oa, Na, [fe, Ne, be]), gi(2, 278528, null, 0, Ba, [Oa], {
             ngStyle: [0, "ngStyle"]
         }, null), vu(3, {
@@ -34461,30 +34588,10 @@
         }))
     }
 
-    function HD(l) {
+    function jD(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 2, "td", [["class", "text-colony"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(2, null, [" ", " "]))], null, (function (l, n) {
             var e = n.component;
             l(n, 1, 0, e.icons.colony), l(n, 2, 0, e.dataService.colonyNb(e.p(n.parent.context.$implicit).id))
-        }))
-    }
-
-    function VD(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 2, "span", [], null, null, null, null, null)), (l()(), _u(1, null, ["(Allowed in ", ")"])), yu(2, 1)], null, (function (l, n) {
-            var e = et(n, 1, 0, l(n, 2, 0, ei(n.parent.parent.parent.parent.parent, 1), n.parent.parent.context.$implicit.cooldown));
-            l(n, 1, 0, e)
-        }))
-    }
-
-    function jD(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 3, "button", [["class", "btn btn-danger mr-1"]], [[8, "disabled", 0]], [[null, "click"]], (function (l, n, e) {
-            var t = !0;
-            return "click" === n && (t = !1 !== l.component.war(l.parent.context.$implicit) && t), t
-        }), null, null)), (l()(), _u(-1, null, [" Declare war ! "])), (l()(), iu(16777216, null, null, 1, null, VD)), gi(3, 16384, null, 0, Pa, [Fe, $e], {
-            ngIf: [0, "ngIf"]
-        }, null)], (function (l, n) {
-            l(n, 3, 0, !n.component.isWarAllowed(n.parent.context.$implicit))
-        }), (function (l, n) {
-            l(n, 0, 0, !n.component.isWarAllowed(n.parent.context.$implicit))
         }))
     }
 
@@ -34496,11 +34603,31 @@
     }
 
     function WD(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 3, "button", [["class", "btn btn-danger mr-1"]], [[8, "disabled", 0]], [[null, "click"]], (function (l, n, e) {
+            var t = !0;
+            return "click" === n && (t = !1 !== l.component.war(l.parent.context.$implicit) && t), t
+        }), null, null)), (l()(), _u(-1, null, [" Declare war ! "])), (l()(), iu(16777216, null, null, 1, null, GD)), gi(3, 16384, null, 0, Pa, [Fe, $e], {
+            ngIf: [0, "ngIf"]
+        }, null)], (function (l, n) {
+            l(n, 3, 0, !n.component.isWarAllowed(n.parent.context.$implicit))
+        }), (function (l, n) {
+            l(n, 0, 0, !n.component.isWarAllowed(n.parent.context.$implicit))
+        }))
+    }
+
+    function KD(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 2, "span", [], null, null, null, null, null)), (l()(), _u(1, null, ["(Allowed in ", ")"])), yu(2, 1)], null, (function (l, n) {
+            var e = et(n, 1, 0, l(n, 2, 0, ei(n.parent.parent.parent.parent.parent, 1), n.parent.parent.context.$implicit.cooldown));
+            l(n, 1, 0, e)
+        }))
+    }
+
+    function ZD(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 3, "button", [["class", "btn btn-primary mr-1"]], [[8, "disabled", 0]], [[null, "click"]], (function (l, n, e) {
             var t = !0,
                 i = l.component;
             return "click" === n && (t = !1 !== i.negociate(i.p(l.parent.context.$implicit).id) && t), t
-        }), null, null)), (l()(), _u(-1, null, [" Negociate peace "])), (l()(), iu(16777216, null, null, 1, null, GD)), gi(3, 16384, null, 0, Pa, [Fe, $e], {
+        }), null, null)), (l()(), _u(-1, null, [" Negociate peace "])), (l()(), iu(16777216, null, null, 1, null, KD)), gi(3, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null)], (function (l, n) {
             l(n, 3, 0, n.parent.context.$implicit.cooldown)
@@ -34509,7 +34636,7 @@
         }))
     }
 
-    function KD(l) {
+    function QD(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "button", [["class", "btn btn-success mr-1"]], [[8, "disabled", 0]], [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== l.component.alliance(l.parent.context.$implicit) && t), t
@@ -34519,18 +34646,18 @@
         }))
     }
 
-    function ZD(l) {
+    function YD(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 2, "span", [], null, null, null, null, null)), (l()(), _u(1, null, ["(Allowed in ", ")"])), yu(2, 1)], null, (function (l, n) {
             var e = et(n, 1, 0, l(n, 2, 0, ei(n.parent.parent.parent.parent.parent, 1), n.parent.parent.context.$implicit.cooldown));
             l(n, 1, 0, e)
         }))
     }
 
-    function QD(l) {
+    function XD(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 3, "button", [["class", "btn btn-primary"]], [[8, "disabled", 0]], [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== l.component.leaveAlliance(l.parent.context.$implicit) && t), t
-        }), null, null)), (l()(), _u(-1, null, [" Leave Defensive Pact "])), (l()(), iu(16777216, null, null, 1, null, ZD)), gi(3, 16384, null, 0, Pa, [Fe, $e], {
+        }), null, null)), (l()(), _u(-1, null, [" Leave Defensive Pact "])), (l()(), iu(16777216, null, null, 1, null, YD)), gi(3, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null)], (function (l, n) {
             l(n, 3, 0, n.parent.context.$implicit.cooldown)
@@ -34539,8 +34666,8 @@
         }))
     }
 
-    function YD(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 37, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 3, "td", [], null, null, null, null, null)), (l()(), su(2, 0, null, null, 2, "b", [], null, null, null, null, null)), (l()(), su(3, 0, null, null, 1, "player", [], null, null, null, _E, vE)), gi(4, 114688, null, 0, yE, [zg], {
+    function JD(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 37, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 3, "td", [], null, null, null, null, null)), (l()(), su(2, 0, null, null, 2, "b", [], null, null, null, null, null)), (l()(), su(3, 0, null, null, 1, "player", [], null, null, null, xE, _E)), gi(4, 114688, null, 0, bE, [zg], {
             id: [0, "id"]
         }, null), (l()(), su(5, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), su(6, 0, null, null, 1, "city", [], null, null, null, ix, ex)), gi(7, 114688, null, 0, nx, [Pg, zg], {
             id: [0, "id"]
@@ -34552,17 +34679,17 @@
             ngbPopover: [0, "ngbPopover"],
             triggers: [1, "triggers"],
             container: [2, "container"]
-        }, null), (l()(), su(10, 0, null, null, 0, "span", [], [[8, "innerHTML", 1]], null, null, null, null)), (l()(), _u(-1, null, [" ("])), (l()(), su(12, 0, null, null, 1, "span", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(13, 2), (l()(), _u(-1, null, [")"])), (l()(), su(15, 0, null, null, 0, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), (l()(), su(16, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, UD)), gi(18, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), su(10, 0, null, null, 0, "span", [], [[8, "innerHTML", 1]], null, null, null, null)), (l()(), _u(-1, null, [" ("])), (l()(), su(12, 0, null, null, 1, "span", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(13, 2), (l()(), _u(-1, null, [")"])), (l()(), su(15, 0, null, null, 0, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), (l()(), su(16, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, VD)), gi(18, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), su(19, 0, null, null, 3, "td", [["class", "text-trade"]], null, null, null, null, null)), (l()(), su(20, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(21, null, [" ", " "])), (l()(), su(22, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), su(23, 0, null, null, 3, "td", [["class", "text-trade"]], null, null, null, null, null)), (l()(), su(24, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(25, null, [" ", " "])), (l()(), su(26, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, HD)), gi(28, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), su(19, 0, null, null, 3, "td", [["class", "text-trade"]], null, null, null, null, null)), (l()(), su(20, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(21, null, [" ", " "])), (l()(), su(22, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), su(23, 0, null, null, 3, "td", [["class", "text-trade"]], null, null, null, null, null)), (l()(), su(24, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(25, null, [" ", " "])), (l()(), su(26, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, jD)), gi(28, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), su(29, 0, null, null, 8, "td", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, jD)), gi(31, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), su(29, 0, null, null, 8, "td", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, WD)), gi(31, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, WD)), gi(33, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, ZD)), gi(33, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, KD)), gi(35, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, QD)), gi(35, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, QD)), gi(37, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, XD)), gi(37, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null)], (function (l, n) {
             var e = n.component;
@@ -34575,34 +34702,11 @@
         }))
     }
 
-    function XD(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 3, "table", [["class", "table"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 2, "tbody", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, YD)), gi(3, 278528, null, 0, Ea, [Fe, $e, Oe], {
+    function lM(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 3, "table", [["class", "table"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 2, "tbody", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, JD)), gi(3, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
         }, null)], (function (l, n) {
             l(n, 3, 0, n.component.dataService.getRelations(0))
-        }), null)
-    }
-
-    function JD(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 0, null, null, null, null, null, null, null))], null, null)
-    }
-
-    function lM(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 4, "div", [["class", "p-2 p-2 cursor-pointer"], ["hover-class", "bg-dark text-light"]], null, [[null, "click"], [null, "mouseenter"], [null, "mouseleave"]], (function (l, n, e) {
-            var t = !0,
-                i = l.component;
-            return "mouseenter" === n && (t = !1 !== ei(l, 1).onMouseEnter() && t), "mouseleave" === n && (t = !1 !== ei(l, 1).onMouseLeave() && t), "click" === n && (t = !1 !== i.move(l.context.$implicit, i.nego.player.available, i.nego.player.giving) && t), t
-        }), null, null)), gi(1, 16384, null, 0, sg, [fe], {
-            hoverClass: [0, "hoverClass"]
-        }, null), (l()(), iu(16777216, null, null, 2, null, JD)), gi(3, 540672, null, 0, za, [Fe], {
-            ngTemplateOutletContext: [0, "ngTemplateOutletContext"],
-            ngTemplateOutlet: [1, "ngTemplateOutlet"]
-        }, null), vu(4, {
-            id: 0
-        })], (function (l, n) {
-            l(n, 1, 0, "bg-dark text-light");
-            var e = l(n, 4, 0, n.context.$implicit);
-            l(n, 3, 0, e, ei(n.parent.parent.parent, 32))
         }), null)
     }
 
@@ -34611,10 +34715,10 @@
     }
 
     function eM(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 4, "div", [["class", "p-2 cursor-pointer"], ["hover-class", "bg-dark text-light"]], null, [[null, "click"], [null, "mouseenter"], [null, "mouseleave"]], (function (l, n, e) {
+        return ku(0, [(l()(), su(0, 0, null, null, 4, "div", [["class", "p-2 p-2 cursor-pointer"], ["hover-class", "bg-dark text-light"]], null, [[null, "click"], [null, "mouseenter"], [null, "mouseleave"]], (function (l, n, e) {
             var t = !0,
                 i = l.component;
-            return "mouseenter" === n && (t = !1 !== ei(l, 1).onMouseEnter() && t), "mouseleave" === n && (t = !1 !== ei(l, 1).onMouseLeave() && t), "click" === n && (t = !1 !== i.move(l.context.$implicit, i.nego.player.giving, i.nego.player.available) && t), t
+            return "mouseenter" === n && (t = !1 !== ei(l, 1).onMouseEnter() && t), "mouseleave" === n && (t = !1 !== ei(l, 1).onMouseLeave() && t), "click" === n && (t = !1 !== i.move(l.context.$implicit, i.nego.player.available, i.nego.player.giving) && t), t
         }), null, null)), gi(1, 16384, null, 0, sg, [fe], {
             hoverClass: [0, "hoverClass"]
         }, null), (l()(), iu(16777216, null, null, 2, null, nM)), gi(3, 540672, null, 0, za, [Fe], {
@@ -34637,7 +34741,7 @@
         return ku(0, [(l()(), su(0, 0, null, null, 4, "div", [["class", "p-2 cursor-pointer"], ["hover-class", "bg-dark text-light"]], null, [[null, "click"], [null, "mouseenter"], [null, "mouseleave"]], (function (l, n, e) {
             var t = !0,
                 i = l.component;
-            return "mouseenter" === n && (t = !1 !== ei(l, 1).onMouseEnter() && t), "mouseleave" === n && (t = !1 !== ei(l, 1).onMouseLeave() && t), "click" === n && (t = !1 !== i.move(l.context.$implicit, i.nego.ai.giving, i.nego.ai.available) && t), t
+            return "mouseenter" === n && (t = !1 !== ei(l, 1).onMouseEnter() && t), "mouseleave" === n && (t = !1 !== ei(l, 1).onMouseLeave() && t), "click" === n && (t = !1 !== i.move(l.context.$implicit, i.nego.player.giving, i.nego.player.available) && t), t
         }), null, null)), gi(1, 16384, null, 0, sg, [fe], {
             hoverClass: [0, "hoverClass"]
         }, null), (l()(), iu(16777216, null, null, 2, null, tM)), gi(3, 540672, null, 0, za, [Fe], {
@@ -34660,7 +34764,7 @@
         return ku(0, [(l()(), su(0, 0, null, null, 4, "div", [["class", "p-2 cursor-pointer"], ["hover-class", "bg-dark text-light"]], null, [[null, "click"], [null, "mouseenter"], [null, "mouseleave"]], (function (l, n, e) {
             var t = !0,
                 i = l.component;
-            return "mouseenter" === n && (t = !1 !== ei(l, 1).onMouseEnter() && t), "mouseleave" === n && (t = !1 !== ei(l, 1).onMouseLeave() && t), "click" === n && (t = !1 !== i.move(l.context.$implicit, i.nego.ai.available, i.nego.ai.giving) && t), t
+            return "mouseenter" === n && (t = !1 !== ei(l, 1).onMouseEnter() && t), "mouseleave" === n && (t = !1 !== ei(l, 1).onMouseLeave() && t), "click" === n && (t = !1 !== i.move(l.context.$implicit, i.nego.ai.giving, i.nego.ai.available) && t), t
         }), null, null)), gi(1, 16384, null, 0, sg, [fe], {
             hoverClass: [0, "hoverClass"]
         }, null), (l()(), iu(16777216, null, null, 2, null, sM)), gi(3, 540672, null, 0, za, [Fe], {
@@ -34676,19 +34780,42 @@
     }
 
     function rM(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 1, "span", [], null, null, null, null, null)), (l()(), _u(-1, null, ["You will need 1 governor to administer the new city."]))], null, null)
+        return ku(0, [(l()(), su(0, 0, null, null, 0, null, null, null, null, null, null, null))], null, null)
     }
 
     function aM(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 4, "div", [["class", "p-2 cursor-pointer"], ["hover-class", "bg-dark text-light"]], null, [[null, "click"], [null, "mouseenter"], [null, "mouseleave"]], (function (l, n, e) {
+            var t = !0,
+                i = l.component;
+            return "mouseenter" === n && (t = !1 !== ei(l, 1).onMouseEnter() && t), "mouseleave" === n && (t = !1 !== ei(l, 1).onMouseLeave() && t), "click" === n && (t = !1 !== i.move(l.context.$implicit, i.nego.ai.available, i.nego.ai.giving) && t), t
+        }), null, null)), gi(1, 16384, null, 0, sg, [fe], {
+            hoverClass: [0, "hoverClass"]
+        }, null), (l()(), iu(16777216, null, null, 2, null, rM)), gi(3, 540672, null, 0, za, [Fe], {
+            ngTemplateOutletContext: [0, "ngTemplateOutletContext"],
+            ngTemplateOutlet: [1, "ngTemplateOutlet"]
+        }, null), vu(4, {
+            id: 0
+        })], (function (l, n) {
+            l(n, 1, 0, "bg-dark text-light");
+            var e = l(n, 4, 0, n.context.$implicit);
+            l(n, 3, 0, e, ei(n.parent.parent.parent, 32))
+        }), null)
+    }
+
+    function oM(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 1, "span", [], null, null, null, null, null)), (l()(), _u(-1, null, ["You will need 1 governor to administer the new city."]))], null, null)
+    }
+
+    function cM(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "span", [], null, null, null, null, null)), (l()(), _u(1, null, ["You will need ", " governors to administer the new cities."]))], null, (function (l, n) {
             l(n, 1, 0, n.component.nego.ai.giving.length)
         }))
     }
 
-    function oM(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 5, "div", [["class", "bg-warning font-weight-bold d-inline-block p-2 m-2 text-dark"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, rM)), gi(3, 16384, null, 0, Pa, [Fe, $e], {
+    function dM(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 5, "div", [["class", "bg-warning font-weight-bold d-inline-block p-2 m-2 text-dark"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, oM)), gi(3, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, aM)), gi(5, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, cM)), gi(5, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null)], (function (l, n) {
             var e = n.component;
@@ -34698,16 +34825,16 @@
         }))
     }
 
-    function cM(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 36, "div", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "div", [], null, null, null, null, null)), (l()(), _u(2, null, ["", ""])), (l()(), su(3, 0, null, null, 24, "div", [["class", "d-flex align-items-stretch overflow-auto"], ["style", "height:300px"]], null, null, null, null, null)), (l()(), su(4, 0, null, null, 4, "div", [["class", "d-flex flex-column align-items-stretch border overflow-auto"], ["style", "width:20%"]], null, null, null, null, null)), (l()(), su(5, 0, null, null, 1, "div", [["class", "p-2 bg-dark text-light"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Your cities"])), (l()(), iu(16777216, null, null, 1, null, lM)), gi(8, 278528, null, 0, Ea, [Fe, $e, Oe], {
+    function hM(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 36, "div", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "div", [], null, null, null, null, null)), (l()(), _u(2, null, ["", ""])), (l()(), su(3, 0, null, null, 24, "div", [["class", "d-flex align-items-stretch overflow-auto"], ["style", "height:300px"]], null, null, null, null, null)), (l()(), su(4, 0, null, null, 4, "div", [["class", "d-flex flex-column align-items-stretch border overflow-auto"], ["style", "width:20%"]], null, null, null, null, null)), (l()(), su(5, 0, null, null, 1, "div", [["class", "p-2 bg-dark text-light"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Your cities"])), (l()(), iu(16777216, null, null, 1, null, eM)), gi(8, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
-        }, null), (l()(), su(9, 0, null, null, 1, "div", [["class", "px-4 d-flex align-items-center text-200"]], null, null, null, null, null)), (l()(), su(10, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), su(11, 0, null, null, 4, "div", [["class", "d-flex flex-column align-items-stretch border overflow-auto"], ["style", "width:20%"]], null, null, null, null, null)), (l()(), su(12, 0, null, null, 1, "div", [["class", "p-2 bg-dark text-light"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Your offers"])), (l()(), iu(16777216, null, null, 1, null, eM)), gi(15, 278528, null, 0, Ea, [Fe, $e, Oe], {
+        }, null), (l()(), su(9, 0, null, null, 1, "div", [["class", "px-4 d-flex align-items-center text-200"]], null, null, null, null, null)), (l()(), su(10, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), su(11, 0, null, null, 4, "div", [["class", "d-flex flex-column align-items-stretch border overflow-auto"], ["style", "width:20%"]], null, null, null, null, null)), (l()(), su(12, 0, null, null, 1, "div", [["class", "p-2 bg-dark text-light"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Your offers"])), (l()(), iu(16777216, null, null, 1, null, iM)), gi(15, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
-        }, null), (l()(), su(16, 0, null, null, 4, "div", [["class", "d-flex flex-column align-items-stretch border overflow-auto"], ["style", "width:20%"]], null, null, null, null, null)), (l()(), su(17, 0, null, null, 1, "div", [["class", "p-2 bg-dark text-light"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Your demands"])), (l()(), iu(16777216, null, null, 1, null, iM)), gi(20, 278528, null, 0, Ea, [Fe, $e, Oe], {
+        }, null), (l()(), su(16, 0, null, null, 4, "div", [["class", "d-flex flex-column align-items-stretch border overflow-auto"], ["style", "width:20%"]], null, null, null, null, null)), (l()(), su(17, 0, null, null, 1, "div", [["class", "p-2 bg-dark text-light"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Your demands"])), (l()(), iu(16777216, null, null, 1, null, uM)), gi(20, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
-        }, null), (l()(), su(21, 0, null, null, 1, "div", [["class", "px-4 d-flex align-items-center text-200"]], null, null, null, null, null)), (l()(), su(22, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), su(23, 0, null, null, 4, "div", [["class", "d-flex flex-column align-items-stretch border overflow-auto"], ["style", "width:20%"]], null, null, null, null, null)), (l()(), su(24, 0, null, null, 1, "div", [["class", "p-2 bg-dark text-light"]], null, null, null, null, null)), (l()(), _u(25, null, ["", " cities"])), (l()(), iu(16777216, null, null, 1, null, uM)), gi(27, 278528, null, 0, Ea, [Fe, $e, Oe], {
+        }, null), (l()(), su(21, 0, null, null, 1, "div", [["class", "px-4 d-flex align-items-center text-200"]], null, null, null, null, null)), (l()(), su(22, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), su(23, 0, null, null, 4, "div", [["class", "d-flex flex-column align-items-stretch border overflow-auto"], ["style", "width:20%"]], null, null, null, null, null)), (l()(), su(24, 0, null, null, 1, "div", [["class", "p-2 bg-dark text-light"]], null, null, null, null, null)), (l()(), _u(25, null, ["", " cities"])), (l()(), iu(16777216, null, null, 1, null, aM)), gi(27, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, oM)), gi(29, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, dM)), gi(29, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), su(30, 0, null, null, 0, "br", [], null, null, null, null, null)), (l()(), su(31, 0, null, null, 1, "button", [["class", "btn btn-secondary mr-3"]], null, [[null, "click"]], (function (l, n, e) {
             var t = !0;
@@ -34726,12 +34853,12 @@
         }))
     }
 
-    function dM(l) {
-        return ku(0, [(l()(), iu(16777216, null, null, 1, null, qD)), gi(1, 16384, null, 0, Pa, [Fe, $e], {
+    function pM(l) {
+        return ku(0, [(l()(), iu(16777216, null, null, 1, null, HD)), gi(1, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, XD)), gi(3, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, lM)), gi(3, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, cM)), gi(5, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, hM)), gi(5, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), iu(0, null, null, 0))], (function (l, n) {
             var e = n.component;
@@ -34739,13 +34866,13 @@
         }), null)
     }
 
-    function hM(l) {
+    function fM(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 0, ":svg:line", [], [[1, "x1", 0], [1, "x2", 0], [1, "y1", 0], [1, "y2", 0], [1, "stroke", 0]], null, null, null, null))], null, (function (l, n) {
             l(n, 0, 0, n.context.$implicit.x1, n.context.$implicit.x2, n.context.$implicit.y1, n.context.$implicit.y2, n.context.$implicit.color)
         }))
     }
 
-    function pM(l) {
+    function gM(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 6, ":svg:g", [], null, [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== l.component.selectPlayer(l.context.$implicit.id) && t), t
@@ -34761,10 +34888,10 @@
         }))
     }
 
-    function fM(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 4, ":svg:svg", [["class", "diplo-global"]], [[1, "width", 0], [1, "height", 0]], null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, hM)), gi(2, 278528, null, 0, Ea, [Fe, $e, Oe], {
+    function mM(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 4, ":svg:svg", [["class", "diplo-global"]], [[1, "width", 0], [1, "height", 0]], null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, fM)), gi(2, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, pM)), gi(4, 278528, null, 0, Ea, [Fe, $e, Oe], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, gM)), gi(4, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
         }, null)], (function (l, n) {
             var e = n.component;
@@ -34775,15 +34902,15 @@
         }))
     }
 
-    function gM(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 15, "div", [["class", "d-flex"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, fM)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
+    function yM(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 15, "div", [["class", "d-flex"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, mM)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), su(3, 0, null, null, 12, "div", [], null, null, null, null, null)), (l()(), su(4, 0, null, null, 2, "div", [], null, null, null, null, null)), (l()(), su(5, 0, null, null, 0, "div", [["class", "line bg-primary"]], null, null, null, null, null)), (l()(), _u(-1, null, [" Peace "])), (l()(), su(7, 0, null, null, 2, "div", [], null, null, null, null, null)), (l()(), su(8, 0, null, null, 0, "div", [["class", "line bg-danger"]], null, null, null, null, null)), (l()(), _u(-1, null, [" War "])), (l()(), su(10, 0, null, null, 2, "div", [], null, null, null, null, null)), (l()(), su(11, 0, null, null, 0, "div", [["class", "line bg-secondary"]], null, null, null, null, null)), (l()(), _u(-1, null, [" Truce "])), (l()(), su(13, 0, null, null, 2, "div", [], null, null, null, null, null)), (l()(), su(14, 0, null, null, 0, "div", [["class", "line bg-success"]], null, null, null, null, null)), (l()(), _u(-1, null, [" Alliance "]))], (function (l, n) {
             l(n, 2, 0, n.component.svg)
         }), null)
     }
 
-    function mM(l) {
+    function vM(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "ngb-tab", [["id", "tab_global"], ["title", "Global Diplomacy"]], null, null, null, null, null)), gi(1, 2113536, [[1, 4]], 2, ev, [], {
             id: [0, "id"],
             title: [1, "title"]
@@ -34791,12 +34918,12 @@
             titleTpls: 1
         }), cu(603979776, 5, {
             contentTpls: 1
-        }), (l()(), iu(0, null, null, 1, null, gM)), gi(5, 16384, [[5, 4]], 0, nv, [$e], null, null)], (function (l, n) {
+        }), (l()(), iu(0, null, null, 1, null, yM)), gi(5, 16384, [[5, 4]], 0, nv, [$e], null, null)], (function (l, n) {
             l(n, 1, 0, "tab_global", "Global Diplomacy")
         }), null)
     }
 
-    function yM(l) {
+    function bM(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 6, "span", [], null, null, null, null, null)), (l()(), _u(-1, null, [" ("])), (l()(), su(2, 0, null, null, 3, "span", [["class", "text-culture"]], null, null, null, null, null)), (l()(), su(3, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(4, null, [" ", ""])), yu(5, 1), (l()(), _u(-1, null, [") "]))], null, (function (l, n) {
             var e = n.component;
             l(n, 3, 0, e.icons.culture);
@@ -34805,7 +34932,7 @@
         }))
     }
 
-    function vM(l) {
+    function _M(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 2, "span", [], null, null, null, null, null)), (l()(), _u(1, null, ["(Allowed in ", ")"])), yu(2, 1)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 1, 0, l(n, 2, 0, ei(n.parent.parent.parent.parent.parent.parent, 1), e.promoteCooldown(e.p(n.parent.parent.context.$implicit).id)));
@@ -34813,14 +34940,14 @@
         }))
     }
 
-    function bM(l) {
+    function wM(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 6, "td", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 5, "button", [["class", "btn btn-warning"]], [[8, "disabled", 0]], [[null, "click"]], (function (l, n, e) {
             var t = !0,
                 i = l.component;
             return "click" === n && (t = !1 !== i.promote(i.p(l.parent.context.$implicit).id) && t), t
-        }), null, null)), (l()(), _u(-1, null, ["Promote culture "])), (l()(), iu(16777216, null, null, 1, null, yM)), gi(4, 16384, null, 0, Pa, [Fe, $e], {
+        }), null, null)), (l()(), _u(-1, null, ["Promote culture "])), (l()(), iu(16777216, null, null, 1, null, bM)), gi(4, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, vM)), gi(6, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, _M)), gi(6, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null)], (function (l, n) {
             var e = n.component;
@@ -34831,10 +34958,10 @@
         }))
     }
 
-    function _M(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 16, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 3, "td", [], null, null, null, null, null)), (l()(), su(2, 0, null, null, 2, "b", [], null, null, null, null, null)), (l()(), su(3, 0, null, null, 1, "player", [], null, null, null, _E, vE)), gi(4, 114688, null, 0, yE, [zg], {
+    function xM(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 16, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 3, "td", [], null, null, null, null, null)), (l()(), su(2, 0, null, null, 2, "b", [], null, null, null, null, null)), (l()(), su(3, 0, null, null, 1, "player", [], null, null, null, xE, _E)), gi(4, 114688, null, 0, bE, [zg], {
             id: [0, "id"]
-        }, null), (l()(), su(5, 0, null, null, 9, "td", [], null, null, null, null, null)), (l()(), su(6, 0, null, null, 1, "span", [["class", "text-influence text-120"]], null, null, null, null, null)), (l()(), su(7, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), su(8, 0, null, null, 2, "span", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(9, null, [" ", "% "])), yu(10, 2), (l()(), _u(-1, null, [" ("])), (l()(), su(12, 0, null, null, 1, "span", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(13, 2), (l()(), _u(-1, null, [") "])), (l()(), iu(16777216, null, null, 1, null, bM)), gi(16, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), su(5, 0, null, null, 9, "td", [], null, null, null, null, null)), (l()(), su(6, 0, null, null, 1, "span", [["class", "text-influence text-120"]], null, null, null, null, null)), (l()(), su(7, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), su(8, 0, null, null, 2, "span", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(9, null, [" ", "% "])), yu(10, 2), (l()(), _u(-1, null, [" ("])), (l()(), su(12, 0, null, null, 1, "span", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(13, 2), (l()(), _u(-1, null, [") "])), (l()(), iu(16777216, null, null, 1, null, wM)), gi(16, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null)], (function (l, n) {
             var e = n.component;
@@ -34849,16 +34976,16 @@
         }))
     }
 
-    function wM(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 3, "table", [["class", "table"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 2, "tbody", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, _M)), gi(3, 278528, null, 0, Ea, [Fe, $e, Oe], {
+    function kM(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 3, "table", [["class", "table"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 2, "tbody", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, xM)), gi(3, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
         }, null)], (function (l, n) {
             l(n, 3, 0, n.component.dataService.getRelations(0))
         }), null)
     }
 
-    function xM(l) {
-        return ku(0, [(l()(), iu(16777216, null, null, 1, null, wM)), gi(1, 16384, null, 0, Pa, [Fe, $e], {
+    function SM(l) {
+        return ku(0, [(l()(), iu(16777216, null, null, 1, null, kM)), gi(1, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), iu(0, null, null, 0))], (function (l, n) {
             var e = n.component;
@@ -34866,7 +34993,7 @@
         }), null)
     }
 
-    function kM(l) {
+    function CM(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "ngb-tab", [["id", "tab_influence"], ["title", "Influence"]], null, null, null, null, null)), gi(1, 2113536, [[1, 4]], 2, ev, [], {
             id: [0, "id"],
             title: [1, "title"]
@@ -34874,12 +35001,12 @@
             titleTpls: 1
         }), cu(603979776, 7, {
             contentTpls: 1
-        }), (l()(), iu(0, null, null, 1, null, xM)), gi(5, 16384, [[7, 4]], 0, nv, [$e], null, null)], (function (l, n) {
+        }), (l()(), iu(0, null, null, 1, null, SM)), gi(5, 16384, [[7, 4]], 0, nv, [$e], null, null)], (function (l, n) {
             l(n, 1, 0, "tab_influence", "Influence")
         }), null)
     }
 
-    function SM(l) {
+    function IM(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 29, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), su(2, 0, null, null, 1, "city", [], null, null, null, ix, ex)), gi(3, 114688, null, 0, nx, [Pg, zg], {
             x: [0, "x"],
             y: [1, "y"]
@@ -34907,11 +35034,11 @@
         }))
     }
 
-    function CM(l) {
+    function TM(l) {
         return ku(0, [(l()(), su(0, 16777216, null, null, 2, "b", [["class", "d-inline-block m-3"], ["container", "body"]], null, null, null, null, null)), gi(1, 737280, null, 0, Zy, [fe, be, Ln, ce, Fe, Gy, ys, Ua, Rn, zs], {
             ngbPopover: [0, "ngbPopover"],
             container: [1, "container"]
-        }, null), (l()(), _u(2, null, ["Maximum nb of trade routes : ", ""])), (l()(), su(3, 0, null, null, 20, "table", [["class", "table table-sm"]], null, null, null, null, null)), (l()(), su(4, 0, null, null, 16, "thead", [], null, null, null, null, null)), (l()(), su(5, 0, null, null, 15, "tr", [], null, null, null, null, null)), (l()(), su(6, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["From"])), (l()(), su(8, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["To"])), (l()(), su(10, 0, null, null, 1, "th", [["class", "text-gold"]], null, null, null, null, null)), (l()(), su(11, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), su(12, 0, null, null, 1, "th", [["class", "text-culture"]], null, null, null, null, null)), (l()(), su(13, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), su(14, 0, null, null, 1, "th", [["class", "text-diplomacy"]], null, null, null, null, null)), (l()(), su(15, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), su(16, 0, null, null, 1, "th", [["class", "text-science"]], null, null, null, null, null)), (l()(), su(17, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), su(18, 0, null, null, 1, "th", [["class", "text-faith"]], null, null, null, null, null)), (l()(), su(19, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), su(20, 0, null, null, 0, "th", [], null, null, null, null, null)), (l()(), su(21, 0, null, null, 2, "tbody", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, SM)), gi(23, 278528, null, 0, Ea, [Fe, $e, Oe], {
+        }, null), (l()(), _u(2, null, ["Maximum nb of trade routes : ", ""])), (l()(), su(3, 0, null, null, 20, "table", [["class", "table table-sm"]], null, null, null, null, null)), (l()(), su(4, 0, null, null, 16, "thead", [], null, null, null, null, null)), (l()(), su(5, 0, null, null, 15, "tr", [], null, null, null, null, null)), (l()(), su(6, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["From"])), (l()(), su(8, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["To"])), (l()(), su(10, 0, null, null, 1, "th", [["class", "text-gold"]], null, null, null, null, null)), (l()(), su(11, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), su(12, 0, null, null, 1, "th", [["class", "text-culture"]], null, null, null, null, null)), (l()(), su(13, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), su(14, 0, null, null, 1, "th", [["class", "text-diplomacy"]], null, null, null, null, null)), (l()(), su(15, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), su(16, 0, null, null, 1, "th", [["class", "text-science"]], null, null, null, null, null)), (l()(), su(17, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), su(18, 0, null, null, 1, "th", [["class", "text-faith"]], null, null, null, null, null)), (l()(), su(19, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), su(20, 0, null, null, 0, "th", [], null, null, null, null, null)), (l()(), su(21, 0, null, null, 2, "tbody", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, IM)), gi(23, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
         }, null), (l()(), su(24, 0, null, null, 2, "div", [["class", "p-2 d-inline-block"]], null, null, null, null, null)), (l()(), su(25, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(-1, null, ["Deleting a trade route results in loosing the associated caravan. "]))], (function (l, n) {
             var e = n.component;
@@ -34922,7 +35049,7 @@
         }))
     }
 
-    function IM(l) {
+    function EM(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "ngb-tab", [["id", "tab_trade"], ["title", "Trade Routes"]], null, null, null, null, null)), gi(1, 2113536, [[1, 4]], 2, ev, [], {
             id: [0, "id"],
             title: [1, "title"]
@@ -34930,12 +35057,12 @@
             titleTpls: 1
         }), cu(603979776, 9, {
             contentTpls: 1
-        }), (l()(), iu(0, null, null, 1, null, CM)), gi(5, 16384, [[9, 4]], 0, nv, [$e], null, null)], (function (l, n) {
+        }), (l()(), iu(0, null, null, 1, null, TM)), gi(5, 16384, [[9, 4]], 0, nv, [$e], null, null)], (function (l, n) {
             l(n, 1, 0, "tab_trade", "Trade Routes")
         }), null)
     }
 
-    function TM(l) {
+    function AM(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "city", [], null, null, null, ix, ex)), gi(1, 114688, null, 0, nx, [Pg, zg], {
             id: [0, "id"]
         }, null)], (function (l, n) {
@@ -34943,18 +35070,18 @@
         }), null)
     }
 
-    function EM(l) {
+    function PM(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 3, "span", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "span", [["style", "color: #999"]], null, null, null, null, null)), (l()(), su(2, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(-1, null, [" Unknown city "]))], null, (function (l, n) {
             l(n, 2, 0, n.component.icons.player)
         }))
     }
 
-    function AM(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 11, null, null, null, null, null, null, null)), (l()(), su(1, 0, null, null, 10, "tr", [], null, null, null, null, null)), (l()(), su(2, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(3, null, ["", ""])), (l()(), su(4, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), su(5, 0, null, null, 1, "player", [], null, null, null, _E, vE)), gi(6, 114688, null, 0, yE, [zg], {
+    function DM(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 11, null, null, null, null, null, null, null)), (l()(), su(1, 0, null, null, 10, "tr", [], null, null, null, null, null)), (l()(), su(2, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(3, null, ["", ""])), (l()(), su(4, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), su(5, 0, null, null, 1, "player", [], null, null, null, xE, _E)), gi(6, 114688, null, 0, bE, [zg], {
             id: [0, "id"]
-        }, null), (l()(), su(7, 0, null, null, 4, "td", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, TM)), gi(9, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), su(7, 0, null, null, 4, "td", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, AM)), gi(9, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, EM)), gi(11, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, PM)), gi(11, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null)], (function (l, n) {
             l(n, 6, 0, n.context.$implicit.playerid), l(n, 9, 0, -1 != n.context.$implicit.cityid), l(n, 11, 0, -1 == n.context.$implicit.cityid)
@@ -34963,8 +35090,8 @@
         }))
     }
 
-    function PM(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 11, "table", [["class", "table table-sm"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 7, "thead", [], null, null, null, null, null)), (l()(), su(2, 0, null, null, 6, "tr", [], null, null, null, null, null)), (l()(), su(3, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Wonder"])), (l()(), su(5, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Owner"])), (l()(), su(7, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["City"])), (l()(), su(9, 0, null, null, 2, "tbody", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, AM)), gi(11, 278528, null, 0, Ea, [Fe, $e, Oe], {
+    function MM(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 11, "table", [["class", "table table-sm"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 7, "thead", [], null, null, null, null, null)), (l()(), su(2, 0, null, null, 6, "tr", [], null, null, null, null, null)), (l()(), su(3, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Wonder"])), (l()(), su(5, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Owner"])), (l()(), su(7, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["City"])), (l()(), su(9, 0, null, null, 2, "tbody", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, DM)), gi(11, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"],
             ngForTrackBy: [1, "ngForTrackBy"]
         }, null)], (function (l, n) {
@@ -34973,7 +35100,7 @@
         }), null)
     }
 
-    function DM(l) {
+    function OM(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "city", [], null, null, null, ix, ex)), gi(1, 114688, null, 0, nx, [Pg, zg], {
             id: [0, "id"]
         }, null)], (function (l, n) {
@@ -34981,18 +35108,18 @@
         }), null)
     }
 
-    function MM(l) {
+    function NM(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 3, "span", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "span", [["style", "color: #999"]], null, null, null, null, null)), (l()(), su(2, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(-1, null, [" Unknown city "]))], null, (function (l, n) {
             l(n, 2, 0, n.component.icons.player)
         }))
     }
 
-    function OM(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 12, null, null, null, null, null, null, null)), (l()(), su(1, 0, null, null, 11, "tr", [], null, null, null, null, null)), (l()(), su(2, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), su(3, 0, null, null, 1, "player", [], null, null, null, _E, vE)), gi(4, 114688, null, 0, yE, [zg], {
+    function RM(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 12, null, null, null, null, null, null, null)), (l()(), su(1, 0, null, null, 11, "tr", [], null, null, null, null, null)), (l()(), su(2, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), su(3, 0, null, null, 1, "player", [], null, null, null, xE, _E)), gi(4, 114688, null, 0, bE, [zg], {
             id: [0, "id"]
-        }, null), (l()(), su(5, 0, null, null, 4, "td", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, DM)), gi(7, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), su(5, 0, null, null, 4, "td", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, OM)), gi(7, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, MM)), gi(9, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, NM)), gi(9, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), su(10, 0, null, null, 2, "td", [["class", "text-colony"]], null, null, null, null, null)), (l()(), su(11, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(12, null, [" ", ""]))], (function (l, n) {
             l(n, 4, 0, n.context.$implicit.playerid), l(n, 7, 0, -1 != n.context.$implicit.cityid), l(n, 9, 0, -1 == n.context.$implicit.cityid)
@@ -35001,8 +35128,8 @@
         }))
     }
 
-    function NM(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 12, "table", [["class", "table table-sm"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 8, "thead", [], null, null, null, null, null)), (l()(), su(2, 0, null, null, 7, "tr", [], null, null, null, null, null)), (l()(), su(3, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Owner"])), (l()(), su(5, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["City"])), (l()(), su(7, 0, null, null, 2, "th", [["class", "text-colony"]], null, null, null, null, null)), (l()(), su(8, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(-1, null, [" Colonies"])), (l()(), su(10, 0, null, null, 2, "tbody", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, OM)), gi(12, 278528, null, 0, Ea, [Fe, $e, Oe], {
+    function BM(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 12, "table", [["class", "table table-sm"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 8, "thead", [], null, null, null, null, null)), (l()(), su(2, 0, null, null, 7, "tr", [], null, null, null, null, null)), (l()(), su(3, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Owner"])), (l()(), su(5, 0, null, null, 1, "th", [], null, null, null, null, null)), (l()(), _u(-1, null, ["City"])), (l()(), su(7, 0, null, null, 2, "th", [["class", "text-colony"]], null, null, null, null, null)), (l()(), su(8, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(-1, null, [" Colonies"])), (l()(), su(10, 0, null, null, 2, "tbody", [], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, RM)), gi(12, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"],
             ngForTrackBy: [1, "ngForTrackBy"]
         }, null)], (function (l, n) {
@@ -35013,7 +35140,7 @@
         }))
     }
 
-    function RM(l) {
+    function zM(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "ngb-tab", [["id", "tab_colonies"], ["title", "Colonies"]], null, null, null, null, null)), gi(1, 2113536, [[1, 4]], 2, ev, [], {
             id: [0, "id"],
             title: [1, "title"]
@@ -35021,38 +35148,19 @@
             titleTpls: 1
         }), cu(603979776, 13, {
             contentTpls: 1
-        }), (l()(), iu(0, null, null, 1, null, NM)), gi(5, 16384, [[13, 4]], 0, nv, [$e], null, null)], (function (l, n) {
+        }), (l()(), iu(0, null, null, 1, null, BM)), gi(5, 16384, [[13, 4]], 0, nv, [$e], null, null)], (function (l, n) {
             l(n, 1, 0, "tab_colonies", "Colonies")
         }), null)
     }
 
-    function BM(l) {
+    function $M(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "span", [], null, null, null, null, null)), (l()(), _u(1, null, [" ", ""]))], null, (function (l, n) {
             l(n, 1, 0, n.parent.context.$implicit.cities)
         }))
     }
 
-    function zM(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 5, "div", [["class", "d-flex"]], null, null, null, null, null)), (l()(), _u(1, null, [" ", ". "])), (l()(), su(2, 0, null, null, 1, "player", [["class", "flex-fill"]], null, null, null, _E, vE)), gi(3, 114688, null, 0, yE, [zg], {
-            id: [0, "id"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, BM)), gi(5, 16384, null, 0, Pa, [Fe, $e], {
-            ngIf: [0, "ngIf"]
-        }, null)], (function (l, n) {
-            var e = n.component;
-            l(n, 3, 0, n.context.$implicit.id), l(n, 5, 0, n.context.$implicit.id <= 1 || e.dataService.haveRelation(0, n.context.$implicit.id))
-        }), (function (l, n) {
-            l(n, 1, 0, n.context.index + 1)
-        }))
-    }
-
-    function $M(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 1, "span", [], null, null, null, null, null)), (l()(), _u(1, null, ["", ""]))], null, (function (l, n) {
-            l(n, 1, 0, n.parent.context.$implicit.pop)
-        }))
-    }
-
     function LM(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 5, "div", [["class", "d-flex"]], null, null, null, null, null)), (l()(), _u(1, null, [" ", ". "])), (l()(), su(2, 0, null, null, 1, "player", [["class", "flex-fill"]], null, null, null, _E, vE)), gi(3, 114688, null, 0, yE, [zg], {
+        return ku(0, [(l()(), su(0, 0, null, null, 5, "div", [["class", "d-flex"]], null, null, null, null, null)), (l()(), _u(1, null, [" ", ". "])), (l()(), su(2, 0, null, null, 1, "player", [["class", "flex-fill"]], null, null, null, xE, _E)), gi(3, 114688, null, 0, bE, [zg], {
             id: [0, "id"]
         }, null), (l()(), iu(16777216, null, null, 1, null, $M)), gi(5, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
@@ -35065,32 +35173,33 @@
     }
 
     function FM(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 2, "span", [], null, null, null, null, null)), (l()(), _u(1, null, [" ", ""])), yu(2, 1)], null, (function (l, n) {
-            var e = et(n, 1, 0, l(n, 2, 0, ei(n.parent.parent.parent, 0), n.parent.context.$implicit.troops));
-            l(n, 1, 0, e)
+        return ku(0, [(l()(), su(0, 0, null, null, 1, "span", [], null, null, null, null, null)), (l()(), _u(1, null, ["", ""]))], null, (function (l, n) {
+            l(n, 1, 0, n.parent.context.$implicit.pop)
         }))
     }
 
     function qM(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 5, "div", [["class", "d-flex"]], null, null, null, null, null)), (l()(), _u(1, null, [" ", ". "])), (l()(), su(2, 0, null, null, 1, "player", [["class", "flex-fill"]], null, null, null, _E, vE)), gi(3, 114688, null, 0, yE, [zg], {
+        return ku(0, [(l()(), su(0, 0, null, null, 5, "div", [["class", "d-flex"]], null, null, null, null, null)), (l()(), _u(1, null, [" ", ". "])), (l()(), su(2, 0, null, null, 1, "player", [["class", "flex-fill"]], null, null, null, xE, _E)), gi(3, 114688, null, 0, bE, [zg], {
             id: [0, "id"]
         }, null), (l()(), iu(16777216, null, null, 1, null, FM)), gi(5, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null)], (function (l, n) {
-            l(n, 3, 0, n.context.$implicit.id), l(n, 5, 0, 0 == n.context.$implicit.id)
+            var e = n.component;
+            l(n, 3, 0, n.context.$implicit.id), l(n, 5, 0, n.context.$implicit.id <= 1 || e.dataService.haveRelation(0, n.context.$implicit.id))
         }), (function (l, n) {
             l(n, 1, 0, n.context.index + 1)
         }))
     }
 
     function UM(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 1, "span", [], null, null, null, null, null)), (l()(), _u(1, null, [" ", ""]))], null, (function (l, n) {
-            l(n, 1, 0, n.parent.context.$implicit.sciences)
+        return ku(0, [(l()(), su(0, 0, null, null, 2, "span", [], null, null, null, null, null)), (l()(), _u(1, null, [" ", ""])), yu(2, 1)], null, (function (l, n) {
+            var e = et(n, 1, 0, l(n, 2, 0, ei(n.parent.parent.parent, 0), n.parent.context.$implicit.troops));
+            l(n, 1, 0, e)
         }))
     }
 
     function HM(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 5, "div", [["class", "d-flex"]], null, null, null, null, null)), (l()(), _u(1, null, [" ", ". "])), (l()(), su(2, 0, null, null, 1, "player", [["class", "flex-fill"]], null, null, null, _E, vE)), gi(3, 114688, null, 0, yE, [zg], {
+        return ku(0, [(l()(), su(0, 0, null, null, 5, "div", [["class", "d-flex"]], null, null, null, null, null)), (l()(), _u(1, null, [" ", ". "])), (l()(), su(2, 0, null, null, 1, "player", [["class", "flex-fill"]], null, null, null, xE, _E)), gi(3, 114688, null, 0, bE, [zg], {
             id: [0, "id"]
         }, null), (l()(), iu(16777216, null, null, 1, null, UM)), gi(5, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
@@ -35102,14 +35211,13 @@
     }
 
     function VM(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 2, "span", [], null, null, null, null, null)), (l()(), _u(1, null, [" ", ""])), yu(2, 1)], null, (function (l, n) {
-            var e = et(n, 1, 0, l(n, 2, 0, ei(n.parent.parent.parent, 0), n.parent.context.$implicit.gold));
-            l(n, 1, 0, e)
+        return ku(0, [(l()(), su(0, 0, null, null, 1, "span", [], null, null, null, null, null)), (l()(), _u(1, null, [" ", ""]))], null, (function (l, n) {
+            l(n, 1, 0, n.parent.context.$implicit.sciences)
         }))
     }
 
     function jM(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 5, "div", [["class", "d-flex"]], null, null, null, null, null)), (l()(), _u(1, null, [" ", ". "])), (l()(), su(2, 0, null, null, 1, "player", [["class", "flex-fill"]], null, null, null, _E, vE)), gi(3, 114688, null, 0, yE, [zg], {
+        return ku(0, [(l()(), su(0, 0, null, null, 5, "div", [["class", "d-flex"]], null, null, null, null, null)), (l()(), _u(1, null, [" ", ". "])), (l()(), su(2, 0, null, null, 1, "player", [["class", "flex-fill"]], null, null, null, xE, _E)), gi(3, 114688, null, 0, bE, [zg], {
             id: [0, "id"]
         }, null), (l()(), iu(16777216, null, null, 1, null, VM)), gi(5, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
@@ -35122,15 +35230,34 @@
 
     function GM(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 2, "span", [], null, null, null, null, null)), (l()(), _u(1, null, [" ", ""])), yu(2, 1)], null, (function (l, n) {
-            var e = et(n, 1, 0, l(n, 2, 0, ei(n.parent.parent.parent, 0), n.parent.context.$implicit.nb));
+            var e = et(n, 1, 0, l(n, 2, 0, ei(n.parent.parent.parent, 0), n.parent.context.$implicit.gold));
             l(n, 1, 0, e)
         }))
     }
 
     function WM(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 5, "div", [["class", "d-flex"]], null, null, null, null, null)), (l()(), _u(1, null, [" ", ". "])), (l()(), su(2, 0, null, null, 1, "player", [["class", "flex-fill"]], null, null, null, _E, vE)), gi(3, 114688, null, 0, yE, [zg], {
+        return ku(0, [(l()(), su(0, 0, null, null, 5, "div", [["class", "d-flex"]], null, null, null, null, null)), (l()(), _u(1, null, [" ", ". "])), (l()(), su(2, 0, null, null, 1, "player", [["class", "flex-fill"]], null, null, null, xE, _E)), gi(3, 114688, null, 0, bE, [zg], {
             id: [0, "id"]
         }, null), (l()(), iu(16777216, null, null, 1, null, GM)), gi(5, 16384, null, 0, Pa, [Fe, $e], {
+            ngIf: [0, "ngIf"]
+        }, null)], (function (l, n) {
+            l(n, 3, 0, n.context.$implicit.id), l(n, 5, 0, 0 == n.context.$implicit.id)
+        }), (function (l, n) {
+            l(n, 1, 0, n.context.index + 1)
+        }))
+    }
+
+    function KM(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 2, "span", [], null, null, null, null, null)), (l()(), _u(1, null, [" ", ""])), yu(2, 1)], null, (function (l, n) {
+            var e = et(n, 1, 0, l(n, 2, 0, ei(n.parent.parent.parent, 0), n.parent.context.$implicit.nb));
+            l(n, 1, 0, e)
+        }))
+    }
+
+    function ZM(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 5, "div", [["class", "d-flex"]], null, null, null, null, null)), (l()(), _u(1, null, [" ", ". "])), (l()(), su(2, 0, null, null, 1, "player", [["class", "flex-fill"]], null, null, null, xE, _E)), gi(3, 114688, null, 0, bE, [zg], {
+            id: [0, "id"]
+        }, null), (l()(), iu(16777216, null, null, 1, null, KM)), gi(5, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null)], (function (l, n) {
             var e = n.component;
@@ -35140,8 +35267,8 @@
         }))
     }
 
-    function KM(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 5, "div", [["class", "d-flex"]], null, null, null, null, null)), (l()(), _u(1, null, [" ", ". "])), (l()(), su(2, 0, null, null, 1, "player", [["class", "flex-fill"]], null, null, null, _E, vE)), gi(3, 114688, null, 0, yE, [zg], {
+    function QM(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 5, "div", [["class", "d-flex"]], null, null, null, null, null)), (l()(), _u(1, null, [" ", ". "])), (l()(), su(2, 0, null, null, 1, "player", [["class", "flex-fill"]], null, null, null, xE, _E)), gi(3, 114688, null, 0, bE, [zg], {
             id: [0, "id"]
         }, null), (l()(), su(4, 0, null, null, 1, "span", [], null, null, null, null, null)), (l()(), _u(5, null, ["", ""]))], (function (l, n) {
             l(n, 3, 0, n.context.$implicit.id)
@@ -35150,20 +35277,20 @@
         }))
     }
 
-    function ZM(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 27, "div", [["class", "d-flex border-bottom"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 6, "div", [["class", "mr-4 border-left pl-2"], ["style", "width:220px"]], null, null, null, null, null)), (l()(), su(2, 0, null, null, 3, "div", [["class", "d-flex"]], null, null, null, null, null)), (l()(), su(3, 0, null, null, 1, "span", [["class", "flex-fill"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Global cities:"])), (l()(), _u(5, null, [" ", ""])), (l()(), iu(16777216, null, null, 1, null, zM)), gi(7, 278528, null, 0, Ea, [Fe, $e, Oe], {
+    function YM(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 27, "div", [["class", "d-flex border-bottom"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 6, "div", [["class", "mr-4 border-left pl-2"], ["style", "width:220px"]], null, null, null, null, null)), (l()(), su(2, 0, null, null, 3, "div", [["class", "d-flex"]], null, null, null, null, null)), (l()(), su(3, 0, null, null, 1, "span", [["class", "flex-fill"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Global cities:"])), (l()(), _u(5, null, [" ", ""])), (l()(), iu(16777216, null, null, 1, null, LM)), gi(7, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
-        }, null), (l()(), su(8, 0, null, null, 6, "div", [["class", "mr-4 border-left pl-2"], ["style", "width:220px"]], null, null, null, null, null)), (l()(), su(9, 0, null, null, 3, "div", [["class", "d-flex"]], null, null, null, null, null)), (l()(), su(10, 0, null, null, 1, "span", [["class", "flex-fill"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Global population:"])), (l()(), _u(12, null, [" ", ""])), (l()(), iu(16777216, null, null, 1, null, LM)), gi(14, 278528, null, 0, Ea, [Fe, $e, Oe], {
+        }, null), (l()(), su(8, 0, null, null, 6, "div", [["class", "mr-4 border-left pl-2"], ["style", "width:220px"]], null, null, null, null, null)), (l()(), su(9, 0, null, null, 3, "div", [["class", "d-flex"]], null, null, null, null, null)), (l()(), su(10, 0, null, null, 1, "span", [["class", "flex-fill"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Global population:"])), (l()(), _u(12, null, [" ", ""])), (l()(), iu(16777216, null, null, 1, null, qM)), gi(14, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
-        }, null), (l()(), su(15, 0, null, null, 7, "div", [["class", "mr-4 border-left pl-2"], ["style", "width:220px"]], null, null, null, null, null)), (l()(), su(16, 0, null, null, 4, "div", [["class", "d-flex"]], null, null, null, null, null)), (l()(), su(17, 0, null, null, 1, "span", [["class", "flex-fill"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Global troops number:"])), (l()(), _u(19, null, [" ", ""])), yu(20, 1), (l()(), iu(16777216, null, null, 1, null, qM)), gi(22, 278528, null, 0, Ea, [Fe, $e, Oe], {
+        }, null), (l()(), su(15, 0, null, null, 7, "div", [["class", "mr-4 border-left pl-2"], ["style", "width:220px"]], null, null, null, null, null)), (l()(), su(16, 0, null, null, 4, "div", [["class", "d-flex"]], null, null, null, null, null)), (l()(), su(17, 0, null, null, 1, "span", [["class", "flex-fill"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Global troops number:"])), (l()(), _u(19, null, [" ", ""])), yu(20, 1), (l()(), iu(16777216, null, null, 1, null, HM)), gi(22, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
-        }, null), (l()(), su(23, 0, null, null, 4, "div", [["class", "mr-4 border-left pl-2"], ["style", "width:220px"]], null, null, null, null, null)), (l()(), su(24, 0, null, null, 1, "div", [["class", "d-flex"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Science"])), (l()(), iu(16777216, null, null, 1, null, HM)), gi(27, 278528, null, 0, Ea, [Fe, $e, Oe], {
+        }, null), (l()(), su(23, 0, null, null, 4, "div", [["class", "mr-4 border-left pl-2"], ["style", "width:220px"]], null, null, null, null, null)), (l()(), su(24, 0, null, null, 1, "div", [["class", "d-flex"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Science"])), (l()(), iu(16777216, null, null, 1, null, jM)), gi(27, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
-        }, null), (l()(), su(28, 0, null, null, 23, "div", [["class", "d-flex"]], null, null, null, null, null)), (l()(), su(29, 0, null, null, 7, "div", [["class", "mr-4 border-left pl-2"], ["style", "width:220px"]], null, null, null, null, null)), (l()(), su(30, 0, null, null, 4, "div", [["class", "d-flex"]], null, null, null, null, null)), (l()(), su(31, 0, null, null, 1, "span", [["class", "flex-fill"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Global gold:"])), (l()(), _u(33, null, [" ", ""])), yu(34, 1), (l()(), iu(16777216, null, null, 1, null, jM)), gi(36, 278528, null, 0, Ea, [Fe, $e, Oe], {
+        }, null), (l()(), su(28, 0, null, null, 23, "div", [["class", "d-flex"]], null, null, null, null, null)), (l()(), su(29, 0, null, null, 7, "div", [["class", "mr-4 border-left pl-2"], ["style", "width:220px"]], null, null, null, null, null)), (l()(), su(30, 0, null, null, 4, "div", [["class", "d-flex"]], null, null, null, null, null)), (l()(), su(31, 0, null, null, 1, "span", [["class", "flex-fill"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Global gold:"])), (l()(), _u(33, null, [" ", ""])), yu(34, 1), (l()(), iu(16777216, null, null, 1, null, WM)), gi(36, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
-        }, null), (l()(), su(37, 0, null, null, 7, "div", [["class", "mr-4 border-left pl-2"], ["style", "width:220px"]], null, null, null, null, null)), (l()(), su(38, 0, null, null, 4, "div", [["class", "d-flex"]], null, null, null, null, null)), (l()(), su(39, 0, null, null, 1, "span", [["class", "flex-fill"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Global trade:"])), (l()(), _u(41, null, [" ", ""])), yu(42, 1), (l()(), iu(16777216, null, null, 1, null, WM)), gi(44, 278528, null, 0, Ea, [Fe, $e, Oe], {
+        }, null), (l()(), su(37, 0, null, null, 7, "div", [["class", "mr-4 border-left pl-2"], ["style", "width:220px"]], null, null, null, null, null)), (l()(), su(38, 0, null, null, 4, "div", [["class", "d-flex"]], null, null, null, null, null)), (l()(), su(39, 0, null, null, 1, "span", [["class", "flex-fill"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Global trade:"])), (l()(), _u(41, null, [" ", ""])), yu(42, 1), (l()(), iu(16777216, null, null, 1, null, ZM)), gi(44, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
-        }, null), (l()(), su(45, 0, null, null, 6, "div", [["class", "mr-4 border-left pl-2"], ["style", "width:220px"]], null, null, null, null, null)), (l()(), su(46, 0, null, null, 3, "div", [["class", "d-flex"]], null, null, null, null, null)), (l()(), su(47, 0, null, null, 1, "span", [["class", "flex-fill"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Wonders:"])), (l()(), _u(49, null, [" ", ""])), (l()(), iu(16777216, null, null, 1, null, KM)), gi(51, 278528, null, 0, Ea, [Fe, $e, Oe], {
+        }, null), (l()(), su(45, 0, null, null, 6, "div", [["class", "mr-4 border-left pl-2"], ["style", "width:220px"]], null, null, null, null, null)), (l()(), su(46, 0, null, null, 3, "div", [["class", "d-flex"]], null, null, null, null, null)), (l()(), su(47, 0, null, null, 1, "span", [["class", "flex-fill"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Wonders:"])), (l()(), _u(49, null, [" ", ""])), (l()(), iu(16777216, null, null, 1, null, QM)), gi(51, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
         }, null)], (function (l, n) {
             var e = n.component;
@@ -35180,11 +35307,11 @@
         }))
     }
 
-    function QM(l) {
+    function XM(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["War"])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-danger"]], null, null, null, null, null)), (l()(), _u(-1, null, ["- 1"]))], null, null)
     }
 
-    function YM(l) {
+    function JM(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Trade routes"])), (l()(), su(3, 0, null, null, 2, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(4, null, ["+ ", ""])), yu(5, 2)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 4, 0, l(n, 5, 0, ei(n.parent.parent, 0), e.dataService.diploTrade(n.parent.context.id, 0), ".1"));
@@ -35192,7 +35319,7 @@
         }))
     }
 
-    function XM(l) {
+    function lO(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Proximity"])), (l()(), su(3, 0, null, null, 2, "td", [["class", "text-danger"]], null, null, null, null, null)), (l()(), _u(4, null, ["- ", ""])), yu(5, 2)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 4, 0, l(n, 5, 0, ei(n.parent.parent, 0), e.dataService.diploProximity(n.parent.context.id, 0), ".1"));
@@ -35200,7 +35327,7 @@
         }))
     }
 
-    function JM(l) {
+    function nO(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Religion"])), (l()(), su(3, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(4, 2)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 3, 0, l(n, 4, 0, ei(n.parent.parent, 0), e.dataService.diploDeity(n.parent.context.id, 0), "+.0c"));
@@ -35208,7 +35335,7 @@
         }))
     }
 
-    function lO(l) {
+    function eO(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Relations"])), (l()(), su(3, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(4, 2)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 3, 0, l(n, 4, 0, ei(n.parent.parent, 0), e.dataService.diploRelations(n.parent.context.id, 0), "+.1c"));
@@ -35216,16 +35343,16 @@
         }))
     }
 
-    function nO(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 1, "b", [["class", "text-center d-block border-bottom bg-dark text-light"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Relations"])), (l()(), su(2, 0, null, null, 21, "table", [["class", "popover-table"]], null, null, null, null, null)), (l()(), su(3, 0, null, null, 20, "tbody", [], null, null, null, null, null)), (l()(), su(4, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(5, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Base"])), (l()(), su(7, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(8, 2), (l()(), iu(16777216, null, null, 1, null, QM)), gi(10, 16384, null, 0, Pa, [Fe, $e], {
+    function tO(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 1, "b", [["class", "text-center d-block border-bottom bg-dark text-light"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Relations"])), (l()(), su(2, 0, null, null, 21, "table", [["class", "popover-table"]], null, null, null, null, null)), (l()(), su(3, 0, null, null, 20, "tbody", [], null, null, null, null, null)), (l()(), su(4, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(5, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Base"])), (l()(), su(7, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(8, 2), (l()(), iu(16777216, null, null, 1, null, XM)), gi(10, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, YM)), gi(12, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, JM)), gi(12, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, XM)), gi(14, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, lO)), gi(14, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, JM)), gi(16, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, nO)), gi(16, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, lO)), gi(18, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, eO)), gi(18, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), su(19, 0, null, null, 4, "tr", [["class", "border-top"]], null, null, null, null, null)), (l()(), su(20, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Total"])), (l()(), su(22, 0, null, null, 1, "td", [], [[8, "innerHTML", 1]], null, null, null, null)), yu(23, 2)], (function (l, n) {
             var e = n.component;
@@ -35239,34 +35366,34 @@
         }))
     }
 
-    function eO(l) {
+    function iO(l) {
         return ku(0, [(l()(), _u(0, null, [" ", " (", ")\n"]))], null, (function (l, n) {
             var e = n.component;
             l(n, 0, 0, e.dataService.city(n.context.id).name, e.dataService.pop(e.dataService.city(n.context.id)))
         }))
     }
 
-    function tO(l) {
+    function sO(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-science"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Diplomacy: "])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 1"]))], null, null)
     }
 
-    function iO(l) {
+    function uO(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-science"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Optics: "])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 1"]))], null, null)
     }
 
-    function sO(l) {
+    function rO(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-science"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Engineering: "])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 1"]))], null, null)
     }
 
-    function uO(l) {
+    function aO(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-culture"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Pacifism: "])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 2"]))], null, null)
     }
 
-    function rO(l) {
+    function oO(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-culture"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Platonic Academy: "])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 1"]))], null, null)
     }
 
-    function aO(l) {
+    function cO(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Trade Node"])), (l()(), su(3, 0, null, null, 2, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(4, null, ["+ ", ""])), yu(5, 1)], null, (function (l, n) {
             var e = n.component,
                 t = et(n, 4, 0, l(n, 5, 0, ei(n.parent.parent, 0), e.dataService.tradeNodeBonus()));
@@ -35274,38 +35401,38 @@
         }))
     }
 
-    function oO(l) {
+    function dO(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-culture"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Colossus: "])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 1"]))], null, null)
     }
 
-    function cO(l) {
+    function hO(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-culture"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Panama Canal: "])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(-1, null, ["+ 2"]))], null, null)
     }
 
-    function dO(l) {
+    function pO(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "td", [["class", "text-culture"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Upgrades: "])), (l()(), su(3, 0, null, null, 1, "td", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(4, null, ["+ ", ""]))], null, (function (l, n) {
             l(n, 4, 0, n.component.dataService.upgradeTrade(0))
         }))
     }
 
-    function hO(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 1, "b", [["class", "text-center d-block border-bottom bg-dark text-light"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Maximum Nb of trade routes"])), (l()(), su(2, 0, null, null, 28, "table", [["class", "popover-table"]], null, null, null, null, null)), (l()(), su(3, 0, null, null, 27, "tbody", [], null, null, null, null, null)), (l()(), su(4, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(5, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Base"])), (l()(), su(7, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["1"])), (l()(), iu(16777216, null, null, 1, null, tO)), gi(10, 16384, null, 0, Pa, [Fe, $e], {
+    function fO(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 1, "b", [["class", "text-center d-block border-bottom bg-dark text-light"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Maximum Nb of trade routes"])), (l()(), su(2, 0, null, null, 28, "table", [["class", "popover-table"]], null, null, null, null, null)), (l()(), su(3, 0, null, null, 27, "tbody", [], null, null, null, null, null)), (l()(), su(4, 0, null, null, 4, "tr", [], null, null, null, null, null)), (l()(), su(5, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Base"])), (l()(), su(7, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["1"])), (l()(), iu(16777216, null, null, 1, null, sO)), gi(10, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, iO)), gi(12, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, uO)), gi(12, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, sO)), gi(14, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, rO)), gi(14, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, uO)), gi(16, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, aO)), gi(16, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, rO)), gi(18, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, oO)), gi(18, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, aO)), gi(20, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, cO)), gi(20, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, oO)), gi(22, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, dO)), gi(22, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, cO)), gi(24, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, hO)), gi(24, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, dO)), gi(26, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, pO)), gi(26, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), su(27, 0, null, null, 3, "tr", [["class", "border-top"]], null, null, null, null, null)), (l()(), su(28, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Total"])), (l()(), su(30, 0, null, null, 0, "td", [], [[8, "innerHTML", 1]], null, null, null, null))], (function (l, n) {
             var e = n.component;
@@ -35315,7 +35442,7 @@
         }))
     }
 
-    function pO(l) {
+    function gO(l) {
         return ku(0, [mi(0, zv, []), mi(0, gv, []), (l()(), su(2, 0, null, null, 28, "ngb-tabset", [["class", "d-block h-100 pl-2"]], null, [[null, "tabChange"]], (function (l, n, e) {
             var t = !0;
             return "tabChange" === n && (t = !1 !== l.component.beforeChange(e) && t), t
@@ -35331,11 +35458,11 @@
             titleTpls: 1
         }), cu(603979776, 3, {
             contentTpls: 1
-        }), (l()(), iu(0, null, null, 1, null, dM)), gi(10, 16384, [[3, 4]], 0, nv, [$e], null, null), (l()(), iu(16777216, null, null, 1, null, mM)), gi(12, 16384, null, 0, Pa, [Fe, $e], {
+        }), (l()(), iu(0, null, null, 1, null, pM)), gi(10, 16384, [[3, 4]], 0, nv, [$e], null, null), (l()(), iu(16777216, null, null, 1, null, vM)), gi(12, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, kM)), gi(14, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, CM)), gi(14, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, IM)), gi(16, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, EM)), gi(16, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), su(17, 0, null, null, 5, "ngb-tab", [["id", "tab_wonders"], ["title", "Wonders"]], null, null, null, null, null)), gi(18, 2113536, [[1, 4]], 2, ev, [], {
             id: [0, "id"],
@@ -35344,7 +35471,7 @@
             titleTpls: 1
         }), cu(603979776, 11, {
             contentTpls: 1
-        }), (l()(), iu(0, null, null, 1, null, PM)), gi(22, 16384, [[11, 4]], 0, nv, [$e], null, null), (l()(), iu(16777216, null, null, 1, null, RM)), gi(24, 16384, null, 0, Pa, [Fe, $e], {
+        }), (l()(), iu(0, null, null, 1, null, MM)), gi(22, 16384, [[11, 4]], 0, nv, [$e], null, null), (l()(), iu(16777216, null, null, 1, null, zM)), gi(24, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), su(25, 0, null, null, 5, "ngb-tab", [["id", "tab_stats"], ["title", "Stats"]], null, null, null, null, null)), gi(26, 2113536, [[1, 4]], 2, ev, [], {
             id: [0, "id"],
@@ -35353,18 +35480,18 @@
             titleTpls: 1
         }), cu(603979776, 15, {
             contentTpls: 1
-        }), (l()(), iu(0, null, null, 1, null, ZM)), gi(30, 16384, [[15, 4]], 0, nv, [$e], null, null), (l()(), iu(0, [["popDiplo", 2]], null, 0, null, nO)), (l()(), iu(0, [["city", 2]], null, 0, null, eO)), (l()(), iu(0, [["maxTrade", 2]], null, 0, null, hO))], (function (l, n) {
+        }), (l()(), iu(0, null, null, 1, null, YM)), gi(30, 16384, [[15, 4]], 0, nv, [$e], null, null), (l()(), iu(0, [["popDiplo", 2]], null, 0, null, tO)), (l()(), iu(0, [["city", 2]], null, 0, null, iO)), (l()(), iu(0, [["maxTrade", 2]], null, 0, null, fO))], (function (l, n) {
             var e = n.component;
             l(n, 3, 0, e.activetabeid), l(n, 6, 0, "Diplomacy"), l(n, 12, 0, e.dataService.isUnlocked("diplo_global")), l(n, 14, 0, e.hasDiplo), l(n, 16, 0, e.dataService.isUnlocked("trade")), l(n, 18, 0, "tab_wonders", "Wonders"), l(n, 24, 0, e.dataService.isUnlocked("colonization")), l(n, 26, 0, "tab_stats", "Stats")
         }), null)
     }
 
-    function fO(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 1, "app-diplomacy", [], null, null, null, pO, FD)), gi(1, 114688, null, 0, LD, [oh, Pg, Tg, zg], null, null)], (function (l, n) {
+    function mO(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 1, "app-diplomacy", [], null, null, null, gO, UD)), gi(1, 114688, null, 0, qD, [oh, Pg, Tg, zg], null, null)], (function (l, n) {
             l(n, 1, 0)
         }), null)
     }
-    var gO = jt("app-diplomacy", LD, fO, {}, {}, []); class mO {
+    var yO = jt("app-diplomacy", qD, mO, {}, {}, []); class vO {
         constructor(l, n, e, t, i) {
             this.modalService = l, this.conf = n, this.data = e, this.dataService = t, this.activatedRoute = i, this.icons = ug
         }
@@ -35398,13 +35525,13 @@
             l.close()
         }
     }
-    var yO = st({
+    var bO = st({
         encapsulation: 0,
         styles: [[""]],
         data: {}
     });
 
-    function vO(l) {
+    function _O(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 6, "span", [["class", "mr-3 text-center text-favor"], ["style", "width: 85px"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 3, "i", [], [[8, "className", 0]], null, null, null, null)), yi(512, null, Oa, Na, [fe, Ne, be]), gi(3, 278528, null, 0, Ba, [Oa], {
             ngStyle: [0, "ngStyle"]
         }, null), vu(4, {
@@ -35419,7 +35546,7 @@
         }))
     }
 
-    function bO(l) {
+    function wO(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 3, "option", [], null, null, null, null, null)), gi(1, 147456, null, 0, If, [fe, be, [2, Cf]], {
             value: [0, "value"]
         }, null), gi(2, 147456, null, 0, Ef, [fe, be, [8, null]], {
@@ -35431,22 +35558,22 @@
         }))
     }
 
-    function _O(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 2, null, null, null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, bO)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
+    function xO(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 2, null, null, null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, wO)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), iu(0, null, null, 0))], (function (l, n) {
             l(n, 2, 0, n.context.$implicit.id > 1)
         }), null)
     }
 
-    function wO(l) {
+    function kO(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "span", [], null, null, null, null, null)), (l()(), _u(1, null, ["", ""]))], null, (function (l, n) {
             var e = n.component;
             l(n, 1, 0, e.dataService.player(e.aiid).powers[n.parent.context.$implicit.key] || 0)
         }))
     }
 
-    function xO(l) {
+    function SO(l) {
         return ku(0, [(l()(), su(0, 16777216, null, null, 11, "tr", [["placement", "right"], ["triggers", "manual"]], null, [[null, "mouseenter"], [null, "mouseleave"]], (function (l, n, e) {
             var t = !0,
                 i = l.component;
@@ -35459,7 +35586,7 @@
         }, null), (l()(), su(2, 0, null, null, 1, "td", [], null, null, null, null, null)), (l()(), _u(3, null, ["", ""])), (l()(), su(4, 0, null, null, 1, "td", [["class", "font-weight-bold"]], null, null, null, null, null)), (l()(), _u(5, null, ["", ""])), (l()(), su(6, 0, null, null, 2, "td", [], null, null, null, null, null)), (l()(), su(7, 0, null, null, 1, "button", [["class", "btn btn-primary btn-sm line-height-1 font-weight-bold"]], [[8, "disabled", 0]], [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== l.component.addPower(l.context.$implicit.value) && t), t
-        }), null, null)), (l()(), _u(-1, null, ["+"])), (l()(), su(9, 0, null, null, 2, "td", [["class", "text-center"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, wO)), gi(11, 16384, null, 0, Pa, [Fe, $e], {
+        }), null, null)), (l()(), _u(-1, null, ["+"])), (l()(), su(9, 0, null, null, 2, "td", [["class", "text-center"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, kO)), gi(11, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), iu(0, null, null, 0))], (function (l, n) {
             var e = n.component;
@@ -35470,8 +35597,8 @@
         }))
     }
 
-    function kO(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 1, "h3", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Powers"])), (l()(), iu(16777216, null, null, 2, null, vO)), gi(3, 278528, null, 0, Ea, [Fe, $e, Oe], {
+    function CO(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 1, "h3", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Powers"])), (l()(), iu(16777216, null, null, 2, null, _O)), gi(3, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
         }, null), mi(0, ig, [Ne]), (l()(), su(5, 0, null, null, 17, "table", [["class", "table table-borderless w-auto table-sm"]], null, null, null, null, null)), (l()(), su(6, 0, null, null, 16, "tbody", [], null, null, null, null, null)), (l()(), su(7, 0, null, null, 12, "tr", [], null, null, null, null, null)), (l()(), su(8, 0, null, null, 0, "td", [], null, null, null, null, null)), (l()(), su(9, 0, null, null, 1, "td", [["class", "font-weight-bold"], ["colspan", "2"]], null, null, null, null, null)), (l()(), _u(10, null, ["", ""])), (l()(), su(11, 0, null, null, 8, "td", [], null, null, null, null, null)), (l()(), su(12, 0, null, null, 7, "select", [], [[2, "ng-untouched", null], [2, "ng-touched", null], [2, "ng-pristine", null], [2, "ng-dirty", null], [2, "ng-valid", null], [2, "ng-invalid", null], [2, "ng-pending", null]], [[null, "ngModelChange"], [null, "change"], [null, "blur"]], (function (l, n, e) {
             var t = !0,
@@ -35483,9 +35610,9 @@
             model: [0, "model"]
         }, {
             update: "ngModelChange"
-        }), yi(2048, null, af, null, [lg]), gi(17, 16384, null, 0, cf, [[4, af]], null, null), (l()(), iu(16777216, null, null, 1, null, _O)), gi(19, 278528, null, 0, Ea, [Fe, $e, Oe], {
+        }), yi(2048, null, af, null, [lg]), gi(17, 16384, null, 0, cf, [[4, af]], null, null), (l()(), iu(16777216, null, null, 1, null, xO)), gi(19, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
-        }, null), (l()(), iu(16777216, null, null, 2, null, xO)), gi(21, 278528, null, 0, Ea, [Fe, $e, Oe], {
+        }, null), (l()(), iu(16777216, null, null, 2, null, SO)), gi(21, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
         }, null), mi(0, ig, [Ne])], (function (l, n) {
             var e = n.component;
@@ -35495,7 +35622,7 @@
         }))
     }
 
-    function SO(l) {
+    function IO(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 14, "div", [["class", "p-2 d-flex align-items-center border m-1"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 10, "div", [["class", "flex-fill"], ["style", "height:auto!important"]], null, null, null, null, null)), (l()(), su(2, 0, null, null, 1, "b", [], null, null, null, null, null)), (l()(), _u(3, null, ["", ""])), (l()(), su(4, 0, null, null, 0, "br", [], null, null, null, null, null)), (l()(), su(5, 0, null, null, 0, "span", [], [[8, "innerHTML", 1]], null, null, null, null)), (l()(), su(6, 0, null, null, 0, "br", [], null, null, null, null, null)), (l()(), _u(-1, null, [" Cost: "])), (l()(), su(8, 0, null, null, 3, "span", [["class", "text-prestige"]], null, null, null, null, null)), (l()(), su(9, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), _u(10, null, [" ", ""])), yu(11, 1), (l()(), su(12, 0, null, null, 2, "div", [], null, null, null, null, null)), (l()(), su(13, 0, null, null, 1, "button", [["class", "btn btn-primary"]], [[8, "disabled", 0]], [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== l.component.buy(l.parent.context.$implicit.key, l.parent.context.$implicit.value, ei(l.parent.parent.parent.parent, 15)) && t), t
@@ -35507,32 +35634,32 @@
         }))
     }
 
-    function CO(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 2, null, null, null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, SO)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
+    function TO(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 2, null, null, null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, IO)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), iu(0, null, null, 0))], (function (l, n) {
             l(n, 2, 0, n.component.isUpgradeVisible(n.context.$implicit.key, n.context.$implicit.value))
         }), null)
     }
 
-    function IO(l) {
+    function EO(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "div", [["class", "p-2 d-flex align-items-center border m-1"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 4, "div", [["class", "flex-fill"], ["style", "height:auto!important"]], null, null, null, null, null)), (l()(), su(2, 0, null, null, 1, "b", [], null, null, null, null, null)), (l()(), _u(3, null, ["", ""])), (l()(), su(4, 0, null, null, 0, "br", [], null, null, null, null, null)), (l()(), su(5, 0, null, null, 0, "span", [], [[8, "innerHTML", 1]], null, null, null, null))], null, (function (l, n) {
             l(n, 3, 0, n.parent.context.$implicit.value.name), l(n, 5, 0, n.parent.context.$implicit.value.desc)
         }))
     }
 
-    function TO(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 2, null, null, null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, IO)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
+    function AO(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 2, null, null, null, null, null, null, null)), (l()(), iu(16777216, null, null, 1, null, EO)), gi(2, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null), (l()(), iu(0, null, null, 0))], (function (l, n) {
             l(n, 2, 0, n.component.dataService.hasUpgrade(n.context.$implicit.key))
         }), null)
     }
 
-    function EO(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 5, "h5", [], null, null, null, null, null)), (l()(), _u(-1, null, ["You have "])), (l()(), su(2, 0, null, null, 3, "span", [["class", "text-prestige"]], null, null, null, null, null)), (l()(), _u(3, null, ["", " "])), yu(4, 1), (l()(), su(5, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), su(6, 0, null, null, 6, "div", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Current bonus : "])), (l()(), su(8, 0, null, null, 2, "span", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(9, null, ["+ ", " "])), yu(10, 1), (l()(), su(11, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), su(12, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), su(13, 0, null, null, 1, "h5", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Available Upgrades"])), (l()(), su(15, 0, null, null, 3, "div", [["style", "width:450px"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 2, null, CO)), gi(17, 278528, null, 0, Ea, [Fe, $e, Oe], {
+    function PO(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 5, "h5", [], null, null, null, null, null)), (l()(), _u(-1, null, ["You have "])), (l()(), su(2, 0, null, null, 3, "span", [["class", "text-prestige"]], null, null, null, null, null)), (l()(), _u(3, null, ["", " "])), yu(4, 1), (l()(), su(5, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), su(6, 0, null, null, 6, "div", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Current bonus : "])), (l()(), su(8, 0, null, null, 2, "span", [["class", "text-success"]], null, null, null, null, null)), (l()(), _u(9, null, ["+ ", " "])), yu(10, 1), (l()(), su(11, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), su(12, 0, null, null, 0, "i", [], [[8, "className", 0]], null, null, null, null)), (l()(), su(13, 0, null, null, 1, "h5", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Available Upgrades"])), (l()(), su(15, 0, null, null, 3, "div", [["style", "width:450px"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 2, null, TO)), gi(17, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
-        }, null), mi(0, ig, [Ne]), (l()(), su(19, 0, null, null, 1, "h5", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Purchased Upgrades"])), (l()(), su(21, 0, null, null, 3, "div", [["style", "width:450px"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 2, null, TO)), gi(23, 278528, null, 0, Ea, [Fe, $e, Oe], {
+        }, null), mi(0, ig, [Ne]), (l()(), su(19, 0, null, null, 1, "h5", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Purchased Upgrades"])), (l()(), su(21, 0, null, null, 3, "div", [["style", "width:450px"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 2, null, AO)), gi(23, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
         }, null), mi(0, ig, [Ne])], (function (l, n) {
             var e = n.component;
@@ -35546,7 +35673,7 @@
         }))
     }
 
-    function AO(l) {
+    function DO(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "ngb-tab", [["id", "tab_prestige"], ["title", "Upgrades"]], null, null, null, null, null)), gi(1, 2113536, [[1, 4]], 2, ev, [], {
             id: [0, "id"],
             title: [1, "title"]
@@ -35554,18 +35681,18 @@
             titleTpls: 1
         }), cu(603979776, 5, {
             contentTpls: 1
-        }), (l()(), iu(0, null, null, 1, null, EO)), gi(5, 16384, [[5, 4]], 0, nv, [$e], null, null)], (function (l, n) {
+        }), (l()(), iu(0, null, null, 1, null, PO)), gi(5, 16384, [[5, 4]], 0, nv, [$e], null, null)], (function (l, n) {
             l(n, 1, 0, "tab_prestige", "Upgrades")
         }), null)
     }
 
-    function PO(l) {
+    function MO(l) {
         return ku(0, [(l()(), _u(0, null, ["", ""]))], null, (function (l, n) {
             l(n, 0, 0, n.context.title)
         }))
     }
 
-    function DO(l) {
+    function OO(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "span", [["class", "mr-2"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 3, "i", [], [[8, "className", 0]], null, null, null, null)), yi(512, null, Oa, Na, [fe, Ne, be]), gi(3, 278528, null, 0, Ba, [Oa], {
             ngStyle: [0, "ngStyle"]
         }, null), vu(4, {
@@ -35579,8 +35706,8 @@
         }))
     }
 
-    function MO(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 0, "div", [], [[8, "innerHTML", 1]], null, null, null, null)), (l()(), su(1, 0, null, null, 3, "div", [["class", "border-top"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 2, null, DO)), gi(3, 278528, null, 0, Ea, [Fe, $e, Oe], {
+    function NO(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 0, "div", [], [[8, "innerHTML", 1]], null, null, null, null)), (l()(), su(1, 0, null, null, 3, "div", [["class", "border-top"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 2, null, OO)), gi(3, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
         }, null), mi(0, ig, [Ne])], (function (l, n) {
             l(n, 3, 0, et(n, 3, 0, ei(n, 4).transform(n.context.power.cost)))
@@ -35591,7 +35718,7 @@
         }))
     }
 
-    function OO(l) {
+    function RO(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 5, "div", [["class", "modal-header"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "h4", [["class", "modal-title"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Upgrade"])), (l()(), su(3, 0, null, null, 2, "button", [["class", "close"], ["type", "button"]], null, [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== l.context.$implicit.dismiss() && t), t
@@ -35610,7 +35737,7 @@
         }))
     }
 
-    function NO(l) {
+    function BO(l) {
         return ku(0, [mi(0, zv, []), mi(0, $v, []), (l()(), su(2, 0, null, null, 10, "ngb-tabset", [], null, null, null, K_, U_)), gi(3, 2146304, null, 1, tv, [Jy], {
             activeId: [0, "activeId"]
         }, null), cu(603979776, 1, {
@@ -35621,21 +35748,21 @@
             titleTpls: 1
         }), cu(603979776, 3, {
             contentTpls: 1
-        }), (l()(), iu(0, null, null, 1, null, kO)), gi(10, 16384, [[3, 4]], 0, nv, [$e], null, null), (l()(), iu(16777216, null, null, 1, null, AO)), gi(12, 16384, null, 0, Pa, [Fe, $e], {
+        }), (l()(), iu(0, null, null, 1, null, CO)), gi(10, 16384, [[3, 4]], 0, nv, [$e], null, null), (l()(), iu(16777216, null, null, 1, null, DO)), gi(12, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(0, [["popTitle", 2]], null, 0, null, PO)), (l()(), iu(0, [["popContent", 2]], null, 0, null, MO)), (l()(), iu(0, [["confirmation", 2]], null, 0, null, OO))], (function (l, n) {
+        }, null), (l()(), iu(0, [["popTitle", 2]], null, 0, null, MO)), (l()(), iu(0, [["popContent", 2]], null, 0, null, NO)), (l()(), iu(0, [["confirmation", 2]], null, 0, null, RO))], (function (l, n) {
             var e = n.component;
             l(n, 3, 0, e.activetabeid), l(n, 6, 0, "Powers"), l(n, 12, 0, e.data.prestige)
         }), null)
     }
 
-    function RO(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 1, "app-powers", [], null, null, null, NO, yO)), gi(1, 114688, null, 0, mO, [Fy, Tg, Pg, zg, oh], null, null)], (function (l, n) {
+    function zO(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 1, "app-powers", [], null, null, null, BO, bO)), gi(1, 114688, null, 0, vO, [Fy, Tg, Pg, zg, oh], null, null)], (function (l, n) {
             l(n, 1, 0)
         }), null)
     }
-    var BO = jt("app-powers", mO, RO, {}, {}, []);
-    let zO = (() => {
+    var $O = jt("app-powers", vO, zO, {}, {}, []);
+    let LO = (() => {
         class l {
             constructor(l, n) {
                 this.dataService = l, this.data = n, this.replay = !1, this.icons = ug
@@ -35676,13 +35803,13 @@
         }
         return l.LEVELS = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 3], l
     })();
-    var $O = st({
+    var FO = st({
         encapsulation: 0,
         styles: [[""]],
         data: {}
     });
 
-    function LO(l) {
+    function qO(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 3, "div", [["class", "card cursor-pointer border-primary m-3 rounded-lg text-primary"], ["style", "height:200px;"]], null, [[null, "click"], [null, "mouseenter"], [null, "mouseleave"]], (function (l, n, e) {
             var t = !0,
                 i = l.component;
@@ -35696,19 +35823,19 @@
         }))
     }
 
-    function FO(l) {
+    function UO(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 1, "button", [["class", "btn btn-primary"]], null, [[null, "click"]], (function (l, n, e) {
             var t = !0;
             return "click" === n && (t = !1 !== l.component.reset() && t), t
         }), null, null)), (l()(), _u(-1, null, ["Replay !"]))], null, null)
     }
 
-    function qO(l) {
+    function HO(l) {
         return ku(0, [cu(671088640, 1, {
             cards: 1
-        }), (l()(), su(1, 0, null, null, 1, "h2", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Daily Bonus !"])), (l()(), su(3, 0, null, null, 3, "div", [["class", "card-deck"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 2, null, LO)), gi(5, 278528, null, 0, Ea, [Fe, $e, Oe], {
+        }), (l()(), su(1, 0, null, null, 1, "h2", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Daily Bonus !"])), (l()(), su(3, 0, null, null, 3, "div", [["class", "card-deck"]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 2, null, qO)), gi(5, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
-        }, null), bu(32, 6, new Array(3)), (l()(), iu(16777216, null, null, 1, null, FO)), gi(8, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), bu(32, 6, new Array(3)), (l()(), iu(16777216, null, null, 1, null, UO)), gi(8, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null)], (function (l, n) {
             var e = n.component,
@@ -35717,12 +35844,12 @@
         }), null)
     }
 
-    function UO(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 1, "app-daily", [], null, null, null, qO, $O)), gi(1, 114688, null, 0, zO, [zg, Pg], null, null)], (function (l, n) {
+    function VO(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 1, "app-daily", [], null, null, null, HO, FO)), gi(1, 114688, null, 0, LO, [zg, Pg], null, null)], (function (l, n) {
             l(n, 1, 0)
         }), null)
     }
-    var HO = jt("app-daily", zO, UO, {}, {}, []); class VO {
+    var jO = jt("app-daily", LO, VO, {}, {}, []); class GO {
         constructor(l, n, e) {
             this.conf = l, this.data = n, this.dataService = e
         }
@@ -35733,13 +35860,13 @@
             this.selectable && (this.dataService.player().deity = l, this.data.deities[0] = l, this.selectable = !1, this.dataService.checkLocks())
         }
     }
-    var jO = st({
+    var WO = st({
         encapsulation: 0,
         styles: [[".card-body[_ngcontent-%COMP%], .card-body[_ngcontent-%COMP%] > div[_ngcontent-%COMP%]{height:auto!important}"]],
         data: {}
     });
 
-    function GO(l) {
+    function KO(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 15, "div", [], null, [[null, "mouseenter"], [null, "mouseleave"]], (function (l, n, e) {
             var t = !0;
             return "mouseenter" === n && (t = !1 !== ei(l, 4).onMouseEnter() && t), "mouseleave" === n && (t = !1 !== ei(l, 4).onMouseLeave() && t), t
@@ -35768,8 +35895,8 @@
         }))
     }
 
-    function WO(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 6, "div", [["class", "h-100 overflow-auto"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "h2", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Deity Selection"])), (l()(), su(3, 0, null, null, 3, "div", [["class", ""]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 2, null, GO)), gi(5, 278528, null, 0, Ea, [Fe, $e, Oe], {
+    function ZO(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 6, "div", [["class", "h-100 overflow-auto"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 1, "h2", [], null, null, null, null, null)), (l()(), _u(-1, null, ["Deity Selection"])), (l()(), su(3, 0, null, null, 3, "div", [["class", ""]], null, null, null, null, null)), (l()(), iu(16777216, null, null, 2, null, KO)), gi(5, 278528, null, 0, Ea, [Fe, $e, Oe], {
             ngForOf: [0, "ngForOf"]
         }, null), mi(0, ig, [Ne])], (function (l, n) {
             var e = n.component;
@@ -35777,39 +35904,39 @@
         }), null)
     }
 
-    function KO(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 1, "app-deity", [], null, null, null, WO, jO)), gi(1, 114688, null, 0, VO, [Tg, Pg, zg], null, null)], (function (l, n) {
+    function QO(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 1, "app-deity", [], null, null, null, ZO, WO)), gi(1, 114688, null, 0, GO, [Tg, Pg, zg], null, null)], (function (l, n) {
             l(n, 1, 0)
         }), null)
     }
-    var ZO = jt("app-deity", VO, KO, {}, {}, []), QO = st({
+    var YO = jt("app-deity", GO, QO, {}, {}, []), XO = st({
         encapsulation: 0,
         styles: [[""]],
         data: {}
     });
 
-    function YO(l) {
+    function JO(l) {
         return ku(0, [(l()(), su(0, 16777216, null, null, 1, "router-outlet", [], null, null, null, null, null)), gi(1, 212992, null, 0, Tp, [Ip, Fe, ce, [8, null], Rn], null, null), (l()(), iu(0, null, null, 0))], (function (l, n) {
             l(n, 1, 0)
         }), null)
     }
 
-    function XO(l) {
+    function lN(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 2, "div", [["class", "bg-dark p-3 text-light"]], null, null, null, null, null)), (l()(), su(1, 0, null, null, 0, "i", [["class", "fas fa-times"]], null, null, null, null, null)), (l()(), _u(2, null, [" ", ""]))], null, (function (l, n) {
             l(n, 2, 0, n.component.error)
         }))
     }
 
-    function JO(l) {
+    function nN(l) {
         return ku(0, [(l()(), su(0, 0, null, null, 3, "div", [["class", "text-dark text-150"]], null, null, null, null, null)), (l()(), _u(-1, null, ["This game is available for free on "])), (l()(), su(2, 0, null, null, 1, "a", [["class", "text-danger"], ["href", "https://www.kongregate.com/games/to_change_later/cividlization-2"]], null, null, null, null, null)), (l()(), _u(-1, null, ["Kongregate.com"]))], null, null)
     }
 
-    function lN(l) {
-        return ku(0, [(l()(), iu(16777216, null, null, 1, null, YO)), gi(1, 16384, null, 0, Pa, [Fe, $e], {
+    function eN(l) {
+        return ku(0, [(l()(), iu(16777216, null, null, 1, null, JO)), gi(1, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, XO)), gi(3, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, lN)), gi(3, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
-        }, null), (l()(), iu(16777216, null, null, 1, null, JO)), gi(5, 16384, null, 0, Pa, [Fe, $e], {
+        }, null), (l()(), iu(16777216, null, null, 1, null, nN)), gi(5, 16384, null, 0, Pa, [Fe, $e], {
             ngIf: [0, "ngIf"]
         }, null)], (function (l, n) {
             var e = n.component;
@@ -35817,16 +35944,16 @@
         }), null)
     }
 
-    function nN(l) {
-        return ku(0, [(l()(), su(0, 0, null, null, 1, "app-root", [], null, null, null, lN, QO)), gi(1, 114688, null, 0, Mr, [Bg], null, null)], (function (l, n) {
+    function tN(l) {
+        return ku(0, [(l()(), su(0, 0, null, null, 1, "app-root", [], null, null, null, eN, XO)), gi(1, 114688, null, 0, Mr, [Bg], null, null)], (function (l, n) {
             l(n, 1, 0)
         }), null)
     }
-    var eN = jt("app-root", Mr, nN, {}, {}, []); class tN {}
-    class iN {}
-    const sN = "*";
+    var iN = jt("app-root", Mr, tN, {}, {}, []); class sN {}
+    class uN {}
+    const rN = "*";
 
-    function uN(l, n = null) {
+    function aN(l, n = null) {
         return {
             type: 2,
             steps: l,
@@ -35834,7 +35961,7 @@
         }
     }
 
-    function rN(l) {
+    function oN(l) {
         return {
             type: 6,
             styles: l,
@@ -35842,10 +35969,10 @@
         }
     }
 
-    function aN(l) {
+    function cN(l) {
         Promise.resolve(null).then(l)
     }
-    class oN {
+    class dN {
         constructor(l = 0, n = 0) {
             this._onDoneFns = [], this._onStartFns = [], this._onDestroyFns = [], this._started = !1, this._destroyed = !1, this._finished = !1, this.parentPlayer = null, this.totalTime = l + n
         }
@@ -35869,7 +35996,7 @@
             this.hasStarted() || (this._onStart(), this.triggerMicrotask()), this._started = !0
         }
         triggerMicrotask() {
-            aN(() => this._onFinish())
+            cN(() => this._onFinish())
         }
         _onStart() {
             this._onStartFns.forEach(l => l()), this._onStartFns = []
@@ -35892,14 +36019,14 @@
             n.forEach(l => l()), n.length = 0
         }
     }
-    class cN {
+    class hN {
         constructor(l) {
             this._onDoneFns = [], this._onStartFns = [], this._finished = !1, this._started = !1, this._destroyed = !1, this._onDestroyFns = [], this.parentPlayer = null, this.totalTime = 0, this.players = l;
             let n = 0,
                 e = 0,
                 t = 0;
             const i = this.players.length;
-            0 == i ? aN(() => this._onFinish()) : this.players.forEach(l => {
+            0 == i ? cN(() => this._onFinish()) : this.players.forEach(l => {
                 l.onDone(() => {
                     ++n == i && this._onFinish()
                 }), l.onDestroy(() => {
@@ -35975,24 +36102,24 @@
             n.forEach(l => l()), n.length = 0
         }
     }
-    const dN = "!";
+    const pN = "!";
 
-    function hN() {
+    function fN() {
         return "undefined" != typeof process
     }
 
-    function pN(l) {
+    function gN(l) {
         switch (l.length) {
             case 0:
-                return new oN;
+                return new dN;
             case 1:
                 return l[0];
             default:
-                return new cN(l)
+                return new hN(l)
         }
     }
 
-    function fN(l, n, e, t, i = {}, s = {}) {
+    function mN(l, n, e, t, i = {}, s = {}) {
         const u = [],
             r = [];
         let a = -1,
@@ -36005,10 +36132,10 @@
                     let t = e,
                         r = l[e];
                     if ("offset" !== e) switch (t = n.normalizePropertyName(t, u), r) {
-                        case dN:
+                        case pN:
                             r = i[e];
                             break;
-                        case sN:
+                        case rN:
                             r = s[e];
                             break;
                         default:
@@ -36023,27 +36150,27 @@
         return r
     }
 
-    function gN(l, n, e, t) {
+    function yN(l, n, e, t) {
         switch (n) {
             case "start":
-                l.onStart(() => t(e && mN(e, "start", l)));
+                l.onStart(() => t(e && vN(e, "start", l)));
                 break;
             case "done":
-                l.onDone(() => t(e && mN(e, "done", l)));
+                l.onDone(() => t(e && vN(e, "done", l)));
                 break;
             case "destroy":
-                l.onDestroy(() => t(e && mN(e, "destroy", l)))
+                l.onDestroy(() => t(e && vN(e, "destroy", l)))
         }
     }
 
-    function mN(l, n, e) {
+    function vN(l, n, e) {
         const t = e.totalTime,
-            i = yN(l.element, l.triggerName, l.fromState, l.toState, n || l.phaseName, null == t ? l.totalTime : t, !!e.disabled),
+            i = bN(l.element, l.triggerName, l.fromState, l.toState, n || l.phaseName, null == t ? l.totalTime : t, !!e.disabled),
             s = l._data;
         return null != s && (i._data = s), i
     }
 
-    function yN(l, n, e, t, i = "", s = 0, u) {
+    function bN(l, n, e, t, i = "", s = 0, u) {
         return {
             element: l,
             triggerName: n,
@@ -36055,24 +36182,24 @@
         }
     }
 
-    function vN(l, n, e) {
+    function _N(l, n, e) {
         let t;
         return l instanceof Map ? (t = l.get(n)) || l.set(n, t = e) : (t = l[n]) || (t = l[n] = e), t
     }
 
-    function bN(l) {
+    function wN(l) {
         const n = l.indexOf(":");
         return [l.substring(1, n), l.substr(n + 1)]
     }
-    let _N = (l, n) => !1, wN = (l, n) => !1, xN = (l, n, e) => [];
-    const kN = hN();
-    (kN || "undefined" != typeof Element) && (_N = (l, n) => l.contains(n), wN = (() => {
-        if (kN || Element.prototype.matches) return (l, n) => l.matches(n); {
+    let xN = (l, n) => !1, kN = (l, n) => !1, SN = (l, n, e) => [];
+    const CN = fN();
+    (CN || "undefined" != typeof Element) && (xN = (l, n) => l.contains(n), kN = (() => {
+        if (CN || Element.prototype.matches) return (l, n) => l.matches(n); {
             const l = Element.prototype,
                 n = l.matchesSelector || l.mozMatchesSelector || l.msMatchesSelector || l.oMatchesSelector || l.webkitMatchesSelector;
-            return n ? (l, e) => n.apply(l, [e]) : wN
+            return n ? (l, e) => n.apply(l, [e]) : kN
         }
-    })(), xN = (l, n, e) => {
+    })(), SN = (l, n, e) => {
         let t = [];
         if (e) t.push(...l.querySelectorAll(n));
         else {
@@ -36081,66 +36208,66 @@
         }
         return t
     });
-    let SN = null, CN = !1;
+    let IN = null, TN = !1;
 
-    function IN(l) {
-        SN || (SN = ("undefined" != typeof document ? document.body : null) || {}, CN = !!SN.style && "WebkitAppearance" in SN.style);
+    function EN(l) {
+        IN || (IN = ("undefined" != typeof document ? document.body : null) || {}, TN = !!IN.style && "WebkitAppearance" in IN.style);
         let n = !0;
-        return SN.style && ! function (l) {
+        return IN.style && ! function (l) {
             return "ebkit" == l.substring(1, 6)
-        }(l) && !(n = l in SN.style) && CN && (n = "Webkit" + l.charAt(0).toUpperCase() + l.substr(1) in SN.style), n
+        }(l) && !(n = l in IN.style) && TN && (n = "Webkit" + l.charAt(0).toUpperCase() + l.substr(1) in IN.style), n
     }
-    const TN = wN, EN = _N, AN = xN;
+    const AN = kN, PN = xN, DN = SN;
 
-    function PN(l) {
+    function MN(l) {
         const n = {};
         return Object.keys(l).forEach(e => {
             const t = e.replace(/([a-z])([A-Z])/g, "$1-$2");
             n[t] = l[e]
         }), n
     }
-    class DN {
+    class ON {
         validateStyleProperty(l) {
-            return IN(l)
+            return EN(l)
         }
         matchesElement(l, n) {
-            return TN(l, n)
+            return AN(l, n)
         }
         containsElement(l, n) {
-            return EN(l, n)
+            return PN(l, n)
         }
         query(l, n, e) {
-            return AN(l, n, e)
+            return DN(l, n, e)
         }
         computeStyle(l, n, e) {
             return e || ""
         }
         animate(l, n, e, t, i, s = [], u) {
-            return new oN(e, t)
+            return new dN(e, t)
         }
     }
-    let MN = (() => {
+    let NN = (() => {
         class l {}
-        return l.NOOP = new DN, l
+        return l.NOOP = new ON, l
     })();
-    const ON = 1e3, NN = "{{", RN = "ng-enter", BN = "ng-leave", zN = "ng-trigger", $N = ".ng-trigger", LN = "ng-animating", FN = ".ng-animating";
+    const RN = 1e3, BN = "{{", zN = "ng-enter", $N = "ng-leave", LN = "ng-trigger", FN = ".ng-trigger", qN = "ng-animating", UN = ".ng-animating";
 
-    function qN(l) {
+    function HN(l) {
         if ("number" == typeof l) return l;
         const n = l.match(/^(-?[\.\d]+)(m?s)/);
-        return !n || n.length < 2 ? 0 : UN(parseFloat(n[1]), n[2])
+        return !n || n.length < 2 ? 0 : VN(parseFloat(n[1]), n[2])
     }
 
-    function UN(l, n) {
+    function VN(l, n) {
         switch (n) {
             case "s":
-                return l * ON;
+                return l * RN;
             default:
                 return l
         }
     }
 
-    function HN(l, n, e) {
+    function jN(l, n, e) {
         return l.hasOwnProperty("duration") ? l : function (l, n, e) {
             let t, i = 0,
                 s = "";
@@ -36151,9 +36278,9 @@
                     delay: 0,
                     easing: ""
                 };
-                t = UN(parseFloat(e[1]), e[2]);
+                t = VN(parseFloat(e[1]), e[2]);
                 const u = e[3];
-                null != u && (i = UN(parseFloat(u), e[4]));
+                null != u && (i = VN(parseFloat(u), e[4]));
                 const r = e[5];
                 r && (s = r)
             } else t = l;
@@ -36170,89 +36297,89 @@
         }(l, n, e)
     }
 
-    function VN(l, n = {}) {
+    function GN(l, n = {}) {
         return Object.keys(l).forEach(e => {
             n[e] = l[e]
         }), n
     }
 
-    function jN(l, n, e = {}) {
+    function WN(l, n, e = {}) {
         if (n)
             for (let t in l) e[t] = l[t];
-        else VN(l, e);
+        else GN(l, e);
         return e
     }
 
-    function GN(l, n, e) {
+    function KN(l, n, e) {
         return e ? n + ":" + e + ";" : ""
     }
 
-    function WN(l) {
+    function ZN(l) {
         let n = "";
         for (let e = 0; e < l.style.length; e++) {
             const t = l.style.item(e);
-            n += GN(0, t, l.style.getPropertyValue(t))
+            n += KN(0, t, l.style.getPropertyValue(t))
         }
-        for (const e in l.style) l.style.hasOwnProperty(e) && !e.startsWith("_") && (n += GN(0, e.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase(), l.style[e]));
+        for (const e in l.style) l.style.hasOwnProperty(e) && !e.startsWith("_") && (n += KN(0, e.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase(), l.style[e]));
         l.setAttribute("style", n)
     }
 
-    function KN(l, n, e) {
+    function QN(l, n, e) {
         l.style && (Object.keys(n).forEach(t => {
-            const i = eR(t);
+            const i = iR(t);
             e && !e.hasOwnProperty(t) && (e[t] = l.style[i]), l.style[i] = n[t]
-        }), hN() && WN(l))
+        }), fN() && ZN(l))
     }
 
-    function ZN(l, n) {
+    function YN(l, n) {
         l.style && (Object.keys(n).forEach(n => {
-            const e = eR(n);
+            const e = iR(n);
             l.style[e] = ""
-        }), hN() && WN(l))
+        }), fN() && ZN(l))
     }
-
-    function QN(l) {
-        return Array.isArray(l) ? 1 == l.length ? l[0] : uN(l) : l
-    }
-    const YN = new RegExp(`${NN}\\s*(.+?)\\s*}}`, "g");
 
     function XN(l) {
+        return Array.isArray(l) ? 1 == l.length ? l[0] : aN(l) : l
+    }
+    const JN = new RegExp(`${BN}\\s*(.+?)\\s*}}`, "g");
+
+    function lR(l) {
         let n = [];
         if ("string" == typeof l) {
             const e = l.toString();
             let t;
-            for (; t = YN.exec(e);) n.push(t[1]);
-            YN.lastIndex = 0
+            for (; t = JN.exec(e);) n.push(t[1]);
+            JN.lastIndex = 0
         }
         return n
     }
 
-    function JN(l, n, e) {
+    function nR(l, n, e) {
         const t = l.toString(),
-            i = t.replace(YN, (l, t) => {
+            i = t.replace(JN, (l, t) => {
                 let i = n[t];
                 return n.hasOwnProperty(t) || (e.push(`Please provide a value for the animation param ${t}`), i = ""), i.toString()
             });
         return i == t ? l : i
     }
 
-    function lR(l) {
+    function eR(l) {
         const n = [];
         let e = l.next();
         for (; !e.done;) n.push(e.value), e = l.next();
         return n
     }
-    const nR = /-+([a-z0-9])/g;
+    const tR = /-+([a-z0-9])/g;
 
-    function eR(l) {
-        return l.replace(nR, (...l) => l[1].toUpperCase())
+    function iR(l) {
+        return l.replace(tR, (...l) => l[1].toUpperCase())
     }
 
-    function tR(l, n) {
+    function sR(l, n) {
         return 0 === l || 0 === n
     }
 
-    function iR(l, n, e) {
+    function uR(l, n, e) {
         const t = Object.keys(e);
         if (t.length && n.length) {
             let s = n[0],
@@ -36263,14 +36390,14 @@
                 for (var i = 1; i < n.length; i++) {
                     let e = n[i];
                     u.forEach((function (n) {
-                        e[n] = uR(l, n)
+                        e[n] = aR(l, n)
                     }))
                 }
         }
         return n
     }
 
-    function sR(l, n, e) {
+    function rR(l, n, e) {
         switch (n.type) {
             case 7:
                 return l.visitTrigger(n, e);
@@ -36303,12 +36430,12 @@
         }
     }
 
-    function uR(l, n) {
+    function aR(l, n) {
         return window.getComputedStyle(l)[n]
     }
-    const rR = "*";
+    const oR = "*";
 
-    function aR(l, n) {
+    function cR(l, n) {
         const e = [];
         return "string" == typeof l ? l.split(/\s*,\s*/).forEach(l => (function (l, n, e) {
             if (":" == l[0]) {
@@ -36334,35 +36461,35 @@
             const i = t[1],
                 s = t[2],
                 u = t[3];
-            n.push(dR(i, u)), "<" != s[0] || i == rR && u == rR || n.push(dR(u, i))
+            n.push(pR(i, u)), "<" != s[0] || i == oR && u == oR || n.push(pR(u, i))
         })(l, e, n)) : e.push(l), e
     }
-    const oR = new Set(["true", "1"]), cR = new Set(["false", "0"]);
+    const dR = new Set(["true", "1"]), hR = new Set(["false", "0"]);
 
-    function dR(l, n) {
-        const e = oR.has(l) || cR.has(l),
-            t = oR.has(n) || cR.has(n);
+    function pR(l, n) {
+        const e = dR.has(l) || hR.has(l),
+            t = dR.has(n) || hR.has(n);
         return (i, s) => {
-            let u = l == rR || l == i,
-                r = n == rR || n == s;
-            return !u && e && "boolean" == typeof i && (u = i ? oR.has(l) : cR.has(l)), !r && t && "boolean" == typeof s && (r = s ? oR.has(n) : cR.has(n)), u && r
+            let u = l == oR || l == i,
+                r = n == oR || n == s;
+            return !u && e && "boolean" == typeof i && (u = i ? dR.has(l) : hR.has(l)), !r && t && "boolean" == typeof s && (r = s ? dR.has(n) : hR.has(n)), u && r
         }
     }
-    const hR = ":self", pR = new RegExp(`s*${hR}s*,?`, "g");
+    const fR = ":self", gR = new RegExp(`s*${fR}s*,?`, "g");
 
-    function fR(l, n, e) {
-        return new mR(l).build(n, e)
+    function mR(l, n, e) {
+        return new vR(l).build(n, e)
     }
-    const gR = ""; class mR {
+    const yR = ""; class vR {
         constructor(l) {
             this._driver = l
         }
         build(l, n) {
-            const e = new yR(n);
-            return this._resetContextStyleTimingState(e), sR(this, QN(l), e)
+            const e = new bR(n);
+            return this._resetContextStyleTimingState(e), rR(this, XN(l), e)
         }
         _resetContextStyleTimingState(l) {
-            l.currentQuerySelector = gR, l.collectedStyles = {}, l.collectedStyles[gR] = {}, l.currentTime = 0
+            l.currentQuerySelector = yR, l.collectedStyles = {}, l.collectedStyles[yR] = {}, l.currentTime = 0
         }
         visitTrigger(l, n) {
             let e = n.queryCount = 0,
@@ -36397,16 +36524,16 @@
                 const i = new Set,
                     s = t || {};
                 if (e.styles.forEach(l => {
-                        if (vR(l)) {
+                        if (_R(l)) {
                             const n = l;
                             Object.keys(n).forEach(l => {
-                                XN(n[l]).forEach(l => {
+                                lR(n[l]).forEach(l => {
                                     s.hasOwnProperty(l) || i.add(l)
                                 })
                             })
                         }
                     }), i.size) {
-                    const e = lR(i.values());
+                    const e = eR(i.values());
                     n.errors.push(`state("${l.name}", ...) must define default values for all the following style substitutions: ${e.join(", ")}`)
                 }
             }
@@ -36421,21 +36548,21 @@
         }
         visitTransition(l, n) {
             n.queryCount = 0, n.depCount = 0;
-            const e = sR(this, QN(l.animation), n);
+            const e = rR(this, XN(l.animation), n);
             return {
                 type: 1,
-                matchers: aR(l.expr, n.errors),
+                matchers: cR(l.expr, n.errors),
                 animation: e,
                 queryCount: n.queryCount,
                 depCount: n.depCount,
-                options: bR(l.options)
+                options: wR(l.options)
             }
         }
         visitSequence(l, n) {
             return {
                 type: 2,
-                steps: l.steps.map(l => sR(this, l, n)),
-                options: bR(l.options)
+                steps: l.steps.map(l => rR(this, l, n)),
+                options: wR(l.options)
             }
         }
         visitGroup(l, n) {
@@ -36443,30 +36570,30 @@
             let t = 0;
             const i = l.steps.map(l => {
                 n.currentTime = e;
-                const i = sR(this, l, n);
+                const i = rR(this, l, n);
                 return t = Math.max(t, n.currentTime), i
             });
             return n.currentTime = t, {
                 type: 3,
                 steps: i,
-                options: bR(l.options)
+                options: wR(l.options)
             }
         }
         visitAnimate(l, n) {
             const e = function (l, n) {
                 let e = null;
                 if (l.hasOwnProperty("duration")) e = l;
-                else if ("number" == typeof l) return _R(HN(l, n).duration, 0, "");
+                else if ("number" == typeof l) return xR(jN(l, n).duration, 0, "");
                 const t = l;
                 if (t.split(/\s+/).some(l => "{" == l.charAt(0) && "{" == l.charAt(1))) {
-                    const l = _R(0, 0, "");
+                    const l = xR(0, 0, "");
                     return l.dynamic = !0, l.strValue = t, l
                 }
-                return _R((e = e || HN(t, n)).duration, e.delay, e.easing)
+                return xR((e = e || jN(t, n)).duration, e.delay, e.easing)
             }(l.timings, n.errors);
             let t;
             n.currentAnimateTimings = e;
-            let i = l.styles ? l.styles : rN({});
+            let i = l.styles ? l.styles : oN({});
             if (5 == i.type) t = this.visitKeyframes(i, n);
             else {
                 let i = l.styles,
@@ -36474,7 +36601,7 @@
                 if (!i) {
                     s = !0;
                     const l = {};
-                    e.easing && (l.easing = e.easing), i = rN(l)
+                    e.easing && (l.easing = e.easing), i = oN(l)
                 }
                 n.currentTime += e.duration + e.delay;
                 const u = this.visitStyle(i, n);
@@ -36494,17 +36621,17 @@
         _makeStyleAst(l, n) {
             const e = [];
             Array.isArray(l.styles) ? l.styles.forEach(l => {
-                "string" == typeof l ? l == sN ? e.push(l) : n.errors.push(`The provided style string value ${l} is not allowed.`) : e.push(l)
+                "string" == typeof l ? l == rN ? e.push(l) : n.errors.push(`The provided style string value ${l} is not allowed.`) : e.push(l)
             }) : e.push(l.styles);
             let t = !1,
                 i = null;
             return e.forEach(l => {
-                if (vR(l)) {
+                if (_R(l)) {
                     const n = l,
                         e = n.easing;
                     if (e && (i = e, delete n.easing), !t)
                         for (let l in n)
-                            if (n[l].toString().indexOf(NN) >= 0) {
+                            if (n[l].toString().indexOf(BN) >= 0) {
                                 t = !0;
                                 break
                             }
@@ -36533,7 +36660,7 @@
                         endTime: t
                     }), n.options && function (l, n, e) {
                         const t = n.params || {},
-                            i = XN(l);
+                            i = lR(l);
                         i.length && i.forEach(l => {
                             t.hasOwnProperty(l) || e.push(`Unable to resolve the local animation param ${l} in the given list of values`)
                         })
@@ -36559,12 +36686,12 @@
                         if ("string" == typeof l) return null;
                         let n = null;
                         if (Array.isArray(l)) l.forEach(l => {
-                            if (vR(l) && l.hasOwnProperty("offset")) {
+                            if (_R(l) && l.hasOwnProperty("offset")) {
                                 const e = l;
                                 n = parseFloat(e.offset), delete e.offset
                             }
                         });
-                        else if (vR(l) && l.hasOwnProperty("offset")) {
+                        else if (_R(l) && l.hasOwnProperty("offset")) {
                             const e = l;
                             n = parseFloat(e.offset), delete e.offset
                         }
@@ -36590,21 +36717,21 @@
         visitReference(l, n) {
             return {
                 type: 8,
-                animation: sR(this, QN(l.animation), n),
-                options: bR(l.options)
+                animation: rR(this, XN(l.animation), n),
+                options: wR(l.options)
             }
         }
         visitAnimateChild(l, n) {
             return n.depCount++, {
                 type: 9,
-                options: bR(l.options)
+                options: wR(l.options)
             }
         }
         visitAnimateRef(l, n) {
             return {
                 type: 10,
                 animation: this.visitReference(l.animation, n),
-                options: bR(l.options)
+                options: wR(l.options)
             }
         }
         visitQuery(l, n) {
@@ -36612,11 +36739,11 @@
                 t = l.options || {};
             n.queryCount++, n.currentQuery = l;
             const [i, s] = function (l) {
-                const n = !!l.split(/\s*,\s*/).find(l => l == hR);
-                return n && (l = l.replace(pR, "")), [l = l.replace(/@\*/g, $N).replace(/@\w+/g, l => $N + "-" + l.substr(1)).replace(/:animating/g, FN), n]
+                const n = !!l.split(/\s*,\s*/).find(l => l == fR);
+                return n && (l = l.replace(gR, "")), [l = l.replace(/@\*/g, FN).replace(/@\w+/g, l => FN + "-" + l.substr(1)).replace(/:animating/g, UN), n]
             }(l.selector);
-            n.currentQuerySelector = e.length ? e + " " + i : i, vN(n.collectedStyles, n.currentQuerySelector, {});
-            const u = sR(this, QN(l.animation), n);
+            n.currentQuerySelector = e.length ? e + " " + i : i, _N(n.collectedStyles, n.currentQuerySelector, {});
+            const u = rR(this, XN(l.animation), n);
             return n.currentQuery = null, n.currentQuerySelector = e, {
                 type: 11,
                 selector: i,
@@ -36625,7 +36752,7 @@
                 includeSelf: s,
                 animation: u,
                 originalSelector: l.selector,
-                options: bR(l.options)
+                options: wR(l.options)
             }
         }
         visitStagger(l, n) {
@@ -36634,31 +36761,31 @@
                 duration: 0,
                 delay: 0,
                 easing: "full"
-            } : HN(l.timings, n.errors, !0);
+            } : jN(l.timings, n.errors, !0);
             return {
                 type: 12,
-                animation: sR(this, QN(l.animation), n),
+                animation: rR(this, XN(l.animation), n),
                 timings: e,
                 options: null
             }
         }
     }
-    class yR {
+    class bR {
         constructor(l) {
             this.errors = l, this.queryCount = 0, this.depCount = 0, this.currentTransition = null, this.currentQuery = null, this.currentQuerySelector = null, this.currentAnimateTimings = null, this.currentTime = 0, this.collectedStyles = {}, this.options = null
         }
     }
 
-    function vR(l) {
+    function _R(l) {
         return !Array.isArray(l) && "object" == typeof l
     }
 
-    function bR(l) {
+    function wR(l) {
         var n;
-        return l ? (l = VN(l)).params && (l.params = (n = l.params) ? VN(n) : null) : l = {}, l
+        return l ? (l = GN(l)).params && (l.params = (n = l.params) ? GN(n) : null) : l = {}, l
     }
 
-    function _R(l, n, e) {
+    function xR(l, n, e) {
         return {
             duration: l,
             delay: n,
@@ -36666,7 +36793,7 @@
         }
     }
 
-    function wR(l, n, e, t, i, s, u = null, r = !1) {
+    function kR(l, n, e, t, i, s, u = null, r = !1) {
         return {
             type: 1,
             element: l,
@@ -36680,7 +36807,7 @@
             subTimeline: r
         }
     }
-    class xR {
+    class SR {
         constructor() {
             this._map = new Map
         }
@@ -36699,22 +36826,22 @@
             this._map.clear()
         }
     }
-    const kR = 1, SR = new RegExp(":enter", "g"), CR = new RegExp(":leave", "g");
+    const CR = 1, IR = new RegExp(":enter", "g"), TR = new RegExp(":leave", "g");
 
-    function IR(l, n, e, t, i, s = {}, u = {}, r, a, o = []) {
-        return (new TR).buildKeyframes(l, n, e, t, i, s, u, r, a, o)
+    function ER(l, n, e, t, i, s = {}, u = {}, r, a, o = []) {
+        return (new AR).buildKeyframes(l, n, e, t, i, s, u, r, a, o)
     }
-    class TR {
+    class AR {
         buildKeyframes(l, n, e, t, i, s, u, r, a, o = []) {
-            a = a || new xR;
-            const c = new AR(l, n, a, t, i, o, []);
-            c.options = r, c.currentTimeline.setStyles([s], null, c.errors, r), sR(this, e, c);
+            a = a || new SR;
+            const c = new DR(l, n, a, t, i, o, []);
+            c.options = r, c.currentTimeline.setStyles([s], null, c.errors, r), rR(this, e, c);
             const d = c.timelines.filter(l => l.containsAnimation());
             if (d.length && Object.keys(u).length) {
                 const l = d[d.length - 1];
                 l.allowOnlyTimelineStyles() || l.setStyles([u], null, c.errors, r)
             }
-            return d.length ? d.map(l => l.buildKeyframes()) : [wR(n, [], [], [], 0, 0, "", !1)]
+            return d.length ? d.map(l => l.buildKeyframes()) : [kR(n, [], [], [], 0, 0, "", !1)]
         }
         visitTrigger(l, n) {}
         visitState(l, n) {}
@@ -36735,40 +36862,40 @@
         }
         _visitSubInstructions(l, n, e) {
             let t = n.currentTimeline.currentTime;
-            const i = null != e.duration ? qN(e.duration) : null,
-                s = null != e.delay ? qN(e.delay) : null;
+            const i = null != e.duration ? HN(e.duration) : null,
+                s = null != e.delay ? HN(e.delay) : null;
             return 0 !== i && l.forEach(l => {
                 const e = n.appendInstructionToTimeline(l, i, s);
                 t = Math.max(t, e.duration + e.delay)
             }), t
         }
         visitReference(l, n) {
-            n.updateOptions(l.options, !0), sR(this, l.animation, n), n.previousNode = l
+            n.updateOptions(l.options, !0), rR(this, l.animation, n), n.previousNode = l
         }
         visitSequence(l, n) {
             const e = n.subContextCount;
             let t = n;
             const i = l.options;
             if (i && (i.params || i.delay) && ((t = n.createSubContext(i)).transformIntoNewTimeline(), null != i.delay)) {
-                6 == t.previousNode.type && (t.currentTimeline.snapshotCurrentStyles(), t.previousNode = ER);
-                const l = qN(i.delay);
+                6 == t.previousNode.type && (t.currentTimeline.snapshotCurrentStyles(), t.previousNode = PR);
+                const l = HN(i.delay);
                 t.delayNextStep(l)
             }
-            l.steps.length && (l.steps.forEach(l => sR(this, l, t)), t.currentTimeline.applyStylesToKeyframe(), t.subContextCount > e && t.transformIntoNewTimeline()), n.previousNode = l
+            l.steps.length && (l.steps.forEach(l => rR(this, l, t)), t.currentTimeline.applyStylesToKeyframe(), t.subContextCount > e && t.transformIntoNewTimeline()), n.previousNode = l
         }
         visitGroup(l, n) {
             const e = [];
             let t = n.currentTimeline.currentTime;
-            const i = l.options && l.options.delay ? qN(l.options.delay) : 0;
+            const i = l.options && l.options.delay ? HN(l.options.delay) : 0;
             l.steps.forEach(s => {
                 const u = n.createSubContext(l.options);
-                i && u.delayNextStep(i), sR(this, s, u), t = Math.max(t, u.currentTimeline.currentTime), e.push(u.currentTimeline)
+                i && u.delayNextStep(i), rR(this, s, u), t = Math.max(t, u.currentTimeline.currentTime), e.push(u.currentTimeline)
             }), e.forEach(l => n.currentTimeline.mergeTimelineCollectedStyles(l)), n.transformIntoNewTimeline(t), n.previousNode = l
         }
         _visitTiming(l, n) {
             if (l.dynamic) {
                 const e = l.strValue;
-                return HN(n.params ? JN(e, n.params, n.errors) : e, n.errors)
+                return jN(n.params ? nR(e, n.params, n.errors) : e, n.errors)
             }
             return {
                 duration: l.duration,
@@ -36802,8 +36929,8 @@
         visitQuery(l, n) {
             const e = n.currentTimeline.currentTime,
                 t = l.options || {},
-                i = t.delay ? qN(t.delay) : 0;
-            i && (6 === n.previousNode.type || 0 == e && n.currentTimeline.getCurrentStyleProperties().length) && (n.currentTimeline.snapshotCurrentStyles(), n.previousNode = ER);
+                i = t.delay ? HN(t.delay) : 0;
+            i && (6 === n.previousNode.type || 0 == e && n.currentTimeline.getCurrentStyleProperties().length) && (n.currentTimeline.snapshotCurrentStyles(), n.previousNode = PR);
             let s = e;
             const u = n.invokeQuery(l.selector, l.originalSelector, l.limit, l.includeSelf, !!t.optional, n.errors);
             n.currentQueryTotal = u.length;
@@ -36811,7 +36938,7 @@
             u.forEach((e, t) => {
                 n.currentQueryIndex = t;
                 const u = n.createSubContext(l.options, e);
-                i && u.delayNextStep(i), e === n.element && (r = u.currentTimeline), sR(this, l.animation, u), u.currentTimeline.applyStylesToKeyframe(), s = Math.max(s, u.currentTimeline.currentTime)
+                i && u.delayNextStep(i), e === n.element && (r = u.currentTimeline), rR(this, l.animation, u), u.currentTimeline.applyStylesToKeyframe(), s = Math.max(s, u.currentTimeline.currentTime)
             }), n.currentQueryIndex = 0, n.currentQueryTotal = 0, n.transformIntoNewTimeline(s), r && (n.currentTimeline.mergeTimelineCollectedStyles(r), n.currentTimeline.snapshotCurrentStyles()), n.previousNode = l
         }
         visitStagger(l, n) {
@@ -36831,12 +36958,12 @@
             const a = n.currentTimeline;
             r && a.delayNextStep(r);
             const o = a.currentTime;
-            sR(this, l.animation, n), n.previousNode = l, e.currentStaggerTime = t.currentTime - o + (t.startTime - e.currentTimeline.startTime)
+            rR(this, l.animation, n), n.previousNode = l, e.currentStaggerTime = t.currentTime - o + (t.startTime - e.currentTimeline.startTime)
         }
     }
-    const ER = {}; class AR {
+    const PR = {}; class DR {
         constructor(l, n, e, t, i, s, u, r) {
-            this._driver = l, this.element = n, this.subInstructions = e, this._enterClassName = t, this._leaveClassName = i, this.errors = s, this.timelines = u, this.parentContext = null, this.currentAnimateTimings = null, this.previousNode = ER, this.subContextCount = 0, this.options = {}, this.currentQueryIndex = 0, this.currentQueryTotal = 0, this.currentStaggerTime = 0, this.currentTimeline = r || new PR(this._driver, n, 0), u.push(this.currentTimeline)
+            this._driver = l, this.element = n, this.subInstructions = e, this._enterClassName = t, this._leaveClassName = i, this.errors = s, this.timelines = u, this.parentContext = null, this.currentAnimateTimings = null, this.previousNode = PR, this.subContextCount = 0, this.options = {}, this.currentQueryIndex = 0, this.currentQueryTotal = 0, this.currentStaggerTime = 0, this.currentTimeline = r || new MR(this._driver, n, 0), u.push(this.currentTimeline)
         }
         get params() {
             return this.options.params
@@ -36845,12 +36972,12 @@
             if (!l) return;
             const e = l;
             let t = this.options;
-            null != e.duration && (t.duration = qN(e.duration)), null != e.delay && (t.delay = qN(e.delay));
+            null != e.duration && (t.duration = HN(e.duration)), null != e.delay && (t.delay = HN(e.delay));
             const i = e.params;
             if (i) {
                 let l = t.params;
                 l || (l = this.options.params = {}), Object.keys(i).forEach(e => {
-                    n && l.hasOwnProperty(e) || (l[e] = JN(i[e], l, this.errors))
+                    n && l.hasOwnProperty(e) || (l[e] = nR(i[e], l, this.errors))
                 })
             }
         }
@@ -36869,11 +36996,11 @@
         }
         createSubContext(l = null, n, e) {
             const t = n || this.element,
-                i = new AR(this._driver, t, this.subInstructions, this._enterClassName, this._leaveClassName, this.errors, this.timelines, this.currentTimeline.fork(t, e || 0));
+                i = new DR(this._driver, t, this.subInstructions, this._enterClassName, this._leaveClassName, this.errors, this.timelines, this.currentTimeline.fork(t, e || 0));
             return i.previousNode = this.previousNode, i.currentAnimateTimings = this.currentAnimateTimings, i.options = this._copyOptions(), i.updateOptions(l), i.currentQueryIndex = this.currentQueryIndex, i.currentQueryTotal = this.currentQueryTotal, i.parentContext = this, this.subContextCount++, i
         }
         transformIntoNewTimeline(l) {
-            return this.previousNode = ER, this.currentTimeline = this.currentTimeline.fork(this.element, l), this.timelines.push(this.currentTimeline), this.currentTimeline
+            return this.previousNode = PR, this.currentTimeline = this.currentTimeline.fork(this.element, l), this.timelines.push(this.currentTimeline), this.currentTimeline
         }
         appendInstructionToTimeline(l, n, e) {
             const t = {
@@ -36881,7 +37008,7 @@
                     delay: this.currentTimeline.currentTime + (null != e ? e : 0) + l.delay,
                     easing: ""
                 },
-                i = new DR(this._driver, l.element, l.keyframes, l.preStyleProps, l.postStyleProps, t, l.stretchStartingKeyframe);
+                i = new OR(this._driver, l.element, l.keyframes, l.preStyleProps, l.postStyleProps, t, l.stretchStartingKeyframe);
             return this.timelines.push(i), t
         }
         incrementTime(l) {
@@ -36893,14 +37020,14 @@
         invokeQuery(l, n, e, t, i, s) {
             let u = [];
             if (t && u.push(this.element), l.length > 0) {
-                l = (l = l.replace(SR, "." + this._enterClassName)).replace(CR, "." + this._leaveClassName);
+                l = (l = l.replace(IR, "." + this._enterClassName)).replace(TR, "." + this._leaveClassName);
                 let n = this._driver.query(this.element, l, 1 != e);
                 0 !== e && (n = e < 0 ? n.slice(n.length + e, n.length) : n.slice(0, e)), u.push(...n)
             }
             return i || 0 != u.length || s.push(`\`query("${n}")\` returned zero elements. (Use \`query("${n}", { optional: true })\` if you wish to allow this.)`), u
         }
     }
-    class PR {
+    class MR {
         constructor(l, n, e, t) {
             this._driver = l, this.element = n, this.startTime = e, this._elementTimelineStylesLookup = t, this.duration = 0, this._previousKeyframe = {}, this._currentKeyframe = {}, this._keyframes = new Map, this._styleSummary = {}, this._pendingStyles = {}, this._backFill = {}, this._currentEmptyStepKeyframe = null, this._elementTimelineStylesLookup || (this._elementTimelineStylesLookup = new Map), this._localTimelineStyles = Object.create(this._backFill, {}), this._globalTimelineStyles = this._elementTimelineStylesLookup.get(n), this._globalTimelineStyles || (this._globalTimelineStyles = this._localTimelineStyles, this._elementTimelineStylesLookup.set(n, this._localTimelineStyles)), this._loadKeyframe()
         }
@@ -36925,13 +37052,13 @@
             this.duration || n ? (this.forwardTime(this.currentTime + l), n && this.snapshotCurrentStyles()) : this.startTime += l
         }
         fork(l, n) {
-            return this.applyStylesToKeyframe(), new PR(this._driver, l, n || this.currentTime, this._elementTimelineStylesLookup)
+            return this.applyStylesToKeyframe(), new MR(this._driver, l, n || this.currentTime, this._elementTimelineStylesLookup)
         }
         _loadKeyframe() {
             this._currentKeyframe && (this._previousKeyframe = this._currentKeyframe), this._currentKeyframe = this._keyframes.get(this.duration), this._currentKeyframe || (this._currentKeyframe = Object.create(this._backFill, {}), this._keyframes.set(this.duration, this._currentKeyframe))
         }
         forwardFrame() {
-            this.duration += kR, this._loadKeyframe()
+            this.duration += CR, this._loadKeyframe()
         }
         forwardTime(l) {
             this.applyStylesToKeyframe(), this.duration = l, this._loadKeyframe()
@@ -36947,7 +37074,7 @@
         }
         applyEmptyStep(l) {
             l && (this._previousKeyframe.easing = l), Object.keys(this._globalTimelineStyles).forEach(l => {
-                this._backFill[l] = this._globalTimelineStyles[l] || sN, this._currentKeyframe[l] = sN
+                this._backFill[l] = this._globalTimelineStyles[l] || rN, this._currentKeyframe[l] = rN
             }), this._currentEmptyStepKeyframe = this._currentKeyframe
         }
         setStyles(l, n, e, t) {
@@ -36958,13 +37085,13 @@
                     let t;
                     return l.forEach(l => {
                         "*" === l ? (t = t || Object.keys(n)).forEach(l => {
-                            e[l] = sN
-                        }) : jN(l, !1, e)
+                            e[l] = rN
+                        }) : WN(l, !1, e)
                     }), e
                 }(l, this._globalTimelineStyles);
             Object.keys(s).forEach(l => {
-                const n = JN(s[l], i, e);
-                this._pendingStyles[l] = n, this._localTimelineStyles.hasOwnProperty(l) || (this._backFill[l] = this._globalTimelineStyles.hasOwnProperty(l) ? this._globalTimelineStyles[l] : sN), this._updateStyle(l, n)
+                const n = nR(s[l], i, e);
+                this._pendingStyles[l] = n, this._localTimelineStyles.hasOwnProperty(l) || (this._backFill[l] = this._globalTimelineStyles.hasOwnProperty(l) ? this._globalTimelineStyles[l] : rN), this._updateStyle(l, n)
             })
         }
         applyStylesToKeyframe() {
@@ -37004,23 +37131,23 @@
                 e = 1 === this._keyframes.size && 0 === this.duration;
             let t = [];
             this._keyframes.forEach((i, s) => {
-                const u = jN(i, !0);
+                const u = WN(i, !0);
                 Object.keys(u).forEach(e => {
                     const t = u[e];
-                    t == dN ? l.add(e) : t == sN && n.add(e)
+                    t == pN ? l.add(e) : t == rN && n.add(e)
                 }), e || (u.offset = s / this.duration), t.push(u)
             });
-            const i = l.size ? lR(l.values()) : [],
-                s = n.size ? lR(n.values()) : [];
+            const i = l.size ? eR(l.values()) : [],
+                s = n.size ? eR(n.values()) : [];
             if (e) {
                 const l = t[0],
-                    n = VN(l);
+                    n = GN(l);
                 l.offset = 0, n.offset = 1, t = [l, n]
             }
-            return wR(this.element, t, i, s, this.duration, this.startTime, this.easing, !1)
+            return kR(this.element, t, i, s, this.duration, this.startTime, this.easing, !1)
         }
     }
-    class DR extends PR {
+    class OR extends MR {
         constructor(l, n, e, t, i, s, u = !1) {
             super(l, n, s.delay), this.element = n, this.keyframes = e, this.preStyleProps = t, this.postStyleProps = i, this._stretchStartingKeyframe = u, this.timings = {
                 duration: s.duration,
@@ -37042,34 +37169,34 @@
                 const i = [],
                     s = e + n,
                     u = n / s,
-                    r = jN(l[0], !1);
+                    r = WN(l[0], !1);
                 r.offset = 0, i.push(r);
-                const a = jN(l[0], !1);
-                a.offset = MR(u), i.push(a);
+                const a = WN(l[0], !1);
+                a.offset = NR(u), i.push(a);
                 const o = l.length - 1;
                 for (let t = 1; t <= o; t++) {
-                    let u = jN(l[t], !1);
-                    u.offset = MR((n + u.offset * e) / s), i.push(u)
+                    let u = WN(l[t], !1);
+                    u.offset = NR((n + u.offset * e) / s), i.push(u)
                 }
                 e = s, n = 0, t = "", l = i
             }
-            return wR(this.element, l, this.preStyleProps, this.postStyleProps, e, n, t, !0)
+            return kR(this.element, l, this.preStyleProps, this.postStyleProps, e, n, t, !0)
         }
     }
 
-    function MR(l, n = 3) {
+    function NR(l, n = 3) {
         const e = Math.pow(10, n - 1);
         return Math.round(l * e) / e
     }
-    class OR {}
-    class NR extends OR {
+    class RR {}
+    class BR extends RR {
         normalizePropertyName(l, n) {
-            return eR(l)
+            return iR(l)
         }
         normalizeStyleValue(l, n, e, t) {
             let i = "";
             const s = e.toString().trim();
-            if (RR[n] && 0 !== e && "0" !== e)
+            if (zR[n] && 0 !== e && "0" !== e)
                 if ("number" == typeof e) i = "px";
                 else {
                     const n = e.match(/^[+-]?[\d\.]+([a-z]*)$/);
@@ -37077,12 +37204,12 @@
                 } return s + i
         }
     }
-    const RR = (() => (function (l) {
+    const zR = (() => (function (l) {
         const n = {};
         return l.forEach(l => n[l] = !0), n
     })("width,height,minWidth,minHeight,maxWidth,maxHeight,left,top,bottom,right,fontSize,outlineWidth,outlineOffset,paddingTop,paddingLeft,paddingBottom,paddingRight,marginTop,marginLeft,marginBottom,marginRight,borderRadius,borderWidth,borderTopWidth,borderLeftWidth,borderRightWidth,borderBottomWidth,textIndent,perspective".split(",")))();
 
-    function BR(l, n, e, t, i, s, u, r, a, o, c, d, h) {
+    function $R(l, n, e, t, i, s, u, r, a, o, c, d, h) {
         return {
             type: 0,
             element: l,
@@ -37100,7 +37227,7 @@
             errors: h
         }
     }
-    const zR = {}; class $R {
+    const LR = {}; class FR {
         constructor(l, n, e) {
             this._triggerName = l, this.ast = n, this._stateStyles = e
         }
@@ -37117,9 +37244,9 @@
         }
         build(l, n, e, t, i, s, u, r, a, o) {
             const c = [],
-                d = this.ast.options && this.ast.options.params || zR,
-                h = this.buildStyles(e, u && u.params || zR, c),
-                p = r && r.params || zR,
+                d = this.ast.options && this.ast.options.params || LR,
+                h = this.buildStyles(e, u && u.params || LR, c),
+                p = r && r.params || LR,
                 f = this.buildStyles(t, p, c),
                 g = new Set,
                 m = new Map,
@@ -37128,29 +37255,29 @@
                 b = {
                     params: Object.assign({}, d, p)
                 },
-                _ = o ? [] : IR(l, n, this.ast.animation, i, s, h, f, b, a, c);
+                _ = o ? [] : ER(l, n, this.ast.animation, i, s, h, f, b, a, c);
             let w = 0;
             if (_.forEach(l => {
                     w = Math.max(l.duration + l.delay, w)
-                }), c.length) return BR(n, this._triggerName, e, t, v, h, f, [], [], m, y, w, c);
+                }), c.length) return $R(n, this._triggerName, e, t, v, h, f, [], [], m, y, w, c);
             _.forEach(l => {
                 const e = l.element,
-                    t = vN(m, e, {});
+                    t = _N(m, e, {});
                 l.preStyleProps.forEach(l => t[l] = !0);
-                const i = vN(y, e, {});
+                const i = _N(y, e, {});
                 l.postStyleProps.forEach(l => i[l] = !0), e !== n && g.add(e)
             });
-            const x = lR(g.values());
-            return BR(n, this._triggerName, e, t, v, h, f, _, x, m, y, w)
+            const x = eR(g.values());
+            return $R(n, this._triggerName, e, t, v, h, f, _, x, m, y, w)
         }
     }
-    class LR {
+    class qR {
         constructor(l, n) {
             this.styles = l, this.defaultParams = n
         }
         buildStyles(l, n) {
             const e = {},
-                t = VN(this.defaultParams);
+                t = GN(this.defaultParams);
             return Object.keys(l).forEach(n => {
                 const e = l[n];
                 null != e && (t[n] = e)
@@ -37159,19 +37286,19 @@
                     const i = l;
                     Object.keys(i).forEach(l => {
                         let s = i[l];
-                        s.length > 1 && (s = JN(s, t, n)), e[l] = s
+                        s.length > 1 && (s = nR(s, t, n)), e[l] = s
                     })
                 }
             }), e
         }
     }
-    class FR {
+    class UR {
         constructor(l, n) {
             this.name = l, this.ast = n, this.transitionFactories = [], this.states = {}, n.states.forEach(l => {
-                this.states[l.name] = new LR(l.style, l.options && l.options.params || {})
-            }), qR(this.states, "true", "1"), qR(this.states, "false", "0"), n.transitions.forEach(n => {
-                this.transitionFactories.push(new $R(l, n, this.states))
-            }), this.fallbackTransition = new $R(l, {
+                this.states[l.name] = new qR(l.style, l.options && l.options.params || {})
+            }), HR(this.states, "true", "1"), HR(this.states, "false", "0"), n.transitions.forEach(n => {
+                this.transitionFactories.push(new FR(l, n, this.states))
+            }), this.fallbackTransition = new FR(l, {
                 type: 1,
                 animation: {
                     type: 2,
@@ -37195,22 +37322,22 @@
         }
     }
 
-    function qR(l, n, e) {
+    function HR(l, n, e) {
         l.hasOwnProperty(n) ? l.hasOwnProperty(e) || (l[e] = l[n]) : l.hasOwnProperty(e) && (l[n] = l[e])
     }
-    const UR = new xR; class HR {
+    const VR = new SR; class jR {
         constructor(l, n, e) {
             this.bodyNode = l, this._driver = n, this._normalizer = e, this._animations = {}, this._playersById = {}, this.players = []
         }
         register(l, n) {
             const e = [],
-                t = fR(this._driver, n, e);
+                t = mR(this._driver, n, e);
             if (e.length) throw new Error(`Unable to build the animation due to the following errors: ${e.join("\n")}`);
             this._animations[l] = t
         }
         _buildPlayer(l, n, e) {
             const t = l.element,
-                i = fN(0, this._normalizer, 0, l.keyframes, n, e);
+                i = mN(0, this._normalizer, 0, l.keyframes, n, e);
             return this._driver.animate(t, i, l.duration, l.delay, l.easing, [], !0)
         }
         create(l, n, e = {}) {
@@ -37218,16 +37345,16 @@
                 i = this._animations[l];
             let s;
             const u = new Map;
-            if (i ? (s = IR(this._driver, n, i, RN, BN, {}, {}, e, UR, t)).forEach(l => {
-                    const n = vN(u, l.element, {});
+            if (i ? (s = ER(this._driver, n, i, zN, $N, {}, {}, e, VR, t)).forEach(l => {
+                    const n = _N(u, l.element, {});
                     l.postStyleProps.forEach(l => n[l] = null)
                 }) : (t.push("The requested animation doesn't exist or has already been destroyed"), s = []), t.length) throw new Error(`Unable to create the animation due to the following errors: ${t.join("\n")}`);
             u.forEach((l, n) => {
                 Object.keys(l).forEach(e => {
-                    l[e] = this._driver.computeStyle(n, e, sN)
+                    l[e] = this._driver.computeStyle(n, e, rN)
                 })
             });
-            const r = pN(s.map(l => {
+            const r = gN(s.map(l => {
                 const n = u.get(l.element);
                 return this._buildPlayer(l, {}, n)
             }));
@@ -37245,8 +37372,8 @@
             return n
         }
         listen(l, n, e, t) {
-            const i = yN(n, "", "", "");
-            return gN(this._getPlayer(l), e, i, t), () => {}
+            const i = bN(n, "", "", "");
+            return yN(this._getPlayer(l), e, i, t), () => {}
         }
         command(l, n, e, t) {
             if ("register" == e) return void this.register(l, t[0]);
@@ -37279,24 +37406,24 @@
             }
         }
     }
-    const VR = "ng-animate-queued", jR = ".ng-animate-queued", GR = "ng-animate-disabled", WR = ".ng-animate-disabled", KR = "ng-star-inserted", ZR = ".ng-star-inserted", QR = [], YR = {
+    const GR = "ng-animate-queued", WR = ".ng-animate-queued", KR = "ng-animate-disabled", ZR = ".ng-animate-disabled", QR = "ng-star-inserted", YR = ".ng-star-inserted", XR = [], JR = {
         namespaceId: "",
         setForRemoval: !1,
         setForMove: !1,
         hasAnimation: !1,
         removedBeforeQueried: !1
-    }, XR = {
+    }, lB = {
         namespaceId: "",
         setForMove: !1,
         setForRemoval: !1,
         hasAnimation: !1,
         removedBeforeQueried: !0
-    }, JR = "__ng_removed"; class lB {
+    }, nB = "__ng_removed"; class eB {
         constructor(l, n = "") {
             this.namespaceId = n;
             const e = l && l.hasOwnProperty("value");
             if (this.value = null != (t = e ? l.value : l) ? t : null, e) {
-                const n = VN(l);
+                const n = GN(l);
                 delete n.value, this.options = n
             } else this.options = {};
             var t;
@@ -37315,24 +37442,24 @@
             }
         }
     }
-    const nB = "void", eB = new lB(nB); class tB {
+    const tB = "void", iB = new eB(tB); class sB {
         constructor(l, n, e) {
-            this.id = l, this.hostElement = n, this._engine = e, this.players = [], this._triggers = {}, this._queue = [], this._elementListeners = new Map, this._hostClassName = "ng-tns-" + l, dB(n, this._hostClassName)
+            this.id = l, this.hostElement = n, this._engine = e, this.players = [], this._triggers = {}, this._queue = [], this._elementListeners = new Map, this._hostClassName = "ng-tns-" + l, pB(n, this._hostClassName)
         }
         listen(l, n, e, t) {
             if (!this._triggers.hasOwnProperty(n)) throw new Error(`Unable to listen on the animation trigger event "${e}" because the animation trigger "${n}" doesn't exist!`);
             if (null == e || 0 == e.length) throw new Error(`Unable to listen on the animation trigger "${n}" because the provided event is undefined!`);
             if ("start" != (i = e) && "done" != i) throw new Error(`The provided animation trigger event "${e}" for the animation trigger "${n}" is not supported!`);
             var i;
-            const s = vN(this._elementListeners, l, []),
+            const s = _N(this._elementListeners, l, []),
                 u = {
                     name: n,
                     phase: e,
                     callback: t
                 };
             s.push(u);
-            const r = vN(this._engine.statesByElement, l, {});
-            return r.hasOwnProperty(n) || (dB(l, zN), dB(l, zN + "-" + n), r[n] = eB), () => {
+            const r = _N(this._engine.statesByElement, l, {});
+            return r.hasOwnProperty(n) || (pB(l, LN), pB(l, LN + "-" + n), r[n] = iB), () => {
                 this._engine.afterFlush(() => {
                     const l = s.indexOf(u);
                     l >= 0 && s.splice(l, 1), this._triggers[n] || delete r[n]
@@ -37349,12 +37476,12 @@
         }
         trigger(l, n, e, t = !0) {
             const i = this._getTrigger(n),
-                s = new sB(this.id, n, l);
+                s = new rB(this.id, n, l);
             let u = this._engine.statesByElement.get(l);
-            u || (dB(l, zN), dB(l, zN + "-" + n), this._engine.statesByElement.set(l, u = {}));
+            u || (pB(l, LN), pB(l, LN + "-" + n), this._engine.statesByElement.set(l, u = {}));
             let r = u[n];
-            const a = new lB(e, this.id);
-            if (!(e && e.hasOwnProperty("value")) && r && a.absorbOptions(r.options), u[n] = a, r || (r = eB), a.value !== nB && r.value === a.value) {
+            const a = new eB(e, this.id);
+            if (!(e && e.hasOwnProperty("value")) && r && a.absorbOptions(r.options), u[n] = a, r || (r = iB), a.value !== tB && r.value === a.value) {
                 if (! function (l, n) {
                         const e = Object.keys(l),
                             t = Object.keys(n);
@@ -37369,12 +37496,12 @@
                         e = i.matchStyles(r.value, r.params, n),
                         t = i.matchStyles(a.value, a.params, n);
                     n.length ? this._engine.reportError(n) : this._engine.afterFlush(() => {
-                        ZN(l, e), KN(l, t)
+                        YN(l, e), QN(l, t)
                     })
                 }
                 return
             }
-            const o = vN(this._engine.playersByElement, l, []);
+            const o = _N(this._engine.playersByElement, l, []);
             o.forEach(l => {
                 l.namespaceId == this.id && l.triggerName == n && l.queued && l.destroy()
             });
@@ -37392,8 +37519,8 @@
                 toState: a,
                 player: s,
                 isFallbackTransition: d
-            }), d || (dB(l, VR), s.onStart(() => {
-                hB(l, VR)
+            }), d || (pB(l, GR), s.onStart(() => {
+                fB(l, GR)
             })), s.onDone(() => {
                 let n = this.players.indexOf(s);
                 n >= 0 && this.players.splice(n, 1);
@@ -37417,8 +37544,8 @@
             n && (n.forEach(l => l.destroy()), this._engine.playersByElement.delete(l))
         }
         _signalRemovalForInnerTriggers(l, n, e = !1) {
-            this._engine.driver.query(l, $N, !0).forEach(l => {
-                if (l[JR]) return;
+            this._engine.driver.query(l, FN, !0).forEach(l => {
+                if (l[nB]) return;
                 const e = this._engine.fetchNamespacesByElement(l);
                 e.size ? e.forEach(e => e.triggerLeaveAnimation(l, n, !1, !0)) : this.clearElementCache(l)
             })
@@ -37429,10 +37556,10 @@
                 const s = [];
                 if (Object.keys(i).forEach(n => {
                         if (this._triggers[n]) {
-                            const e = this.trigger(l, n, nB, t);
+                            const e = this.trigger(l, n, tB, t);
                             e && s.push(e)
                         }
-                    }), s.length) return this._engine.markElementAsRemoved(this.id, l, !0, n), e && pN(s).onDone(() => this._engine.processLeaveNode(l)), !0
+                    }), s.length) return this._engine.markElementAsRemoved(this.id, l, !0, n), e && gN(s).onDone(() => this._engine.processLeaveNode(l)), !0
             }
             return !1
         }
@@ -37445,9 +37572,9 @@
                     if (e.has(t)) return;
                     e.add(t);
                     const i = this._triggers[t].fallbackTransition,
-                        s = this._engine.statesByElement.get(l)[t] || eB,
-                        u = new lB(nB),
-                        r = new sB(this.id, t, l);
+                        s = this._engine.statesByElement.get(l)[t] || iB,
+                        u = new eB(tB),
+                        r = new rB(this.id, t, l);
                     this._engine.totalQueuedPlayers++, this._queue.push({
                         element: l,
                         triggerName: t,
@@ -37479,7 +37606,7 @@
             this.prepareLeaveAnimationListeners(l), t ? e.markElementAsRemoved(this.id, l, !1, n) : (e.afterFlush(() => this.clearElementCache(l)), e.destroyInnerAnimations(l), e._onRemovalComplete(l, n))
         }
         insertNode(l, n) {
-            dB(l, this._hostClassName)
+            pB(l, this._hostClassName)
         }
         drainQueuedTransitions(l) {
             const n = [];
@@ -37490,8 +37617,8 @@
                     s = this._elementListeners.get(i);
                 s && s.forEach(n => {
                     if (n.name == e.triggerName) {
-                        const t = yN(i, e.triggerName, e.fromState.value, e.toState.value);
-                        t._data = l, gN(e.player, n.phase, t, n.callback)
+                        const t = bN(i, e.triggerName, e.fromState.value, e.toState.value);
+                        t._data = l, yN(e.player, n.phase, t, n.callback)
                     }
                 }), t.markedForDestroy ? this._engine.afterFlush(() => {
                     t.destroy()
@@ -37510,7 +37637,7 @@
             return this._elementListeners.has(l) && (n = !0), !!this._queue.find(n => n.element === l) || n
         }
     }
-    class iB {
+    class uB {
         constructor(l, n, e) {
             this.bodyNode = l, this.driver = n, this._normalizer = e, this.players = [], this.newHostElements = new Map, this.playersByElement = new Map, this.playersByQueriedElement = new Map, this.statesByElement = new Map, this.disabledNodes = new Set, this.totalAnimations = 0, this.totalQueuedPlayers = 0, this._namespaceLookup = {}, this._namespaceList = [], this._flushFns = [], this._whenQuietFns = [], this.namespacesByHostElement = new Map, this.collectedEnterElements = [], this.collectedLeaveElements = [], this.onRemovalComplete = (l, n) => {}
         }
@@ -37526,7 +37653,7 @@
             }), l
         }
         createNamespace(l, n) {
-            const e = new tB(l, n, this);
+            const e = new sB(l, n, this);
             return n.parentNode ? this._balanceNamespaceList(e, n) : (this.newHostElements.set(n, e), this.collectEnterElement(n)), this._namespaceLookup[l] = e
         }
         _balanceNamespaceList(l, n) {
@@ -37577,15 +37704,15 @@
             return n
         }
         trigger(l, n, e, t) {
-            if (uB(n)) {
+            if (aB(n)) {
                 const i = this._fetchNamespace(l);
                 if (i) return i.trigger(n, e, t), !0
             }
             return !1
         }
         insertNode(l, n, e, t) {
-            if (!uB(n)) return;
-            const i = n[JR];
+            if (!aB(n)) return;
+            const i = n[nB];
             if (i && i.setForRemoval) {
                 i.setForRemoval = !1, i.setForMove = !0;
                 const l = this.collectedLeaveElements.indexOf(n);
@@ -37601,10 +37728,10 @@
             this.collectedEnterElements.push(l)
         }
         markElementAsDisabled(l, n) {
-            n ? this.disabledNodes.has(l) || (this.disabledNodes.add(l), dB(l, GR)) : this.disabledNodes.has(l) && (this.disabledNodes.delete(l), hB(l, GR))
+            n ? this.disabledNodes.has(l) || (this.disabledNodes.add(l), pB(l, KR)) : this.disabledNodes.has(l) && (this.disabledNodes.delete(l), fB(l, KR))
         }
         removeNode(l, n, e, t) {
-            if (uB(n)) {
+            if (aB(n)) {
                 const i = l ? this._fetchNamespace(l) : null;
                 if (i ? i.removeNode(n, t) : this.markElementAsRemoved(l, n, !1, t), e) {
                     const e = this.namespacesByHostElement.get(n);
@@ -37613,7 +37740,7 @@
             } else this._onRemovalComplete(n, t)
         }
         markElementAsRemoved(l, n, e, t) {
-            this.collectedLeaveElements.push(n), n[JR] = {
+            this.collectedLeaveElements.push(n), n[nB] = {
                 namespaceId: l,
                 setForRemoval: t,
                 hasAnimation: e,
@@ -37621,14 +37748,14 @@
             }
         }
         listen(l, n, e, t, i) {
-            return uB(n) ? this._fetchNamespace(l).listen(n, e, t, i) : () => {}
+            return aB(n) ? this._fetchNamespace(l).listen(n, e, t, i) : () => {}
         }
         _buildInstruction(l, n, e, t, i) {
             return l.transition.build(this.driver, l.element, l.fromState.value, l.toState.value, e, t, l.fromState.options, l.toState.options, n, i)
         }
         destroyInnerAnimations(l) {
-            let n = this.driver.query(l, $N, !0);
-            n.forEach(l => this.destroyActiveAnimationsForElement(l)), 0 != this.playersByQueriedElement.size && (n = this.driver.query(l, FN, !0)).forEach(l => this.finishActiveQueriedAnimationOnElement(l))
+            let n = this.driver.query(l, FN, !0);
+            n.forEach(l => this.destroyActiveAnimationsForElement(l)), 0 != this.playersByQueriedElement.size && (n = this.driver.query(l, UN, !0)).forEach(l => this.finishActiveQueriedAnimationOnElement(l))
         }
         destroyActiveAnimationsForElement(l) {
             const n = this.playersByElement.get(l);
@@ -37642,28 +37769,28 @@
         }
         whenRenderingDone() {
             return new Promise(l => {
-                if (this.players.length) return pN(this.players).onDone(() => l());
+                if (this.players.length) return gN(this.players).onDone(() => l());
                 l()
             })
         }
         processLeaveNode(l) {
-            const n = l[JR];
+            const n = l[nB];
             if (n && n.setForRemoval) {
-                if (l[JR] = YR, n.namespaceId) {
+                if (l[nB] = JR, n.namespaceId) {
                     this.destroyInnerAnimations(l);
                     const e = this._fetchNamespace(n.namespaceId);
                     e && e.clearElementCache(l)
                 }
                 this._onRemovalComplete(l, n.setForRemoval)
             }
-            this.driver.matchesElement(l, WR) && this.markElementAsDisabled(l, !1), this.driver.query(l, WR, !0).forEach(l => {
+            this.driver.matchesElement(l, ZR) && this.markElementAsDisabled(l, !1), this.driver.query(l, ZR, !0).forEach(l => {
                 this.markElementAsDisabled(l, !1)
             })
         }
         flush(l = -1) {
             let n = [];
             if (this.newHostElements.size && (this.newHostElements.forEach((l, n) => this._balanceNamespaceList(l, n)), this.newHostElements.clear()), this.totalAnimations && this.collectedEnterElements.length)
-                for (let e = 0; e < this.collectedEnterElements.length; e++) dB(this.collectedEnterElements[e], KR);
+                for (let e = 0; e < this.collectedEnterElements.length; e++) pB(this.collectedEnterElements[e], QR);
             if (this._namespaceList.length && (this.totalQueuedPlayers || this.collectedLeaveElements.length)) {
                 const e = [];
                 try {
@@ -37675,7 +37802,7 @@
                 for (let e = 0; e < this.collectedLeaveElements.length; e++) this.processLeaveNode(this.collectedLeaveElements[e]);
             if (this.totalQueuedPlayers = 0, this.collectedEnterElements.length = 0, this.collectedLeaveElements.length = 0, this._flushFns.forEach(l => l()), this._flushFns = [], this._whenQuietFns.length) {
                 const l = this._whenQuietFns;
-                this._whenQuietFns = [], n.length ? pN(n).onDone(() => {
+                this._whenQuietFns = [], n.length ? gN(n).onDone(() => {
                     l.forEach(l => l())
                 }) : l.forEach(l => l())
             }
@@ -37684,7 +37811,7 @@
             throw new Error(`Unable to process animations due to the following failed trigger transitions\n ${l.join("\n")}`)
         }
         _flushAnimations(l, n) {
-            const e = new xR,
+            const e = new SR,
                 t = [],
                 i = new Map,
                 s = [],
@@ -37694,38 +37821,38 @@
                 o = new Set;
             this.disabledNodes.forEach(l => {
                 o.add(l);
-                const n = this.driver.query(l, jR, !0);
+                const n = this.driver.query(l, WR, !0);
                 for (let e = 0; e < n.length; e++) o.add(n[e])
             });
             const c = this.bodyNode,
                 d = Array.from(this.statesByElement.keys()),
-                h = oB(d, this.collectedEnterElements),
+                h = dB(d, this.collectedEnterElements),
                 p = new Map;
             let f = 0;
             h.forEach((l, n) => {
-                const e = RN + f++;
-                p.set(n, e), l.forEach(l => dB(l, e))
+                const e = zN + f++;
+                p.set(n, e), l.forEach(l => pB(l, e))
             });
             const g = [],
                 m = new Set,
                 y = new Set;
             for (let P = 0; P < this.collectedLeaveElements.length; P++) {
                 const l = this.collectedLeaveElements[P],
-                    n = l[JR];
-                n && n.setForRemoval && (g.push(l), m.add(l), n.hasAnimation ? this.driver.query(l, ZR, !0).forEach(l => m.add(l)) : y.add(l))
+                    n = l[nB];
+                n && n.setForRemoval && (g.push(l), m.add(l), n.hasAnimation ? this.driver.query(l, YR, !0).forEach(l => m.add(l)) : y.add(l))
             }
             const v = new Map,
-                b = oB(d, Array.from(m));
+                b = dB(d, Array.from(m));
             b.forEach((l, n) => {
-                const e = BN + f++;
-                v.set(n, e), l.forEach(l => dB(l, e))
+                const e = $N + f++;
+                v.set(n, e), l.forEach(l => pB(l, e))
             }), l.push(() => {
                 h.forEach((l, n) => {
                     const e = p.get(n);
-                    l.forEach(l => hB(l, e))
+                    l.forEach(l => fB(l, e))
                 }), b.forEach((l, n) => {
                     const e = v.get(n);
-                    l.forEach(l => hB(l, e))
+                    l.forEach(l => fB(l, e))
                 }), g.forEach(l => {
                     this.processLeaveNode(l)
                 })
@@ -37736,18 +37863,18 @@
                 const n = l.player,
                     i = l.element;
                 if (_.push(n), this.collectedEnterElements.length) {
-                    const l = i[JR];
+                    const l = i[nB];
                     if (l && l.setForMove) return void n.destroy()
                 }
                 const o = !c || !this.driver.containsElement(c, i),
                     d = v.get(i),
                     h = p.get(i),
                     f = this._buildInstruction(l, e, h, d, o);
-                if (!f.errors || !f.errors.length) return o ? (n.onStart(() => ZN(i, f.fromStyles)), n.onDestroy(() => KN(i, f.toStyles)), void t.push(n)) : l.isFallbackTransition ? (n.onStart(() => ZN(i, f.fromStyles)), n.onDestroy(() => KN(i, f.toStyles)), void t.push(n)) : (f.timelines.forEach(l => l.stretchStartingKeyframe = !0), e.append(i, f.timelines), s.push({
+                if (!f.errors || !f.errors.length) return o ? (n.onStart(() => YN(i, f.fromStyles)), n.onDestroy(() => QN(i, f.toStyles)), void t.push(n)) : l.isFallbackTransition ? (n.onStart(() => YN(i, f.fromStyles)), n.onDestroy(() => QN(i, f.toStyles)), void t.push(n)) : (f.timelines.forEach(l => l.stretchStartingKeyframe = !0), e.append(i, f.timelines), s.push({
                     instruction: f,
                     player: n,
                     element: i
-                }), f.queriedElements.forEach(l => vN(u, l, []).push(n)), f.preStyleProps.forEach((l, n) => {
+                }), f.queriedElements.forEach(l => _N(u, l, []).push(n)), f.preStyleProps.forEach((l, n) => {
                     const e = Object.keys(l);
                     if (e.length) {
                         let l = r.get(n);
@@ -37774,17 +37901,17 @@
             }), t.forEach(l => {
                 const n = l.element;
                 this._getPreviousPlayers(n, !1, l.namespaceId, l.triggerName, null).forEach(l => {
-                    vN(x, n, []).push(l), l.destroy()
+                    _N(x, n, []).push(l), l.destroy()
                 })
             });
-            const S = g.filter(l => fB(l, r, a)),
+            const S = g.filter(l => mB(l, r, a)),
                 C = new Map;
-            aB(C, this.driver, y, a, sN).forEach(l => {
-                fB(l, r, a) && S.push(l)
+            cB(C, this.driver, y, a, rN).forEach(l => {
+                mB(l, r, a) && S.push(l)
             });
             const I = new Map;
             h.forEach((l, n) => {
-                aB(I, this.driver, new Set(l), r, dN)
+                cB(I, this.driver, new Set(l), r, pN)
             }), S.forEach(l => {
                 const n = C.get(l),
                     e = I.get(l);
@@ -37800,7 +37927,7 @@
                     instruction: u
                 } = l;
                 if (e.has(n)) {
-                    if (o.has(n)) return s.onDestroy(() => KN(n, u.toStyles)), s.disabled = !0, s.overrideTotalTime(u.totalTime), void t.push(s);
+                    if (o.has(n)) return s.onDestroy(() => QN(n, u.toStyles)), s.disabled = !0, s.overrideTotalTime(u.totalTime), void t.push(s);
                     let l = A;
                     if (k.size > 1) {
                         let e = n;
@@ -37819,13 +37946,13 @@
                     if (s.setRealPlayer(e), l === A) T.push(s);
                     else {
                         const n = this.playersByElement.get(l);
-                        n && n.length && (s.parentPlayer = pN(n)), t.push(s)
+                        n && n.length && (s.parentPlayer = gN(n)), t.push(s)
                     }
-                } else ZN(n, u.fromStyles), s.onDestroy(() => KN(n, u.toStyles)), E.push(s), o.has(n) && t.push(s)
+                } else YN(n, u.fromStyles), s.onDestroy(() => QN(n, u.toStyles)), E.push(s), o.has(n) && t.push(s)
             }), E.forEach(l => {
                 const n = i.get(l.element);
                 if (n && n.length) {
-                    const e = pN(n);
+                    const e = gN(n);
                     l.setRealPlayer(e)
                 }
             }), t.forEach(l => {
@@ -37833,20 +37960,20 @@
             });
             for (let P = 0; P < g.length; P++) {
                 const l = g[P],
-                    n = l[JR];
-                if (hB(l, BN), n && n.hasAnimation) continue;
+                    n = l[nB];
+                if (fB(l, $N), n && n.hasAnimation) continue;
                 let e = [];
                 if (u.size) {
                     let n = u.get(l);
                     n && n.length && e.push(...n);
-                    let t = this.driver.query(l, FN, !0);
+                    let t = this.driver.query(l, UN, !0);
                     for (let l = 0; l < t.length; l++) {
                         let n = u.get(t[l]);
                         n && n.length && e.push(...n)
                     }
                 }
                 const t = e.filter(l => !l.destroyed);
-                t.length ? pB(this, l, t) : this.processLeaveNode(l)
+                t.length ? gB(this, l, t) : this.processLeaveNode(l)
             }
             return g.length = 0, T.forEach(l => {
                 this.players.push(l), l.onDone(() => {
@@ -37858,7 +37985,7 @@
         }
         elementContainsData(l, n) {
             let e = !1;
-            const t = n[JR];
+            const t = n[nB];
             return t && t.setForRemoval && (e = !0), this.playersByElement.has(n) && (e = !0), this.playersByQueriedElement.has(n) && (e = !0), this.statesByElement.has(n) && (e = !0), this._fetchNamespace(l).elementContainsData(n) || e
         }
         afterFlush(l) {
@@ -37875,7 +38002,7 @@
             } else {
                 const n = this.playersByElement.get(l);
                 if (n) {
-                    const l = !i || i == nB;
+                    const l = !i || i == tB;
                     n.forEach(n => {
                         n.queued || (l || n.triggerName == t) && s.push(n)
                     })
@@ -37890,13 +38017,13 @@
             for (const u of n.timelines) {
                 const l = u.element,
                     r = l !== t,
-                    a = vN(e, l, []);
+                    a = _N(e, l, []);
                 this._getPreviousPlayers(l, r, i, s, n.toState).forEach(l => {
                     const n = l.getRealPlayer();
                     n.beforeDestroy && n.beforeDestroy(), l.destroy(), a.push(l)
                 })
             }
-            ZN(t, n.fromStyles)
+            YN(t, n.fromStyles)
         }
         _buildAnimation(l, n, e, t, i, s) {
             const u = n.triggerName,
@@ -37907,30 +38034,30 @@
                 d = n.timelines.map(n => {
                     const d = n.element;
                     o.add(d);
-                    const h = d[JR];
-                    if (h && h.removedBeforeQueried) return new oN(n.duration, n.delay);
+                    const h = d[nB];
+                    if (h && h.removedBeforeQueried) return new dN(n.duration, n.delay);
                     const p = d !== r,
                         f = function (l) {
                             const n = [];
                             return function l(n, e) {
                                 for (let t = 0; t < n.length; t++) {
                                     const i = n[t];
-                                    i instanceof cN ? l(i.players, e) : e.push(i)
+                                    i instanceof hN ? l(i.players, e) : e.push(i)
                                 }
                             }(l, n), n
-                        }((e.get(d) || QR).map(l => l.getRealPlayer())).filter(l => !!l.element && l.element === d),
+                        }((e.get(d) || XR).map(l => l.getRealPlayer())).filter(l => !!l.element && l.element === d),
                         g = i.get(d),
                         m = s.get(d),
-                        y = fN(0, this._normalizer, 0, n.keyframes, g, m),
+                        y = mN(0, this._normalizer, 0, n.keyframes, g, m),
                         v = this._buildPlayer(n, y, f);
                     if (n.subTimeline && t && c.add(d), p) {
-                        const n = new sB(l, u, d);
+                        const n = new rB(l, u, d);
                         n.setRealPlayer(v), a.push(n)
                     }
                     return v
                 });
             a.forEach(l => {
-                vN(this.playersByQueriedElement, l.element, []).push(l), l.onDone(() => (function (l, n, e) {
+                _N(this.playersByQueriedElement, l.element, []).push(l), l.onDone(() => (function (l, n, e) {
                     let t;
                     if (l instanceof Map) {
                         if (t = l.get(n)) {
@@ -37949,25 +38076,25 @@
                     }
                     return t
                 })(this.playersByQueriedElement, l.element, l))
-            }), o.forEach(l => dB(l, LN));
-            const h = pN(d);
+            }), o.forEach(l => pB(l, qN));
+            const h = gN(d);
             return h.onDestroy(() => {
-                o.forEach(l => hB(l, LN)), KN(r, n.toStyles)
+                o.forEach(l => fB(l, qN)), QN(r, n.toStyles)
             }), c.forEach(l => {
-                vN(t, l, []).push(h)
+                _N(t, l, []).push(h)
             }), h
         }
         _buildPlayer(l, n, e) {
-            return n.length > 0 ? this.driver.animate(l.element, n, l.duration, l.delay, l.easing, e) : new oN(l.duration, l.delay)
+            return n.length > 0 ? this.driver.animate(l.element, n, l.duration, l.delay, l.easing, e) : new dN(l.duration, l.delay)
         }
     }
-    class sB {
+    class rB {
         constructor(l, n, e) {
-            this.namespaceId = l, this.triggerName = n, this.element = e, this._player = new oN, this._containsRealPlayer = !1, this._queuedCallbacks = {}, this.destroyed = !1, this.markedForDestroy = !1, this.disabled = !1, this.queued = !0, this.totalTime = 0
+            this.namespaceId = l, this.triggerName = n, this.element = e, this._player = new dN, this._containsRealPlayer = !1, this._queuedCallbacks = {}, this.destroyed = !1, this.markedForDestroy = !1, this.disabled = !1, this.queued = !0, this.totalTime = 0
         }
         setRealPlayer(l) {
             this._containsRealPlayer || (this._player = l, Object.keys(this._queuedCallbacks).forEach(n => {
-                this._queuedCallbacks[n].forEach(e => gN(l, n, void 0, e))
+                this._queuedCallbacks[n].forEach(e => yN(l, n, void 0, e))
             }), this._queuedCallbacks = {}, this._containsRealPlayer = !0, this.overrideTotalTime(l.totalTime), this.queued = !1)
         }
         getRealPlayer() {
@@ -37981,7 +38108,7 @@
             n.triggerCallback && l.onStart(() => n.triggerCallback("start")), l.onDone(() => this.finish()), l.onDestroy(() => this.destroy())
         }
         _queueEvent(l, n) {
-            vN(this._queuedCallbacks, l, []).push(n)
+            _N(this._queuedCallbacks, l, []).push(n)
         }
         onDone(l) {
             this.queued && this._queueEvent("done", l), this._player.onDone(l)
@@ -38028,31 +38155,31 @@
         }
     }
 
-    function uB(l) {
+    function aB(l) {
         return l && 1 === l.nodeType
     }
 
-    function rB(l, n) {
+    function oB(l, n) {
         const e = l.style.display;
         return l.style.display = null != n ? n : "none", e
     }
 
-    function aB(l, n, e, t, i) {
+    function cB(l, n, e, t, i) {
         const s = [];
-        e.forEach(l => s.push(rB(l)));
+        e.forEach(l => s.push(oB(l)));
         const u = [];
         t.forEach((e, t) => {
             const s = {};
             e.forEach(l => {
                 const e = s[l] = n.computeStyle(t, l, i);
-                e && 0 != e.length || (t[JR] = XR, u.push(t))
+                e && 0 != e.length || (t[nB] = lB, u.push(t))
             }), l.set(t, s)
         });
         let r = 0;
-        return e.forEach(l => rB(l, s[r++])), u
+        return e.forEach(l => oB(l, s[r++])), u
     }
 
-    function oB(l, n) {
+    function dB(l, n) {
         const e = new Map;
         if (l.forEach(l => e.set(l, [])), 0 == n.length) return e;
         const t = new Set(n),
@@ -38068,47 +38195,47 @@
             1 !== n && e.get(n).push(l)
         }), e
     }
-    const cB = "$$classes";
+    const hB = "$$classes";
 
-    function dB(l, n) {
+    function pB(l, n) {
         if (l.classList) l.classList.add(n);
         else {
-            let e = l[cB];
-            e || (e = l[cB] = {}), e[n] = !0
+            let e = l[hB];
+            e || (e = l[hB] = {}), e[n] = !0
         }
     }
 
-    function hB(l, n) {
+    function fB(l, n) {
         if (l.classList) l.classList.remove(n);
         else {
-            let e = l[cB];
+            let e = l[hB];
             e && delete e[n]
         }
     }
 
-    function pB(l, n, e) {
-        pN(e).onDone(() => l.processLeaveNode(n))
+    function gB(l, n, e) {
+        gN(e).onDone(() => l.processLeaveNode(n))
     }
 
-    function fB(l, n, e) {
+    function mB(l, n, e) {
         const t = e.get(l);
         if (!t) return !1;
         let i = n.get(l);
         return i ? t.forEach(l => i.add(l)) : n.set(l, t), e.delete(l), !0
     }
-    class gB {
+    class yB {
         constructor(l, n, e) {
-            this.bodyNode = l, this._driver = n, this._triggerCache = {}, this.onRemovalComplete = (l, n) => {}, this._transitionEngine = new iB(l, n, e), this._timelineEngine = new HR(l, n, e), this._transitionEngine.onRemovalComplete = (l, n) => this.onRemovalComplete(l, n)
+            this.bodyNode = l, this._driver = n, this._triggerCache = {}, this.onRemovalComplete = (l, n) => {}, this._transitionEngine = new uB(l, n, e), this._timelineEngine = new jR(l, n, e), this._transitionEngine.onRemovalComplete = (l, n) => this.onRemovalComplete(l, n)
         }
         registerTrigger(l, n, e, t, i) {
             const s = l + "-" + t;
             let u = this._triggerCache[s];
             if (!u) {
                 const l = [],
-                    n = fR(this._driver, i, l);
+                    n = mR(this._driver, i, l);
                 if (l.length) throw new Error(`The animation trigger "${t}" has failed to build due to the following errors:\n - ${l.join("\n - ")}`);
                 u = function (l, n) {
-                    return new FR(l, n)
+                    return new UR(l, n)
                 }(t, n), this._triggerCache[s] = u
             }
             this._transitionEngine.registerTrigger(n, t, u)
@@ -38130,13 +38257,13 @@
         }
         process(l, n, e, t) {
             if ("@" == e.charAt(0)) {
-                const [l, i] = bN(e);
+                const [l, i] = wN(e);
                 this._timelineEngine.command(l, n, i, t)
             } else this._transitionEngine.trigger(l, n, e, t)
         }
         listen(l, n, e, t, i) {
             if ("@" == e.charAt(0)) {
-                const [l, t] = bN(e);
+                const [l, t] = wN(e);
                 return this._timelineEngine.listen(l, n, t, i)
             }
             return this._transitionEngine.listen(l, n, e, t, i)
@@ -38152,12 +38279,12 @@
         }
     }
 
-    function mB(l, n) {
+    function vB(l, n) {
         let e = null,
             t = null;
-        return Array.isArray(n) && n.length ? (e = vB(n[0]), n.length > 1 && (t = vB(n[n.length - 1]))) : n && (e = vB(n)), e || t ? new yB(l, e, t) : null
+        return Array.isArray(n) && n.length ? (e = _B(n[0]), n.length > 1 && (t = _B(n[n.length - 1]))) : n && (e = _B(n)), e || t ? new bB(l, e, t) : null
     }
-    let yB = (() => {
+    let bB = (() => {
         class l {
             constructor(n, e, t) {
                 this._element = n, this._startStyles = e, this._endStyles = t, this._state = 0;
@@ -38165,95 +38292,95 @@
                 i || l.initialStylesByElement.set(n, i = {}), this._initialStyles = i
             }
             start() {
-                this._state < 1 && (this._startStyles && KN(this._element, this._startStyles, this._initialStyles), this._state = 1)
+                this._state < 1 && (this._startStyles && QN(this._element, this._startStyles, this._initialStyles), this._state = 1)
             }
             finish() {
-                this.start(), this._state < 2 && (KN(this._element, this._initialStyles), this._endStyles && (KN(this._element, this._endStyles), this._endStyles = null), this._state = 1)
+                this.start(), this._state < 2 && (QN(this._element, this._initialStyles), this._endStyles && (QN(this._element, this._endStyles), this._endStyles = null), this._state = 1)
             }
             destroy() {
-                this.finish(), this._state < 3 && (l.initialStylesByElement.delete(this._element), this._startStyles && (ZN(this._element, this._startStyles), this._endStyles = null), this._endStyles && (ZN(this._element, this._endStyles), this._endStyles = null), KN(this._element, this._initialStyles), this._state = 3)
+                this.finish(), this._state < 3 && (l.initialStylesByElement.delete(this._element), this._startStyles && (YN(this._element, this._startStyles), this._endStyles = null), this._endStyles && (YN(this._element, this._endStyles), this._endStyles = null), QN(this._element, this._initialStyles), this._state = 3)
             }
         }
         return l.initialStylesByElement = new WeakMap, l
     })();
 
-    function vB(l) {
+    function _B(l) {
         let n = null;
         const e = Object.keys(l);
         for (let t = 0; t < e.length; t++) {
             const i = e[t];
-            bB(i) && ((n = n || {})[i] = l[i])
+            wB(i) && ((n = n || {})[i] = l[i])
         }
         return n
     }
 
-    function bB(l) {
+    function wB(l) {
         return "display" === l || "position" === l
     }
-    const _B = 3, wB = "animation", xB = "animationend", kB = 1e3; class SB {
+    const xB = 3, kB = "animation", SB = "animationend", CB = 1e3; class IB {
         constructor(l, n, e, t, i, s, u) {
             this._element = l, this._name = n, this._duration = e, this._delay = t, this._easing = i, this._fillMode = s, this._onDoneFn = u, this._finished = !1, this._destroyed = !1, this._startTime = 0, this._position = 0, this._eventFn = l => this._handleCallback(l)
         }
         apply() {
             ! function (l, n) {
-                const e = PB(l, "").trim();
+                const e = MB(l, "").trim();
                 e.length && (function (l, n) {
                     let e = 0;
                     for (let t = 0; t < l.length; t++) "," === l.charAt(t) && e++
-                }(e), n = `${e}, ${n}`), AB(l, "", n)
-            }(this._element, `${this._duration}ms ${this._easing} ${this._delay}ms 1 normal ${this._fillMode} ${this._name}`), EB(this._element, this._eventFn, !1), this._startTime = Date.now()
+                }(e), n = `${e}, ${n}`), DB(l, "", n)
+            }(this._element, `${this._duration}ms ${this._easing} ${this._delay}ms 1 normal ${this._fillMode} ${this._name}`), PB(this._element, this._eventFn, !1), this._startTime = Date.now()
         }
         pause() {
-            CB(this._element, this._name, "paused")
+            TB(this._element, this._name, "paused")
         }
         resume() {
-            CB(this._element, this._name, "running")
+            TB(this._element, this._name, "running")
         }
         setPosition(l) {
-            const n = IB(this._element, this._name);
-            this._position = l * this._duration, AB(this._element, "Delay", `-${this._position}ms`, n)
+            const n = EB(this._element, this._name);
+            this._position = l * this._duration, DB(this._element, "Delay", `-${this._position}ms`, n)
         }
         getPosition() {
             return this._position
         }
         _handleCallback(l) {
             const n = l._ngTestManualTimestamp || Date.now(),
-                e = parseFloat(l.elapsedTime.toFixed(_B)) * kB;
+                e = parseFloat(l.elapsedTime.toFixed(xB)) * CB;
             l.animationName == this._name && Math.max(n - this._startTime, 0) >= this._delay && e >= this._duration && this.finish()
         }
         finish() {
-            this._finished || (this._finished = !0, this._onDoneFn(), EB(this._element, this._eventFn, !0))
+            this._finished || (this._finished = !0, this._onDoneFn(), PB(this._element, this._eventFn, !0))
         }
         destroy() {
             this._destroyed || (this._destroyed = !0, this.finish(), function (l, n) {
-                const e = PB(l, "").split(","),
-                    t = TB(e, n);
-                t >= 0 && (e.splice(t, 1), AB(l, "", e.join(",")))
+                const e = MB(l, "").split(","),
+                    t = AB(e, n);
+                t >= 0 && (e.splice(t, 1), DB(l, "", e.join(",")))
             }(this._element, this._name))
         }
     }
 
-    function CB(l, n, e) {
-        AB(l, "PlayState", e, IB(l, n))
+    function TB(l, n, e) {
+        DB(l, "PlayState", e, EB(l, n))
     }
 
-    function IB(l, n) {
-        const e = PB(l, "");
-        return e.indexOf(",") > 0 ? TB(e.split(","), n) : TB([e], n)
+    function EB(l, n) {
+        const e = MB(l, "");
+        return e.indexOf(",") > 0 ? AB(e.split(","), n) : AB([e], n)
     }
 
-    function TB(l, n) {
+    function AB(l, n) {
         for (let e = 0; e < l.length; e++)
             if (l[e].indexOf(n) >= 0) return e;
         return -1
     }
 
-    function EB(l, n, e) {
-        e ? l.removeEventListener(xB, n) : l.addEventListener(xB, n)
+    function PB(l, n, e) {
+        e ? l.removeEventListener(SB, n) : l.addEventListener(SB, n)
     }
 
-    function AB(l, n, e, t) {
-        const i = wB + n;
+    function DB(l, n, e, t) {
+        const i = kB + n;
         if (null != t) {
             const n = l.style[i];
             if (n.length) {
@@ -38264,12 +38391,12 @@
         l.style[i] = e
     }
 
-    function PB(l, n) {
-        return l.style[wB + n]
+    function MB(l, n) {
+        return l.style[kB + n]
     }
-    const DB = "forwards", MB = "linear"; class OB {
+    const OB = "forwards", NB = "linear"; class RB {
         constructor(l, n, e, t, i, s, u, r) {
-            this.element = l, this.keyframes = n, this.animationName = e, this._duration = t, this._delay = i, this._finalStyles = u, this._specialStyles = r, this._onDoneFns = [], this._onStartFns = [], this._onDestroyFns = [], this._started = !1, this.currentSnapshot = {}, this._state = 0, this.easing = s || MB, this.totalTime = t + i, this._buildStyler()
+            this.element = l, this.keyframes = n, this.animationName = e, this._duration = t, this._delay = i, this._finalStyles = u, this._specialStyles = r, this._onDoneFns = [], this._onStartFns = [], this._onDestroyFns = [], this._started = !1, this.currentSnapshot = {}, this._state = 0, this.easing = s || NB, this.totalTime = t + i, this._buildStyler()
         }
         onStart(l) {
             this._onStartFns.push(l)
@@ -38317,7 +38444,7 @@
             this._styler.destroy(), this._buildStyler(), this._styler.apply()
         }
         _buildStyler() {
-            this._styler = new SB(this.element, this.animationName, this._duration, this._delay, this.easing, DB, () => this.finish())
+            this._styler = new IB(this.element, this.animationName, this._duration, this._delay, this.easing, OB, () => this.finish())
         }
         triggerCallback(l) {
             const n = "start" == l ? this._onStartFns : this._onDoneFns;
@@ -38329,15 +38456,15 @@
             if (this.hasStarted()) {
                 const n = this._state >= 3;
                 Object.keys(this._finalStyles).forEach(e => {
-                    "offset" != e && (l[e] = n ? this._finalStyles[e] : uR(this.element, e))
+                    "offset" != e && (l[e] = n ? this._finalStyles[e] : aR(this.element, e))
                 })
             }
             this.currentSnapshot = l
         }
     }
-    class NB extends oN {
+    class BB extends dN {
         constructor(l, n) {
-            super(), this.element = l, this._startingStyles = {}, this.__initialized = !1, this._styles = PN(n)
+            super(), this.element = l, this._startingStyles = {}, this.__initialized = !1, this._styles = MN(n)
         }
         init() {
             !this.__initialized && this._startingStyles && (this.__initialized = !0, Object.keys(this._styles).forEach(l => {
@@ -38354,33 +38481,33 @@
             }), this._startingStyles = null, super.destroy())
         }
     }
-    const RB = "gen_css_kf_", BB = " "; class zB {
+    const zB = "gen_css_kf_", $B = " "; class LB {
         constructor() {
             this._count = 0, this._head = document.querySelector("head"), this._warningIssued = !1
         }
         validateStyleProperty(l) {
-            return IN(l)
+            return EN(l)
         }
         matchesElement(l, n) {
-            return TN(l, n)
+            return AN(l, n)
         }
         containsElement(l, n) {
-            return EN(l, n)
+            return PN(l, n)
         }
         query(l, n, e) {
-            return AN(l, n, e)
+            return DN(l, n, e)
         }
         computeStyle(l, n, e) {
             return window.getComputedStyle(l)[n]
         }
         buildKeyframeElement(l, n, e) {
-            e = e.map(l => PN(l));
+            e = e.map(l => MN(l));
             let t = `@keyframes ${n} {\n`,
                 i = "";
             e.forEach(l => {
-                i = BB;
+                i = $B;
                 const n = parseFloat(l.offset);
-                t += `${i}${100*n}% {\n`, i += BB, Object.keys(l).forEach(n => {
+                t += `${i}${100*n}% {\n`, i += $B, Object.keys(l).forEach(n => {
                     const e = l[n];
                     switch (n) {
                         case "offset":
@@ -38397,9 +38524,9 @@
         }
         animate(l, n, e, t, i, s = [], u) {
             u && this._notifyFaultyScrubber();
-            const r = s.filter(l => l instanceof OB),
+            const r = s.filter(l => l instanceof RB),
                 a = {};
-            tR(e, t) && r.forEach(l => {
+            sR(e, t) && r.forEach(l => {
                 let n = l.currentSnapshot;
                 Object.keys(n).forEach(l => a[l] = n[l])
             });
@@ -38410,13 +38537,13 @@
                         "offset" != e && "easing" != e && (n[e] = l[e])
                     })
                 }), n
-            }(n = iR(l, n, a));
-            if (0 == e) return new NB(l, o);
-            const c = `${RB}${this._count++}`,
+            }(n = uR(l, n, a));
+            if (0 == e) return new BB(l, o);
+            const c = `${zB}${this._count++}`,
                 d = this.buildKeyframeElement(l, c, n);
             document.querySelector("head").appendChild(d);
-            const h = mB(l, n),
-                p = new OB(l, n, c, e, t, i, o, h);
+            const h = vB(l, n),
+                p = new RB(l, n, c, e, t, i, o, h);
             return p.onDestroy(() => (function (l) {
                 l.parentNode.removeChild(l)
             })(d)), p
@@ -38425,7 +38552,7 @@
             this._warningIssued || (console.warn("@angular/animations: please load the web-animations.js polyfill to allow programmatic access...\n", "  visit http://bit.ly/IWukam to learn more about using the web-animation-js polyfill."), this._warningIssued = !0)
         }
     }
-    class $B {
+    class FB {
         constructor(l, n, e, t) {
             this.element = l, this.keyframes = n, this.options = e, this._specialStyles = t, this._onDoneFns = [], this._onStartFns = [], this._onDestroyFns = [], this._initialized = !1, this._finished = !1, this._started = !1, this._destroyed = !1, this.time = 0, this.parentPlayer = null, this.currentSnapshot = {}, this._duration = e.duration, this._delay = e.delay || 0, this.time = this._duration + this._delay
         }
@@ -38492,7 +38619,7 @@
         beforeDestroy() {
             const l = {};
             this.hasStarted() && Object.keys(this._finalKeyframe).forEach(n => {
-                "offset" != n && (l[n] = this._finished ? this._finalKeyframe[n] : uR(this.element, n))
+                "offset" != n && (l[n] = this._finished ? this._finalKeyframe[n] : aR(this.element, n))
             }), this.currentSnapshot = l
         }
         triggerCallback(l) {
@@ -38500,21 +38627,21 @@
             n.forEach(l => l()), n.length = 0
         }
     }
-    class LB {
+    class qB {
         constructor() {
-            this._isNativeImpl = /\{\s*\[native\s+code\]\s*\}/.test(FB().toString()), this._cssKeyframesDriver = new zB
+            this._isNativeImpl = /\{\s*\[native\s+code\]\s*\}/.test(UB().toString()), this._cssKeyframesDriver = new LB
         }
         validateStyleProperty(l) {
-            return IN(l)
+            return EN(l)
         }
         matchesElement(l, n) {
-            return TN(l, n)
+            return AN(l, n)
         }
         containsElement(l, n) {
-            return EN(l, n)
+            return PN(l, n)
         }
         query(l, n, e) {
-            return AN(l, n, e)
+            return DN(l, n, e)
         }
         computeStyle(l, n, e) {
             return window.getComputedStyle(l)[n]
@@ -38531,20 +38658,20 @@
             };
             i && (r.easing = i);
             const a = {},
-                o = s.filter(l => l instanceof $B);
-            tR(e, t) && o.forEach(l => {
+                o = s.filter(l => l instanceof FB);
+            sR(e, t) && o.forEach(l => {
                 let n = l.currentSnapshot;
                 Object.keys(n).forEach(l => a[l] = n[l])
             });
-            const c = mB(l, n = iR(l, n = n.map(l => jN(l, !1)), a));
-            return new $B(l, n, r, c)
+            const c = vB(l, n = uR(l, n = n.map(l => WN(l, !1)), a));
+            return new FB(l, n, r, c)
         }
     }
 
-    function FB() {
+    function UB() {
         return "undefined" != typeof window && void 0 !== window.document && Element.prototype.animate || {}
     }
-    class qB extends tN {
+    class HB extends sN {
         constructor(l, n) {
             super(), this._nextAnimationId = 0, this._renderer = l.createRenderer(n.body, {
                 id: "0",
@@ -38558,19 +38685,19 @@
         build(l) {
             const n = this._nextAnimationId.toString();
             this._nextAnimationId++;
-            const e = Array.isArray(l) ? uN(l) : l;
-            return VB(this._renderer, null, n, "register", [e]), new UB(n, this._renderer)
+            const e = Array.isArray(l) ? aN(l) : l;
+            return GB(this._renderer, null, n, "register", [e]), new VB(n, this._renderer)
         }
     }
-    class UB extends iN {
+    class VB extends uN {
         constructor(l, n) {
             super(), this._id = l, this._renderer = n
         }
         create(l, n) {
-            return new HB(this._id, l, n || {}, this._renderer)
+            return new jB(this._id, l, n || {}, this._renderer)
         }
     }
-    class HB {
+    class jB {
         constructor(l, n, e, t) {
             this.id = l, this.element = n, this._renderer = t, this.parentPlayer = null, this._started = !1, this.totalTime = 0, this._command("create", e)
         }
@@ -38578,7 +38705,7 @@
             return this._renderer.listen(this.element, `@@${this.id}:${l}`, n)
         }
         _command(l, ...n) {
-            return VB(this._renderer, this.element, this.id, l, n)
+            return GB(this._renderer, this.element, this.id, l, n)
         }
         onDone(l) {
             this._listen("done", l)
@@ -38621,10 +38748,10 @@
         }
     }
 
-    function VB(l, n, e, t, i) {
+    function GB(l, n, e, t, i) {
         return l.setProperty(n, `@@${e}:${t}`, i)
     }
-    const jB = "@", GB = "@.disabled"; class WB {
+    const WB = "@", KB = "@.disabled"; class ZB {
         constructor(l, n, e) {
             this.delegate = l, this.engine = n, this._zone = e, this._currentId = 0, this._microtaskId = 1, this._animationCallbacksBuffer = [], this._rendererCache = new Map, this._cdRecurDepth = 0, this.promise = Promise.resolve(0), n.onRemovalComplete = (l, n) => {
                 n && n.parentNode(l) && n.removeChild(l.parentNode, l)
@@ -38634,11 +38761,11 @@
             const e = this.delegate.createRenderer(l, n);
             if (!(l && n && n.data && n.data.animation)) {
                 let l = this._rendererCache.get(e);
-                return l || (l = new KB("", e, this.engine), this._rendererCache.set(e, l)), l
+                return l || (l = new QB("", e, this.engine), this._rendererCache.set(e, l)), l
             }
             const t = n.id,
                 i = n.id + "-" + this._currentId;
-            return this._currentId++, this.engine.register(i, l), n.data.animation.forEach(n => this.engine.registerTrigger(t, i, l, n.name, n)), new ZB(this, i, e, this.engine)
+            return this._currentId++, this.engine.register(i, l), n.data.animation.forEach(n => this.engine.registerTrigger(t, i, l, n.name, n)), new YB(this, i, e, this.engine)
         }
         begin() {
             this._cdRecurDepth++, this.delegate.begin && this.delegate.begin()
@@ -38667,7 +38794,7 @@
             return this.engine.whenRenderingDone()
         }
     }
-    class KB {
+    class QB {
         constructor(l, n, e) {
             this.namespaceId = l, this.delegate = n, this.engine = e, this.destroyNode = this.delegate.destroyNode ? l => n.destroyNode(l) : null
         }
@@ -38723,7 +38850,7 @@
             this.delegate.removeStyle(l, n, e)
         }
         setProperty(l, n, e) {
-            n.charAt(0) == jB && n == GB ? this.disableAnimations(l, !!e) : this.delegate.setProperty(l, n, e)
+            n.charAt(0) == WB && n == KB ? this.disableAnimations(l, !!e) : this.delegate.setProperty(l, n, e)
         }
         setValue(l, n) {
             this.delegate.setValue(l, n)
@@ -38735,15 +38862,15 @@
             this.engine.disableAnimations(l, n)
         }
     }
-    class ZB extends KB {
+    class YB extends QB {
         constructor(l, n, e, t) {
             super(n, e, t), this.factory = l, this.namespaceId = n
         }
         setProperty(l, n, e) {
-            n.charAt(0) == jB ? "." == n.charAt(1) && n == GB ? this.disableAnimations(l, e = void 0 === e || !!e) : this.engine.process(this.namespaceId, l, n.substr(1), e) : this.delegate.setProperty(l, n, e)
+            n.charAt(0) == WB ? "." == n.charAt(1) && n == KB ? this.disableAnimations(l, e = void 0 === e || !!e) : this.engine.process(this.namespaceId, l, n.substr(1), e) : this.delegate.setProperty(l, n, e)
         }
         listen(l, n, e) {
-            if (n.charAt(0) == jB) {
+            if (n.charAt(0) == WB) {
                 const t = function (l) {
                     switch (l) {
                         case "body":
@@ -38758,7 +38885,7 @@
                 }(l);
                 let i = n.substr(1),
                     s = "";
-                return i.charAt(0) != jB && ([i, s] = function (l) {
+                return i.charAt(0) != WB && ([i, s] = function (l) {
                     const n = l.indexOf(".");
                     return [l.substring(0, n), l.substr(n + 1)]
                 }(i)), this.engine.listen(this.namespaceId, t, i, s, l => {
@@ -38768,25 +38895,25 @@
             return this.delegate.listen(l, n, e)
         }
     }
-    class QB extends gB {
+    class XB extends yB {
         constructor(l, n, e) {
             super(l.body, n, e)
         }
     }
 
-    function YB() {
-        return "function" == typeof FB() ? new LB : new zB
+    function JB() {
+        return "function" == typeof UB() ? new qB : new LB
     }
 
-    function XB() {
-        return new NR
+    function lz() {
+        return new BR
     }
 
-    function JB(l, n, e) {
-        return new WB(l, n, e)
+    function nz(l, n, e) {
+        return new ZB(l, n, e)
     }
-    const lz = new El("AnimationModuleType"); class nz {}
-    class ez {
+    const ez = new El("AnimationModuleType"); class tz {}
+    class iz {
         constructor(l, n) {
             this.data = l, this.router = n
         }
@@ -38794,8 +38921,8 @@
             return null != this.data.version || (this.router.navigate(["/"]), !1)
         }
     }
-    class tz {}
-    var iz = Er(Dr, [Mr], (function (l) {
+    class sz {}
+    var uz = Er(Dr, [Mr], (function (l) {
         return function (l) {
             const n = {},
                 e = [];
@@ -38811,16 +38938,16 @@
                 modules: e,
                 isRoot: t
             }
-        }([$t(512, ce, de, [[8, [Xp, em, lx, ek, tE, mE, yA, GA, lP, zP, JP, uD, wD, TD, $D, gO, BO, HO, ZO, n_, N_, bw, kw, q_, tw, cw, eN]], [3, ce], jl]), $t(5120, Ji, nu, [[3, Ji]]), $t(4608, wa, xa, [Ji, [2, _a]]), $t(5120, Mi, eu, [ys]), $t(5120, Gi, Wi, []), $t(5120, Oe, Js, []), $t(5120, Ne, lu, []), $t(4608, Vc, jc, [Ua]), $t(6144, Pn, null, [Vc]), $t(4608, zc, Lc, []), $t(5120, sc, (function (l, n, e, t, i, s, u, r) {
+        }([$t(512, ce, de, [[8, [Xp, em, lx, tk, sE, vE, bA, KA, eP, LP, nD, aD, kD, AD, FD, yO, $O, jO, YO, n_, N_, bw, kw, q_, tw, cw, iN]], [3, ce], jl]), $t(5120, Ji, nu, [[3, Ji]]), $t(4608, wa, xa, [Ji, [2, _a]]), $t(5120, Mi, eu, [ys]), $t(5120, Gi, Wi, []), $t(5120, Oe, Js, []), $t(5120, Ne, lu, []), $t(4608, Vc, jc, [Ua]), $t(6144, Pn, null, [Vc]), $t(4608, zc, Lc, []), $t(5120, sc, (function (l, n, e, t, i, s, u, r) {
             return [new Rc(l, n, e), new Hc(t), new Fc(i, s, u, r)]
-        }), [Ua, ys, Qi, Ua, Ua, zc, Xi, [2, $c]]), $t(4608, uc, uc, [sc, ys]), $t(135680, oc, oc, [Ua]), $t(4608, mc, mc, [uc, oc, Gi]), $t(5120, MN, YB, []), $t(5120, OR, XB, []), $t(4608, gB, QB, [Ua, MN, OR]), $t(5120, ye, JB, [mc, gB, ys]), $t(6144, ac, null, [oc]), $t(4608, Ss, Ss, [ys]), $t(4608, tN, qB, [ye, Ua]), $t(5120, oh, Vp, [_p]), $t(4608, Dp, Dp, []), $t(6144, Ap, null, [Dp]), $t(135680, Mp, Mp, [_p, Ls, us, Ln, Ap]), $t(4608, Pp, Pp, []), $t(5120, Op, Lp, [_p, Va, Np]), $t(5120, Kp, Wp, [jp]), $t(5120, Yi, (function (l) {
+        }), [Ua, ys, Qi, Ua, Ua, zc, Xi, [2, $c]]), $t(4608, uc, uc, [sc, ys]), $t(135680, oc, oc, [Ua]), $t(4608, mc, mc, [uc, oc, Gi]), $t(5120, NN, JB, []), $t(5120, RR, lz, []), $t(4608, yB, XB, [Ua, NN, RR]), $t(5120, ye, nz, [mc, yB, ys]), $t(6144, ac, null, [oc]), $t(4608, Ss, Ss, [ys]), $t(4608, sN, HB, [ye, Ua]), $t(5120, oh, Vp, [_p]), $t(4608, Dp, Dp, []), $t(6144, Ap, null, [Dp]), $t(135680, Mp, Mp, [_p, Ls, us, Ln, Ap]), $t(4608, Pp, Pp, []), $t(5120, Op, Lp, [_p, Va, Np]), $t(5120, Kp, Wp, [jp]), $t(5120, Yi, (function (l) {
             return [l]
-        }), [Kp]), $t(4608, wf, wf, []), $t(4608, Fy, Fy, [ce, Ln, Ly, Ay]), $t(4608, Tg, Tg, []), $t(4608, Pg, Pg, [Tg]), $t(135680, vv, vv, [Tg, Pg, zg, Rg, $g]), $t(135680, qv, qv, [Tg, Pg, zg, Rg]), $t(4608, ez, ez, [Pg, _p]), $t(1073742336, qa, qa, []), $t(1024, tn, Jc, []), $t(1024, Ms, (function () {
+        }), [Kp]), $t(4608, wf, wf, []), $t(4608, Fy, Fy, [ce, Ln, Ly, Ay]), $t(4608, Tg, Tg, []), $t(4608, Pg, Pg, [Tg]), $t(135680, vv, vv, [Tg, Pg, zg, Rg, $g]), $t(135680, qv, qv, [Tg, Pg, zg, Rg]), $t(4608, iz, iz, [Pg, _p]), $t(1073742336, qa, qa, []), $t(1024, tn, Jc, []), $t(1024, Ms, (function () {
             return [zp()]
         }), []), $t(512, jp, jp, [Ln]), $t(1024, Vi, (function (l, n) {
             return [(e = l, ec("probe", ic), ec("coreTokens", Object.assign({}, tc, (e || []).reduce((l, n) => (l[n.name] = n.token, l), {}))), () => ic), Gp(n)];
             var e
-        }), [[2, Ms], jp]), $t(512, ji, ji, [[2, Vi]]), $t(131584, zs, zs, [ys, Xi, Ln, tn, ce, ji]), $t(1073742336, tu, tu, [zs]), $t(1073742336, ld, ld, [[3, ld]]), $t(1073742336, nz, nz, []), $t(1024, Rp, qp, [[3, _p]]), $t(512, qd, Ud, []), $t(512, Ip, Ip, []), $t(256, Np, {}, []), $t(1024, Rr, Fp, [Or, [2, Br], Np]), $t(512, zr, zr, [Rr, Or]), $t(512, us, us, []), $t(512, Ls, Vs, [us, [2, Us]]), $t(1024, pp, (function () {
+        }), [[2, Ms], jp]), $t(512, ji, ji, [[2, Vi]]), $t(131584, zs, zs, [ys, Xi, Ln, tn, ce, ji]), $t(1073742336, tu, tu, [zs]), $t(1073742336, ld, ld, [[3, ld]]), $t(1073742336, tz, tz, []), $t(1024, Rp, qp, [[3, _p]]), $t(512, qd, Ud, []), $t(512, Ip, Ip, []), $t(256, Np, {}, []), $t(1024, Rr, Fp, [Or, [2, Br], Np]), $t(512, zr, zr, [Rr, Or]), $t(512, us, us, []), $t(512, Ls, Vs, [us, [2, Us]]), $t(1024, pp, (function () {
             return [[{
                 path: "",
                 pathMatch: "full",
@@ -38831,7 +38958,7 @@
             }, {
                 path: "game",
                 component: Aw,
-                canActivate: [ez],
+                canActivate: [iz],
                 children: [{
                     path: "",
                     pathMatch: "full",
@@ -38841,62 +38968,62 @@
                     component: sx
                 }, {
                     path: "city/:id",
-                    component: mT
+                    component: vT
                 }, {
                     path: "city",
-                    component: mT
+                    component: vT
                 }, {
                     path: "science",
-                    component: iE
+                    component: uE
                 }, {
                     path: "world",
-                    component: wE
+                    component: kE
                 }, {
                     path: "attacks",
-                    component: vA
+                    component: _A
                 }, {
                     path: "simulator",
-                    component: WA
+                    component: ZA
                 }, {
                     path: "reports/:id",
-                    component: nP
+                    component: tP
                 }, {
                     path: "reports",
-                    component: nP
+                    component: tP
                 }, {
                     path: "policies",
-                    component: $P
+                    component: FP
                 }, {
                     path: "notifications",
-                    component: lD
+                    component: eD
                 }, {
                     path: "help",
-                    component: oD
+                    component: dD
                 }, {
                     path: "support",
-                    component: xD
+                    component: SD
                 }, {
                     path: "options",
-                    component: ED
+                    component: PD
                 }, {
                     path: "diplomacy",
-                    component: LD
+                    component: qD
                 }, {
                     path: "powers",
-                    component: mO
+                    component: vO
                 }, {
                     path: "daily",
-                    component: zO
+                    component: LO
                 }, {
                     path: "deity",
-                    component: VO
+                    component: GO
                 }]
             }]]
-        }), []), $t(1024, _p, Hp, [zs, qd, Ip, zr, Ln, Ls, us, pp, Np, [2, gp], [2, dp]]), $t(1073742336, $p, $p, [[2, Rp], [2, _p]]), $t(1073742336, tz, tz, []), $t(1073742336, Vv, Vv, []), $t(1073742336, eg, eg, []), $t(1073742336, tg, tg, []), $t(1073742336, Pm, Pm, []), $t(1073742336, Om, Om, []), $t(1073742336, Nm, Nm, []), $t(1073742336, Rm, Rm, []), $t(1073742336, Bm, Bm, []), $t(1073742336, _y, _y, []), $t(1073742336, Ey, Ey, []), $t(1073742336, qy, qy, []), $t(1073742336, Uy, Uy, []), $t(1073742336, Qy, Qy, []), $t(1073742336, Yy, Yy, []), $t(1073742336, Xy, Xy, []), $t(1073742336, iv, iv, []), $t(1073742336, sv, sv, []), $t(1073742336, av, av, []), $t(1073742336, cv, cv, []), $t(1073742336, pv, pv, []), $t(1073742336, fv, fv, []), $t(1073742336, Dr, Dr, []), $t(256, zn, !0, []), $t(256, lz, "BrowserAnimations", [])])
+        }), []), $t(1024, _p, Hp, [zs, qd, Ip, zr, Ln, Ls, us, pp, Np, [2, gp], [2, dp]]), $t(1073742336, $p, $p, [[2, Rp], [2, _p]]), $t(1073742336, sz, sz, []), $t(1073742336, Vv, Vv, []), $t(1073742336, eg, eg, []), $t(1073742336, tg, tg, []), $t(1073742336, Pm, Pm, []), $t(1073742336, Om, Om, []), $t(1073742336, Nm, Nm, []), $t(1073742336, Rm, Rm, []), $t(1073742336, Bm, Bm, []), $t(1073742336, _y, _y, []), $t(1073742336, Ey, Ey, []), $t(1073742336, qy, qy, []), $t(1073742336, Uy, Uy, []), $t(1073742336, Qy, Qy, []), $t(1073742336, Yy, Yy, []), $t(1073742336, Xy, Xy, []), $t(1073742336, iv, iv, []), $t(1073742336, sv, sv, []), $t(1073742336, av, av, []), $t(1073742336, cv, cv, []), $t(1073742336, pv, pv, []), $t(1073742336, fv, fv, []), $t(1073742336, Dr, Dr, []), $t(256, zn, !0, []), $t(256, ez, "BrowserAnimations", [])])
     })); Pr.production && function () {
         if (un) throw new Error("Cannot enable prod mode after platform setup.");
         sn = !1
-    }(), Xc().bootstrapModuleFactory(iz).catch(l => console.error(l))
+    }(), Xc().bootstrapModuleFactory(uz).catch(l => console.error(l))
 }, zn8P: function (l, n) {
     function e(l) {
         return Promise.resolve().then((function () {
