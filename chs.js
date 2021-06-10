@@ -2171,6 +2171,7 @@ var cnRegReplace = new Map([
     [/^(.+) Musketman$/, '$1 火枪手'],
     [/^(.+) Explorer$/, '$1 探险者'],
     [/^(.+) Caravan$/, '$1 商队'],
+    [/^(.+) created a trade route between (.+) and (.+)$/, '$1 在 $2 和 $3 之间创建了一条贸易路线'],
     [/^(.+) Cannon$/, '$1 大炮'],
     [/^ charge (.+) to unlock$/, ' 充电 $1 解锁'],
     [/^Assur (.+)$/, '亚述 $1'],
